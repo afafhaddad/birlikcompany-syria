@@ -195,6 +195,17 @@ export const Footer: React.FC<FooterProps> = ({
           
           <div className="mt-2 sm:mt-0 flex items-center gap-3 text-[#8C8278]">
             <span>{currentLang === 'ar' ? 'اللاذقية • الجمهورية العربية السورية' : 'Lattakia • Syrian Arab Republic'}</span>
+            {onOpenAdminLogin && (
+              <button
+                type="button"
+                onClick={onOpenAdminLogin}
+                className="opacity-40 hover:opacity-100 transition-opacity p-1 text-[#D4AF37] hover:text-[#9E7241] cursor-pointer inline-flex items-center gap-1 text-[11px]"
+                title={currentLang === 'ar' ? 'بوابة إدارة الصور' : 'Admin Media Portal'}
+              >
+                <Lock className="w-3 h-3" />
+                <span>{currentLang === 'ar' ? 'إدارة الصور' : 'Admin Portal'}</span>
+              </button>
+            )}
           </div>
         </div>
 

@@ -269,7 +269,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
         <div className="absolute inset-0">
           <img
             src={getCategoryImageUrl(category.id, category.image) || category.image || '/hero.png'}
-            alt={category.name[currentLang]}
+            alt={`${category.name[currentLang]} - خامات وتكسية جدران معمارية في اللاذقية وسوريا | Birlik Company Syria`}
             onError={(e) => {
               if (e.currentTarget.src !== category.image) {
                 e.currentTarget.src = category.image;
@@ -447,10 +447,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                 <div className="relative h-72 sm:h-60 md:h-64 bg-[#1C1917] overflow-hidden">
                   <img 
                     src={cardImgSrc}
-                    alt={model.name[currentLang]}
+                    alt={`${model.code} - ${model.name[currentLang]} | ${category.name[currentLang]} - شركة بيرليك لديكور وتكسية الجدران في اللاذقية وسوريا`}
                     onError={(e) => {
-                      if (firstImg && e.currentTarget.src !== firstImg) {
-                        e.currentTarget.src = firstImg;
+                      const fallback = category.image || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80';
+                      if (e.currentTarget.src !== fallback) {
+                        e.currentTarget.src = fallback;
                       }
                     }}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"

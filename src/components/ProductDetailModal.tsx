@@ -138,7 +138,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 src={safeMainImgSrc} 
                 alt={`${model.name[currentLang]} - ${safeActiveIdx + 1}`}
                 onError={(e) => {
-                  const fallback = model.images?.[0] || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85';
+                  const fallback = 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85';
                   if (e.currentTarget.src !== fallback) {
                     e.currentTarget.src = fallback;
                   }
@@ -202,10 +202,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     }`}
                   >
                     <img 
-                      src={imgUrl || model.images?.[idx] || model.images?.[0] || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80'} 
+                      src={imgUrl || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80'} 
                       alt={`Thumbnail ${idx + 1}`} 
                       onError={(e) => {
-                        const fallback = model.images?.[idx] || model.images?.[0] || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80';
+                        const fallback = 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80';
                         if (e.currentTarget.src !== fallback) {
                           e.currentTarget.src = fallback;
                         }

@@ -65,7 +65,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Versatile decorative wall panels with exceptional moisture resistance and effortless installation, modernizing interior walls with refined elegance.',
       tr: 'İç duvarları zarif ve modern bir şekilde yenileyen, neme dayanıklı ve kolay montajlı çok yönlü dekoratif duvar panelleri.'
     },
-    image: '/uploads/1790748270465_psbaseboardbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '12.1 cm - 16 cm × 290 cm',
       thickness: '9 mm - 14.8 mm',
@@ -103,7 +103,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Architectural fluted slats creating striking linear depth and tactile warmth.',
       tr: 'Nemden etkilenmeyen, bükülmeyen ve akustik konfor sağlayan 3D oluklu çıta paneller.'
     },
-    image: '/uploads/1790748253391_pswallpanelsbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '12.1 cm - 16 cm × 290 cm',
       thickness: '9 mm - 14.8 mm',
@@ -142,7 +142,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Elegant panels capturing luxurious natural marble veining, adding prestige and grandeur to your walls without the weight or maintenance of real stone.',
       tr: 'Doğal mermerin zahmeti ve bakımı olmadan, duvarlara lüks ve asil bir dokunuş katan zarif mermer görünümlü paneller.'
     },
-    image: '/uploads/1790748255245_pvcwallpanelbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '122 cm × 240 cm',
       thickness: '2.5 mm',
@@ -180,7 +180,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Premium wall panels mirroring Italian marble veining with a high-gloss UV layer.',
       tr: 'Çizilmeye ve lekelere dayanıklı UV korumalı lüks mermer paneller.'
     },
-    image: '/uploads/1790748255245_pvcwallpanelbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '122 cm × 240 cm',
       thickness: '2.5 mm',
@@ -219,7 +219,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Advanced composite panels made of PVC and compressed stone in a wide range of designs, delivering a luxurious look, tactile finish, and supreme waterproof durability.',
       tr: 'Geniş model seçenekleri, lüks görünümü ve üstün su direnci ile PVC ve sıkıştırılmış taştan üretilmiş gelişmiş kompozit paneller.'
     },
-    image: '/uploads/1790748263995_spcwallpanelbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '96 cm × 280 cm',
       thickness: '4.0 mm - 5.0 mm',
@@ -257,7 +257,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Heavy-duty rigid stone-polymer composite sheets engineered to eliminate traditional chipboard water swelling.',
       tr: 'Geleneksel suntanın su çekme ve kabarma sorununu çözen, yangına dayanıklı SPC levha.'
     },
-    image: '/uploads/1790748263995_spcwallpanelbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '96 cm × 280 cm',
       thickness: '4.0 mm - 5.0 mm',
@@ -296,7 +296,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Innovative flooring with versatile finishes and an effortless click-lock system, featuring a heavy scratch-resistant layer and durability surpassing traditional parquet thanks to 100% waterproof performance.',
       tr: 'Kolay montaj sağlayan kilit sistemi, çizilme koruması ve %100 su geçirmezliğiyle geleneksel parkeyi aşan yenilikçi zemin kaplamaları.'
     },
-    image: '/uploads/1790748266514_spcflooringbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '30.3 cm × 60.6 cm',
       thickness: '5.0 mm - 5.5 mm (4.5 مم + 1.0 مم IXPE)',
@@ -335,7 +335,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Flexible and durable decorative moldings and trims enabling French-style wainscoting and bespoke wall framing to suit every architectural taste.',
       tr: 'Fransız tarzı çıtalama ve duvar tasarımı imkanı sunan, her dekorasyon zevkine uyum sağlayan esnek ve dayanıklı dekoratif çıtalar.'
     },
-    image: '/uploads/1790748269192_pswallslathsbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '1.5 cm - 10 cm × 240 cm',
       thickness: '10 mm - 20 mm',
@@ -373,7 +373,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Manufactured from high-density polystyrene (HDPS), combining minimal structural load with effortless adhesive installation.',
       tr: 'Yüksek yoğunluklu polistirenden (HDPS) üretilen hafif, kolay monte edilen ve yankıyı kesen modern duvar çıtaları.'
     },
-    image: '/uploads/1790748269192_pswallslathsbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '1.5 cm - 10 cm × 240 cm',
       thickness: '10 mm - 20 mm',
@@ -412,7 +412,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Practical, heavy-duty floor baseboards providing seamless architectural finish and edge protection, with select models featuring integrated channels for LED lighting.',
       tr: 'İç mekanlara bütünsel bir bitiş ve kenar koruması sağlayan, belirli modellerde entegre LED aydınlatma kanalına sahip dayanıklı süpürgelikler.'
     },
-    image: '/uploads/1790748270465_psbaseboardbirlikcompany.jpg',
+    image: 'https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?auto=format&fit=crop&w=2400&q=85',
     specs: {
       dimensions: '10 cm - 11.5 cm × 240 cm',
       thickness: '12 mm - 15 mm',

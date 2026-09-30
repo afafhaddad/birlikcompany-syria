@@ -1,5 +1,7 @@
 export type Language = 'ar' | 'en' | 'tr';
 
+export type AppView = 'home' | 'catalogue' | 'category' | 'product' | 'installation';
+
 export type ProductCategory = 
   | 'all'
   | 'ps_wood'

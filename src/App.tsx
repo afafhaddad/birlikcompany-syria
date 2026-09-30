@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Language, ProductCategory, ProductModel } from './types';
+import { Language, ProductCategory, ProductModel, AppView } from './types';
 import { MediaProvider } from './context/MediaContext';
 import { AdminBar } from './components/AdminBar';
 import { AdminLoginModal } from './components/AdminLoginModal';
@@ -21,8 +21,8 @@ import { InstallationResourcesPage } from './components/InstallationResourcesPag
 import { OfficeSection } from './components/OfficeSection';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { Footer } from './components/Footer';
-
-export type AppView = 'home' | 'catalogue' | 'category' | 'product' | 'installation';
+import { SEOHead } from './components/SEOHead';
+import { PRODUCT_MODELS } from './data/products';
 
 export default function App() {
   // Default language is Arabic with toggles for English and Turkish
@@ -42,12 +42,39 @@ export default function App() {
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   }, [currentLang]);
 
-  // Check for private ?admin parameter in URL (e.g. yoursite.com/?admin or #admin)
-  // Ctrl + Shift + A shortcut is completely removed so visitors cannot open the password modal
+  // Check for deep links and ?admin parameter in URL on mount
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.has('admin') || window.location.hash === '#admin') {
       setIsAdminLoginOpen(true);
+    }
+
+    const pageParam = params.get('page');
+    const categoryParam = params.get('category') as ProductCategory | null;
+    const productParam = params.get('product');
+
+    if (productParam) {
+      const foundProduct = PRODUCT_MODELS.find(
+        (m) => m.id === productParam || m.code.toLowerCase() === productParam.toLowerCase()
+      );
+      if (foundProduct) {
+        setActiveProduct(foundProduct);
+        if (categoryParam) setActiveCategory(categoryParam);
+        setCurrentView('product');
+        return;
+      }
+    }
+
+    if (categoryParam) {
+      setActiveCategory(categoryParam);
+      setCurrentView('category');
+      return;
+    }
+
+    if (pageParam === 'catalogue') {
+      setCurrentView('catalogue');
+    } else if (pageParam === 'installation') {
+      setCurrentView('installation');
     }
   }, []);
 
@@ -123,6 +150,14 @@ export default function App() {
     <MediaProvider>
       <div className={`min-h-screen bg-[#FAF7F2] text-[#1C1917] flex flex-col font-sans selection:bg-[#9E7241]/20 selection:text-[#1C1917] ${currentLang === 'ar' ? 'rtl' : 'ltr'}`}>
         
+        {/* Dynamic SEO, OpenGraph & Schema.org Metadata Management */}
+        <SEOHead
+          currentView={currentView}
+          currentLang={currentLang}
+          activeCategory={activeCategory}
+          activeProduct={activeProduct}
+        />
+
         {/* Discrete Admin Bar (Only visible when admin is logged in) */}
         <AdminBar currentLang={currentLang} />
 
@@ -219,6 +254,7 @@ export default function App() {
           currentLang={currentLang}
           onLanguageChange={setCurrentLang}
           onNavigate={handleNavigate}
+          onOpenAdminLogin={() => setIsAdminLoginOpen(true)}
         />
 
         {/* Admin Login Dialog */}

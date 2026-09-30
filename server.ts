@@ -36,6 +36,15 @@ if (!fs.existsSync(uploadsDir)) {
 // Serve public uploads statically
 app.use('/uploads', express.static(uploadsDir));
 
+// Direct download route for the full project ZIP
+app.get('/download-project.zip', (req, res) => {
+  const zipPath = path.resolve(__dirname, 'public', 'birlik-project.zip');
+  if (fs.existsSync(zipPath)) {
+    return res.download(zipPath, 'birlik-project.zip');
+  }
+  return res.status(404).send('ZIP file is still generating or not found.');
+});
+
 const registryPath = path.resolve(__dirname, 'src', 'data', 'mediaRegistry.json');
 
 // Get current media registry

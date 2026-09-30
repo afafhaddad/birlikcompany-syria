@@ -398,10 +398,11 @@ export const ProductCataloguePage: React.FC<ProductCataloguePageProps> = ({
                 <div className="relative h-80 sm:h-72 md:h-72 lg:h-80 overflow-hidden group">
                   <img 
                     src={getCategoryImageUrl(cat.id, cat.image) || cat.image || '/hero.png'} 
-                    alt={cat.name[currentLang]} 
+                    alt={`${cat.name[currentLang]} - مواد تكسية وديكور جداري في سوريا واللاذقية | Birlik Company`} 
                     onError={(e) => {
-                      if (e.currentTarget.src !== cat.image) {
-                        e.currentTarget.src = cat.image;
+                      const fallback = catInfo?.image || cat.image || '/hero.png';
+                      if (e.currentTarget.src !== fallback) {
+                        e.currentTarget.src = fallback;
                       }
                     }}
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 pointer-events-none"

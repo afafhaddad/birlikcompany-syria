@@ -69,8 +69,8 @@ export const FOUNDER_DATA: FounderData = {
     en: 'Founder & CEO of "Sama Tasheed Contracting" — Jeddah, Kingdom of Saudi Arabia',
     tr: '"Sama Tasheed Contracting" Kurucu & CEO — Cidde, Suudi Arabistan'
   },
-  // Dignified architectural executive placeholder portrait
-  defaultImage: '/uploads/1790748219335_founderimage_1_.jpg',
+  // Founder executive portrait
+  defaultImage: '/founder.jpg',
   experienceYears: '+20',
   paragraphs: {
     ar: [

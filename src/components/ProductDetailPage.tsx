@@ -298,9 +298,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               >
                 <img 
                   src={activeProductImgSrc} 
-                  alt={`${model.name[currentLang]} - ${safeActiveIdx + 1}`} 
+                  alt={`${model.code} - ${model.name[currentLang]} | ${categoryInfo.name[currentLang]} - شركة بيرليك لديكور وتكسية الجدران في اللاذقية وسوريا`} 
                   onError={(e) => {
-                    const fallback = model.images?.[0] || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85';
+                    const fallback = categoryInfo.image || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85';
                     if (e.currentTarget.src !== fallback) {
                       e.currentTarget.src = fallback;
                     }
@@ -411,10 +411,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         }`}
                       >
                         <img 
-                          src={img || model.images?.[idx] || model.images?.[0] || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80'} 
-                          alt={`Thumbnail ${idx + 1}`} 
+                          src={img || categoryInfo.image || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80'} 
+                          alt={`${model.code} - ${model.name[currentLang]} صورة #${idx + 1} | Birlik Company Lattakia Syria`} 
                           onError={(e) => {
-                            const fallback = model.images?.[idx] || model.images?.[0] || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80';
+                            const fallback = categoryInfo.image || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80';
                             if (e.currentTarget.src !== fallback) {
                               e.currentTarget.src = fallback;
                             }
@@ -692,9 +692,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           >
             <img 
               src={activeProductImgSrc} 
-              alt={model.name[currentLang]} 
+              alt={`${model.code} - ${model.name[currentLang]} | ${categoryInfo.name[currentLang]} - خامات وتكسية جدران فاخرة في سوريا واللاذقية`} 
               onError={(e) => {
-                const fallback = model.images?.[0] || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85';
+                const fallback = categoryInfo.image || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85';
                 if (e.currentTarget.src !== fallback) {
                   e.currentTarget.src = fallback;
                 }
