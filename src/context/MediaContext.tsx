@@ -85,7 +85,6 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   // In-memory cache of binary image payloads (DataURLs) mapped by URL and ID
   const [fileDataCache, setFileDataCache] = useState<Map<string, string>>(new Map());
   const fileDataCacheRef = useRef<Map<string, string>>(new Map());
-  const serverFilesOnDiskRef = useRef<Set<string> | null>(null);
 
   // Fast resolver from URL (or /uploads/... or ID) to working DataURL / Blob URL
   const resolveMediaUrl = useCallback((url: string | undefined): string => {
@@ -101,12 +100,6 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       const filename = url.replace('/uploads/', '');
       const byFilename = fileDataCacheRef.current.get(filename);
       if (byFilename) return byFilename;
-
-      // If known server files list is available, check if file exists on server disk
-      if (serverFilesOnDiskRef.current !== null && !serverFilesOnDiskRef.current.has(filename)) {
-        // Missing from both client IndexedDB and server disk: return empty string so default photo is used
-        return '';
-      }
     }
 
     return url;
@@ -148,7 +141,6 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         await clearAllLocalMediaStorage();
         fileDataCacheRef.current.clear();
         setFileDataCache(new Map());
-        serverFilesOnDiskRef.current = new Set(serverData?.serverFilesOnDisk || []);
         setRegistry(serverData);
         await persistRegistryLocally(serverData);
         return;
@@ -207,7 +199,6 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
           // Background check: if any server files are missing on disk, sync them from cache
           const serverFiles = new Set<string>(serverData.serverFilesOnDisk || []);
-          serverFilesOnDiskRef.current = serverFiles;
           const syncItems: Array<{ url: string; dataUrl: string; name: string }> = [];
 
           if (merged.uploadedImages && fileDataCacheRef.current.size > 0) {
@@ -392,7 +383,6 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       if (finalUrl.startsWith('/uploads/')) {
         const fname = finalUrl.replace('/uploads/', '');
         fileDataCacheRef.current.set(fname, base64);
-        serverFilesOnDiskRef.current?.add(fname);
       }
       setFileDataCache(new Map(fileDataCacheRef.current));
 
@@ -700,7 +690,6 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       // 1. Wipe local memory cache
       fileDataCacheRef.current.clear();
       setFileDataCache(new Map());
-      serverFilesOnDiskRef.current = new Set();
 
       // 2. Wipe browser local stores
       await clearAllLocalMediaStorage();
