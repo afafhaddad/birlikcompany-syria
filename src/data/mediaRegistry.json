@@ -1,265 +1,884 @@
 {
-  "hero": "/uploads/1790748682107_Gemini_Generated_Image_jsbx8ujsbx8ujsbx.jpg",
-  "founder": "/uploads/1790748219335_founderimage_1_.jpg",
+  "hero": "/hero.jpg",
+  "founder": "/uploads/1790769871846_founderimage_1_.jpg",
   "categories": {
-    "ps_wood": "/uploads/1790748253391_pswallpanelsbirlikcompany.jpg",
-    "pvc_marble": "/uploads/1790748255245_pvcwallpanelbirlikcompany.jpg",
-    "spc_wall": "/uploads/1790748263995_spcwallpanelbirlikcompany.jpg",
-    "spc_flooring": "/uploads/1790748266514_spcflooringbirlikcompany.jpg",
-    "ps_slats": "/uploads/1790748269192_pswallslathsbirlikcompany.jpg",
-    "ps_baseboards": "/uploads/1790748270465_psbaseboardbirlikcompany.jpg"
+    "ps_wood": "/uploads/1790769850621_pswallpanelsbirlikcompany.jpg",
+    "pvc_marble": "/uploads/1790769852364_pvcwallpanelbirlikcompany.jpg",
+    "spc_wall": "/uploads/1790769854963_spcwallpanelbirlikcompany.jpg",
+    "spc_flooring": "/uploads/1790769856430_spcflooringbirlikcompany.jpg",
+    "ps_slats": "/uploads/1790769859827_pswallslathsbirlikcompany.jpg",
+    "ps_baseboards": "/uploads/1790769861631_psbaseboardbirlikcompany.jpg"
   },
   "products": {
     "ps-vangoh": {
-      "main": "/uploads/1790760108778_prod_ps-vangoh_main.png",
+      "main": "/uploads/1790769901052_vangohpswallpanel.png",
       "gallery": [
-        "/uploads/1790760108782_prod_ps-vangoh_gal_0.png",
-        "/uploads/1790760108787_prod_ps-vangoh_gal_1.png"
+        "/uploads/1790769903292_ChatGPT_Image_Jun_2__2026__02_50_49_PM.png",
+        "/uploads/1790769905502_ChatGPT_Image_Jun_2__2026__02_48_29_PM.png"
       ]
     },
     "ps-beige-timber": {
-      "main": "/uploads/1790758793589_Gemini_Generated_Image_mwqb5fmwqb5fmwqb.jpg",
+      "main": "/uploads/1790769925800_Gemini_Generated_Image_mwqb5fmwqb5fmwqb.jpg",
       "gallery": [
-        "/uploads/1790758794713_Gemini_Generated_Image_x9ytkvx9ytkvx9yt.jpg",
-        "/uploads/1790758795566_Gemini_Generated_Image_96ydn696ydn696yd.jpg"
+        "/uploads/1790769926727_Gemini_Generated_Image_x9ytkvx9ytkvx9yt.jpg",
+        "/uploads/1790769927712_Gemini_Generated_Image_96ydn696ydn696yd.jpg"
       ]
     },
     "ps-office-grey": {
-      "main": "/uploads/1790758822492_Gemini_Generated_Image_7eudyp7eudyp7eud.jpg",
+      "main": "/uploads/1790769957567_Gemini_Generated_Image_7eudyp7eudyp7eud.jpg",
       "gallery": [
-        "/uploads/1790758823377_Gemini_Generated_Image_u30rn5u30rn5u30r.jpg"
+        "/uploads/1790769958583_Gemini_Generated_Image_u30rn5u30rn5u30r.jpg"
       ]
     },
     "ps-marble-gold-noir": {
-      "main": "/uploads/1790760108790_prod_ps-marble-gold-noir_main.jpg",
+      "main": "/uploads/1790769980885_Gemini_Generated_Image_q6br7wq6br7wq6br.jpg",
       "gallery": [
-        "/uploads/1790760108791_prod_ps-marble-gold-noir_gal_0.jpg"
+        "/uploads/1790769981883_Gemini_Generated_Image_q9a3apq9a3apq9a3.jpg"
       ]
     },
     "ps-crocodile": {
-      "main": "/uploads/1790758884977_Gemini_Generated_Image_n3f62dn3f62dn3f6.jpg",
+      "main": "/uploads/1790770010140_Gemini_Generated_Image_n3f62dn3f62dn3f6.jpg",
       "gallery": [
-        "/uploads/1790758885664_Gemini_Generated_Image_mvb3cemvb3cemvb3.jpg",
-        "/uploads/1790758886372_Gemini_Generated_Image_gia95mgia95mgia9.jpg"
+        "/uploads/1790770011042_Gemini_Generated_Image_mvb3cemvb3cemvb3.jpg",
+        "/uploads/1790770011845_Gemini_Generated_Image_gia95mgia95mgia9.jpg"
       ]
     },
     "ps-velvet-gold": {
-      "main": "/uploads/1790758916462_Generated_Image_September_27__2026_-_12_.png",
+      "main": "/uploads/1790770040745_Generated_Image_September_27__2026_-_12_.png",
       "gallery": [
-        "/uploads/1790758917695_Generated_Image_September_27__2026_-_12_.png"
+        "/uploads/1790770042579_Generated_Image_September_27__2026_-_12_.png"
       ]
     },
     "ps-timber-gold": {
-      "main": "/uploads/1790758944783_Gemini_Generated_Image_nf76zdnf76zdnf76.jpg",
+      "main": "/uploads/1790770067146_Gemini_Generated_Image_nf76zdnf76zdnf76.jpg",
       "gallery": [
-        "/uploads/1790758945618_Gemini_Generated_Image_8pr5fy8pr5fy8pr5_.jpg"
+        "/uploads/1790770067955_Gemini_Generated_Image_8pr5fy8pr5fy8pr5_.jpg"
       ]
     },
     "ps-velvet": {
-      "main": "/uploads/1790758985092_Gemini_Generated_Image_tb8zcutb8zcutb8z.jpg",
+      "main": "/uploads/1790770097840_Gemini_Generated_Image_tb8zcutb8zcutb8z.jpg",
       "gallery": [
-        "/uploads/1790758986034_Gemini_Generated_Image_tb4txwtb4txwtb4t.jpg"
+        "/uploads/1790770098674_Gemini_Generated_Image_tb4txwtb4txwtb4t.jpg"
       ]
     },
     "ps-harp": {
-      "main": "/uploads/1790759020815_Gemini_Generated_Image_jsbx8ujsbx8ujsbx.jpg",
+      "main": "/uploads/1790770135849_Gemini_Generated_Image_jsbx8ujsbx8ujsbx.jpg",
       "gallery": [
-        "/uploads/1790759021751_Gemini_Generated_Image_3y1ui13y1ui13y1u.jpg"
+        "/uploads/1790770136638_Gemini_Generated_Image_3y1ui13y1ui13y1u.jpg"
       ]
     },
     "ps-grey-gold": {
-      "main": "/uploads/1790759047279_Gemini_Generated_Image_r1ps8lr1ps8lr1ps.jpg",
+      "main": "/uploads/1790770160107_Gemini_Generated_Image_r1ps8lr1ps8lr1ps.jpg",
       "gallery": [
-        "/uploads/1790759048127_Gemini_Generated_Image_fi03l3fi03l3fi03.jpg"
+        "/uploads/1790770161199_Gemini_Generated_Image_fi03l3fi03l3fi03.jpg"
       ]
     },
     "ps-wood-gold": {
-      "main": "/uploads/1790759088756_Gemini_Generated_Image_fpxlgufpxlgufpxl.jpg",
+      "main": "/uploads/1790770188125_Gemini_Generated_Image_fpxlgufpxlgufpxl.jpg",
       "gallery": [
-        "/uploads/1790759089530_Gemini_Generated_Image_xz00k2xz00k2xz00.jpg"
+        "/uploads/1790770188834_Gemini_Generated_Image_xz00k2xz00k2xz00.jpg"
       ]
     },
     "ps-pine": {
-      "main": "/uploads/1790759124208_Gemini_Generated_Image_jew7hcjew7hcjew7.jpg",
+      "main": "/uploads/1790770216975_Gemini_Generated_Image_jew7hcjew7hcjew7.jpg",
       "gallery": [
-        "/uploads/1790759125014_Gemini_Generated_Image_a1ug76a1ug76a1ug.jpg"
+        "/uploads/1790770217974_Gemini_Generated_Image_a1ug76a1ug76a1ug.jpg"
       ]
     },
     "ps-rustic": {
-      "main": "/uploads/1790759160255_Gemini_Generated_Image_n1wlx3n1wlx3n1wl.jpg",
+      "main": "/uploads/1790770243930_Gemini_Generated_Image_n1wlx3n1wlx3n1wl.jpg",
       "gallery": [
-        "/uploads/1790759161177_Gemini_Generated_Image_1uyn0v1uyn0v1uyn.jpg"
+        "/uploads/1790770245099_Gemini_Generated_Image_1uyn0v1uyn0v1uyn.jpg"
       ]
     },
     "ps-balsam": {
-      "main": "/uploads/1790759189717_Gemini_Generated_Image_21bar21bar21bar2.jpg",
+      "main": "/uploads/1790770264058_Gemini_Generated_Image_21bar21bar21bar2.jpg",
       "gallery": []
     },
     "ps-balsam-black": {
-      "main": "/uploads/1790759214391_Gemini_Generated_Image_elnhn9elnhn9elnh.jpg",
+      "main": "/uploads/1790770282730_Gemini_Generated_Image_elnhn9elnhn9elnh.jpg",
       "gallery": []
     },
     "ps-crown-teak-black": {
-      "main": "/uploads/1790759287184_Gemini_Generated_Image_nbk6z8nbk6z8nbk6.jpg",
+      "main": "/uploads/1790770301689_Gemini_Generated_Image_nbk6z8nbk6z8nbk6.jpg",
       "gallery": [
-        "/uploads/1790759287868_Gemini_Generated_Image_lp513wlp513wlp51.jpg"
+        "/uploads/1790770302967_Gemini_Generated_Image_lp513wlp513wlp51.jpg"
       ]
     },
     "pvc-athena-grey": {
-      "main": "/uploads/1790759345369_Gemini_Generated_Image_m9eqpvm9eqpvm9eq.jpg",
+      "main": "/uploads/1790770345887_Gemini_Generated_Image_m9eqpvm9eqpvm9eq.jpg",
       "gallery": [
-        "/uploads/1790759346032_Gemini_Generated_Image_e2r13ae2r13ae2r1.jpg"
+        "/uploads/1790770346851_Gemini_Generated_Image_e2r13ae2r13ae2r1.jpg"
       ]
     },
     "pvc-fuji-grey": {
-      "main": "/uploads/1790759378266_Gemini_Generated_Image_2d1pn02d1pn02d1p.jpg",
+      "main": "/uploads/1790770377937_Gemini_Generated_Image_2d1pn02d1pn02d1p.jpg",
       "gallery": [
-        "/uploads/1790759379173_Gemini_Generated_Image_ualzm4ualzm4ualz.jpg"
+        "/uploads/1790770376464_Gemini_Generated_Image_ualzm4ualzm4ualz.jpg"
       ]
     },
     "pvc-marbella": {
-      "main": "/uploads/1790759416631_Gemini_Generated_Image_bwxvpibwxvpibwxv.jpg",
+      "main": "/uploads/1790770440335_Gemini_Generated_Image_bwxvpibwxvpibwxv.jpg",
       "gallery": [
-        "/uploads/1790759417512_Gemini_Generated_Image_3s22al3s22al3s22.jpg",
-        "/uploads/1790759418377_Gemini_Generated_Image_y4pe6ly4pe6ly4pe.jpg"
+        "/uploads/1790770441432_Gemini_Generated_Image_3s22al3s22al3s22.jpg",
+        "/uploads/1790770442181_Gemini_Generated_Image_y4pe6ly4pe6ly4pe.jpg"
       ]
     },
     "pvc-inky-gold": {
-      "main": "/uploads/1790759455519_Gemini_Generated_Image_w2do1tw2do1tw2do.jpg",
+      "main": "/uploads/1790770462928_Gemini_Generated_Image_w2do1tw2do1tw2do.jpg",
       "gallery": [
-        "/uploads/1790759456309_Gemini_Generated_Image_hmzp79hmzp79hmzp.jpg"
+        "/uploads/1790770463856_Gemini_Generated_Image_hmzp79hmzp79hmzp.jpg"
       ]
     },
     "pvc-golden-sheet": {
-      "main": "/uploads/1790759484977_Gemini_Generated_Image_t04ww2t04ww2t04w.jpg",
+      "main": "/uploads/1790770492833_Gemini_Generated_Image_t04ww2t04ww2t04w.jpg",
       "gallery": [
-        "/uploads/1790759485839_Gemini_Generated_Image_ypzs34ypzs34ypzs.jpg"
+        "/uploads/1790770493815_Gemini_Generated_Image_ypzs34ypzs34ypzs.jpg"
       ]
     },
     "pvc-golden-noir": {
-      "main": "/uploads/1790759512272_Gemini_Generated_Image_ojtp2tojtp2tojtp.jpg",
+      "main": "/uploads/1790770515770_Gemini_Generated_Image_ojtp2tojtp2tojtp.jpg",
       "gallery": [
-        "/uploads/1790759513088_Gemini_Generated_Image_z18ukaz18ukaz18u.jpg"
+        "/uploads/1790770516551_Gemini_Generated_Image_z18ukaz18ukaz18u.jpg"
       ]
     },
     "pvc-golden-grey": {
-      "main": "/uploads/1790759540027_Gemini_Generated_Image_xoqouvxoqouvxoqo.jpg",
+      "main": "/uploads/1790770537082_Gemini_Generated_Image_xoqouvxoqouvxoqo.jpg",
       "gallery": [
-        "/uploads/1790759540622_Gemini_Generated_Image_ctp0zyctp0zyctp0.jpg"
+        "/uploads/1790770537971_Gemini_Generated_Image_ctp0zyctp0zyctp0.jpg"
       ]
     },
     "pvc-brazillian-granit": {
-      "main": "/uploads/1790759563703_Gemini_Generated_Image_7iymh07iymh07iym_.jpg",
+      "main": "/uploads/1790770561856_Gemini_Generated_Image_7iymh07iymh07iym_.jpg",
       "gallery": [
-        "/uploads/1790759564414_Gemini_Generated_Image_6xc2rd6xc2rd6xc2_.jpg"
+        "/uploads/1790770563247_Gemini_Generated_Image_6xc2rd6xc2rd6xc2_.jpg"
       ]
     },
     "spc-woody-forest": {
-      "main": "/uploads/1790760108791_prod_spc-woody-forest_main.jpg",
+      "main": "/uploads/1790770613053_WhatsApp_Image_2026-07-10_at_20_08_21_1_.jpg",
       "gallery": [
-        "/uploads/1790759664198_WhatsApp_Image_2026-07-10_at_20_08_21.jpg",
-        "/uploads/1790759664673_WhatsApp_Image_2026-07-10_at_20_08_21_2_.jpg"
+        "/uploads/1790770613652_WhatsApp_Image_2026-07-10_at_20_08_21_2_.jpg",
+        "/uploads/1790770614283_WhatsApp_Image_2026-07-10_at_20_08_21.jpg"
       ]
     },
     "spc-nardo-grey": {
-      "main": "/uploads/1790760108792_prod_spc-nardo-grey_main.jpg",
+      "main": "/uploads/1790770636645_WhatsApp_Image_2026-07-10_at_20_08_36_1_.jpg",
       "gallery": [
-        "/uploads/1790759939606_Gemini_Generated_Image_y4njkjy4njkjy4nj.jpg"
+        "/uploads/1790770637558_Gemini_Generated_Image_y4njkjy4njkjy4nj.jpg"
       ]
     },
     "spc-travertine": {
-      "main": "/uploads/1790759730075_Gemini_Generated_Image_253htg253htg253h.jpg",
+      "main": "/uploads/1790770658791_Gemini_Generated_Image_253htg253htg253h.jpg",
       "gallery": [
-        "/uploads/1790759730910_Gemini_Generated_Image_ui7h6zui7h6zui7h.jpg"
+        "/uploads/1790770659721_Gemini_Generated_Image_ui7h6zui7h6zui7h.jpg"
       ]
     },
     "spc-mercan": {
-      "main": "/uploads/1790759764236_Gemini_Generated_Image_g1qwyug1qwyug1qw.jpg",
+      "main": "/uploads/1790770683679_Gemini_Generated_Image_g1qwyug1qwyug1qw.jpg",
       "gallery": [
-        "/uploads/1790759765409_Gemini_Generated_Image_joarerjoarerjoar.jpg"
+        "/uploads/1790770685770_Gemini_Generated_Image_joarerjoarerjoar.jpg"
       ]
     },
     "spc-cupper": {
-      "main": "/uploads/1790759806213_Gemini_Generated_Image_ijypktijypktijyp.jpg",
+      "main": "/uploads/1790770711141_Gemini_Generated_Image_ijypktijypktijyp.jpg",
       "gallery": [
-        "/uploads/1790759807259_Gemini_Generated_Image_e7do08e7do08e7do.jpg",
-        "/uploads/1790759808147_Gemini_Generated_Image_gsw0hbgsw0hbgsw0.jpg"
+        "/uploads/1790770712210_Gemini_Generated_Image_e7do08e7do08e7do.jpg",
+        "/uploads/1790770713127_Gemini_Generated_Image_gsw0hbgsw0hbgsw0.jpg"
       ]
     },
     "spc-calcatta": {
-      "main": "/uploads/1790759838213_Gemini_Generated_Image_ikdrzoikdrzoikdr.jpg",
+      "main": "/uploads/1790770732657_Gemini_Generated_Image_ikdrzoikdrzoikdr.jpg",
       "gallery": [
-        "/uploads/1790759838919_Gemini_Generated_Image_tzp6iotzp6iotzp6.jpg"
+        "/uploads/1790770733747_Gemini_Generated_Image_tzp6iotzp6iotzp6.jpg"
       ]
     },
     "spc-charcoal": {
-      "main": "/uploads/1790760108792_prod_spc-charcoal_main.jpg",
+      "main": "/uploads/1790770756392_Gemini_Generated_Image_eemqfbeemqfbeemq.jpg",
       "gallery": [
-        "/uploads/1790759901728_WhatsApp_Image_2026-07-10_at_20_33_13.jpg",
-        "/uploads/1790759902371_Gemini_Generated_Image_eemqfbeemqfbeemq.jpg"
+        "/uploads/1790770756755_WhatsApp_Image_2026-07-10_at_20_33_13.jpg"
       ]
     },
     "flr-concrete": {
-      "main": "/uploads/1790759997833_Gemini_Generated_Image_m9so9wm9so9wm9so.jpg",
+      "main": "/uploads/1790770786876_Gemini_Generated_Image_m9so9wm9so9wm9so.jpg",
       "gallery": [
-        "/uploads/1790759998731_Gemini_Generated_Image_7nuwxq7nuwxq7nuw.jpg"
+        "/uploads/1790770787651_Gemini_Generated_Image_7nuwxq7nuwxq7nuw.jpg"
       ]
     },
     "flr-blanche": {
-      "main": "/uploads/1790760108793_prod_flr-blanche_main.jpg",
+      "main": "/uploads/1790770807889_Gemini_Generated_Image_q5tfetq5tfetq5tf.jpg",
       "gallery": [
-        "/uploads/1790760053478_Gemini_Generated_Image_z9zzw7z9zzw7z9zz.jpg"
+        "/uploads/1790770809340_Gemini_Generated_Image_z9zzw7z9zzw7z9zz.jpg"
       ]
     },
     "flr-kara": {
-      "main": "/uploads/1790760076851_Gemini_Generated_Image_oap7ewoap7ewoap7.jpg",
+      "main": "/uploads/1790770828578_Gemini_Generated_Image_oap7ewoap7ewoap7.jpg",
       "gallery": [
-        "/uploads/1790760077585_Gemini_Generated_Image_oh4uisoh4uisoh4u.jpg"
+        "/uploads/1790770829516_Gemini_Generated_Image_oh4uisoh4uisoh4u.jpg"
       ]
     },
     "slat-led-cornice": {
-      "main": "/uploads/1790748269192_pswallslathsbirlikcompany.jpg",
-      "gallery": []
+      "main": "/uploads/1790770867870_Gemini_Generated_Image_duvm6uduvm6uduvm.jpg",
+      "gallery": [
+        "/uploads/1790770868061_CBGTN.jpg"
+      ]
     },
     "slat-4cm-classic": {
-      "main": "/uploads/1790760257868_CBGTN.jpg",
+      "main": "/uploads/1790770892997_dd82c827845b6aa45a489b0283317d90.jpg",
       "gallery": [
-        "/uploads/1790760258826_Gemini_Generated_Image_duvm6uduvm6uduvm.jpg"
+        "/uploads/1790770893272_WhatsApp_Image_2024-11-13_at_10_27_57.jpg"
       ]
     },
     "slat-48-border": {
-      "main": "/uploads/1790760318631_dd82c827845b6aa45a489b0283317d90.jpg",
+      "main": "/uploads/1790770915721_Gemini_Generated_Image_3wfthl3wfthl3wft.jpg",
       "gallery": [
-        "/uploads/1790760318867_WhatsApp_Image_2024-11-13_at_10_27_57.jpg"
+        "/uploads/1790770917749_dfdr.png"
       ]
     },
     "slat-25-classic": {
-      "main": "/uploads/1790760371747_Gemini_Generated_Image_3wfthl3wfthl3wft.jpg",
+      "main": "/uploads/1790770941133_WhatsApp_Image_2024-11-13_at_10_24_12.jpg",
       "gallery": [
-        "/uploads/1790760373671_dfdr.png"
+        "/uploads/1790770941285_WhatsApp_Image_2024-11-13_at_10_27_56__1.jpg"
       ]
     },
     "slat-15-round": {
-      "main": "/uploads/1790760403288_WhatsApp_Image_2024-11-13_at_10_24_12.jpg",
-      "gallery": [
-        "/uploads/1790760403435_WhatsApp_Image_2024-11-13_at_10_27_56__1.jpg",
-        "/uploads/1790760436309_WhatsApp_Image_2024-11-13_at_10_24_12__1.jpg"
-      ]
+      "main": "/uploads/1790770962069_WhatsApp_Image_2024-11-13_at_10_24_12__1.jpg",
+      "gallery": []
     },
     "base-led-115": {
-      "main": "/uploads/1790760484065_Gemini_Generated_Image_et6fj1et6fj1et6f.jpg",
-      "gallery": [
-        "/uploads/1790760485532_Gemini_Generated_Image_k6g282k6g282k6g2.jpg"
-      ]
+      "main": "/uploads/1790771005518_Gemini_Generated_Image_k6g282k6g282k6g2.jpg",
+      "gallery": []
     },
     "base-classic-100": {
-      "main": "/uploads/1790760516531_Gemini_Generated_Image_uwxtrwuwxtrwuwxt.jpg",
+      "main": "/uploads/1790771024395_Gemini_Generated_Image_uwxtrwuwxtrwuwxt.jpg",
       "gallery": [
-        "/uploads/1790760517847_Gemini_Generated_Image_9oqe5m9oqe5m9oqe.jpg"
+        "/uploads/1790771025547_Gemini_Generated_Image_9oqe5m9oqe5m9oqe.jpg"
       ]
     }
   },
   "uploadedImages": [
+    {
+      "id": "img_1790770964048_zw8ara",
+      "url": "/uploads/1790770962069_WhatsApp_Image_2024-11-13_at_10_24_12__1.jpg",
+      "name": "WhatsApp Image 2024-11-13 at 10.24.12 (1).jpeg",
+      "uploadedAt": "2026-09-30T12:22:44.048Z",
+      "size": 60162
+    },
+    {
+      "id": "img_1790770942980_7tf4uz",
+      "url": "/uploads/1790770941133_WhatsApp_Image_2024-11-13_at_10_24_12.jpg",
+      "name": "WhatsApp Image 2024-11-13 at 10.24.12.jpeg",
+      "uploadedAt": "2026-09-30T12:22:22.981Z",
+      "size": 55576
+    },
+    {
+      "id": "img_1790770943160_perfig",
+      "url": "/uploads/1790770941285_WhatsApp_Image_2024-11-13_at_10_27_56__1.jpg",
+      "name": "WhatsApp Image 2024-11-13 at 10.27.56 (1).jpeg",
+      "uploadedAt": "2026-09-30T12:22:23.160Z",
+      "size": 25037
+    },
+    {
+      "id": "img_1790770917571_hie6ag",
+      "url": "/uploads/1790770915721_Gemini_Generated_Image_3wfthl3wfthl3wft.jpg",
+      "name": "Gemini_Generated_Image_3wfthl3wfthl3wft.jpg",
+      "uploadedAt": "2026-09-30T12:21:57.571Z",
+      "size": 516282
+    },
+    {
+      "id": "img_1790770919598_1in4yb",
+      "url": "/uploads/1790770917749_dfdr.png",
+      "name": "dfdr.png",
+      "uploadedAt": "2026-09-30T12:21:59.599Z",
+      "size": 1227876
+    },
+    {
+      "id": "img_1790770894923_ju1btd",
+      "url": "/uploads/1790770892997_dd82c827845b6aa45a489b0283317d90.jpg",
+      "name": "dd82c827845b6aa45a489b0283317d90.jpg",
+      "uploadedAt": "2026-09-30T12:21:34.923Z",
+      "size": 56620
+    },
+    {
+      "id": "img_1790770895128_kl8fut",
+      "url": "/uploads/1790770893272_WhatsApp_Image_2024-11-13_at_10_27_57.jpg",
+      "name": "WhatsApp Image 2024-11-13 at 10.27.57.jpeg",
+      "uploadedAt": "2026-09-30T12:21:35.128Z",
+      "size": 25568
+    },
+    {
+      "id": "img_1790770869732_cs7gga",
+      "url": "/uploads/1790770867870_Gemini_Generated_Image_duvm6uduvm6uduvm.jpg",
+      "name": "Gemini_Generated_Image_duvm6uduvm6uduvm.jpg",
+      "uploadedAt": "2026-09-30T12:21:09.733Z",
+      "size": 396486
+    },
+    {
+      "id": "img_1790770869938_tewruu",
+      "url": "/uploads/1790770868061_CBGTN.jpg",
+      "name": "CBGTN.jpg",
+      "uploadedAt": "2026-09-30T12:21:09.938Z",
+      "size": 84553
+    },
+    {
+      "id": "img_1790770830509_z04r47",
+      "url": "/uploads/1790770828578_Gemini_Generated_Image_oap7ewoap7ewoap7.jpg",
+      "name": "Gemini_Generated_Image_oap7ewoap7ewoap7.jpg",
+      "uploadedAt": "2026-09-30T12:20:30.510Z",
+      "size": 636603
+    },
+    {
+      "id": "img_1790770831430_xmxcq0",
+      "url": "/uploads/1790770829516_Gemini_Generated_Image_oh4uisoh4uisoh4u.jpg",
+      "name": "Gemini_Generated_Image_oh4uisoh4uisoh4u.jpg",
+      "uploadedAt": "2026-09-30T12:20:31.431Z",
+      "size": 676509
+    },
+    {
+      "id": "img_1790770809730_6fa411",
+      "url": "/uploads/1790770807889_Gemini_Generated_Image_q5tfetq5tfetq5tf.jpg",
+      "name": "Gemini_Generated_Image_q5tfetq5tfetq5tf.jpg",
+      "uploadedAt": "2026-09-30T12:20:09.730Z",
+      "size": 630783
+    },
+    {
+      "id": "img_1790770811181_2gtkmz",
+      "url": "/uploads/1790770809340_Gemini_Generated_Image_z9zzw7z9zzw7z9zz.jpg",
+      "name": "Gemini_Generated_Image_z9zzw7z9zzw7z9zz.jpg",
+      "uploadedAt": "2026-09-30T12:20:11.181Z",
+      "size": 705345
+    },
+    {
+      "id": "img_1790770788726_q26kqi",
+      "url": "/uploads/1790770786876_Gemini_Generated_Image_m9so9wm9so9wm9so.jpg",
+      "name": "Gemini_Generated_Image_m9so9wm9so9wm9so.jpg",
+      "uploadedAt": "2026-09-30T12:19:48.726Z",
+      "size": 675786
+    },
+    {
+      "id": "img_1790770789544_xczwgv",
+      "url": "/uploads/1790770787651_Gemini_Generated_Image_7nuwxq7nuwxq7nuw.jpg",
+      "name": "Gemini_Generated_Image_7nuwxq7nuwxq7nuw.jpg",
+      "uploadedAt": "2026-09-30T12:19:49.544Z",
+      "size": 785019
+    },
+    {
+      "id": "img_1790770758220_klfrmn",
+      "url": "/uploads/1790770756392_Gemini_Generated_Image_eemqfbeemqfbeemq.jpg",
+      "name": "Gemini_Generated_Image_eemqfbeemqfbeemq.jpg",
+      "uploadedAt": "2026-09-30T12:19:18.220Z",
+      "size": 683547
+    },
+    {
+      "id": "img_1790770758618_hqj7as",
+      "url": "/uploads/1790770756755_WhatsApp_Image_2026-07-10_at_20_33_13.jpg",
+      "name": "WhatsApp Image 2026-07-10 at 20.33.13.jpeg",
+      "uploadedAt": "2026-09-30T12:19:18.618Z",
+      "size": 359436
+    },
+    {
+      "id": "img_1790770734556_0l0kd2",
+      "url": "/uploads/1790770732657_Gemini_Generated_Image_ikdrzoikdrzoikdr.jpg",
+      "name": "Gemini_Generated_Image_ikdrzoikdrzoikdr.jpg",
+      "uploadedAt": "2026-09-30T12:18:54.556Z",
+      "size": 540561
+    },
+    {
+      "id": "img_1790770735576_dd518m",
+      "url": "/uploads/1790770733747_Gemini_Generated_Image_tzp6iotzp6iotzp6.jpg",
+      "name": "Gemini_Generated_Image_tzp6iotzp6iotzp6.jpg",
+      "uploadedAt": "2026-09-30T12:18:55.577Z",
+      "size": 618765
+    },
+    {
+      "id": "img_1790770713046_h22bsh",
+      "url": "/uploads/1790770711141_Gemini_Generated_Image_ijypktijypktijyp.jpg",
+      "name": "Gemini_Generated_Image_ijypktijypktijyp.jpg",
+      "uploadedAt": "2026-09-30T12:18:33.047Z",
+      "size": 840927
+    },
+    {
+      "id": "img_1790770714072_53282w",
+      "url": "/uploads/1790770712210_Gemini_Generated_Image_e7do08e7do08e7do.jpg",
+      "name": "Gemini_Generated_Image_e7do08e7do08e7do.jpg",
+      "uploadedAt": "2026-09-30T12:18:34.072Z",
+      "size": 856731
+    },
+    {
+      "id": "img_1790770714993_mmqjc1",
+      "url": "/uploads/1790770713127_Gemini_Generated_Image_gsw0hbgsw0hbgsw0.jpg",
+      "name": "Gemini_Generated_Image_gsw0hbgsw0hbgsw0.jpg",
+      "uploadedAt": "2026-09-30T12:18:34.993Z",
+      "size": 917865
+    },
+    {
+      "id": "img_1790770685600_3fjyoq",
+      "url": "/uploads/1790770683679_Gemini_Generated_Image_g1qwyug1qwyug1qw.jpg",
+      "name": "Gemini_Generated_Image_g1qwyug1qwyug1qw.jpg",
+      "uploadedAt": "2026-09-30T12:18:05.600Z",
+      "size": 669303
+    },
+    {
+      "id": "img_1790770687597_01f0jk",
+      "url": "/uploads/1790770685770_Gemini_Generated_Image_joarerjoarerjoar.jpg",
+      "name": "Gemini_Generated_Image_joarerjoarerjoar.jpg",
+      "uploadedAt": "2026-09-30T12:18:07.597Z",
+      "size": 785163
+    },
+    {
+      "id": "img_1790770660613_suh79i",
+      "url": "/uploads/1790770658791_Gemini_Generated_Image_253htg253htg253h.jpg",
+      "name": "Gemini_Generated_Image_253htg253htg253h.jpg",
+      "uploadedAt": "2026-09-30T12:17:40.614Z",
+      "size": 728100
+    },
+    {
+      "id": "img_1790770661639_a851gk",
+      "url": "/uploads/1790770659721_Gemini_Generated_Image_ui7h6zui7h6zui7h.jpg",
+      "name": "Gemini_Generated_Image_ui7h6zui7h6zui7h.jpg",
+      "uploadedAt": "2026-09-30T12:17:41.639Z",
+      "size": 664188
+    },
+    {
+      "id": "img_1790770638493_mx06rx",
+      "url": "/uploads/1790770636645_WhatsApp_Image_2026-07-10_at_20_08_36_1_.jpg",
+      "name": "WhatsApp Image 2026-07-10 at 20.08.36(1).jpeg",
+      "uploadedAt": "2026-09-30T12:17:18.494Z",
+      "size": 348506
+    },
+    {
+      "id": "img_1790770639415_mn1gjg",
+      "url": "/uploads/1790770637558_Gemini_Generated_Image_y4njkjy4njkjy4nj.jpg",
+      "name": "Gemini_Generated_Image_y4njkjy4njkjy4nj.jpg",
+      "uploadedAt": "2026-09-30T12:17:19.416Z",
+      "size": 640890
+    },
+    {
+      "id": "img_1790770614940_mztnux",
+      "url": "/uploads/1790770613053_WhatsApp_Image_2026-07-10_at_20_08_21_1_.jpg",
+      "name": "WhatsApp Image 2026-07-10 at 20.08.21(1).jpeg",
+      "uploadedAt": "2026-09-30T12:16:54.940Z",
+      "size": 401958
+    },
+    {
+      "id": "img_1790770615492_8z1vtg",
+      "url": "/uploads/1790770613652_WhatsApp_Image_2026-07-10_at_20_08_21_2_.jpg",
+      "name": "WhatsApp Image 2026-07-10 at 20.08.21(2).jpeg",
+      "uploadedAt": "2026-09-30T12:16:55.492Z",
+      "size": 449666
+    },
+    {
+      "id": "img_1790770616104_3cj7rn",
+      "url": "/uploads/1790770614283_WhatsApp_Image_2026-07-10_at_20_08_21.jpg",
+      "name": "WhatsApp Image 2026-07-10 at 20.08.21.jpeg",
+      "uploadedAt": "2026-09-30T12:16:56.104Z",
+      "size": 511978
+    },
+    {
+      "id": "img_1790770563736_t8m1kx",
+      "url": "/uploads/1790770561856_Gemini_Generated_Image_7iymh07iymh07iym_.jpg",
+      "name": "Gemini_Generated_Image_7iymh07iymh07iym(1).jpg",
+      "uploadedAt": "2026-09-30T12:16:03.736Z",
+      "size": 955650
+    },
+    {
+      "id": "img_1790770565077_7qkwn7",
+      "url": "/uploads/1790770563247_Gemini_Generated_Image_6xc2rd6xc2rd6xc2_.jpg",
+      "name": "Gemini_Generated_Image_6xc2rd6xc2rd6xc2(1).jpg",
+      "uploadedAt": "2026-09-30T12:16:05.077Z",
+      "size": 878130
+    },
+    {
+      "id": "img_1790770538953_klwqc7",
+      "url": "/uploads/1790770537082_Gemini_Generated_Image_xoqouvxoqouvxoqo.jpg",
+      "name": "Gemini_Generated_Image_xoqouvxoqouvxoqo.jpg",
+      "uploadedAt": "2026-09-30T12:15:38.954Z",
+      "size": 776138
+    },
+    {
+      "id": "img_1790770539877_j6wvgv",
+      "url": "/uploads/1790770537971_Gemini_Generated_Image_ctp0zyctp0zyctp0.jpg",
+      "name": "Gemini_Generated_Image_ctp0zyctp0zyctp0.jpg",
+      "uploadedAt": "2026-09-30T12:15:39.879Z",
+      "size": 605694
+    },
+    {
+      "id": "img_1790770517651_48gn66",
+      "url": "/uploads/1790770515770_Gemini_Generated_Image_ojtp2tojtp2tojtp.jpg",
+      "name": "Gemini_Generated_Image_ojtp2tojtp2tojtp.jpg",
+      "uploadedAt": "2026-09-30T12:15:17.651Z",
+      "size": 814128
+    },
+    {
+      "id": "img_1790770518472_4buzmx",
+      "url": "/uploads/1790770516551_Gemini_Generated_Image_z18ukaz18ukaz18u.jpg",
+      "name": "Gemini_Generated_Image_z18ukaz18ukaz18u.jpg",
+      "uploadedAt": "2026-09-30T12:15:18.472Z",
+      "size": 756702
+    },
+    {
+      "id": "img_1790770494704_acarbr",
+      "url": "/uploads/1790770492833_Gemini_Generated_Image_t04ww2t04ww2t04w.jpg",
+      "name": "Gemini_Generated_Image_t04ww2t04ww2t04w.jpg",
+      "uploadedAt": "2026-09-30T12:14:54.704Z",
+      "size": 678648
+    },
+    {
+      "id": "img_1790770495736_0b2rzt",
+      "url": "/uploads/1790770493815_Gemini_Generated_Image_ypzs34ypzs34ypzs.jpg",
+      "name": "Gemini_Generated_Image_ypzs34ypzs34ypzs.jpg",
+      "uploadedAt": "2026-09-30T12:14:55.736Z",
+      "size": 648507
+    },
+    {
+      "id": "img_1790770464805_ti63pu",
+      "url": "/uploads/1790770462928_Gemini_Generated_Image_w2do1tw2do1tw2do.jpg",
+      "name": "Gemini_Generated_Image_w2do1tw2do1tw2do.jpg",
+      "uploadedAt": "2026-09-30T12:14:24.805Z",
+      "size": 702465
+    },
+    {
+      "id": "img_1790770465734_kb0l02",
+      "url": "/uploads/1790770463856_Gemini_Generated_Image_hmzp79hmzp79hmzp.jpg",
+      "name": "Gemini_Generated_Image_hmzp79hmzp79hmzp.jpg",
+      "uploadedAt": "2026-09-30T12:14:25.734Z",
+      "size": 715053
+    },
+    {
+      "id": "img_1790770442176_0qpaz5",
+      "url": "/uploads/1790770440335_Gemini_Generated_Image_bwxvpibwxvpibwxv.jpg",
+      "name": "Gemini_Generated_Image_bwxvpibwxvpibwxv.jpg",
+      "uploadedAt": "2026-09-30T12:14:02.177Z",
+      "size": 677946
+    },
+    {
+      "id": "img_1790770443307_v46t3j",
+      "url": "/uploads/1790770441432_Gemini_Generated_Image_3s22al3s22al3s22.jpg",
+      "name": "Gemini_Generated_Image_3s22al3s22al3s22.jpg",
+      "uploadedAt": "2026-09-30T12:14:03.308Z",
+      "size": 807681
+    },
+    {
+      "id": "img_1790770443995_di1eoj",
+      "url": "/uploads/1790770442181_Gemini_Generated_Image_y4pe6ly4pe6ly4pe.jpg",
+      "name": "Gemini_Generated_Image_y4pe6ly4pe6ly4pe.jpg",
+      "uploadedAt": "2026-09-30T12:14:03.995Z",
+      "size": 699210
+    },
+    {
+      "id": "img_1790770406847_2filte",
+      "url": "/uploads/1790770376464_Gemini_Generated_Image_ualzm4ualzm4ualz.jpg",
+      "name": "Gemini_Generated_Image_ualzm4ualzm4ualz.jpg",
+      "uploadedAt": "2026-09-30T12:13:26.847Z",
+      "size": 775728
+    },
+    {
+      "id": "img_1790770378274_4q0a5q",
+      "url": "/uploads/1790770376464_Gemini_Generated_Image_ualzm4ualzm4ualz.jpg",
+      "name": "Gemini_Generated_Image_ualzm4ualzm4ualz.jpg",
+      "uploadedAt": "2026-09-30T12:12:58.274Z",
+      "size": 775728
+    },
+    {
+      "id": "img_1790770379811_h6ux44",
+      "url": "/uploads/1790770377937_Gemini_Generated_Image_2d1pn02d1pn02d1p.jpg",
+      "name": "Gemini_Generated_Image_2d1pn02d1pn02d1p.jpg",
+      "uploadedAt": "2026-09-30T12:12:59.812Z",
+      "size": 606609
+    },
+    {
+      "id": "img_1790770347757_gh634q",
+      "url": "/uploads/1790770345887_Gemini_Generated_Image_m9eqpvm9eqpvm9eq.jpg",
+      "name": "Gemini_Generated_Image_m9eqpvm9eqpvm9eq.jpg",
+      "uploadedAt": "2026-09-30T12:12:27.757Z",
+      "size": 685455
+    },
+    {
+      "id": "img_1790770348678_z2cqi2",
+      "url": "/uploads/1790770346851_Gemini_Generated_Image_e2r13ae2r13ae2r1.jpg",
+      "name": "Gemini_Generated_Image_e2r13ae2r13ae2r1.jpg",
+      "uploadedAt": "2026-09-30T12:12:28.678Z",
+      "size": 557175
+    },
+    {
+      "id": "img_1790770303495_5q7s6w",
+      "url": "/uploads/1790770301689_Gemini_Generated_Image_nbk6z8nbk6z8nbk6.jpg",
+      "name": "Gemini_Generated_Image_nbk6z8nbk6z8nbk6.jpg",
+      "uploadedAt": "2026-09-30T12:11:43.496Z",
+      "size": 951270
+    },
+    {
+      "id": "img_1790770304784_h8pxpy",
+      "url": "/uploads/1790770302967_Gemini_Generated_Image_lp513wlp513wlp51.jpg",
+      "name": "Gemini_Generated_Image_lp513wlp513wlp51.jpg",
+      "uploadedAt": "2026-09-30T12:11:44.785Z",
+      "size": 790671
+    },
+    {
+      "id": "img_1790770284559_p9etiw",
+      "url": "/uploads/1790770282730_Gemini_Generated_Image_elnhn9elnhn9elnh.jpg",
+      "name": "Gemini_Generated_Image_elnhn9elnhn9elnh.jpg",
+      "uploadedAt": "2026-09-30T12:11:24.559Z",
+      "size": 890703
+    },
+    {
+      "id": "img_1790770265861_7zxbmo",
+      "url": "/uploads/1790770264058_Gemini_Generated_Image_21bar21bar21bar2.jpg",
+      "name": "Gemini_Generated_Image_21bar21bar21bar2.jpg",
+      "uploadedAt": "2026-09-30T12:11:05.861Z",
+      "size": 760074
+    },
+    {
+      "id": "img_1790770245863_shjlrz",
+      "url": "/uploads/1790770243930_Gemini_Generated_Image_n1wlx3n1wlx3n1wl.jpg",
+      "name": "Gemini_Generated_Image_n1wlx3n1wlx3n1wl.jpg",
+      "uploadedAt": "2026-09-30T12:10:45.864Z",
+      "size": 855717
+    },
+    {
+      "id": "img_1790770246987_k5i1kt",
+      "url": "/uploads/1790770245099_Gemini_Generated_Image_1uyn0v1uyn0v1uyn.jpg",
+      "name": "Gemini_Generated_Image_1uyn0v1uyn0v1uyn.jpg",
+      "uploadedAt": "2026-09-30T12:10:46.987Z",
+      "size": 921132
+    },
+    {
+      "id": "img_1790770218807_svb17s",
+      "url": "/uploads/1790770216975_Gemini_Generated_Image_jew7hcjew7hcjew7.jpg",
+      "name": "Gemini_Generated_Image_jew7hcjew7hcjew7.jpg",
+      "uploadedAt": "2026-09-30T12:10:18.808Z",
+      "size": 806667
+    },
+    {
+      "id": "img_1790770219769_xccc0d",
+      "url": "/uploads/1790770217974_Gemini_Generated_Image_a1ug76a1ug76a1ug.jpg",
+      "name": "Gemini_Generated_Image_a1ug76a1ug76a1ug.jpg",
+      "uploadedAt": "2026-09-30T12:10:19.769Z",
+      "size": 771009
+    },
+    {
+      "id": "img_1790770189926_wfraot",
+      "url": "/uploads/1790770188125_Gemini_Generated_Image_fpxlgufpxlgufpxl.jpg",
+      "name": "Gemini_Generated_Image_fpxlgufpxlgufpxl.jpg",
+      "uploadedAt": "2026-09-30T12:09:49.927Z",
+      "size": 756816
+    },
+    {
+      "id": "img_1790770190663_fuvakd",
+      "url": "/uploads/1790770188834_Gemini_Generated_Image_xz00k2xz00k2xz00.jpg",
+      "name": "Gemini_Generated_Image_xz00k2xz00k2xz00.jpg",
+      "uploadedAt": "2026-09-30T12:09:50.663Z",
+      "size": 612321
+    },
+    {
+      "id": "img_1790770161988_2s78tk",
+      "url": "/uploads/1790770160107_Gemini_Generated_Image_r1ps8lr1ps8lr1ps.jpg",
+      "name": "Gemini_Generated_Image_r1ps8lr1ps8lr1ps.jpg",
+      "uploadedAt": "2026-09-30T12:09:21.989Z",
+      "size": 685893
+    },
+    {
+      "id": "img_1790770163116_6y5i3t",
+      "url": "/uploads/1790770161199_Gemini_Generated_Image_fi03l3fi03l3fi03.jpg",
+      "name": "Gemini_Generated_Image_fi03l3fi03l3fi03.jpg",
+      "uploadedAt": "2026-09-30T12:09:23.116Z",
+      "size": 843708
+    },
+    {
+      "id": "img_1790770137664_p5696h",
+      "url": "/uploads/1790770135849_Gemini_Generated_Image_jsbx8ujsbx8ujsbx.jpg",
+      "name": "Gemini_Generated_Image_jsbx8ujsbx8ujsbx.jpg",
+      "uploadedAt": "2026-09-30T12:08:57.665Z",
+      "size": 681312
+    },
+    {
+      "id": "img_1790770138441_gzxm75",
+      "url": "/uploads/1790770136638_Gemini_Generated_Image_3y1ui13y1ui13y1u.jpg",
+      "name": "Gemini_Generated_Image_3y1ui13y1ui13y1u.jpg",
+      "uploadedAt": "2026-09-30T12:08:58.442Z",
+      "size": 714279
+    },
+    {
+      "id": "img_1790770099629_d0lixg",
+      "url": "/uploads/1790770097840_Gemini_Generated_Image_tb8zcutb8zcutb8z.jpg",
+      "name": "Gemini_Generated_Image_tb8zcutb8zcutb8z.jpg",
+      "uploadedAt": "2026-09-30T12:08:19.629Z",
+      "size": 694389
+    },
+    {
+      "id": "img_1790770100544_l0c04g",
+      "url": "/uploads/1790770098674_Gemini_Generated_Image_tb4txwtb4txwtb4t.jpg",
+      "name": "Gemini_Generated_Image_tb4txwtb4txwtb4t.jpg",
+      "uploadedAt": "2026-09-30T12:08:20.544Z",
+      "size": 797427
+    },
+    {
+      "id": "img_1790770068943_suh44r",
+      "url": "/uploads/1790770067146_Gemini_Generated_Image_nf76zdnf76zdnf76.jpg",
+      "name": "Gemini_Generated_Image_nf76zdnf76zdnf76.jpg",
+      "uploadedAt": "2026-09-30T12:07:48.944Z",
+      "size": 818808
+    },
+    {
+      "id": "img_1790770069824_3pboxa",
+      "url": "/uploads/1790770067955_Gemini_Generated_Image_8pr5fy8pr5fy8pr5_.jpg",
+      "name": "Gemini_Generated_Image_8pr5fy8pr5fy8pr5(1).jpg",
+      "uploadedAt": "2026-09-30T12:07:49.825Z",
+      "size": 752580
+    },
+    {
+      "id": "img_1790770042584_8e0xg3",
+      "url": "/uploads/1790770040745_Generated_Image_September_27__2026_-_12_.png",
+      "name": "Generated Image September 27, 2026 - 12_38PM.png",
+      "uploadedAt": "2026-09-30T12:07:22.585Z",
+      "size": 1887402
+    },
+    {
+      "id": "img_1790770044425_76clxt",
+      "url": "/uploads/1790770042579_Generated_Image_September_27__2026_-_12_.png",
+      "name": "Generated Image September 27, 2026 - 12_50PM.png",
+      "uploadedAt": "2026-09-30T12:07:24.425Z",
+      "size": 1933314
+    },
+    {
+      "id": "img_1790770011971_slfcqf",
+      "url": "/uploads/1790770010140_Gemini_Generated_Image_n3f62dn3f62dn3f6.jpg",
+      "name": "Gemini_Generated_Image_n3f62dn3f62dn3f6.jpg",
+      "uploadedAt": "2026-09-30T12:06:51.971Z",
+      "size": 667704
+    },
+    {
+      "id": "img_1790770012882_rsyb3m",
+      "url": "/uploads/1790770011042_Gemini_Generated_Image_mvb3cemvb3cemvb3.jpg",
+      "name": "Gemini_Generated_Image_mvb3cemvb3cemvb3.jpg",
+      "uploadedAt": "2026-09-30T12:06:52.882Z",
+      "size": 630510
+    },
+    {
+      "id": "img_1790770013625_yvsqne",
+      "url": "/uploads/1790770011845_Gemini_Generated_Image_gia95mgia95mgia9.jpg",
+      "name": "Gemini_Generated_Image_gia95mgia95mgia9.jpg",
+      "uploadedAt": "2026-09-30T12:06:53.626Z",
+      "size": 638496
+    },
+    {
+      "id": "img_1790769982671_84sj6n",
+      "url": "/uploads/1790769980885_Gemini_Generated_Image_q6br7wq6br7wq6br.jpg",
+      "name": "Gemini_Generated_Image_q6br7wq6br7wq6br.jpg",
+      "uploadedAt": "2026-09-30T12:06:22.671Z",
+      "size": 750543
+    },
+    {
+      "id": "img_1790769983695_3qlogt",
+      "url": "/uploads/1790769981883_Gemini_Generated_Image_q9a3apq9a3apq9a3.jpg",
+      "name": "Gemini_Generated_Image_q9a3apq9a3apq9a3.jpg",
+      "uploadedAt": "2026-09-30T12:06:23.696Z",
+      "size": 714936
+    },
+    {
+      "id": "img_1790769959428_oe9vor",
+      "url": "/uploads/1790769957567_Gemini_Generated_Image_7eudyp7eudyp7eud.jpg",
+      "name": "Gemini_Generated_Image_7eudyp7eudyp7eud.jpg",
+      "uploadedAt": "2026-09-30T12:05:59.430Z",
+      "size": 613455
+    },
+    {
+      "id": "img_1790769960362_paj7qj",
+      "url": "/uploads/1790769958583_Gemini_Generated_Image_u30rn5u30rn5u30r.jpg",
+      "name": "Gemini_Generated_Image_u30rn5u30rn5u30r.jpg",
+      "uploadedAt": "2026-09-30T12:06:00.362Z",
+      "size": 696318
+    },
+    {
+      "id": "img_1790769927577_epzeju",
+      "url": "/uploads/1790769925800_Gemini_Generated_Image_mwqb5fmwqb5fmwqb.jpg",
+      "name": "Gemini_Generated_Image_mwqb5fmwqb5fmwqb.jpg",
+      "uploadedAt": "2026-09-30T12:05:27.577Z",
+      "size": 835782
+    },
+    {
+      "id": "img_1790769928601_9c449i",
+      "url": "/uploads/1790769926727_Gemini_Generated_Image_x9ytkvx9ytkvx9yt.jpg",
+      "name": "Gemini_Generated_Image_x9ytkvx9ytkvx9yt.jpg",
+      "uploadedAt": "2026-09-30T12:05:28.601Z",
+      "size": 946674
+    },
+    {
+      "id": "img_1790769929522_5ryyv0",
+      "url": "/uploads/1790769927712_Gemini_Generated_Image_96ydn696ydn696yd.jpg",
+      "name": "Gemini_Generated_Image_96ydn696ydn696yd.jpg",
+      "uploadedAt": "2026-09-30T12:05:29.522Z",
+      "size": 678180
+    },
+    {
+      "id": "img_1790769902898_nhnvzx",
+      "url": "/uploads/1790769901052_vangohpswallpanel.png",
+      "name": "vangohpswallpanel.png",
+      "uploadedAt": "2026-09-30T12:05:02.899Z",
+      "size": 3212625
+    },
+    {
+      "id": "img_1790769905152_ph3lyw",
+      "url": "/uploads/1790769903292_ChatGPT_Image_Jun_2__2026__02_50_49_PM.png",
+      "name": "ChatGPT Image Jun 2, 2026, 02_50_49 PM.png",
+      "uploadedAt": "2026-09-30T12:05:05.153Z",
+      "size": 3244188
+    },
+    {
+      "id": "img_1790769907299_wr7gn1",
+      "url": "/uploads/1790769905502_ChatGPT_Image_Jun_2__2026__02_48_29_PM.png",
+      "name": "ChatGPT Image Jun 2, 2026, 02_48_29 PM.png",
+      "uploadedAt": "2026-09-30T12:05:07.299Z",
+      "size": 3371934
+    },
+    {
+      "id": "img_1790769873710_isshzb",
+      "url": "/uploads/1790769871846_founderimage_1_.jpg",
+      "name": "founderimage(1).jpg",
+      "uploadedAt": "2026-09-30T12:04:33.711Z",
+      "size": 721640
+    },
+    {
+      "id": "img_1790769863469_rqg9p1",
+      "url": "/uploads/1790769861631_psbaseboardbirlikcompany.jpg",
+      "name": "psbaseboardbirlikcompany.jpg",
+      "uploadedAt": "2026-09-30T12:04:23.469Z",
+      "size": 262206
+    },
+    {
+      "id": "img_1790769861626_o8jgxf",
+      "url": "/uploads/1790769859827_pswallslathsbirlikcompany.jpg",
+      "name": "pswallslathsbirlikcompany.jpg",
+      "uploadedAt": "2026-09-30T12:04:21.626Z",
+      "size": 333333
+    },
+    {
+      "id": "img_1790769858246_dlgveg",
+      "url": "/uploads/1790769856430_spcflooringbirlikcompany.jpg",
+      "name": "spcflooringbirlikcompany.jpg",
+      "uploadedAt": "2026-09-30T12:04:18.246Z",
+      "size": 598980
+    },
+    {
+      "id": "img_1790769856742_tbnr45",
+      "url": "/uploads/1790769854963_spcwallpanelbirlikcompany.jpg",
+      "name": "spcwallpanelbirlikcompany.jpg",
+      "uploadedAt": "2026-09-30T12:04:16.742Z",
+      "size": 457575
+    },
+    {
+      "id": "img_1790769854141_hdc4xt",
+      "url": "/uploads/1790769852364_pvcwallpanelbirlikcompany.jpg",
+      "name": "pvcwallpanelbirlikcompany.jpg",
+      "uploadedAt": "2026-09-30T12:04:14.141Z",
+      "size": 635226
+    },
+    {
+      "id": "img_1790769852411_cojj04",
+      "url": "/uploads/1790769850621_pswallpanelsbirlikcompany.jpg",
+      "name": "pswallpanelsbirlikcompany.jpg",
+      "uploadedAt": "2026-09-30T12:04:12.412Z",
+      "size": 559128
+    },
     {
       "id": "img_1790760795444_8nn30",
       "url": "/uploads/1790760517847_Gemini_Generated_Image_9oqe5m9oqe5m9oqe.jpg",

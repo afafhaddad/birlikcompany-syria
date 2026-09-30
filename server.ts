@@ -38,11 +38,22 @@ app.use('/uploads', express.static(uploadsDir));
 
 // Direct download route for the full project ZIP
 app.get('/download-project.zip', (req, res) => {
-  const zipPath = path.resolve(__dirname, 'public', 'birlik-project.zip');
-  if (fs.existsSync(zipPath)) {
-    return res.download(zipPath, 'birlik-project.zip');
+  const completeZip = path.resolve(__dirname, 'public', 'birlik-complete-project.zip');
+  const fallbackZip = path.resolve(__dirname, 'public', 'birlik-project.zip');
+  const target = fs.existsSync(completeZip) ? completeZip : fallbackZip;
+  if (fs.existsSync(target)) {
+    return res.download(target, 'birlik-complete-project.zip');
   }
   return res.status(404).send('ZIP file is still generating or not found.');
+});
+
+// Pre-compiled ready-to-upload ZIP for GoDaddy cPanel (no npm required)
+app.get('/godaddy-upload.zip', (req, res) => {
+  const zipPath = path.resolve(__dirname, 'public', 'godaddy-upload.zip');
+  if (fs.existsSync(zipPath)) {
+    return res.download(zipPath, 'birlik-godaddy-ready.zip');
+  }
+  return res.status(404).send('ZIP file not found.');
 });
 
 const registryPath = path.resolve(__dirname, 'src', 'data', 'mediaRegistry.json');
