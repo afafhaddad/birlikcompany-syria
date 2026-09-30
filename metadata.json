@@ -1,0 +1,7 @@
+{
+  "name": "Birlik Wall Materials - Lattakia",
+  "description": "Showcase website for Birlik Company, supplier of 100% waterproof SPC wall panels, fluted slats, and baseboards in Lattakia with Syria-wide shipping and office consultations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
