@@ -1,912 +1,566 @@
 {
-  "hero": "/uploads/local_img_1790791666257_53hcx9.jpg",
-  "founder": "/uploads/local_img_1790791080387_sx6dce.jpg",
-  "categories": {
-    "ps_wood": "/uploads/local_img_1790791097105_rhwjo4.jpg",
-    "pvc_marble": "/uploads/local_img_1790791096640_3jv8lg.jpg",
-    "spc_wall": "/uploads/local_img_1790791096016_y6i4or.jpg",
-    "spc_flooring": "/uploads/local_img_1790791095559_et96kb.jpg",
-    "ps_slats": "/uploads/local_img_1790791095036_uhr2sh.jpg",
-    "ps_baseboards": "/uploads/local_img_1790791094433_sn137p.jpg"
-  },
-  "products": {
-    "ps-vangoh": {
-      "main": "/uploads/local_img_1790791230469_oor3px.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791232164_kndshu.jpg",
-        "/uploads/local_img_1790791233824_wq0onq.jpg"
-      ]
-    },
-    "ps-beige-timber": {
-      "main": "/uploads/local_img_1790791249442_ae28jn.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791250111_sh6hvf.jpg",
-        "/uploads/local_img_1790791250686_654zkc.jpg"
-      ]
-    },
-    "ps-office-grey": {
-      "main": "/uploads/local_img_1790791264908_2bv0hi.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791265478_f559xu.jpg"
-      ]
-    },
-    "ps-marble-gold-noir": {
-      "main": "/uploads/local_img_1790791278924_vsdw24.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791279560_1a6g7d.jpg"
-      ]
-    },
-    "ps-crocodile": {
-      "main": "/uploads/local_img_1790791297300_p5g6ys.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791297933_8mndji.jpg",
-        "/uploads/local_img_1790791298551_tshf8g.jpg"
-      ]
-    },
-    "ps-velvet-gold": {
-      "main": "/uploads/local_img_1790791312142_vci0wd.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791313272_qrta19.jpg"
-      ]
-    },
-    "ps-timber-gold": {
-      "main": "/uploads/local_img_1790791323430_p3wq8w.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791324075_xyykp6.jpg"
-      ]
-    },
-    "ps-velvet": {
-      "main": "/uploads/local_img_1790791336725_cz4apn.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791337464_3ydae2.jpg"
-      ]
-    },
-    "ps-harp": {
-      "main": "/uploads/local_img_1790791350502_667228.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791351163_8nvg6g.jpg"
-      ]
-    },
-    "ps-grey-gold": {
-      "main": "/uploads/local_img_1790791366013_6e1qft.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791366687_evz9i1.jpg"
-      ]
-    },
-    "ps-wood-gold": {
-      "main": "/uploads/local_img_1790791378813_kst52c.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791379381_2sdumk.jpg"
-      ]
-    },
-    "ps-pine": {
-      "main": "/uploads/local_img_1790791391616_370anj.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791392261_jqc8ca.jpg"
-      ]
-    },
-    "ps-rustic": {
-      "main": "/uploads/local_img_1790791404748_oy01bq.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791405398_kd3trs.jpg"
-      ]
-    },
-    "ps-balsam": {
-      "main": "/uploads/local_img_1790791413222_eugmjp.jpg",
-      "gallery": []
-    },
-    "ps-balsam-black": {
-      "main": "/uploads/local_img_1790791422026_p0rzvz.jpg",
-      "gallery": []
-    },
-    "ps-crown-teak-black": {
-      "main": "/uploads/local_img_1790791432562_vubxyp.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791433259_83dgoz.jpg"
-      ]
-    },
-    "pvc-athena-grey": {
-      "main": "/uploads/local_img_1790791489618_a3pcu8.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791490803_4quhkq.jpg"
-      ]
-    },
-    "pvc-fuji-grey": {
-      "main": "/uploads/local_img_1790791504774_u0g8fc.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791505519_zk1nny.jpg"
-      ]
-    },
-    "pvc-marbella": {
-      "main": "/uploads/local_img_1790791521514_nnroz3.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791522137_hz5tzd.jpg",
-        "/uploads/local_img_1790791522654_91k503.jpg"
-      ]
-    },
-    "pvc-inky-gold": {
-      "main": "/uploads/local_img_1790791536136_q70fjr.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791536968_3vtzuo.jpg"
-      ]
-    },
-    "pvc-golden-sheet": {
-      "main": "/uploads/local_img_1790791565346_qmcdps.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791566215_v9b5rq.jpg"
-      ]
-    },
-    "pvc-golden-noir": {
-      "main": "/uploads/local_img_1790791576667_qdeui1.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791577561_8qn9wt.jpg"
-      ]
-    },
-    "pvc-golden-grey": {
-      "main": "/uploads/local_img_1790791595097_3j5j90.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791595882_1zwq01.jpg"
-      ]
-    },
-    "pvc-brazillian-granit": {
-      "main": "/uploads/local_img_1790791606056_5aepxr.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791606688_ie3t0h.jpg"
-      ]
-    },
-    "spc-woody-forest": {
-      "main": "/uploads/local_img_1790791637149_f64nv2.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791637595_teigvh.jpg",
-        "/uploads/local_img_1790791638109_695il5.jpg"
-      ]
-    },
-    "spc-nardo-grey": {
-      "main": "/uploads/local_img_1790791652250_fdgzpo.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791653320_n37s0l.jpg"
-      ]
-    },
-    "spc-travertine": {
-      "main": "/uploads/local_img_1790791665668_rzo63x.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791666257_53hcx9.jpg"
-      ]
-    },
-    "spc-mercan": {
-      "main": "/uploads/local_img_1790791681538_kgx2mt.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791682151_1ig48s.jpg"
-      ]
-    },
-    "spc-cupper": {
-      "main": "/uploads/local_img_1790791692717_9qzoce.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791693603_i6yf9j.jpg",
-        "/uploads/local_img_1790791694422_s0rss9.jpg"
-      ]
-    },
-    "spc-calcatta": {
-      "main": "/uploads/local_img_1790791704031_q6le7r.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791704659_b2oyx6.jpg"
-      ]
-    },
-    "spc-charcoal": {
-      "main": "/uploads/local_img_1790791714081_l05gy2.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791714366_nzup6t.jpg"
-      ]
-    },
-    "flr-concrete": {
-      "main": "/uploads/local_img_1790791741091_ej3696.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791749572_52nz4s.jpg"
-      ]
-    },
-    "flr-blanche": {
-      "main": "/uploads/local_img_1790791758028_0767u0.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791758616_883stn.jpg"
-      ]
-    },
-    "flr-kara": {
-      "main": "/uploads/local_img_1790791768059_zb1hwj.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791768632_qc8bsn.jpg"
-      ]
-    },
-    "slat-led-cornice": {
-      "main": "/uploads/local_img_1790791795099_ammue1.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791795305_99laie.jpg"
-      ]
-    },
-    "slat-4cm-classic": {
-      "main": "/uploads/local_img_1790791805503_22gih9.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791805649_91zxxc.jpg"
-      ]
-    },
-    "slat-48-border": {
-      "main": "/uploads/local_img_1790791813802_ho4l5e.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791814574_7t36k2.jpg"
-      ]
-    },
-    "slat-25-classic": {
-      "main": "/uploads/local_img_1790791825105_976ism.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791825368_43o37t.jpg"
-      ]
-    },
-    "slat-15-round": {
-      "main": "/uploads/local_img_1790791834321_d3la5p.jpg",
-      "gallery": []
-    },
-    "base-led-115": {
-      "main": "/uploads/local_img_1790791867708_7hbwsg.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791868281_vd2ygi.jpg"
-      ]
-    },
-    "base-classic-100": {
-      "main": "/uploads/local_img_1790791878581_617rsv.jpg",
-      "gallery": [
-        "/uploads/local_img_1790791879114_liyy56.jpg"
-      ]
-    }
-  },
+  "hero": "",
+  "founder": "",
+  "categories": {},
+  "products": {},
   "uploadedImages": [
     {
-      "id": "img_1790791878581_617rsv",
-      "url": "/uploads/local_img_1790791878581_617rsv.jpg",
-      "name": "Gemini_Generated_Image_uwxtrwuwxtrwuwxt.jpg",
-      "uploadedAt": "2026-09-30T18:11:18.581Z",
-      "size": 869931
+      "id": "gh_0e72a660-6ffe-47d6-8262-bb27e51c34e5",
+      "url": "https://github.com/user-attachments/assets/0e72a660-6ffe-47d6-8262-bb27e51c34e5",
+      "name": "Birlik Photo 1",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791879114_liyy56",
-      "url": "/uploads/local_img_1790791879114_liyy56.jpg",
-      "name": "Gemini_Generated_Image_9oqe5m9oqe5m9oqe.jpg",
-      "uploadedAt": "2026-09-30T18:11:19.114Z",
-      "size": 767304
+      "id": "gh_6d8c24ae-9348-4324-8b1b-b57eca194c59",
+      "url": "https://github.com/user-attachments/assets/6d8c24ae-9348-4324-8b1b-b57eca194c59",
+      "name": "Birlik Photo 2",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791867708_7hbwsg",
-      "url": "/uploads/local_img_1790791867708_7hbwsg.jpg",
-      "name": "Gemini_Generated_Image_et6fj1et6fj1et6f.jpg",
-      "uploadedAt": "2026-09-30T18:11:07.709Z",
-      "size": 521280
+      "id": "gh_5e13fa3b-a1b7-4648-b9dd-12d9b3c708e6",
+      "url": "https://github.com/user-attachments/assets/5e13fa3b-a1b7-4648-b9dd-12d9b3c708e6",
+      "name": "Birlik Photo 3",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791868281_vd2ygi",
-      "url": "/uploads/local_img_1790791868281_vd2ygi.jpg",
-      "name": "Gemini_Generated_Image_k6g282k6g282k6g2.jpg",
-      "uploadedAt": "2026-09-30T18:11:08.282Z",
-      "size": 593259
+      "id": "gh_0cbe2e12-5d18-46a2-8737-8178ae297c12",
+      "url": "https://github.com/user-attachments/assets/0cbe2e12-5d18-46a2-8737-8178ae297c12",
+      "name": "Birlik Photo 4",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791834321_d3la5p",
-      "url": "/uploads/local_img_1790791834321_d3la5p.jpg",
-      "name": "WhatsApp Image 2024-11-13 at 10.24.12 (1).jpeg",
-      "uploadedAt": "2026-09-30T18:10:34.322Z",
-      "size": 60162
+      "id": "gh_3187a583-072b-4fd8-a4e5-f98a97289e4b",
+      "url": "https://github.com/user-attachments/assets/3187a583-072b-4fd8-a4e5-f98a97289e4b",
+      "name": "Birlik Photo 5",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791825105_976ism",
-      "url": "/uploads/local_img_1790791825105_976ism.jpg",
-      "name": "WhatsApp Image 2024-11-13 at 10.24.12.jpeg",
-      "uploadedAt": "2026-09-30T18:10:25.105Z",
-      "size": 55576
+      "id": "gh_41d631d2-9645-4bf3-863a-2389639ab96b",
+      "url": "https://github.com/user-attachments/assets/41d631d2-9645-4bf3-863a-2389639ab96b",
+      "name": "Birlik Photo 6",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791825368_43o37t",
-      "url": "/uploads/local_img_1790791825368_43o37t.jpg",
-      "name": "WhatsApp Image 2024-11-13 at 10.27.56 (1).jpeg",
-      "uploadedAt": "2026-09-30T18:10:25.368Z",
-      "size": 25037
+      "id": "gh_6c424ecb-b2c6-4d0a-a667-ab243bfd62e6",
+      "url": "https://github.com/user-attachments/assets/6c424ecb-b2c6-4d0a-a667-ab243bfd62e6",
+      "name": "Birlik Photo 7",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791813802_ho4l5e",
-      "url": "/uploads/local_img_1790791813802_ho4l5e.jpg",
-      "name": "Gemini_Generated_Image_3wfthl3wfthl3wft.jpg",
-      "uploadedAt": "2026-09-30T18:10:13.802Z",
-      "size": 516282
+      "id": "gh_b74d8656-af82-4c6c-9beb-1b19b9c07e50",
+      "url": "https://github.com/user-attachments/assets/b74d8656-af82-4c6c-9beb-1b19b9c07e50",
+      "name": "Birlik Photo 8",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791814574_7t36k2",
-      "url": "/uploads/local_img_1790791814574_7t36k2.jpg",
-      "name": "dfdr.png",
-      "uploadedAt": "2026-09-30T18:10:14.574Z",
-      "size": 1227876
+      "id": "gh_3dd35ab7-d49d-4348-b6f2-faf859043a00",
+      "url": "https://github.com/user-attachments/assets/3dd35ab7-d49d-4348-b6f2-faf859043a00",
+      "name": "Birlik Photo 9",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791805503_22gih9",
-      "url": "/uploads/local_img_1790791805503_22gih9.jpg",
-      "name": "dd82c827845b6aa45a489b0283317d90.jpg",
-      "uploadedAt": "2026-09-30T18:10:05.504Z",
-      "size": 56620
+      "id": "gh_eccdd746-67a2-4314-9693-34dcb5e43a1b",
+      "url": "https://github.com/user-attachments/assets/eccdd746-67a2-4314-9693-34dcb5e43a1b",
+      "name": "Birlik Photo 10",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791805649_91zxxc",
-      "url": "/uploads/local_img_1790791805649_91zxxc.jpg",
-      "name": "WhatsApp Image 2024-11-13 at 10.27.57.jpeg",
-      "uploadedAt": "2026-09-30T18:10:05.649Z",
-      "size": 25568
+      "id": "gh_4991cb9e-1c24-4e3b-8ecc-8bb719e3bd47",
+      "url": "https://github.com/user-attachments/assets/4991cb9e-1c24-4e3b-8ecc-8bb719e3bd47",
+      "name": "Birlik Photo 11",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791795099_ammue1",
-      "url": "/uploads/local_img_1790791795099_ammue1.jpg",
-      "name": "Gemini_Generated_Image_duvm6uduvm6uduvm.jpg",
-      "uploadedAt": "2026-09-30T18:09:55.099Z",
-      "size": 396486
+      "id": "gh_6b264d31-ce18-4c90-aaef-338dac491ee1",
+      "url": "https://github.com/user-attachments/assets/6b264d31-ce18-4c90-aaef-338dac491ee1",
+      "name": "Birlik Photo 12",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791795305_99laie",
-      "url": "/uploads/local_img_1790791795305_99laie.jpg",
-      "name": "CBGTN.jpg",
-      "uploadedAt": "2026-09-30T18:09:55.306Z",
-      "size": 84553
+      "id": "gh_f51ad32f-371b-4e6e-b713-983e86b9f697",
+      "url": "https://github.com/user-attachments/assets/f51ad32f-371b-4e6e-b713-983e86b9f697",
+      "name": "Birlik Photo 13",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791768059_zb1hwj",
-      "url": "/uploads/local_img_1790791768059_zb1hwj.jpg",
-      "name": "Gemini_Generated_Image_oap7ewoap7ewoap7.jpg",
-      "uploadedAt": "2026-09-30T18:09:28.059Z",
-      "size": 636603
+      "id": "gh_549fc811-cc68-4c1e-8393-c00be41b4bb6",
+      "url": "https://github.com/user-attachments/assets/549fc811-cc68-4c1e-8393-c00be41b4bb6",
+      "name": "Birlik Photo 14",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791768632_qc8bsn",
-      "url": "/uploads/local_img_1790791768632_qc8bsn.jpg",
-      "name": "Gemini_Generated_Image_oh4uisoh4uisoh4u.jpg",
-      "uploadedAt": "2026-09-30T18:09:28.633Z",
-      "size": 676509
+      "id": "gh_10804937-c287-43ae-a043-e90cdebe1aaf",
+      "url": "https://github.com/user-attachments/assets/10804937-c287-43ae-a043-e90cdebe1aaf",
+      "name": "Birlik Photo 15",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791758028_0767u0",
-      "url": "/uploads/local_img_1790791758028_0767u0.jpg",
-      "name": "Gemini_Generated_Image_q5tfetq5tfetq5tf.jpg",
-      "uploadedAt": "2026-09-30T18:09:18.028Z",
-      "size": 630783
+      "id": "gh_447fed5e-9bf8-47ee-a720-b0b0ba8758b6",
+      "url": "https://github.com/user-attachments/assets/447fed5e-9bf8-47ee-a720-b0b0ba8758b6",
+      "name": "Birlik Photo 16",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791758616_883stn",
-      "url": "/uploads/local_img_1790791758616_883stn.jpg",
-      "name": "Gemini_Generated_Image_z9zzw7z9zzw7z9zz.jpg",
-      "uploadedAt": "2026-09-30T18:09:18.616Z",
-      "size": 705345
+      "id": "gh_0af2a75c-e5d8-4340-81b2-228ec6c32b79",
+      "url": "https://github.com/user-attachments/assets/0af2a75c-e5d8-4340-81b2-228ec6c32b79",
+      "name": "Birlik Photo 17",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791741091_ej3696",
-      "url": "/uploads/local_img_1790791741091_ej3696.jpg",
-      "name": "Gemini_Generated_Image_m9so9wm9so9wm9so.jpg",
-      "uploadedAt": "2026-09-30T18:09:01.092Z",
-      "size": 675786
+      "id": "gh_d5fe9b02-9ab8-475c-825a-dfcf51caefee",
+      "url": "https://github.com/user-attachments/assets/d5fe9b02-9ab8-475c-825a-dfcf51caefee",
+      "name": "Birlik Photo 18",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791749572_52nz4s",
-      "url": "/uploads/local_img_1790791749572_52nz4s.jpg",
-      "name": "Gemini_Generated_Image_7nuwxq7nuwxq7nuw.jpg",
-      "uploadedAt": "2026-09-30T18:09:09.573Z",
-      "size": 785019
+      "id": "gh_afc2cd46-6c7a-450c-a23e-a7d13bd2ec95",
+      "url": "https://github.com/user-attachments/assets/afc2cd46-6c7a-450c-a23e-a7d13bd2ec95",
+      "name": "Birlik Photo 19",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791714081_l05gy2",
-      "url": "/uploads/local_img_1790791714081_l05gy2.jpg",
-      "name": "Gemini_Generated_Image_eemqfbeemqfbeemq.jpg",
-      "uploadedAt": "2026-09-30T18:08:34.081Z",
-      "size": 683547
+      "id": "gh_19605678-02ed-4333-b786-ebf6c525c486",
+      "url": "https://github.com/user-attachments/assets/19605678-02ed-4333-b786-ebf6c525c486",
+      "name": "Birlik Photo 20",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791714366_nzup6t",
-      "url": "/uploads/local_img_1790791714366_nzup6t.jpg",
-      "name": "WhatsApp Image 2026-07-10 at 20.33.13.jpeg",
-      "uploadedAt": "2026-09-30T18:08:34.366Z",
-      "size": 359436
+      "id": "gh_322abcf2-7e51-43b6-bbe8-a05ac66e8ee2",
+      "url": "https://github.com/user-attachments/assets/322abcf2-7e51-43b6-bbe8-a05ac66e8ee2",
+      "name": "Birlik Photo 21",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791704031_q6le7r",
-      "url": "/uploads/local_img_1790791704031_q6le7r.jpg",
-      "name": "Gemini_Generated_Image_ikdrzoikdrzoikdr.jpg",
-      "uploadedAt": "2026-09-30T18:08:24.032Z",
-      "size": 540561
+      "id": "gh_38603eea-06bc-456d-9252-f4c08be2a17f",
+      "url": "https://github.com/user-attachments/assets/38603eea-06bc-456d-9252-f4c08be2a17f",
+      "name": "Birlik Photo 22",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791704659_b2oyx6",
-      "url": "/uploads/local_img_1790791704659_b2oyx6.jpg",
-      "name": "Gemini_Generated_Image_tzp6iotzp6iotzp6.jpg",
-      "uploadedAt": "2026-09-30T18:08:24.659Z",
-      "size": 618765
+      "id": "gh_bd9f2c69-efde-4100-b6ee-9fa788aba506",
+      "url": "https://github.com/user-attachments/assets/bd9f2c69-efde-4100-b6ee-9fa788aba506",
+      "name": "Birlik Photo 23",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791692717_9qzoce",
-      "url": "/uploads/local_img_1790791692717_9qzoce.jpg",
-      "name": "Gemini_Generated_Image_ijypktijypktijyp.jpg",
-      "uploadedAt": "2026-09-30T18:08:12.717Z",
-      "size": 840927
+      "id": "gh_5b623a2b-3b43-4fd0-a138-6694b66dab2a",
+      "url": "https://github.com/user-attachments/assets/5b623a2b-3b43-4fd0-a138-6694b66dab2a",
+      "name": "Birlik Photo 24",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791693603_i6yf9j",
-      "url": "/uploads/local_img_1790791693603_i6yf9j.jpg",
-      "name": "Gemini_Generated_Image_e7do08e7do08e7do.jpg",
-      "uploadedAt": "2026-09-30T18:08:13.603Z",
-      "size": 856731
+      "id": "gh_fe22f53a-728f-4c49-80b0-4e37fc57420a",
+      "url": "https://github.com/user-attachments/assets/fe22f53a-728f-4c49-80b0-4e37fc57420a",
+      "name": "Birlik Photo 25",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791694422_s0rss9",
-      "url": "/uploads/local_img_1790791694422_s0rss9.jpg",
-      "name": "Gemini_Generated_Image_gsw0hbgsw0hbgsw0.jpg",
-      "uploadedAt": "2026-09-30T18:08:14.422Z",
-      "size": 917865
+      "id": "gh_40d8a98c-8c42-4938-a9b8-fadd87509ce5",
+      "url": "https://github.com/user-attachments/assets/40d8a98c-8c42-4938-a9b8-fadd87509ce5",
+      "name": "Birlik Photo 26",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791681538_kgx2mt",
-      "url": "/uploads/local_img_1790791681538_kgx2mt.jpg",
-      "name": "Gemini_Generated_Image_g1qwyug1qwyug1qw.jpg",
-      "uploadedAt": "2026-09-30T18:08:01.538Z",
-      "size": 669303
+      "id": "gh_64290b4b-72fb-41ff-b2fe-6a8f7e2a25cb",
+      "url": "https://github.com/user-attachments/assets/64290b4b-72fb-41ff-b2fe-6a8f7e2a25cb",
+      "name": "Birlik Photo 27",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791682151_1ig48s",
-      "url": "/uploads/local_img_1790791682151_1ig48s.jpg",
-      "name": "Gemini_Generated_Image_joarerjoarerjoar.jpg",
-      "uploadedAt": "2026-09-30T18:08:02.152Z",
-      "size": 785163
+      "id": "gh_88e1ee51-f12b-48c9-b58d-462f67be951a",
+      "url": "https://github.com/user-attachments/assets/88e1ee51-f12b-48c9-b58d-462f67be951a",
+      "name": "Birlik Photo 28",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791665668_rzo63x",
-      "url": "/uploads/local_img_1790791665668_rzo63x.jpg",
-      "name": "Gemini_Generated_Image_253htg253htg253h.jpg",
-      "uploadedAt": "2026-09-30T18:07:45.668Z",
-      "size": 728100
+      "id": "gh_c01f0998-ab0b-4488-93e9-3229ac37ffc4",
+      "url": "https://github.com/user-attachments/assets/c01f0998-ab0b-4488-93e9-3229ac37ffc4",
+      "name": "Birlik Photo 29",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791666257_53hcx9",
-      "url": "/uploads/local_img_1790791666257_53hcx9.jpg",
-      "name": "Gemini_Generated_Image_ui7h6zui7h6zui7h.jpg",
-      "uploadedAt": "2026-09-30T18:07:46.257Z",
-      "size": 664188
+      "id": "gh_2076f8c8-d03b-40b1-8c68-82425d3fb398",
+      "url": "https://github.com/user-attachments/assets/2076f8c8-d03b-40b1-8c68-82425d3fb398",
+      "name": "Birlik Photo 30",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791652250_fdgzpo",
-      "url": "/uploads/local_img_1790791652250_fdgzpo.jpg",
-      "name": "WhatsApp Image 2026-07-10 at 20.08.36(1).jpeg",
-      "uploadedAt": "2026-09-30T18:07:32.250Z",
-      "size": 348506
+      "id": "gh_cd81462b-009b-4759-a984-8e9351553ae7",
+      "url": "https://github.com/user-attachments/assets/cd81462b-009b-4759-a984-8e9351553ae7",
+      "name": "Birlik Photo 31",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791653320_n37s0l",
-      "url": "/uploads/local_img_1790791653320_n37s0l.jpg",
-      "name": "Gemini_Generated_Image_y4njkjy4njkjy4nj.jpg",
-      "uploadedAt": "2026-09-30T18:07:33.321Z",
-      "size": 640890
+      "id": "gh_de321334-0e1e-4e8a-a952-60a102b2e0a1",
+      "url": "https://github.com/user-attachments/assets/de321334-0e1e-4e8a-a952-60a102b2e0a1",
+      "name": "Birlik Photo 32",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791637149_f64nv2",
-      "url": "/uploads/local_img_1790791637149_f64nv2.jpg",
-      "name": "WhatsApp Image 2026-07-10 at 20.08.21(1).jpeg",
-      "uploadedAt": "2026-09-30T18:07:17.150Z",
-      "size": 401958
+      "id": "gh_9e2bee7c-4c19-4be5-8c84-526251b20578",
+      "url": "https://github.com/user-attachments/assets/9e2bee7c-4c19-4be5-8c84-526251b20578",
+      "name": "Birlik Photo 33",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791637595_teigvh",
-      "url": "/uploads/local_img_1790791637595_teigvh.jpg",
-      "name": "WhatsApp Image 2026-07-10 at 20.08.21(2).jpeg",
-      "uploadedAt": "2026-09-30T18:07:17.596Z",
-      "size": 449666
+      "id": "gh_67108f64-1e6d-42ac-87b0-f113ee87caeb",
+      "url": "https://github.com/user-attachments/assets/67108f64-1e6d-42ac-87b0-f113ee87caeb",
+      "name": "Birlik Photo 34",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791638109_695il5",
-      "url": "/uploads/local_img_1790791638109_695il5.jpg",
-      "name": "WhatsApp Image 2026-07-10 at 20.08.21.jpeg",
-      "uploadedAt": "2026-09-30T18:07:18.109Z",
-      "size": 511978
+      "id": "gh_3c78d8aa-8774-41f0-92c8-bd7c66b9d495",
+      "url": "https://github.com/user-attachments/assets/3c78d8aa-8774-41f0-92c8-bd7c66b9d495",
+      "name": "Birlik Photo 35",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791606056_5aepxr",
-      "url": "/uploads/local_img_1790791606056_5aepxr.jpg",
-      "name": "Gemini_Generated_Image_7iymh07iymh07iym(1).jpg",
-      "uploadedAt": "2026-09-30T18:06:46.056Z",
-      "size": 955650
+      "id": "gh_58920149-96a2-4f56-bfbd-ab0b0315b701",
+      "url": "https://github.com/user-attachments/assets/58920149-96a2-4f56-bfbd-ab0b0315b701",
+      "name": "Birlik Photo 36",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791606688_ie3t0h",
-      "url": "/uploads/local_img_1790791606688_ie3t0h.jpg",
-      "name": "Gemini_Generated_Image_6xc2rd6xc2rd6xc2(1).jpg",
-      "uploadedAt": "2026-09-30T18:06:46.688Z",
-      "size": 878130
+      "id": "gh_9db769bb-368e-4754-96c0-7cb19661ff74",
+      "url": "https://github.com/user-attachments/assets/9db769bb-368e-4754-96c0-7cb19661ff74",
+      "name": "Birlik Photo 37",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791595097_3j5j90",
-      "url": "/uploads/local_img_1790791595097_3j5j90.jpg",
-      "name": "Gemini_Generated_Image_xoqouvxoqouvxoqo.jpg",
-      "uploadedAt": "2026-09-30T18:06:35.098Z",
-      "size": 776138
+      "id": "gh_d8f024e5-6ae7-4ee5-9d13-53c21ed75328",
+      "url": "https://github.com/user-attachments/assets/d8f024e5-6ae7-4ee5-9d13-53c21ed75328",
+      "name": "Birlik Photo 38",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791595882_1zwq01",
-      "url": "/uploads/local_img_1790791595882_1zwq01.jpg",
-      "name": "Gemini_Generated_Image_ctp0zyctp0zyctp0.jpg",
-      "uploadedAt": "2026-09-30T18:06:35.883Z",
-      "size": 605694
+      "id": "gh_252b00a4-7e48-43a6-98c9-53c280ccf541",
+      "url": "https://github.com/user-attachments/assets/252b00a4-7e48-43a6-98c9-53c280ccf541",
+      "name": "Birlik Photo 39",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791576667_qdeui1",
-      "url": "/uploads/local_img_1790791576667_qdeui1.jpg",
-      "name": "Gemini_Generated_Image_ojtp2tojtp2tojtp.jpg",
-      "uploadedAt": "2026-09-30T18:06:16.667Z",
-      "size": 814128
+      "id": "gh_a9cd59a5-db4f-49a9-9d12-d71ab550eccd",
+      "url": "https://github.com/user-attachments/assets/a9cd59a5-db4f-49a9-9d12-d71ab550eccd",
+      "name": "Birlik Photo 40",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791577561_8qn9wt",
-      "url": "/uploads/local_img_1790791577561_8qn9wt.jpg",
-      "name": "Gemini_Generated_Image_z18ukaz18ukaz18u.jpg",
-      "uploadedAt": "2026-09-30T18:06:17.561Z",
-      "size": 756702
+      "id": "gh_c57c90ef-451e-4337-8027-4163eb2d5006",
+      "url": "https://github.com/user-attachments/assets/c57c90ef-451e-4337-8027-4163eb2d5006",
+      "name": "Birlik Photo 41",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791565346_qmcdps",
-      "url": "/uploads/local_img_1790791565346_qmcdps.jpg",
-      "name": "Gemini_Generated_Image_t04ww2t04ww2t04w.jpg",
-      "uploadedAt": "2026-09-30T18:06:05.346Z",
-      "size": 678648
+      "id": "gh_b8bfc622-340f-4250-95ae-ac3276e8bbe2",
+      "url": "https://github.com/user-attachments/assets/b8bfc622-340f-4250-95ae-ac3276e8bbe2",
+      "name": "Birlik Photo 42",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791566215_v9b5rq",
-      "url": "/uploads/local_img_1790791566215_v9b5rq.jpg",
-      "name": "Gemini_Generated_Image_ypzs34ypzs34ypzs.jpg",
-      "uploadedAt": "2026-09-30T18:06:06.216Z",
-      "size": 648507
+      "id": "gh_918cbeb6-76ca-407f-8749-f3277cec6019",
+      "url": "https://github.com/user-attachments/assets/918cbeb6-76ca-407f-8749-f3277cec6019",
+      "name": "Birlik Photo 43",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791536136_q70fjr",
-      "url": "/uploads/local_img_1790791536136_q70fjr.jpg",
-      "name": "Gemini_Generated_Image_w2do1tw2do1tw2do.jpg",
-      "uploadedAt": "2026-09-30T18:05:36.137Z",
-      "size": 702465
+      "id": "gh_1746b584-1984-446b-9169-e576f8c4a19e",
+      "url": "https://github.com/user-attachments/assets/1746b584-1984-446b-9169-e576f8c4a19e",
+      "name": "Birlik Photo 44",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791536968_3vtzuo",
-      "url": "/uploads/local_img_1790791536968_3vtzuo.jpg",
-      "name": "Gemini_Generated_Image_hmzp79hmzp79hmzp.jpg",
-      "uploadedAt": "2026-09-30T18:05:36.968Z",
-      "size": 715053
+      "id": "gh_0fa02fde-86b9-40f7-abf3-407131395b2b",
+      "url": "https://github.com/user-attachments/assets/0fa02fde-86b9-40f7-abf3-407131395b2b",
+      "name": "Birlik Photo 45",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791521514_nnroz3",
-      "url": "/uploads/local_img_1790791521514_nnroz3.jpg",
-      "name": "Gemini_Generated_Image_bwxvpibwxvpibwxv.jpg",
-      "uploadedAt": "2026-09-30T18:05:21.515Z",
-      "size": 677946
+      "id": "gh_78565266-d761-493d-803c-ce18735b3aaa",
+      "url": "https://github.com/user-attachments/assets/78565266-d761-493d-803c-ce18735b3aaa",
+      "name": "Birlik Photo 46",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791522137_hz5tzd",
-      "url": "/uploads/local_img_1790791522137_hz5tzd.jpg",
-      "name": "Gemini_Generated_Image_3s22al3s22al3s22.jpg",
-      "uploadedAt": "2026-09-30T18:05:22.137Z",
-      "size": 807681
+      "id": "gh_3100dd0e-a289-4466-bfb0-dda9c0db3e37",
+      "url": "https://github.com/user-attachments/assets/3100dd0e-a289-4466-bfb0-dda9c0db3e37",
+      "name": "Birlik Photo 47",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791522654_91k503",
-      "url": "/uploads/local_img_1790791522654_91k503.jpg",
-      "name": "Gemini_Generated_Image_y4pe6ly4pe6ly4pe.jpg",
-      "uploadedAt": "2026-09-30T18:05:22.654Z",
-      "size": 699210
+      "id": "gh_94f141ce-6f45-40f4-9c60-e82716a989dc",
+      "url": "https://github.com/user-attachments/assets/94f141ce-6f45-40f4-9c60-e82716a989dc",
+      "name": "Birlik Photo 48",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791504774_u0g8fc",
-      "url": "/uploads/local_img_1790791504774_u0g8fc.jpg",
-      "name": "Gemini_Generated_Image_2d1pn02d1pn02d1p.jpg",
-      "uploadedAt": "2026-09-30T18:05:04.775Z",
-      "size": 606609
+      "id": "gh_79355431-d461-4b18-8b40-c056c540f01f",
+      "url": "https://github.com/user-attachments/assets/79355431-d461-4b18-8b40-c056c540f01f",
+      "name": "Birlik Photo 49",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791505519_zk1nny",
-      "url": "/uploads/local_img_1790791505519_zk1nny.jpg",
-      "name": "Gemini_Generated_Image_ualzm4ualzm4ualz.jpg",
-      "uploadedAt": "2026-09-30T18:05:05.519Z",
-      "size": 775728
+      "id": "gh_ec9b5603-5d13-4f1f-a385-fbd3f8a44ef8",
+      "url": "https://github.com/user-attachments/assets/ec9b5603-5d13-4f1f-a385-fbd3f8a44ef8",
+      "name": "Birlik Photo 50",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791489618_a3pcu8",
-      "url": "/uploads/local_img_1790791489618_a3pcu8.jpg",
-      "name": "Gemini_Generated_Image_m9eqpvm9eqpvm9eq.jpg",
-      "uploadedAt": "2026-09-30T18:04:49.618Z",
-      "size": 685455
+      "id": "gh_652a1e64-e817-4fb2-a328-2446f4518335",
+      "url": "https://github.com/user-attachments/assets/652a1e64-e817-4fb2-a328-2446f4518335",
+      "name": "Birlik Photo 51",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791490803_4quhkq",
-      "url": "/uploads/local_img_1790791490803_4quhkq.jpg",
-      "name": "Gemini_Generated_Image_e2r13ae2r13ae2r1.jpg",
-      "uploadedAt": "2026-09-30T18:04:50.803Z",
-      "size": 557175
+      "id": "gh_fadc22a0-eb16-430c-9b41-2a92dbc41120",
+      "url": "https://github.com/user-attachments/assets/fadc22a0-eb16-430c-9b41-2a92dbc41120",
+      "name": "Birlik Photo 52",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791432562_vubxyp",
-      "url": "/uploads/local_img_1790791432562_vubxyp.jpg",
-      "name": "Gemini_Generated_Image_nbk6z8nbk6z8nbk6.jpg",
-      "uploadedAt": "2026-09-30T18:03:52.563Z",
-      "size": 951270
+      "id": "gh_b49fe485-f8f3-40ac-a995-bf825d2af09e",
+      "url": "https://github.com/user-attachments/assets/b49fe485-f8f3-40ac-a995-bf825d2af09e",
+      "name": "Birlik Photo 53",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791433259_83dgoz",
-      "url": "/uploads/local_img_1790791433259_83dgoz.jpg",
-      "name": "Gemini_Generated_Image_lp513wlp513wlp51.jpg",
-      "uploadedAt": "2026-09-30T18:03:53.259Z",
-      "size": 790671
+      "id": "gh_36de8113-b3b5-4bc4-b53d-137018aebd49",
+      "url": "https://github.com/user-attachments/assets/36de8113-b3b5-4bc4-b53d-137018aebd49",
+      "name": "Birlik Photo 54",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791422026_p0rzvz",
-      "url": "/uploads/local_img_1790791422026_p0rzvz.jpg",
-      "name": "Gemini_Generated_Image_elnhn9elnhn9elnh.jpg",
-      "uploadedAt": "2026-09-30T18:03:42.027Z",
-      "size": 890703
+      "id": "gh_fa22e290-eb7c-403d-bf91-25d24005dfb5",
+      "url": "https://github.com/user-attachments/assets/fa22e290-eb7c-403d-bf91-25d24005dfb5",
+      "name": "Birlik Photo 55",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791413222_eugmjp",
-      "url": "/uploads/local_img_1790791413222_eugmjp.jpg",
-      "name": "Gemini_Generated_Image_21bar21bar21bar2.jpg",
-      "uploadedAt": "2026-09-30T18:03:33.223Z",
-      "size": 760074
+      "id": "gh_58f3133e-c712-4001-ad92-59ed813770f1",
+      "url": "https://github.com/user-attachments/assets/58f3133e-c712-4001-ad92-59ed813770f1",
+      "name": "Birlik Photo 56",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791404748_oy01bq",
-      "url": "/uploads/local_img_1790791404748_oy01bq.jpg",
-      "name": "Gemini_Generated_Image_n1wlx3n1wlx3n1wl.jpg",
-      "uploadedAt": "2026-09-30T18:03:24.748Z",
-      "size": 855717
+      "id": "gh_f3bb8076-fe5a-4baa-a3fe-ad4b29f7abfb",
+      "url": "https://github.com/user-attachments/assets/f3bb8076-fe5a-4baa-a3fe-ad4b29f7abfb",
+      "name": "Birlik Photo 57",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791405398_kd3trs",
-      "url": "/uploads/local_img_1790791405398_kd3trs.jpg",
-      "name": "Gemini_Generated_Image_1uyn0v1uyn0v1uyn.jpg",
-      "uploadedAt": "2026-09-30T18:03:25.399Z",
-      "size": 921132
+      "id": "gh_bd9ce2bd-f9c2-4a8c-a1a5-5af22cce18f7",
+      "url": "https://github.com/user-attachments/assets/bd9ce2bd-f9c2-4a8c-a1a5-5af22cce18f7",
+      "name": "Birlik Photo 58",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791391616_370anj",
-      "url": "/uploads/local_img_1790791391616_370anj.jpg",
-      "name": "Gemini_Generated_Image_jew7hcjew7hcjew7.jpg",
-      "uploadedAt": "2026-09-30T18:03:11.616Z",
-      "size": 806667
+      "id": "gh_bf297b9e-5deb-4f48-9f5a-6673d9acbf96",
+      "url": "https://github.com/user-attachments/assets/bf297b9e-5deb-4f48-9f5a-6673d9acbf96",
+      "name": "Birlik Photo 59",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791392261_jqc8ca",
-      "url": "/uploads/local_img_1790791392261_jqc8ca.jpg",
-      "name": "Gemini_Generated_Image_a1ug76a1ug76a1ug.jpg",
-      "uploadedAt": "2026-09-30T18:03:12.261Z",
-      "size": 771009
+      "id": "gh_93729bd2-35b8-4d83-bc59-3b2ca37d4999",
+      "url": "https://github.com/user-attachments/assets/93729bd2-35b8-4d83-bc59-3b2ca37d4999",
+      "name": "Birlik Photo 60",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791378813_kst52c",
-      "url": "/uploads/local_img_1790791378813_kst52c.jpg",
-      "name": "Gemini_Generated_Image_fpxlgufpxlgufpxl.jpg",
-      "uploadedAt": "2026-09-30T18:02:58.813Z",
-      "size": 756816
+      "id": "gh_f4bbff82-ec66-48e0-9018-7a7bbba1ce92",
+      "url": "https://github.com/user-attachments/assets/f4bbff82-ec66-48e0-9018-7a7bbba1ce92",
+      "name": "Birlik Photo 61",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791379381_2sdumk",
-      "url": "/uploads/local_img_1790791379381_2sdumk.jpg",
-      "name": "Gemini_Generated_Image_xz00k2xz00k2xz00.jpg",
-      "uploadedAt": "2026-09-30T18:02:59.381Z",
-      "size": 612321
+      "id": "gh_a9203544-468d-40ea-91bf-df2554f1ce7d",
+      "url": "https://github.com/user-attachments/assets/a9203544-468d-40ea-91bf-df2554f1ce7d",
+      "name": "Birlik Photo 62",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791366013_6e1qft",
-      "url": "/uploads/local_img_1790791366013_6e1qft.jpg",
-      "name": "Gemini_Generated_Image_r1ps8lr1ps8lr1ps.jpg",
-      "uploadedAt": "2026-09-30T18:02:46.013Z",
-      "size": 685893
+      "id": "gh_3639147a-192c-43bc-8536-5bab37d15c60",
+      "url": "https://github.com/user-attachments/assets/3639147a-192c-43bc-8536-5bab37d15c60",
+      "name": "Birlik Photo 63",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791366687_evz9i1",
-      "url": "/uploads/local_img_1790791366687_evz9i1.jpg",
-      "name": "Gemini_Generated_Image_fi03l3fi03l3fi03.jpg",
-      "uploadedAt": "2026-09-30T18:02:46.688Z",
-      "size": 843708
+      "id": "gh_5f047287-63ca-42fd-b0cd-f65a8896b708",
+      "url": "https://github.com/user-attachments/assets/5f047287-63ca-42fd-b0cd-f65a8896b708",
+      "name": "Birlik Photo 64",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791350502_667228",
-      "url": "/uploads/local_img_1790791350502_667228.jpg",
-      "name": "Gemini_Generated_Image_jsbx8ujsbx8ujsbx.jpg",
-      "uploadedAt": "2026-09-30T18:02:30.502Z",
-      "size": 681312
+      "id": "gh_0f5e8bc4-bdd1-4f95-a23d-b23b66d43dd8",
+      "url": "https://github.com/user-attachments/assets/0f5e8bc4-bdd1-4f95-a23d-b23b66d43dd8",
+      "name": "Birlik Photo 65",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791351163_8nvg6g",
-      "url": "/uploads/local_img_1790791351163_8nvg6g.jpg",
-      "name": "Gemini_Generated_Image_3y1ui13y1ui13y1u.jpg",
-      "uploadedAt": "2026-09-30T18:02:31.164Z",
-      "size": 714279
+      "id": "gh_146c0375-b7ef-40e1-9a26-eb302fcf6d71",
+      "url": "https://github.com/user-attachments/assets/146c0375-b7ef-40e1-9a26-eb302fcf6d71",
+      "name": "Birlik Photo 66",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791336725_cz4apn",
-      "url": "/uploads/local_img_1790791336725_cz4apn.jpg",
-      "name": "Gemini_Generated_Image_tb8zcutb8zcutb8z.jpg",
-      "uploadedAt": "2026-09-30T18:02:16.726Z",
-      "size": 694389
+      "id": "gh_f88a7821-cf61-4dbb-b0c7-50b1f0435bfa",
+      "url": "https://github.com/user-attachments/assets/f88a7821-cf61-4dbb-b0c7-50b1f0435bfa",
+      "name": "Birlik Photo 67",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791337464_3ydae2",
-      "url": "/uploads/local_img_1790791337464_3ydae2.jpg",
-      "name": "Gemini_Generated_Image_tb4txwtb4txwtb4t.jpg",
-      "uploadedAt": "2026-09-30T18:02:17.464Z",
-      "size": 797427
+      "id": "gh_70c15c6d-5f24-41ee-9efd-7cfa542b987d",
+      "url": "https://github.com/user-attachments/assets/70c15c6d-5f24-41ee-9efd-7cfa542b987d",
+      "name": "Birlik Photo 68",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791323430_p3wq8w",
-      "url": "/uploads/local_img_1790791323430_p3wq8w.jpg",
-      "name": "Gemini_Generated_Image_nf76zdnf76zdnf76.jpg",
-      "uploadedAt": "2026-09-30T18:02:03.430Z",
-      "size": 818808
+      "id": "gh_c00a17f2-1044-4952-ab2b-2ccfbbf3c2eb",
+      "url": "https://github.com/user-attachments/assets/c00a17f2-1044-4952-ab2b-2ccfbbf3c2eb",
+      "name": "Birlik Photo 69",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791324075_xyykp6",
-      "url": "/uploads/local_img_1790791324075_xyykp6.jpg",
-      "name": "Gemini_Generated_Image_8pr5fy8pr5fy8pr5(1).jpg",
-      "uploadedAt": "2026-09-30T18:02:04.075Z",
-      "size": 752580
+      "id": "gh_541f7685-542b-4ab7-9667-1a41aecd7f44",
+      "url": "https://github.com/user-attachments/assets/541f7685-542b-4ab7-9667-1a41aecd7f44",
+      "name": "Birlik Photo 70",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791312142_vci0wd",
-      "url": "/uploads/local_img_1790791312142_vci0wd.jpg",
-      "name": "Generated Image September 27, 2026 - 12_38PM.png",
-      "uploadedAt": "2026-09-30T18:01:52.142Z",
-      "size": 1887402
+      "id": "gh_51d29161-f9ae-46bd-ac25-dc07b2982c31",
+      "url": "https://github.com/user-attachments/assets/51d29161-f9ae-46bd-ac25-dc07b2982c31",
+      "name": "Birlik Photo 71",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791313272_qrta19",
-      "url": "/uploads/local_img_1790791313272_qrta19.jpg",
-      "name": "Generated Image September 27, 2026 - 12_50PM.png",
-      "uploadedAt": "2026-09-30T18:01:53.272Z",
-      "size": 1933314
+      "id": "gh_b45bfea5-4a4a-44c6-9d8b-1f73e78ec544",
+      "url": "https://github.com/user-attachments/assets/b45bfea5-4a4a-44c6-9d8b-1f73e78ec544",
+      "name": "Birlik Photo 72",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791297300_p5g6ys",
-      "url": "/uploads/local_img_1790791297300_p5g6ys.jpg",
-      "name": "Gemini_Generated_Image_n3f62dn3f62dn3f6.jpg",
-      "uploadedAt": "2026-09-30T18:01:37.300Z",
-      "size": 667704
+      "id": "gh_10b50c65-8888-48e9-9d4f-c1b54fb11bf4",
+      "url": "https://github.com/user-attachments/assets/10b50c65-8888-48e9-9d4f-c1b54fb11bf4",
+      "name": "Birlik Photo 73",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791297933_8mndji",
-      "url": "/uploads/local_img_1790791297933_8mndji.jpg",
-      "name": "Gemini_Generated_Image_mvb3cemvb3cemvb3.jpg",
-      "uploadedAt": "2026-09-30T18:01:37.933Z",
-      "size": 630510
+      "id": "gh_70ed9845-a93e-47cc-aa5f-b3bff10a7fd3",
+      "url": "https://github.com/user-attachments/assets/70ed9845-a93e-47cc-aa5f-b3bff10a7fd3",
+      "name": "Birlik Photo 74",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791298551_tshf8g",
-      "url": "/uploads/local_img_1790791298551_tshf8g.jpg",
-      "name": "Gemini_Generated_Image_gia95mgia95mgia9.jpg",
-      "uploadedAt": "2026-09-30T18:01:38.552Z",
-      "size": 638496
+      "id": "gh_0754907c-e317-4773-bb24-53b7994fd571",
+      "url": "https://github.com/user-attachments/assets/0754907c-e317-4773-bb24-53b7994fd571",
+      "name": "Birlik Photo 75",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791278924_vsdw24",
-      "url": "/uploads/local_img_1790791278924_vsdw24.jpg",
-      "name": "Gemini_Generated_Image_q6br7wq6br7wq6br.jpg",
-      "uploadedAt": "2026-09-30T18:01:18.925Z",
-      "size": 750543
+      "id": "gh_553046f9-b40f-479f-b2bb-eb11011e272d",
+      "url": "https://github.com/user-attachments/assets/553046f9-b40f-479f-b2bb-eb11011e272d",
+      "name": "Birlik Photo 76",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791279560_1a6g7d",
-      "url": "/uploads/local_img_1790791279560_1a6g7d.jpg",
-      "name": "Gemini_Generated_Image_q9a3apq9a3apq9a3.jpg",
-      "uploadedAt": "2026-09-30T18:01:19.560Z",
-      "size": 714936
+      "id": "gh_db1cc6ca-482a-444f-9d15-bc2b46b37e97",
+      "url": "https://github.com/user-attachments/assets/db1cc6ca-482a-444f-9d15-bc2b46b37e97",
+      "name": "Birlik Photo 77",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791264908_2bv0hi",
-      "url": "/uploads/local_img_1790791264908_2bv0hi.jpg",
-      "name": "Gemini_Generated_Image_7eudyp7eudyp7eud.jpg",
-      "uploadedAt": "2026-09-30T18:01:04.908Z",
-      "size": 613455
+      "id": "gh_3f53e84c-5cee-4fac-823f-3638fe03e6e4",
+      "url": "https://github.com/user-attachments/assets/3f53e84c-5cee-4fac-823f-3638fe03e6e4",
+      "name": "Birlik Photo 78",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791265478_f559xu",
-      "url": "/uploads/local_img_1790791265478_f559xu.jpg",
-      "name": "Gemini_Generated_Image_u30rn5u30rn5u30r.jpg",
-      "uploadedAt": "2026-09-30T18:01:05.478Z",
-      "size": 696318
+      "id": "gh_57101c1b-b38f-4419-909f-57f07d563209",
+      "url": "https://github.com/user-attachments/assets/57101c1b-b38f-4419-909f-57f07d563209",
+      "name": "Birlik Photo 79",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791249442_ae28jn",
-      "url": "/uploads/local_img_1790791249442_ae28jn.jpg",
-      "name": "Gemini_Generated_Image_mwqb5fmwqb5fmwqb.jpg",
-      "uploadedAt": "2026-09-30T18:00:49.442Z",
-      "size": 835782
+      "id": "gh_00932991-ebec-4e91-a821-baf481afa2d3",
+      "url": "https://github.com/user-attachments/assets/00932991-ebec-4e91-a821-baf481afa2d3",
+      "name": "Birlik Photo 80",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791250111_sh6hvf",
-      "url": "/uploads/local_img_1790791250111_sh6hvf.jpg",
-      "name": "Gemini_Generated_Image_x9ytkvx9ytkvx9yt.jpg",
-      "uploadedAt": "2026-09-30T18:00:50.111Z",
-      "size": 946674
+      "id": "gh_e368a11d-c114-4055-b8dc-ceaab41c44f0",
+      "url": "https://github.com/user-attachments/assets/e368a11d-c114-4055-b8dc-ceaab41c44f0",
+      "name": "Birlik Photo 81",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791250686_654zkc",
-      "url": "/uploads/local_img_1790791250686_654zkc.jpg",
-      "name": "Gemini_Generated_Image_96ydn696ydn696yd.jpg",
-      "uploadedAt": "2026-09-30T18:00:50.686Z",
-      "size": 678180
+      "id": "gh_5b8e6222-7c9f-4bb4-880d-5beb3ed070ed",
+      "url": "https://github.com/user-attachments/assets/5b8e6222-7c9f-4bb4-880d-5beb3ed070ed",
+      "name": "Birlik Photo 82",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791230469_oor3px",
-      "url": "/uploads/local_img_1790791230469_oor3px.jpg",
-      "name": "vangohpswallpanel.png",
-      "uploadedAt": "2026-09-30T18:00:30.470Z",
-      "size": 3212625
+      "id": "gh_ada4ea66-4a52-45a5-a7fc-54201b7217c5",
+      "url": "https://github.com/user-attachments/assets/ada4ea66-4a52-45a5-a7fc-54201b7217c5",
+      "name": "Birlik Photo 83",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791232164_kndshu",
-      "url": "/uploads/local_img_1790791232164_kndshu.jpg",
-      "name": "ChatGPT Image Jun 2, 2026, 02_50_49 PM.png",
-      "uploadedAt": "2026-09-30T18:00:32.165Z",
-      "size": 3244188
+      "id": "gh_569370ea-f58e-4b04-8297-9afebfd03b4c",
+      "url": "https://github.com/user-attachments/assets/569370ea-f58e-4b04-8297-9afebfd03b4c",
+      "name": "Birlik Photo 84",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791233824_wq0onq",
-      "url": "/uploads/local_img_1790791233824_wq0onq.jpg",
-      "name": "ChatGPT Image Jun 2, 2026, 02_48_29 PM.png",
-      "uploadedAt": "2026-09-30T18:00:33.824Z",
-      "size": 3371934
+      "id": "gh_0dd313b8-c854-4f5e-98ae-f3248339f8a6",
+      "url": "https://github.com/user-attachments/assets/0dd313b8-c854-4f5e-98ae-f3248339f8a6",
+      "name": "Birlik Photo 85",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791094433_sn137p",
-      "url": "/uploads/local_img_1790791094433_sn137p.jpg",
-      "name": "psbaseboardbirlikcompany.jpg",
-      "uploadedAt": "2026-09-30T17:58:14.433Z",
-      "size": 262206
+      "id": "gh_8ba87846-f386-43dd-a169-f93e36ec9188",
+      "url": "https://github.com/user-attachments/assets/8ba87846-f386-43dd-a169-f93e36ec9188",
+      "name": "Birlik Photo 86",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791095036_uhr2sh",
-      "url": "/uploads/local_img_1790791095036_uhr2sh.jpg",
-      "name": "pswallslathsbirlikcompany.jpg",
-      "uploadedAt": "2026-09-30T17:58:15.037Z",
-      "size": 333333
+      "id": "gh_1da50b04-724c-4c67-8977-153ee8980830",
+      "url": "https://github.com/user-attachments/assets/1da50b04-724c-4c67-8977-153ee8980830",
+      "name": "Birlik Photo 87",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791095559_et96kb",
-      "url": "/uploads/local_img_1790791095559_et96kb.jpg",
-      "name": "spcflooringbirlikcompany.jpg",
-      "uploadedAt": "2026-09-30T17:58:15.559Z",
-      "size": 598980
+      "id": "gh_be722e47-fde8-4a78-b874-48858f265b2e",
+      "url": "https://github.com/user-attachments/assets/be722e47-fde8-4a78-b874-48858f265b2e",
+      "name": "Birlik Photo 88",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791096016_y6i4or",
-      "url": "/uploads/local_img_1790791096016_y6i4or.jpg",
-      "name": "spcwallpanelbirlikcompany.jpg",
-      "uploadedAt": "2026-09-30T17:58:16.016Z",
-      "size": 457575
+      "id": "gh_39eef2c5-9f81-4058-bf2a-e21bfe5431ec",
+      "url": "https://github.com/user-attachments/assets/39eef2c5-9f81-4058-bf2a-e21bfe5431ec",
+      "name": "Birlik Photo 89",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791096640_3jv8lg",
-      "url": "/uploads/local_img_1790791096640_3jv8lg.jpg",
-      "name": "pvcwallpanelbirlikcompany.jpg",
-      "uploadedAt": "2026-09-30T17:58:16.640Z",
-      "size": 635226
+      "id": "gh_66a69d0f-5e92-4792-ad22-53eaaf42d3c2",
+      "url": "https://github.com/user-attachments/assets/66a69d0f-5e92-4792-ad22-53eaaf42d3c2",
+      "name": "Birlik Photo 90",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791097105_rhwjo4",
-      "url": "/uploads/local_img_1790791097105_rhwjo4.jpg",
-      "name": "pswallpanelsbirlikcompany.jpg",
-      "uploadedAt": "2026-09-30T17:58:17.106Z",
-      "size": 559128
+      "id": "gh_5cea0d70-f724-4b98-b161-6ca593c2b949",
+      "url": "https://github.com/user-attachments/assets/5cea0d70-f724-4b98-b161-6ca593c2b949",
+      "name": "Birlik Photo 91",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790791080387_sx6dce",
-      "url": "/uploads/local_img_1790791080387_sx6dce.jpg",
-      "name": "founderimage(1).jpg",
-      "uploadedAt": "2026-09-30T17:58:00.389Z",
-      "size": 721640
+      "id": "gh_f7d4663d-9c92-4fde-832c-609989193816",
+      "url": "https://github.com/user-attachments/assets/f7d4663d-9c92-4fde-832c-609989193816",
+      "name": "Birlik Photo 92",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     },
     {
-      "id": "img_1790790355070_p806lb",
+      "id": "gh_88adad2a-54a1-45d5-baa3-4f6ede6aac9c",
       "url": "https://github.com/user-attachments/assets/88adad2a-54a1-45d5-baa3-4f6ede6aac9c",
-      "name": "88adad2a-54a1-45d5-baa3-4f6ede6aac9c",
-      "uploadedAt": "2026-09-30T17:45:55.070Z"
+      "name": "Birlik Photo 93",
+      "uploadedAt": "2026-09-30T12:00:00Z"
     }
   ]
 }
