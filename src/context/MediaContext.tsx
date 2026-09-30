@@ -49,6 +49,7 @@ interface MediaContextType {
   openMediaLibrary: (target?: MediaTarget) => void;
   closeMediaLibrary: () => void;
   uploadFiles: (files: FileList | File[], autoAssignTarget?: MediaTarget) => Promise<string[]>;
+  addImageByUrl: (url: string, name?: string, autoAssignTarget?: MediaTarget) => Promise<string>;
   assignImage: (target: MediaTarget, imageUrl: string, mode?: 'add' | 'replace') => Promise<void>;
   resetTargetImage: (target: MediaTarget) => Promise<void>;
   resetProductToDefaults: (productId: string) => Promise<void>;
@@ -467,6 +468,66 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return uploadedUrls;
   };
 
+  const addImageByUrl = async (
+    url: string,
+    name?: string,
+    autoAssignTarget?: MediaTarget
+  ): Promise<string> => {
+    const cleanUrl = url.trim();
+    if (!cleanUrl) return '';
+
+    const imageId = `img_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
+    const newItem = {
+      id: imageId,
+      url: cleanUrl,
+      name: name || cleanUrl.split('/').pop()?.split('?')[0] || 'Image Link',
+      uploadedAt: new Date().toISOString(),
+    };
+
+    let updatedRegistry: MediaRegistryData = {
+      ...registry,
+      uploadedImages: [newItem, ...(registry.uploadedImages || [])],
+    };
+
+    if (autoAssignTarget) {
+      if (autoAssignTarget.type === 'hero') {
+        updatedRegistry.hero = cleanUrl;
+      } else if (autoAssignTarget.type === 'founder') {
+        updatedRegistry.founder = cleanUrl;
+      } else if (autoAssignTarget.type === 'category' && autoAssignTarget.id) {
+        updatedRegistry.categories = {
+          ...updatedRegistry.categories,
+          [autoAssignTarget.id]: cleanUrl,
+        };
+      } else if (autoAssignTarget.type === 'product' && autoAssignTarget.id) {
+        const prodId = autoAssignTarget.id;
+        const currentProd = updatedRegistry.products[prodId] || {};
+        const currentGallery = Array.isArray(currentProd.gallery) ? [...currentProd.gallery] : [];
+
+        if (autoAssignTarget.mode === 'replace' || !currentProd.main) {
+          updatedRegistry.products = {
+            ...updatedRegistry.products,
+            [prodId]: {
+              main: cleanUrl,
+              gallery: currentGallery.filter((u) => u !== cleanUrl),
+            },
+          };
+        } else {
+          updatedRegistry.products = {
+            ...updatedRegistry.products,
+            [prodId]: {
+              main: currentProd.main,
+              gallery: Array.from(new Set([...currentGallery, cleanUrl])),
+            },
+          };
+        }
+      }
+    }
+
+    await saveRegistry(updatedRegistry);
+    return cleanUrl;
+  };
+
   const assignImage = async (
     target: MediaTarget, 
     imageUrl: string, 
@@ -789,6 +850,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         openMediaLibrary,
         closeMediaLibrary,
         uploadFiles,
+        addImageByUrl,
         assignImage,
         resetTargetImage,
         resetProductToDefaults,

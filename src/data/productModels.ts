@@ -24,10 +24,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'High-gloss PVC marble panel in standardized 122 cm × 240 cm format with 2.5 mm thickness. 100% moisture and water impervious.',
       tr: '122 cm × 240 cm standart ölçüde, 2.5 mm kalınlığında %100 su geçirmez PVC mermer panel.'
     },
-    images: [
-      '/uploads/1790770345887_Gemini_Generated_Image_m9eqpvm9eqpvm9eq.jpg',
-      '/uploads/1790770346851_Gemini_Generated_Image_e2r13ae2r13ae2r1.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -64,10 +61,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Modern Fuji Grey PVC wall panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.',
       tr: '122 cm × 240 cm standart ölçüde, 2.5 mm kalınlıkta Fuji Gri PVC panel.'
     },
-    images: [
-      '/uploads/1790770377937_Gemini_Generated_Image_2d1pn02d1pn02d1p.jpg',
-      '/uploads/1790770376464_Gemini_Generated_Image_ualzm4ualzm4ualz.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -104,11 +98,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Marbella PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.',
       tr: '122 cm × 240 cm, 2.5 mm Marbella PVC panel.'
     },
-    images: [
-      '/uploads/1790770440335_Gemini_Generated_Image_bwxvpibwxvpibwxv.jpg',
-      '/uploads/1790770441432_Gemini_Generated_Image_3s22al3s22al3s22.jpg',
-      '/uploads/1790770442181_Gemini_Generated_Image_y4pe6ly4pe6ly4pe.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -145,10 +135,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Inky Gold PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.',
       tr: '122 cm × 240 cm, 2.5 mm Inky Gold PVC panel.'
     },
-    images: [
-      '/uploads/1790770462928_Gemini_Generated_Image_w2do1tw2do1tw2do.jpg',
-      '/uploads/1790770463856_Gemini_Generated_Image_hmzp79hmzp79hmzp.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -185,10 +172,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Golden Sheet PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.',
       tr: '122 cm × 240 cm, 2.5 mm Golden Sheet PVC panel.'
     },
-    images: [
-      '/uploads/1790770492833_Gemini_Generated_Image_t04ww2t04ww2t04w.jpg',
-      '/uploads/1790770493815_Gemini_Generated_Image_ypzs34ypzs34ypzs.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -225,10 +209,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Golden Noir PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.',
       tr: '122 cm × 240 cm, 2.5 mm Golden Noir PVC panel.'
     },
-    images: [
-      '/uploads/1790770515770_Gemini_Generated_Image_ojtp2tojtp2tojtp.jpg',
-      '/uploads/1790770516551_Gemini_Generated_Image_z18ukaz18ukaz18u.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -265,10 +246,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Golden Grey PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.',
       tr: '122 cm × 240 cm, 2.5 mm Golden Grey PVC panel.'
     },
-    images: [
-      '/uploads/1790770537082_Gemini_Generated_Image_xoqouvxoqouvxoqo.jpg',
-      '/uploads/1790770537971_Gemini_Generated_Image_ctp0zyctp0zyctp0.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -305,10 +283,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Brazillian Granit PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.',
       tr: '122 cm × 240 cm, 2.5 mm Brezilya Graniti PVC panel.'
     },
-    images: [
-      '/uploads/1790770561856_Gemini_Generated_Image_7iymh07iymh07iym_.jpg',
-      '/uploads/1790770563247_Gemini_Generated_Image_6xc2rd6xc2rd6xc2_.jpg'
-    ],
+    images: [],
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     waterproof: true,
@@ -350,11 +325,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'PS Wall Panel Vangoh model. Unified 12.1 cm × 290 cm, 11.8 mm thickness.',
       tr: '12.1 cm × 290 cm standart boyutta, 11.8 mm kalınlıkta Vangoh PS duvar paneli.'
     },
-    images: [
-      '/uploads/1790769901052_vangohpswallpanel.png',
-      '/uploads/1790769903292_ChatGPT_Image_Jun_2__2026__02_50_49_PM.png',
-      '/uploads/1790769905502_ChatGPT_Image_Jun_2__2026__02_48_29_PM.png'
-    ],
+    images: [],
     dimensions: '12.1 cm × 290 cm',
     thickness: '11.8 mm',
     waterproof: true,
@@ -391,11 +362,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Beige Timber PS Wall Panel. Unified 12.1 cm × 290 cm, 11.8 mm thickness.',
       tr: '12.1 cm × 290 cm, 11.8 mm Bej Ahşap PS panel.'
     },
-    images: [
-      '/uploads/1790769925800_Gemini_Generated_Image_mwqb5fmwqb5fmwqb.jpg',
-      '/uploads/1790769926727_Gemini_Generated_Image_x9ytkvx9ytkvx9yt.jpg',
-      '/uploads/1790769927712_Gemini_Generated_Image_96ydn696ydn696yd.jpg'
-    ],
+    images: [],
     dimensions: '12.1 cm × 290 cm',
     thickness: '11.8 mm',
     waterproof: true,
@@ -432,10 +399,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Office Grey PS Wall Panel. Unified 12.1 cm × 290 cm, 11.8 mm thickness.',
       tr: '12.1 cm × 290 cm, 11.8 mm Ofis Grisi PS panel.'
     },
-    images: [
-      '/uploads/1790769957567_Gemini_Generated_Image_7eudyp7eudyp7eud.jpg',
-      '/uploads/1790769958583_Gemini_Generated_Image_u30rn5u30rn5u30r.jpg'
-    ],
+    images: [],
     dimensions: '12.1 cm × 290 cm',
     thickness: '11.8 mm',
     waterproof: true,
@@ -472,10 +436,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Wide 15 cm × 290 cm fluted panel with 10 mm thickness.',
       tr: '15 cm × 290 cm, 10 mm kalınlığında geniş PS panel.'
     },
-    images: [
-      '/uploads/1790769980885_Gemini_Generated_Image_q6br7wq6br7wq6br.jpg',
-      '/uploads/1790769981883_Gemini_Generated_Image_q9a3apq9a3apq9a3.jpg'
-    ],
+    images: [],
     dimensions: '15 cm × 290 cm',
     thickness: '10 mm',
     waterproof: true,
@@ -512,11 +473,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Crocodile textured PS Wall Panel. 15 cm × 290 cm, 9 mm thickness.',
       tr: '15 cm × 290 cm, 9 mm timsah dokulu PS panel.'
     },
-    images: [
-      '/uploads/1790770010140_Gemini_Generated_Image_n3f62dn3f62dn3f6.jpg',
-      '/uploads/1790770011042_Gemini_Generated_Image_mvb3cemvb3cemvb3.jpg',
-      '/uploads/1790770011845_Gemini_Generated_Image_gia95mgia95mgia9.jpg'
-    ],
+    images: [],
     dimensions: '15 cm × 290 cm',
     thickness: '9 mm',
     waterproof: true,
@@ -553,10 +510,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Velvet Gold PS Wall Panel. 15 cm × 290 cm, 9 mm thickness.',
       tr: '15 cm × 290 cm, 9 mm Velvet Gold PS panel.'
     },
-    images: [
-      '/uploads/1790770040745_Generated_Image_September_27__2026_-_12_.png',
-      '/uploads/1790770042579_Generated_Image_September_27__2026_-_12_.png'
-    ],
+    images: [],
     dimensions: '15 cm × 290 cm',
     thickness: '9 mm',
     waterproof: true,
@@ -593,10 +547,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Timber Gold PS Wall Panel. 16 cm × 290 cm, 12 mm thickness.',
       tr: '16 cm × 290 cm, 12 mm Timber Gold PS panel.'
     },
-    images: [
-      '/uploads/1790770067146_Gemini_Generated_Image_nf76zdnf76zdnf76.jpg',
-      '/uploads/1790770067955_Gemini_Generated_Image_8pr5fy8pr5fy8pr5_.jpg'
-    ],
+    images: [],
     dimensions: '16 cm × 290 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -633,10 +584,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Velvet PS Wall Panel. 16 cm × 290 cm, 12 mm thickness.',
       tr: '16 cm × 290 cm, 12 mm Velvet PS panel.'
     },
-    images: [
-      '/uploads/1790770097840_Gemini_Generated_Image_tb8zcutb8zcutb8z.jpg',
-      '/uploads/1790770098674_Gemini_Generated_Image_tb4txwtb4txwtb4t.jpg'
-    ],
+    images: [],
     dimensions: '16 cm × 290 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -673,10 +621,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Harp PS Wall Panel. 16 cm × 290 cm, 14 mm thickness.',
       tr: '16 cm × 290 cm, 14 mm Harp PS panel.'
     },
-    images: [
-      '/uploads/1790770135849_Gemini_Generated_Image_jsbx8ujsbx8ujsbx.jpg',
-      '/uploads/1790770136638_Gemini_Generated_Image_3y1ui13y1ui13y1u.jpg'
-    ],
+    images: [],
     dimensions: '16 cm × 290 cm',
     thickness: '14 mm',
     waterproof: true,
@@ -713,10 +658,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Grey Gold PS Wall Panel. 16 cm × 290 cm, 14.8 mm thickness.',
       tr: '16 cm × 290 cm, 14.8 mm Grey Gold PS panel.'
     },
-    images: [
-      '/uploads/1790770160107_Gemini_Generated_Image_r1ps8lr1ps8lr1ps.jpg',
-      '/uploads/1790770161199_Gemini_Generated_Image_fi03l3fi03l3fi03.jpg'
-    ],
+    images: [],
     dimensions: '16 cm × 290 cm',
     thickness: '14.8 mm',
     waterproof: true,
@@ -753,10 +695,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Wood Gold PS Wall Panel. 16 cm × 290 cm, 14.8 mm thickness.',
       tr: '16 cm × 290 cm, 14.8 mm Wood Gold PS panel.'
     },
-    images: [
-      '/uploads/1790770188125_Gemini_Generated_Image_fpxlgufpxlgufpxl.jpg',
-      '/uploads/1790770188834_Gemini_Generated_Image_xz00k2xz00k2xz00.jpg'
-    ],
+    images: [],
     dimensions: '16 cm × 290 cm',
     thickness: '14.8 mm',
     waterproof: true,
@@ -793,10 +732,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Pine PS Wall Panel. 13 cm × 290 cm, 10.8 mm thickness.',
       tr: '13 cm × 290 cm, 10.8 mm Çam PS panel.'
     },
-    images: [
-      '/uploads/1790770216975_Gemini_Generated_Image_jew7hcjew7hcjew7.jpg',
-      '/uploads/1790770217974_Gemini_Generated_Image_a1ug76a1ug76a1ug.jpg'
-    ],
+    images: [],
     dimensions: '13 cm × 290 cm',
     thickness: '10.8 mm',
     waterproof: true,
@@ -833,10 +769,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Rustic PS Wall Panel. 12 cm × 290 cm, 12 mm thickness.',
       tr: '12 cm × 290 cm, 12 mm Rustik PS panel.'
     },
-    images: [
-      '/uploads/1790770243930_Gemini_Generated_Image_n1wlx3n1wlx3n1wl.jpg',
-      '/uploads/1790770245099_Gemini_Generated_Image_1uyn0v1uyn0v1uyn.jpg'
-    ],
+    images: [],
     dimensions: '12 cm × 290 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -873,9 +806,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Balsam PS Wall Panel. 12 cm × 290 cm, 12 mm thickness.',
       tr: '12 cm × 290 cm, 12 mm Balsam PS panel.'
     },
-    images: [
-      '/uploads/1790770264058_Gemini_Generated_Image_21bar21bar21bar2.jpg'
-    ],
+    images: [],
     dimensions: '12 cm × 290 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -912,9 +843,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Balsam Black PS Wall Panel. 14 cm × 290 cm, 12 mm thickness.',
       tr: '14 cm × 290 cm, 12 mm Balsam Siyah PS panel.'
     },
-    images: [
-      '/uploads/1790770282730_Gemini_Generated_Image_elnhn9elnhn9elnh.jpg'
-    ],
+    images: [],
     dimensions: '14 cm × 290 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -951,10 +880,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Crown Teak Black PS Wall Panel. 15 cm × 290 cm, 12 mm thickness.',
       tr: '15 cm × 290 cm, 12 mm Crown Tik Siyah PS panel.'
     },
-    images: [
-      '/uploads/1790770301689_Gemini_Generated_Image_nbk6z8nbk6z8nbk6.jpg',
-      '/uploads/1790770302967_Gemini_Generated_Image_lp513wlp513wlp51.jpg'
-    ],
+    images: [],
     dimensions: '15 cm × 290 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -996,11 +922,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'SPC Click Wall Panel Woody Forest. Unified 96 cm × 280 cm, 5.0 mm thickness.',
       tr: '96 cm × 280 cm, 5.0 mm Woody Forest SPC taş duvar paneli.'
     },
-    images: [
-      '/uploads/1790770613053_WhatsApp_Image_2026-07-10_at_20_08_21_1_.jpg',
-      '/uploads/1790770613652_WhatsApp_Image_2026-07-10_at_20_08_21_2_.jpg',
-      '/uploads/1790770614283_WhatsApp_Image_2026-07-10_at_20_08_21.jpg'
-    ],
+    images: [],
     dimensions: '96 cm × 280 cm',
     thickness: '5.0 mm',
     waterproof: true,
@@ -1037,10 +959,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Nardo Grey SPC Wall Panel. 96 cm × 280 cm, 5.0 mm thickness.',
       tr: '96 cm × 280 cm, 5.0 mm Nardo Grey SPC panel.'
     },
-    images: [
-      '/uploads/1790770636645_WhatsApp_Image_2026-07-10_at_20_08_36_1_.jpg',
-      '/uploads/1790770637558_Gemini_Generated_Image_y4njkjy4njkjy4nj.jpg'
-    ],
+    images: [],
     dimensions: '96 cm × 280 cm',
     thickness: '5.0 mm',
     waterproof: true,
@@ -1077,10 +996,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Travertine SPC Wall Panel. 96 cm × 280 cm, 5.0 mm thickness.',
       tr: '96 cm × 280 cm, 5.0 mm Traverten SPC panel.'
     },
-    images: [
-      '/uploads/1790770658791_Gemini_Generated_Image_253htg253htg253h.jpg',
-      '/uploads/1790770659721_Gemini_Generated_Image_ui7h6zui7h6zui7h.jpg'
-    ],
+    images: [],
     dimensions: '96 cm × 280 cm',
     thickness: '5.0 mm',
     waterproof: true,
@@ -1117,10 +1033,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Mercan SPC Wall Panel. 96 cm × 280 cm, 5.0 mm thickness.',
       tr: '96 cm × 280 cm, 5.0 mm Mercan SPC panel.'
     },
-    images: [
-      '/uploads/1790770683679_Gemini_Generated_Image_g1qwyug1qwyug1qw.jpg',
-      '/uploads/1790770685770_Gemini_Generated_Image_joarerjoarerjoar.jpg'
-    ],
+    images: [],
     dimensions: '96 cm × 280 cm',
     thickness: '5.0 mm',
     waterproof: true,
@@ -1157,11 +1070,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Cupper SPC Wall Panel. 96 cm × 280 cm, 5.0 mm thickness.',
       tr: '96 cm × 280 cm, 5.0 mm Bakır Cupper SPC panel.'
     },
-    images: [
-      '/uploads/1790770711141_Gemini_Generated_Image_ijypktijypktijyp.jpg',
-      '/uploads/1790770712210_Gemini_Generated_Image_e7do08e7do08e7do.jpg',
-      '/uploads/1790770713127_Gemini_Generated_Image_gsw0hbgsw0hbgsw0.jpg'
-    ],
+    images: [],
     dimensions: '96 cm × 280 cm',
     thickness: '5.0 mm',
     waterproof: true,
@@ -1198,10 +1107,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Calcatta SPC Wall Panel. 96 cm × 280 cm, 4.0 mm thickness.',
       tr: '96 cm × 280 cm, 4.0 mm Calcatta SPC panel.'
     },
-    images: [
-      '/uploads/1790770732657_Gemini_Generated_Image_ikdrzoikdrzoikdr.jpg',
-      '/uploads/1790770733747_Gemini_Generated_Image_tzp6iotzp6iotzp6.jpg'
-    ],
+    images: [],
     dimensions: '96 cm × 280 cm',
     thickness: '4.0 mm',
     waterproof: true,
@@ -1238,10 +1144,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Charcoal SPC Wall Panel. 96 cm × 280 cm, 4.0 mm thickness.',
       tr: '96 cm × 280 cm, 4.0 mm Charcoal SPC panel.'
     },
-    images: [
-      '/uploads/1790770756392_Gemini_Generated_Image_eemqfbeemqfbeemq.jpg',
-      '/uploads/1790770756755_WhatsApp_Image_2026-07-10_at_20_33_13.jpg'
-    ],
+    images: [],
     dimensions: '96 cm × 280 cm',
     thickness: '4.0 mm',
     waterproof: true,
@@ -1283,10 +1186,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Concrete SPC Flooring tile. Unified 30.3 cm × 60.6 cm, 5.0 mm thickness.',
       tr: '30.3 cm × 60.6 cm, 5.0 mm Beton SPC zemin kaplaması.'
     },
-    images: [
-      '/uploads/1790770786876_Gemini_Generated_Image_m9so9wm9so9wm9so.jpg',
-      '/uploads/1790770787651_Gemini_Generated_Image_7nuwxq7nuwxq7nuw.jpg'
-    ],
+    images: [],
     dimensions: '30.3 cm × 60.6 cm',
     thickness: '5.0 mm',
     waterproof: true,
@@ -1323,10 +1223,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Blanche SPC Flooring tile. Unified 30.3 cm × 60.6 cm, 4.5 mm + 1.0 mm IXPE underlay.',
       tr: '30.3 cm × 60.6 cm, 4.5mm + 1.0mm IXPE Blanche SPC parke.'
     },
-    images: [
-      '/uploads/1790770807889_Gemini_Generated_Image_q5tfetq5tfetq5tf.jpg',
-      '/uploads/1790770809340_Gemini_Generated_Image_z9zzw7z9zzw7z9zz.jpg'
-    ],
+    images: [],
     dimensions: '30.3 cm × 60.6 cm',
     thickness: '4.5 mm + 1.0 mm IXPE (5.5 mm)',
     waterproof: true,
@@ -1363,10 +1260,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Kara SPC Flooring tile. Unified 30.3 cm × 60.6 cm, 4.5 mm + 1.0 mm IXPE.',
       tr: '30.3 cm × 60.6 cm, 4.5mm + 1.0mm IXPE Kara SPC parke.'
     },
-    images: [
-      '/uploads/1790770828578_Gemini_Generated_Image_oap7ewoap7ewoap7.jpg',
-      '/uploads/1790770829516_Gemini_Generated_Image_oh4uisoh4uisoh4u.jpg'
-    ],
+    images: [],
     dimensions: '30.3 cm × 60.6 cm',
     thickness: '4.5 mm + 1.0 mm IXPE (5.5 mm)',
     waterproof: true,
@@ -1408,9 +1302,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'LED Baseboard. Unified 11.5 cm × 240 cm, 15 mm thickness.',
       tr: '11.5 cm × 240 cm, 15 mm LED kanallı PS süpürgelik.'
     },
-    images: [
-      '/uploads/1790771005518_Gemini_Generated_Image_k6g282k6g282k6g2.jpg'
-    ],
+    images: [],
     dimensions: '11.5 cm × 240 cm',
     thickness: '15 mm',
     waterproof: true,
@@ -1447,10 +1339,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'Classic Baseboard. Unified 10 cm × 240 cm, 12 mm thickness.',
       tr: '10 cm × 240 cm, 12 mm Klasik PS süpürgelik.'
     },
-    images: [
-      '/uploads/1790771024395_Gemini_Generated_Image_uwxtrwuwxtrwuwxt.jpg',
-      '/uploads/1790771025547_Gemini_Generated_Image_9oqe5m9oqe5m9oqe.jpg'
-    ],
+    images: [],
     dimensions: '10 cm × 240 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -1492,10 +1381,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: 'LED Cornice. Unified 10 cm × 240 cm, 20 mm thickness.',
       tr: '10 cm × 240 cm, 20 mm LED PS korniş profili.'
     },
-    images: [
-      '/uploads/1790770867870_Gemini_Generated_Image_duvm6uduvm6uduvm.jpg',
-      '/uploads/1790770868061_CBGTN.jpg'
-    ],
+    images: [],
     dimensions: '10 cm × 240 cm',
     thickness: '20 mm',
     waterproof: true,
@@ -1532,10 +1418,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: '4 cm Classic PS Slath. Unified 4 cm × 240 cm, 15 mm thickness.',
       tr: '4 cm × 240 cm, 15 mm Klasik PS çıta.'
     },
-    images: [
-      '/uploads/1790770892997_dd82c827845b6aa45a489b0283317d90.jpg',
-      '/uploads/1790770893272_WhatsApp_Image_2024-11-13_at_10_27_57.jpg'
-    ],
+    images: [],
     dimensions: '4 cm × 240 cm',
     thickness: '15 mm',
     waterproof: true,
@@ -1572,10 +1455,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: '4.8 cm Border PS Slath. Unified 4.8 cm × 240 cm, 15 mm thickness.',
       tr: '4.8 cm × 240 cm, 15 mm Bordür PS çıta.'
     },
-    images: [
-      '/uploads/1790770915721_Gemini_Generated_Image_3wfthl3wfthl3wft.jpg',
-      '/uploads/1790770917749_dfdr.png'
-    ],
+    images: [],
     dimensions: '4.8 cm × 240 cm',
     thickness: '15 mm',
     waterproof: true,
@@ -1612,10 +1492,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: '2.5 cm Classic PS Slath. Unified 2.5 cm × 240 cm, 12 mm thickness.',
       tr: '2.5 cm × 240 cm, 12 mm İnce Klasik PS çıta.'
     },
-    images: [
-      '/uploads/1790770941133_WhatsApp_Image_2024-11-13_at_10_24_12.jpg',
-      '/uploads/1790770941285_WhatsApp_Image_2024-11-13_at_10_27_56__1.jpg'
-    ],
+    images: [],
     dimensions: '2.5 cm × 240 cm',
     thickness: '12 mm',
     waterproof: true,
@@ -1652,9 +1529,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
       en: '1.5 cm Round PS Slath. Unified 1.5 cm × 240 cm, 10 mm thickness.',
       tr: '1.5 cm × 240 cm, 10 mm Yuvarlak PS çıta.'
     },
-    images: [
-      '/uploads/1790770962069_WhatsApp_Image_2024-11-13_at_10_24_12__1.jpg'
-    ],
+    images: [],
     dimensions: '1.5 cm × 240 cm',
     thickness: '10 mm',
     waterproof: true,

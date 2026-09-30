@@ -1,7 +1,7 @@
 import { MediaRegistryData } from '../context/MediaContext';
 
-const LOCAL_STORAGE_REGISTRY_KEY = 'birlik_media_registry_v2';
-const LEGACY_STORAGE_KEY = 'birlik_media_registry_v1';
+const LOCAL_STORAGE_REGISTRY_KEY = 'birlik_media_registry_v3';
+const LEGACY_STORAGE_KEY = 'birlik_media_registry_v2';
 const DB_NAME = 'birlik_media_db';
 const STORE_NAME = 'media_registry_store';
 const FILES_STORE_NAME = 'media_files_data_store';

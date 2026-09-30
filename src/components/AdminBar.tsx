@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Image, Eye, EyeOff, LogOut, UploadCloud } from 'lucide-react';
+import { ShieldCheck, Image, Eye, EyeOff, LogOut, UploadCloud, Download } from 'lucide-react';
 import { useMedia } from '../context/MediaContext';
 import { Language } from '../types';
 
@@ -13,12 +13,26 @@ export const AdminBar: React.FC<AdminBarProps> = ({ currentLang }) => {
     adminPreviewAsVisitor, 
     toggleVisitorPreview, 
     logoutAdmin, 
-    openMediaLibrary 
+    openMediaLibrary,
+    registry
   } = useMedia();
 
   // If user is not logged in as admin, never render this bar
   const isLocalStorageAdmin = typeof window !== 'undefined' && localStorage.getItem('birlik_admin_auth_v1') === 'true';
   if (!isLocalStorageAdmin) return null;
+
+  const handleExportRegistry = () => {
+    const jsonStr = JSON.stringify(registry, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mediaRegistry.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   const t = {
     ar: {
@@ -86,6 +100,16 @@ export const AdminBar: React.FC<AdminBarProps> = ({ currentLang }) => {
           >
             <UploadCloud className="w-3.5 h-3.5" />
             <span>{t.mediaLibrary}</span>
+          </button>
+
+          {/* Quick Export mediaRegistry.json */}
+          <button
+            onClick={handleExportRegistry}
+            className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white border border-white/20 flex items-center gap-1.5 font-medium transition-colors cursor-pointer"
+            title={currentLang === 'ar' ? 'تصدير وحفظ ملف mediaRegistry.json لحفظ التعيينات على GitHub' : 'Export mediaRegistry.json to commit to GitHub'}
+          >
+            <Download className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span className="hidden sm:inline">{currentLang === 'ar' ? 'حفظ التعيينات (JSON)' : 'Save Config'}</span>
           </button>
 
           {/* Toggle Visitor Preview */}

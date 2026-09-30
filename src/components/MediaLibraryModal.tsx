@@ -13,7 +13,9 @@ import {
   AlertTriangle,
   User,
   LayoutGrid,
-  Layers
+  Layers,
+  Download,
+  Link
 } from 'lucide-react';
 import { useMedia } from '../context/MediaContext';
 import { ALL_PRODUCT_MODELS } from '../data/productModels';
@@ -31,6 +33,7 @@ export const MediaLibraryModal: React.FC<MediaLibraryModalProps> = ({ currentLan
     activeTarget, 
     registry, 
     uploadFiles, 
+    addImageByUrl,
     assignImage, 
     resetTargetImage, 
     deleteUploadedImage,
@@ -47,6 +50,7 @@ export const MediaLibraryModal: React.FC<MediaLibraryModalProps> = ({ currentLan
   const [manualTargetProduct, setManualTargetProduct] = useState('');
   const [assignSearch, setAssignSearch] = useState('');
   const [showAssignDropdown, setShowAssignDropdown] = useState(false);
+  const [urlInput, setUrlInput] = useState('');
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'info' } | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -56,6 +60,66 @@ export const MediaLibraryModal: React.FC<MediaLibraryModalProps> = ({ currentLan
   const showToast = (message: string, type: 'success' | 'info' = 'success') => {
     setNotification({ message, type });
     setTimeout(() => setNotification(null), 3000);
+  };
+
+  const handleExportRegistry = () => {
+    const jsonStr = JSON.stringify(registry, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mediaRegistry.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast(currentLang === 'ar' ? 'تم تنزيل ملف mediaRegistry.json بنجاح!' : 'mediaRegistry.json downloaded successfully!');
+  };
+
+  const handleAddUrl = async () => {
+    const raw = urlInput.trim();
+    if (!raw) return;
+
+    // Extract all URLs matching http(s)://... or markdown ![alt](url)
+    const mdMatches = Array.from(raw.matchAll(/!\[(.*?)\]\((https?:\/\/[^\s\)]+)\)/g));
+    const urlsToAdd: Array<{ url: string; name?: string }> = [];
+
+    if (mdMatches.length > 0) {
+      for (const m of mdMatches) {
+        urlsToAdd.push({ url: m[2], name: m[1] || undefined });
+      }
+    } else {
+      const plainUrls = raw.match(/https?:\/\/[^\s"'<>\)]+/g) || [];
+      if (plainUrls.length > 0) {
+        for (const u of plainUrls) {
+          urlsToAdd.push({ url: u });
+        }
+      } else if (raw.startsWith('/uploads/') || raw.startsWith('data:')) {
+        urlsToAdd.push({ url: raw });
+      }
+    }
+
+    if (urlsToAdd.length === 0) {
+      showToast(currentLang === 'ar' ? 'لم يتم العثور على روابط صحيحة' : 'No valid URLs found', 'info');
+      return;
+    }
+
+    try {
+      let count = 0;
+      for (const item of urlsToAdd) {
+        await addImageByUrl(item.url, item.name, (count === 0 && urlsToAdd.length === 1 && activeTarget) ? activeTarget : undefined);
+        count++;
+      }
+      showToast(
+        currentLang === 'ar'
+          ? `تم استيراد ${count} صورة من GitHub بنجاح!`
+          : `Successfully imported ${count} images from GitHub!`,
+        'success'
+      );
+      setUrlInput('');
+    } catch {
+      showToast(currentLang === 'ar' ? 'فشل إضافة بعض الروابط' : 'Failed to add some links', 'info');
+    }
   };
 
   const handleDragOver = (e: DragEvent) => {
@@ -247,6 +311,18 @@ export const MediaLibraryModal: React.FC<MediaLibraryModalProps> = ({ currentLan
           <div className="flex items-center gap-2">
             <button
               type="button"
+              onClick={handleExportRegistry}
+              className="px-2.5 py-1.5 text-xs text-[#9E7241] bg-[#FAF7F2] hover:bg-[#F3EFE8] border border-[#DDD5C7] flex items-center gap-1.5 font-medium transition-colors cursor-pointer"
+              title={currentLang === 'ar' ? 'تنزيل ملف mediaRegistry.json لحفظ التعيينات على GitHub' : 'Download mediaRegistry.json to commit to GitHub'}
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">
+                {currentLang === 'ar' ? 'تصدير التعيينات (JSON)' : 'Export Config'}
+              </span>
+            </button>
+
+            <button
+              type="button"
               onClick={() => setShowClearConfirm(true)}
               className="px-2.5 py-1.5 text-xs text-[#DC2626] hover:bg-[#FEF2F2] border border-[#FCA5A5] flex items-center gap-1.5 font-medium transition-colors cursor-pointer"
               title={currentLang === 'ar' ? 'إفراغ المكتبة والبدء بسجل نظيف جديد' : 'Empty Library (Clean Slate)'}
@@ -425,6 +501,37 @@ export const MediaLibraryModal: React.FC<MediaLibraryModalProps> = ({ currentLan
             >
               {t.browseBtn}
             </button>
+          </div>
+
+          {/* ADD BY DIRECT URL / GITHUB LINK */}
+          <div className="bg-[#FAF7F2] border border-[#DDD5C7] p-3.5 flex flex-col gap-2.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#1C1917]">
+                <Link className="w-4 h-4 text-[#9E7241]" />
+                <span>{currentLang === 'ar' ? 'استيراد روابط مباشرة أو نصوص من GitHub Issue:' : 'Import Direct Links or GitHub Issue Markdown:'}</span>
+              </div>
+              <span className="text-[11px] text-[#78716A]">
+                {currentLang === 'ar' ? 'يمكنك لصق رابط واحد أو نص الـ Issue كاملاً' : 'Paste single URL or entire GitHub Issue text'}
+              </span>
+            </div>
+            <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <textarea
+                rows={2}
+                value={urlInput}
+                onChange={(e) => setUrlInput(e.target.value)}
+                placeholder={currentLang === 'ar' ? 'ألصق الروابط هنا أو نص GitHub Issue مباشرة (مثال: ![image](https://github.com/...))' : 'Paste image URLs or GitHub Issue markdown here...'}
+                className="flex-1 px-3 py-1.5 text-xs bg-white border border-[#DDD5C7] focus:outline-none focus:border-[#9E7241] resize-none font-mono"
+              />
+              <button
+                type="button"
+                onClick={handleAddUrl}
+                disabled={!urlInput.trim()}
+                className="px-5 py-2 sm:py-3.5 bg-[#9E7241] hover:bg-[#835D33] disabled:opacity-50 text-white text-xs font-semibold cursor-pointer transition-colors shrink-0 self-stretch sm:self-auto flex items-center justify-center gap-1.5 shadow-xs"
+              >
+                <UploadCloud className="w-3.5 h-3.5" />
+                <span>{currentLang === 'ar' ? 'استيراد للمكتبة' : 'Import to Library'}</span>
+              </button>
+            </div>
           </div>
 
           {/* UPLOADED IMAGES GALLERY */}
