@@ -128,7 +128,10 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       try {
         const res = await fetch('/api/media/registry');
         if (res.ok) {
-          serverData = await res.json();
+          const contentType = res.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            serverData = await res.json();
+          }
         }
       } catch {
         // Local offline / static mode fallback
