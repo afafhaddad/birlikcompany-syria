@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
+import { EMBEDDED_LOGO_IMAGE } from '../data/embeddedAssets';
 
 interface FooterProps {
   currentLang: Language;
@@ -39,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({
             {/* White Banner Plaque starting flush from top, snugly framing the logo */}
             <div className="w-fit bg-[#FFFFFF] px-2.5 sm:px-3.5 pt-3.5 sm:pt-4 pb-3 rounded-b-md shadow-xl border-b-3 border-[#D4991A] border-x border-[#DDD5C7] inline-flex items-center justify-center">
               <img 
-                src="/logo.png" 
+                src={EMBEDDED_LOGO_IMAGE || '/logo.png'} 
                 alt="Birlik Logo" 
                 className="h-16 sm:h-20 md:h-22 w-auto object-contain max-w-[220px] sm:max-w-[260px]"
                 onError={(e) => {

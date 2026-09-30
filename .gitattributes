@@ -1,0 +1,17 @@
+# Prevent Git from corrupting binary image files during sync or CRLF conversion
+* text=auto
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.svg text
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+/public/uploads/* binary
+/public/assets/* binary

@@ -7,6 +7,7 @@ import {
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
 import heroImage from '../assets/images/hero.png';
+import { EMBEDDED_HERO_IMAGE } from '../data/embeddedAssets';
 import { useMedia } from '../context/MediaContext';
 import { DropZoneOverlay } from './DropZoneOverlay';
 
@@ -26,18 +27,19 @@ export const Hero: React.FC<HeroProps> = ({
   const isRtl = currentLang === 'ar';
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
+  const defaultHeroFallback = EMBEDDED_HERO_IMAGE || heroImage;
   const { getHeroImageUrl } = useMedia();
-  const heroImageFromRegistry = getHeroImageUrl(heroImage);
+  const heroImageFromRegistry = getHeroImageUrl(defaultHeroFallback);
 
-  const [currentHeroSrc, setCurrentHeroSrc] = useState<string>(heroImageFromRegistry);
+  const [currentHeroSrc, setCurrentHeroSrc] = useState<string>(heroImageFromRegistry || defaultHeroFallback);
 
   useEffect(() => {
-    setCurrentHeroSrc(heroImageFromRegistry);
-  }, [heroImageFromRegistry]);
+    setCurrentHeroSrc(heroImageFromRegistry || defaultHeroFallback);
+  }, [heroImageFromRegistry, defaultHeroFallback]);
 
   const handleHeroImageError = () => {
-    if (currentHeroSrc !== '/hero.png' && currentHeroSrc !== heroImage) {
-      setCurrentHeroSrc(heroImage);
+    if (currentHeroSrc !== defaultHeroFallback) {
+      setCurrentHeroSrc(defaultHeroFallback);
     }
   };
 

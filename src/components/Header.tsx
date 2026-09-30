@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
+import { EMBEDDED_LOGO_IMAGE } from '../data/embeddedAssets';
 
 interface HeaderProps {
   currentLang: Language;
@@ -70,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
             aria-label="Birlik Company Logo"
           >
             <img 
-              src="/logo.png" 
+              src={EMBEDDED_LOGO_IMAGE || '/logo.png'} 
               alt="Birlik Company" 
               className="h-10 sm:h-13 md:h-16 w-auto max-w-[170px] sm:max-w-[240px] md:max-w-[280px] object-contain transition-transform duration-200 group-hover:scale-102 filter drop-shadow-2xs"
             />

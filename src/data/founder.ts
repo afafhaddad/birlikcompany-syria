@@ -1,3 +1,5 @@
+import { EMBEDDED_FOUNDER_IMAGE } from './embeddedAssets';
+
 export interface FounderProject {
   name: {
     ar: string;
@@ -69,8 +71,8 @@ export const FOUNDER_DATA: FounderData = {
     en: 'Founder & CEO of "Sama Tasheed Contracting" — Jeddah, Kingdom of Saudi Arabia',
     tr: '"Sama Tasheed Contracting" Kurucu & CEO — Cidde, Suudi Arabistan'
   },
-  // Founder executive portrait
-  defaultImage: '/founder.jpg',
+  // Founder executive portrait - embedded Base64 string immune to binary sync corruption
+  defaultImage: EMBEDDED_FOUNDER_IMAGE || '/founder.jpg',
   experienceYears: '+20',
   paragraphs: {
     ar: [
