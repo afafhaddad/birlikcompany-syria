@@ -233,11 +233,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     }
 
     // 4. Update browser URL history seamlessly without reloading
-    const currentParams = new URLSearchParams(window.location.search);
-    const hadAdmin = currentParams.has('admin');
-
     const newParams = new URLSearchParams();
-    if (hadAdmin) newParams.set('admin', 'true');
 
     if (currentView === 'product' && activeProduct) {
       newParams.set('category', activeCategory);

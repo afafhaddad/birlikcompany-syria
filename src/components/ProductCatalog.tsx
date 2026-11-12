@@ -15,7 +15,6 @@ import { PRODUCT_MODELS, CATEGORIES_CONFIG, isModelInCategory } from '../data/pr
 import { TRANSLATIONS } from '../data/translations';
 import { ProductDetailModal } from './ProductDetailModal';
 import { useMedia } from '../context/MediaContext';
-import { DropZoneOverlay } from './DropZoneOverlay';
 
 interface ProductCatalogProps {
   currentLang: Language;
@@ -158,12 +157,6 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     loading="lazy"
                   />
 
-                  {/* DropZone overlay for quick admin drop & assign to this product */}
-                  <DropZoneOverlay
-                    target={{ type: 'product', id: model.id, name: `${model.code} - ${model.name[currentLang]}` }}
-                    currentLang={currentLang}
-                    badgePosition="top-start"
-                  />
 
                   {/* Top Badges (Model Code & 100% Waterproof) */}
                   <div className="absolute top-3 start-3 flex items-center gap-2">

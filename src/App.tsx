@@ -6,9 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { Language, ProductCategory, ProductModel, AppView } from './types';
 import { MediaProvider } from './context/MediaContext';
-import { AdminBar } from './components/AdminBar';
-import { AdminLoginModal } from './components/AdminLoginModal';
-import { MediaLibraryModal } from './components/MediaLibraryModal';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ProductCategoriesSection } from './components/ProductCategoriesSection';
@@ -28,15 +25,13 @@ interface InitialRoute {
   view: AppView;
   category: ProductCategory;
   product: ProductModel | null;
-  openAdmin: boolean;
 }
 
 function resolveInitialRoute(): InitialRoute {
-  const route: InitialRoute = { view: 'home', category: 'ps_wood', product: null, openAdmin: false };
+  const route: InitialRoute = { view: 'home', category: 'ps_wood', product: null };
   if (typeof window === 'undefined') return route;
 
   const params = new URLSearchParams(window.location.search);
-  route.openAdmin = params.has('admin') || window.location.hash === '#admin';
 
   const pageParam = params.get('page');
   const categoryParam = params.get('category');
@@ -80,21 +75,11 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>(initialRoute.category);
   const [activeProduct, setActiveProduct] = useState<ProductModel | null>(initialRoute.product);
 
-  // Admin login modal state
-  const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
-
   // Sync HTML document direction and language code
   useEffect(() => {
     document.documentElement.lang = currentLang;
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   }, [currentLang]);
-
-  // Check for ?admin parameter in URL on mount
-  useEffect(() => {
-    if (initialRoute.openAdmin) {
-      setIsAdminLoginOpen(true);
-    }
-  }, [initialRoute]);
 
   // Handle header / footer navigation
   const handleNavigate = (sectionId: string) => {
@@ -175,9 +160,6 @@ export default function App() {
           activeCategory={activeCategory}
           activeProduct={activeProduct}
         />
-
-        {/* Discrete Admin Bar (Only visible when admin is logged in) */}
-        <AdminBar currentLang={currentLang} />
 
         {/* Sticky Top Header */}
         <Header
@@ -272,18 +254,7 @@ export default function App() {
           currentLang={currentLang}
           onLanguageChange={setCurrentLang}
           onNavigate={handleNavigate}
-          onOpenAdminLogin={() => setIsAdminLoginOpen(true)}
         />
-
-        {/* Admin Login Dialog */}
-        <AdminLoginModal
-          isOpen={isAdminLoginOpen}
-          onClose={() => setIsAdminLoginOpen(false)}
-          currentLang={currentLang}
-        />
-
-        {/* Full Drag & Drop Media Library Modal (Admin Only) */}
-        <MediaLibraryModal currentLang={currentLang} />
 
       </div>
     </MediaProvider>

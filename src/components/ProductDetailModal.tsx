@@ -16,7 +16,6 @@ import {
 import { ProductModel, Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
 import { useMedia } from '../context/MediaContext';
-import { DropZoneOverlay } from './DropZoneOverlay';
 
 interface ProductDetailModalProps {
   model: ProductModel | null;
@@ -148,12 +147,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 className="w-full h-full object-cover transition-all duration-300"
               />
 
-              {/* Dropzone overlay for admin */}
-              <DropZoneOverlay
-                target={{ type: 'product', id: model.id, name: `${model.code} - ${model.name[currentLang]}` }}
-                currentLang={currentLang}
-                badgePosition="top-start"
-              />
               
               {/* Photo Navigation Overlays */}
               {totalImages > 1 && (

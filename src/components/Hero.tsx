@@ -7,7 +7,6 @@ import {
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
 import { useMedia } from '../context/MediaContext';
-import { DropZoneOverlay } from './DropZoneOverlay';
 
 interface HeroProps {
   currentLang: Language;
@@ -60,15 +59,6 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Balanced Luxury Architectural Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#141210]/80 via-[#141210]/55 to-[#141210]/85 pointer-events-none" />
 
-        {/* DropZone Overlay for Hero Image */}
-        <DropZoneOverlay
-          target={{
-            type: 'hero',
-            name: currentLang === 'ar' ? 'صورة الواجهة الرئيسية (Hero)' : 'Main Hero Image',
-          }}
-          currentLang={currentLang}
-          badgePosition="top-start"
-        />
       </div>
 
       {/* Hero Content Container */}

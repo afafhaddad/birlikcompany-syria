@@ -21,7 +21,6 @@ import {
 import { Language, ProductCategory, ProductModel, CategoryInfo } from '../types';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { useMedia } from '../context/MediaContext';
-import { DropZoneOverlay } from './DropZoneOverlay';
 
 interface CategoryPageProps {
   categoryId: ProductCategory;
@@ -270,7 +269,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
           <img
             loading="lazy"
             decoding="async"
-            src={getCategoryImageUrl(category.id, category.image) || category.image || '/hero.png'}
+            src={getCategoryImageUrl(category.id, category.image) || category.image || '/hero.jpg'}
             alt={`${category.name[currentLang]} - خامات وتكسية جدران معمارية في اللاذقية وسوريا | Birlik Company Syria`}
             onError={(e) => {
               if (e.currentTarget.src !== category.image) {
@@ -278,11 +277,6 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
               }
             }}
             className="w-full h-full object-cover object-center opacity-35 scale-105"
-          />
-          <DropZoneOverlay
-            target={{ type: 'category', id: category.id, name: category.name[currentLang] }}
-            currentLang={currentLang}
-            badgePosition="top-end"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#141210] via-[#141210]/75 to-[#141210]/40 pointer-events-none" />
         </div>
@@ -462,12 +456,6 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                     draggable={false}
                   />
 
-                  {/* Drop zone overlay for admin */}
-                  <DropZoneOverlay
-                    target={{ type: 'product', id: model.id, name: `${model.code} - ${model.name[currentLang]}` }}
-                    currentLang={currentLang}
-                    badgePosition="bottom-end"
-                  />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25 pointer-events-none" />
 

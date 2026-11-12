@@ -25,7 +25,6 @@ import {
 import { Language, ProductCategory, ProductModel } from '../types';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { useMedia } from '../context/MediaContext';
-import { DropZoneOverlay } from './DropZoneOverlay';
 
 interface ProductDetailPageProps {
   model: ProductModel;
@@ -310,12 +309,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-102"
                 />
 
-                {/* Dropzone overlay for admin */}
-                <DropZoneOverlay
-                  target={{ type: 'product', id: model.id, name: `${model.code} - ${model.name[currentLang]}` }}
-                  currentLang={currentLang}
-                  badgePosition="top-start"
-                />
 
                 {/* Picture Index Pill */}
                 <div className="absolute top-4 start-4 bg-black/75 text-white font-mono text-xs px-2.5 py-1 backdrop-blur-xs">

@@ -2,7 +2,6 @@ import React from 'react';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Language, ProductCategory } from '../types';
 import { useMedia } from '../context/MediaContext';
-import { DropZoneOverlay } from './DropZoneOverlay';
 
 interface ProductCategoriesSectionProps {
   currentLang: Language;
@@ -166,7 +165,7 @@ export const ProductCategoriesSection: React.FC<ProductCategoriesSectionProps> =
             <img
               loading="lazy"
               decoding="async"
-              src={getCategoryImageUrl(cat.id, cat.image) || cat.image || '/hero.png'}
+              src={getCategoryImageUrl(cat.id, cat.image) || cat.image || '/hero.jpg'}
               alt={cat.name[currentLang]}
               onError={(e) => {
                 if (e.currentTarget.src !== cat.image) {
@@ -176,12 +175,6 @@ export const ProductCategoriesSection: React.FC<ProductCategoriesSectionProps> =
               className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-90"
             />
 
-            {/* In-place Drag & Drop overlay for admin */}
-            <DropZoneOverlay
-              target={{ type: 'category', id: cat.id, name: cat.name[currentLang] }}
-              currentLang={currentLang}
-              badgePosition="top-end"
-            />
 
             {/* Architectural Contrast Scrim to preserve image visibility while making text crystal clear */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#141210]/95 via-[#141210]/65 to-[#141210]/30 rtl:bg-gradient-to-l rtl:from-[#141210]/95 rtl:via-[#141210]/65 rtl:to-[#141210]/30 group-hover:via-[#141210]/50 transition-colors duration-500" />

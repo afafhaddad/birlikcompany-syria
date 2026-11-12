@@ -77,7 +77,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/juMn9nsURXI?si=9p5iDaPJ3avjacST',
     youtubeId: 'juMn9nsURXI',
-    categoryImage: '/uploads/1790748253391_pswallpanelsbirlikcompany.jpg',
+    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pswallpanelsbirlikcompany.webp',
     dimensions: '12.1 cm - 16 cm × 290 cm',
     thickness: '9 mm - 14.8 mm',
     installationMethod: {
@@ -143,7 +143,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/6ZdIQCAViWU?si=eqo14_R2LYxJ0d4X',
     youtubeId: '6ZdIQCAViWU',
-    categoryImage: '/uploads/1790748255245_pvcwallpanelbirlikcompany.jpg',
+    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pvcwallpanelbirlikcompany.webp',
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     installationMethod: {
@@ -212,7 +212,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/4nZ1mbiGysw?si=0A4C1cT59ov8AyF_',
     youtubeId: '4nZ1mbiGysw',
-    categoryImage: '/uploads/1790748263995_spcwallpanelbirlikcompany.jpg',
+    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/spcwallpanelbirlikcompany.webp',
     dimensions: '96 cm × 280 cm',
     thickness: '4.0 mm - 5.0 mm',
     installationMethod: {
@@ -280,7 +280,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/0gYVmiqxfPo?si=hWFS6ACHZ0gygf6x',
     youtubeId: '0gYVmiqxfPo',
-    categoryImage: '/uploads/1790748266514_spcflooringbirlikcompany.jpg',
+    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/spcflooringbirlikcompany.webp',
     dimensions: '30.3 cm × 60.6 cm',
     thickness: '5.0 mm - 5.5 mm (4.5 مم + 1.0 مم IXPE)',
     installationMethod: {
@@ -351,7 +351,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/SPZ2marfnMc?si=-qp7movQnPTWSR2l',
     youtubeId: 'SPZ2marfnMc',
-    categoryImage: '/uploads/1790748269192_pswallslathsbirlikcompany.jpg',
+    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pswallslathsbirlikcompany.webp',
     dimensions: '1.5 cm - 10 cm × 240 cm',
     thickness: '10 mm - 20 mm',
     installationMethod: {
@@ -420,7 +420,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/TmHRwLfY3VE?si=WRhI4j6qmUV3pLEC',
     youtubeId: 'TmHRwLfY3VE',
-    categoryImage: '/uploads/1790748270465_psbaseboardbirlikcompany.jpg',
+    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/psbaseboardbirlikcompany.webp',
     dimensions: '10 cm - 11.5 cm × 240 cm',
     thickness: '12 mm - 15 mm',
     installationMethod: {

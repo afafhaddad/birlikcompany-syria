@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Language } from '../types';
 import { FOUNDER_DATA } from '../data/founder';
 import { useMedia } from '../context/MediaContext';
-import { DropZoneOverlay } from './DropZoneOverlay';
 
 interface FounderSectionProps {
   currentLang: Language;
@@ -97,12 +96,6 @@ export const FounderSection: React.FC<FounderSectionProps> = ({
                 </p>
               </div>
 
-              {/* In-place Drag and Drop Overlay for Admin (only visible when logged in as admin) */}
-              <DropZoneOverlay
-                target={{ type: 'founder', name: FOUNDER_DATA.name[currentLang] }}
-                currentLang={currentLang}
-                badgePosition="top-end"
-              />
             </div>
 
           </div>
