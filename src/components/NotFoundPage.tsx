@@ -17,10 +17,10 @@ export const NotFoundPage: React.FC<{ currentLang: Language }> = ({ currentLang 
       <h1 className="text-2xl font-bold text-[#1C1917] mb-3">{t.title}</h1>
       <p className="text-[#5C554E] mb-8">{t.body}</p>
       <div className="flex flex-wrap justify-center gap-3">
-        <Link to={homeRoute(currentLang)} className="px-6 py-3 bg-[#1C1917] text-white font-semibold rounded-xs">
+        <Link to={homeRoute(currentLang)} className="px-6 py-3 bg-[#1C1917] text-white font-semibold rounded-xl">
           {t.home}
         </Link>
-        <Link to={catalogueRoute(currentLang)} className="px-6 py-3 bg-[#D4991A] text-white font-semibold rounded-xs">
+        <Link to={catalogueRoute(currentLang)} className="px-6 py-3 bg-[#B98A45] text-[#15120F] font-semibold rounded-xl">
           {t.catalogue}
         </Link>
       </div>

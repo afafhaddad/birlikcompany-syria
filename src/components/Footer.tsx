@@ -38,7 +38,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Info with Banner Starting from Top of Footer */}
           <div className="md:col-span-5 flex flex-col items-start space-y-4">
             {/* White Banner Plaque starting flush from top, snugly framing the logo */}
-            <div className="w-fit bg-[#FFFFFF] px-2.5 sm:px-3.5 pt-3.5 sm:pt-4 pb-3 rounded-b-md shadow-xl border-b-3 border-[#D4991A] border-x border-[#DDD5C7] inline-flex items-center justify-center">
+            <div className="w-fit bg-[#FFFFFF] px-2.5 sm:px-3.5 pt-3.5 sm:pt-4 pb-3 rounded-b-md shadow-xl border-b-3 border-[#B98A45] border-x border-[#DDD5C7] inline-flex items-center justify-center">
               <img 
                 loading="lazy" 
                 decoding="async" 
@@ -90,7 +90,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Quick Navigation */}
           <div className="md:col-span-3 space-y-3 text-xs pt-4 sm:pt-6 md:pt-10">
-            <span className="text-[11px] uppercase tracking-widest text-[#FAF7F2] font-semibold block">
+            <span className="text-[11px] text-[#FAF7F2] font-semibold block">
               {currentLang === 'ar' ? 'أقسام الموقع' : 'Navigation'}
             </span>
             <ul className="space-y-2 text-[#A69C91]">
@@ -116,7 +116,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <a 
                   href={sectionPath(currentLang, 'installation')}
               onClick={(e) => { e.preventDefault(); onNavigate('installation'); }} 
-                  className="hover:text-[#9E7241] transition-colors cursor-pointer text-[#D4AF37]"
+                  className="hover:text-[#9E7241] transition-colors cursor-pointer text-[#DFC08A]"
                 >
                   {currentLang === 'ar' ? 'دليل وفيديوهات التركيب' : currentLang === 'en' ? 'Installation Video Guides' : 'Montaj ve Uygulama Rehberi'}
                 </a>
@@ -144,7 +144,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Direct Contacts */}
           <div className="md:col-span-4 space-y-3 text-xs pt-4 sm:pt-6 md:pt-10">
-            <span className="text-[11px] uppercase tracking-widest text-[#FAF7F2] font-semibold block">
+            <span className="text-[11px] text-[#FAF7F2] font-semibold block">
               {currentLang === 'ar' ? 'المقر الرئيسي والتواصل' : 'Headquarters & Contacts'}
             </span>
             <div className="space-y-2 text-[#A69C91]">
@@ -156,7 +156,7 @@ export const Footer: React.FC<FooterProps> = ({
                     href="https://maps.google.com/?q=35.510707,35.774618"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] text-[#D4AF37] hover:underline mt-1 font-mono"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#DFC08A] hover:underline mt-1 font-mono"
                   >
                     <span>GQ6F+7VJ, Latakia (Google Maps)</span>
                     <ExternalLink className="w-2.5 h-2.5" />

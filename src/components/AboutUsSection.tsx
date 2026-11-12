@@ -52,7 +52,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
           {/* Prominent Eyebrow Badge - Made much bigger as requested with clean 'من نحن' */}
           <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-[#FFFFFF] border border-[#9E7241]/40 rounded-full text-base sm:text-lg md:text-xl font-black text-[#9E7241] shadow-xs mb-5">
             <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#9E7241] shrink-0" />
-            <span className="font-['Cairo','Changa','Tajawal',sans-serif] tracking-wide leading-none">{t.about.badge}</span>
+            <span className="font-['Cairo','Changa','Tajawal',sans-serif] leading-none">{t.about.badge}</span>
           </div>
 
           {/* Main Headline */}
@@ -60,7 +60,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             {t.about.title}
           </h2>
 
-          <div className="w-20 h-1 bg-[#D4991A] rounded-full" />
+          <div className="w-20 h-1 bg-[#B98A45] rounded-full" />
         </div>
 
         {/* Pillar 1: Founding in Turkey (2019) & Syrian Opening (2026) */}
@@ -92,14 +92,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
 
               {/* Target Audiences Chips */}
               <div className="pt-2">
-                <span className="block text-xs uppercase tracking-wider text-[#78716A] font-semibold mb-2.5">
+                <span className="block text-xs text-[#78716A] font-semibold mb-2.5">
                   {currentLang === 'ar' ? 'شركاؤنا في النجاح والتطوير المعماري:' : 'Collaborating with:'}
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {t.about.audiences.map((audience, idx) => (
                     <span 
                       key={idx}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF7F2] border border-[#DDD5C7] text-xs font-semibold text-[#2B2621] rounded-xs shadow-2xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF7F2] border border-[#DDD5C7] text-xs font-semibold text-[#2B2621] rounded-xl shadow-2xs"
                     >
                       <Users className="w-3.5 h-3.5 text-[#9E7241]" />
                       <span>{audience}</span>
@@ -110,9 +110,9 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </div>
 
             {/* Quick Milestones Stat Block */}
-            <div className="lg:col-span-4 bg-[#FAF7F2] border border-[#E2DBD0] p-5 sm:p-6 rounded-xs space-y-4">
+            <div className="lg:col-span-4 bg-[#FAF7F2] border border-[#E2DBD0] p-5 sm:p-6 rounded-xl space-y-4">
               <div className="border-b border-[#E2DBD0] pb-4">
-                <div className="text-3xl sm:text-4xl font-black text-[#D4991A] leading-none mb-1">
+                <div className="text-3xl sm:text-4xl font-black text-[#B98A45] leading-none mb-1">
                   {t.about.stats.established}
                 </div>
                 <div className="text-xs sm:text-sm font-semibold text-[#1C1917]">
@@ -173,15 +173,15 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               {/* Vision Elements Checklist */}
               <div className="space-y-2.5 pt-3 border-t border-[#F0EBE1]">
                 <div className="flex items-start gap-2.5 text-xs sm:text-sm text-[#2B2621]">
-                  <CheckCircle2 className="w-4 h-4 text-[#D4991A] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#B98A45] shrink-0 mt-0.5" />
                   <span>{currentLang === 'ar' ? 'حلول ذكية بديلة للرخام والخشب الطبيعي بمرونة عالية' : 'Smart, lightweight alternatives to natural timber and heavy stone'}</span>
                 </div>
                 <div className="flex items-start gap-2.5 text-xs sm:text-sm text-[#2B2621]">
-                  <CheckCircle2 className="w-4 h-4 text-[#D4991A] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#B98A45] shrink-0 mt-0.5" />
                   <span>{currentLang === 'ar' ? 'تحويل المساحات المتضررة إلى بيئات فاخرة بوقت قياسي' : 'Fast, clean revitalization of damaged or worn spaces'}</span>
                 </div>
                 <div className="flex items-start gap-2.5 text-xs sm:text-sm text-[#2B2621]">
-                  <CheckCircle2 className="w-4 h-4 text-[#D4991A] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#B98A45] shrink-0 mt-0.5" />
                   <span>{currentLang === 'ar' ? 'مقاومة 100% للماء والرطوبة لتلائم مختلف البيئات السورية' : '100% waterproof and moisture resistant for long-term endurance'}</span>
                 </div>
               </div>
@@ -191,7 +191,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               <a 
                 href={sectionPath(currentLang, 'categories')}
               onClick={(e) => { e.preventDefault(); onNavigate('categories'); }}
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-bold text-[#9E7241] hover:text-[#7A552D] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-bold text-[#9E7241] hover:text-[#7A552D] transition-colors cursor-pointer"
               >
                 <span>{t.about.exploreCatalogBtn}</span>
                 <ArrowIcon className="w-3.5 h-3.5" />
@@ -217,19 +217,19 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
 
               {/* Service Badges Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-3 border-t border-[#F0EBE1]">
-                <div className="p-2.5 bg-[#FAF7F2] border border-[#EAE3D6] rounded-xs flex items-center gap-2 text-xs font-semibold text-[#1C1917]">
+                <div className="p-2.5 bg-[#FAF7F2] border border-[#EAE3D6] rounded-xl flex items-center gap-2 text-xs font-semibold text-[#1C1917]">
                   <MapPin className="w-4 h-4 text-[#9E7241] shrink-0" />
                   <span>{currentLang === 'ar' ? 'المقر الرئيسي في اللاذقية' : 'Lattakia Headquarters'}</span>
                 </div>
-                <div className="p-2.5 bg-[#FAF7F2] border border-[#EAE3D6] rounded-xs flex items-center gap-2 text-xs font-semibold text-[#1C1917]">
+                <div className="p-2.5 bg-[#FAF7F2] border border-[#EAE3D6] rounded-xl flex items-center gap-2 text-xs font-semibold text-[#1C1917]">
                   <Compass className="w-4 h-4 text-[#9E7241] shrink-0" />
                   <span>{currentLang === 'ar' ? 'استشارات تخصصية مجانية' : 'Architectural Consultations'}</span>
                 </div>
-                <div className="p-2.5 bg-[#F4FAF6] border border-[#1E7E45]/30 rounded-xs flex items-center gap-2 text-xs font-semibold text-[#1E7E45]">
+                <div className="p-2.5 bg-[#F4FAF6] border border-[#1E7E45]/30 rounded-xl flex items-center gap-2 text-xs font-semibold text-[#1E7E45]">
                   <PackageCheck className="w-4 h-4 text-[#1E7E45] shrink-0" />
                   <span>{currentLang === 'ar' ? 'عينات مجانية عند زيارة المقر' : 'Free Samples (In-Person Visit)'}</span>
                 </div>
-                <div className="p-2.5 bg-[#FAF7F2] border border-[#EAE3D6] rounded-xs flex items-center gap-2 text-xs font-semibold text-[#1C1917]">
+                <div className="p-2.5 bg-[#FAF7F2] border border-[#EAE3D6] rounded-xl flex items-center gap-2 text-xs font-semibold text-[#1C1917]">
                   <Truck className="w-4 h-4 text-[#9E7241] shrink-0" />
                   <span>{currentLang === 'ar' ? 'شحن البضائع لكافة المحافظات' : 'Goods Shipping: All Governorates'}</span>
                 </div>
@@ -240,7 +240,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               <a
                 href={sectionPath(currentLang, 'office')}
               onClick={(e) => { e.preventDefault(); onNavigate('office'); }}
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1E7E45] hover:bg-[#166034] text-white text-xs font-bold uppercase tracking-wider rounded-xs transition-colors shadow-2xs cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1E7E45] hover:bg-[#166034] text-white text-xs font-bold rounded-xl transition-colors shadow-2xs cursor-pointer"
               >
                 <MapPin className="w-3.5 h-3.5" />
                 <span>{t.about.freeSamplesBtn}</span>
@@ -250,7 +250,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                 href={whatsappSampleUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs text-[#2B2621] hover:text-[#1E7E45] font-semibold transition-colors border border-[#DDD5C7] rounded-xs"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs text-[#2B2621] hover:text-[#1E7E45] font-semibold transition-colors border border-[#DDD5C7] rounded-xl"
               >
                 <MessageSquare className="w-3.5 h-3.5 text-[#1E7E45]" />
                 <span>{currentLang === 'ar' ? 'حجز موعد عبر واتساب' : 'Book Visit via WhatsApp'}</span>
@@ -263,8 +263,8 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
         {/* Direct Trust Bar Banner */}
         <div className="p-5 sm:p-6 bg-[#24201D] text-[#FAF7F2] rounded-sm flex flex-col sm:flex-row items-center justify-between gap-4 text-start">
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-full bg-[#D4991A]/20 border border-[#D4991A]/40 flex items-center justify-center shrink-0">
-              <PackageCheck className="w-5 h-5 text-[#D4991A]" />
+            <div className="w-10 h-10 rounded-full bg-[#B98A45]/20 border border-[#B98A45]/40 flex items-center justify-center shrink-0">
+              <PackageCheck className="w-5 h-5 text-[#B98A45]" />
             </div>
             <div>
               <div className="text-sm sm:text-base font-bold text-white font-['Cairo','Tajawal',sans-serif]">
@@ -284,7 +284,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             <a
               href={sectionPath(currentLang, 'office')}
               onClick={(e) => { e.preventDefault(); onNavigate('office'); }}
-              className="flex-1 sm:flex-none px-5 py-3 bg-[#D4991A] hover:bg-[#BE8613] text-white font-bold text-xs sm:text-sm tracking-wide transition-all shadow-md flex items-center justify-center gap-2 rounded-xs cursor-pointer font-['Cairo','Tajawal',sans-serif]"
+              className="flex-1 sm:flex-none px-5 py-3 bg-[#B98A45] hover:bg-[#A17638] text-[#15120F] font-bold text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2 rounded-xl cursor-pointer font-['Cairo','Tajawal',sans-serif]"
             >
               <MapPin className="w-4 h-4" />
               <span>{currentLang === 'ar' ? 'زيارة مقرنا باللاذقية' : 'Visit Lattakia HQ'}</span>
@@ -294,7 +294,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
               href={whatsappSampleUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm tracking-wide border border-white/20 transition-all flex items-center justify-center gap-1.5 rounded-xs"
+              className="px-4 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all flex items-center justify-center gap-1.5 rounded-xl"
             >
               <MessageSquare className="w-4 h-4 text-[#25D366]" />
               <span>{currentLang === 'ar' ? 'حجز موعد' : 'Book Visit'}</span>

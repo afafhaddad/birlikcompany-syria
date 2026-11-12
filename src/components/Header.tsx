@@ -1,20 +1,9 @@
-import React, { useState } from 'react';
-import { 
-  Menu, 
-  X, 
-  Phone, 
-  Globe, 
-  MessageSquare,
-  ChevronDown,
-  MapPin,
-  Clock,
-  Film
-} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Menu, X, Phone, MessageSquare, MapPin } from 'lucide-react';
 import { Language } from '../types';
-import { TRANSLATIONS } from '../data/translations';
 import { useRouter } from '../router';
-import { buildPath } from '../routing';
-import { sectionPath } from '../routing';
+import { buildPath, sectionPath } from '../routing';
+import { PHONE_DISPLAY, TEL_HREF, UI, whatsappLink } from '../site';
 
 interface HeaderProps {
   currentLang: Language;
@@ -22,346 +11,220 @@ interface HeaderProps {
   onNavigate: (sectionId: string) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  currentLang,
-  onLanguageChange,
-  onNavigate
-}) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const t = TRANSLATIONS[currentLang];
-  const { route } = useRouter();
-  const isRtl = currentLang === 'ar';
+const LANG_LABEL: Record<Language, string> = { ar: 'عربي', en: 'EN', tr: 'TR' };
+const LANG_FULL: Record<Language, string> = { ar: 'العربية', en: 'English', tr: 'Türkçe' };
 
-  const handleNavClick = (sectionId: string) => {
-    onNavigate(sectionId);
-    setMobileMenuOpen(false);
+export const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange, onNavigate }) => {
+  const { route } = useRouter();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const overHero = route.view === 'home' && !scrolled && !open;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Lock page scroll while the full-screen menu is open; close it on navigation
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+  useEffect(() => setOpen(false), [route]);
+
+  const links: Array<{ id: string; label: string }> = [
+    { id: 'catalogue', label: UI.catalogueLong[currentLang] },
+    { id: 'installation', label: UI.installationLong[currentLang] },
+    { id: 'about', label: UI.about[currentLang] },
+    { id: 'founder', label: UI.founder[currentLang] },
+    { id: 'office', label: UI.showroomLong[currentLang] },
+  ];
+
+  const go = (id: string) => (e: React.MouseEvent) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    setOpen(false);
+    onNavigate(id);
   };
 
+  const langLink = (l: Language, className: string, label: string) => (
+    <a
+      key={l}
+      href={buildPath({ ...route, lang: l })}
+      hrefLang={l}
+      aria-current={l === currentLang ? 'true' : undefined}
+      onClick={(e) => {
+        e.preventDefault();
+        onLanguageChange(l);
+      }}
+      className={className}
+    >
+      {label}
+    </a>
+  );
+
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E5DFD5] transition-all">
-      {/* Top Utility Bar - Hidden on mobile for maximum clean screen space, shown on sm+ */}
-      <div className="hidden sm:block bg-[#F3EFE8] border-b border-[#E8E2D8] text-[11px] sm:text-xs py-1.5 px-4 font-sans">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 text-[#78716A]">
-          <span className="truncate">
-            {currentLang === 'ar' && 'شركة بيرليك • حلول مبتكرة للتشطيبات الداخلية • شحن وتوريد لكافة المحافظات السورية'}
-            {currentLang === 'en' && 'Birlik Company • Architectural Wall Surfaces • Delivery Across All Syrian Cities'}
-            {currentLang === 'tr' && 'Birlik Şirketi • Mimari Duvar Kaplama Malzemeleri • Tüm Suriye İllerine Sevkiyat'}
-          </span>
-
-          <div className="flex items-center gap-4 text-xs font-mono shrink-0">
-            <a 
-              href="tel:+963995764573" 
-              className="hover:text-[#9E7241] transition-colors flex items-center gap-1.5 text-[#5C554E]"
-              dir="ltr"
-            >
-              <Phone className="w-3 h-3 text-[#9E7241]" />
-              <span>+963 995 764 573</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 md:h-22">
-          
-          {/* Brand Logo */}
-          <a 
+    <>
+      <header
+        className={`fixed top-0 inset-x-0 z-40 transition-colors duration-300 ${
+          overHero
+            ? 'bg-gradient-to-b from-ink/70 to-transparent text-white'
+            : 'bg-ivory/90 backdrop-blur-md text-ink border-b border-line/70 shadow-[0_1px_12px_rgba(21,18,15,0.06)]'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[4.5rem] flex items-center justify-between gap-3">
+          {/* Logo */}
+          <a
             href={sectionPath(currentLang, 'hero')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }} 
-            className="flex items-center text-start group cursor-pointer focus:outline-none"
-            id="brand-logo-btn"
-            aria-label="Birlik Company Logo"
+            onClick={go('hero')}
+            aria-label="Birlik Company"
+            className="flex items-center gap-2.5 shrink-0"
           >
-            <img 
-              src="/logo-512.png" 
-              alt="Birlik Company" 
-              className="h-10 sm:h-13 md:h-16 w-auto max-w-[170px] sm:max-w-[240px] md:max-w-[280px] object-contain transition-transform duration-200 group-hover:scale-102 filter drop-shadow-2xs"
-            />
+            <span className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center overflow-hidden">
+              <img src="/logo-192.png" alt="Birlik Company" width={48} height={48} className="w-full h-full object-contain" />
+            </span>
+            <span className="hidden sm:block leading-tight">
+              <span className="block font-extrabold text-[15px]">{currentLang === 'ar' ? 'شركة بيرليك' : 'Birlik Company'}</span>
+              <span className={`block text-[11px] ${overHero ? 'text-white/75' : 'text-muted'}`}>
+                {currentLang === 'ar' ? 'مواد الإكساء والديكور' : currentLang === 'tr' ? 'Kaplama ve dekor' : 'Cladding & décor'}
+              </span>
+            </span>
           </a>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs uppercase tracking-widest font-sans text-[#5C554E]">
-            {/* 1. About Us */}
-            <a
-              href={sectionPath(currentLang, 'about')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}
-              className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-medium text-[#5C554E]"
-            >
-              {t.nav.about || (currentLang === 'ar' ? 'من نحن' : 'About Us')}
-            </a>
-
-            {/* 2. Product Catalogue */}
-            <a
-              href={sectionPath(currentLang, 'catalogue')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('catalogue'); }}
-              className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-bold text-[#1C1917]"
-            >
-              {currentLang === 'ar' ? 'كتالوج المنتجات' : currentLang === 'en' ? 'Product Catalogue' : 'Ürün Kataloğu'}
-            </a>
-
-            {/* 3. Montaj guide and videos */}
-            <a
-              href={sectionPath(currentLang, 'installation')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('installation'); }}
-              className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-semibold text-[#9E7241] flex items-center gap-1.5"
-            >
-              <Film className="w-3.5 h-3.5 text-[#9E7241]" />
-              <span>{currentLang === 'ar' ? 'دليل وفيديوهات التركيب' : currentLang === 'en' ? 'Installation Guides' : 'Montaj Rehberi'}</span>
-            </a>
-
-            {/* 4. Lattakia Office */}
-            <a
-              href={sectionPath(currentLang, 'office')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('office'); }}
-              className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-medium text-[#5C554E]"
-            >
-              {t.nav.office}
-            </a>
-
-            {/* 5. The Founder */}
-            <a
-              href={sectionPath(currentLang, 'founder')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('founder'); }}
-              className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-medium text-[#5C554E]"
-            >
-              {currentLang === 'ar' ? 'مؤسس الشركة' : currentLang === 'en' ? 'Our Founder' : 'Kurucumuz'}
-            </a>
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold">
+            {links.map((l) => (
+              <a
+                key={l.id}
+                href={sectionPath(currentLang, l.id)}
+                onClick={go(l.id)}
+                className={`relative py-2 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:bg-brass after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-center ${
+                  overHero ? 'text-white/90 hover:text-white' : 'text-ink/80 hover:text-ink'
+                }`}
+              >
+                {l.label}
+              </a>
+            ))}
           </nav>
 
-          {/* Right Actions: Clean, Balanced and Mobile-Optimized */}
-          <div className="flex items-center gap-1.5 sm:gap-2.5">
-            
-            {/* Quick WhatsApp Action (Icon only on mobile, with text on desktop) */}
-            <a
-              href="https://wa.me/963995764573"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="inline-flex items-center justify-center p-2 sm:px-3 sm:py-2 border border-[#1E7E45]/30 bg-[#F4FAF6] text-[#1E7E45] hover:bg-[#1E7E45] hover:text-white transition-all text-xs font-semibold tracking-wide shadow-2xs cursor-pointer rounded-xs"
-              title="WhatsApp: +963 995 764 573"
+          {/* Actions */}
+          <div className="flex items-center gap-2">
+            <div
+              className={`hidden md:flex items-center rounded-full p-0.5 text-xs font-bold ${
+                overHero ? 'bg-white/15 backdrop-blur-sm' : 'bg-sand'
+              }`}
             >
-              <MessageSquare className="w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 shrink-0" />
-              <span className="hidden sm:inline ms-1.5">{t.nav.whatsapp}</span>
-            </a>
-
-            {/* Quick Call Action (Icon only on mobile, with text on desktop) */}
-            <a
-              href="tel:+963995764573"
-              aria-label="Direct Phone Call"
-              className="inline-flex items-center justify-center p-2 sm:px-3 sm:py-2 bg-[#24201D] hover:bg-[#3D3732] text-white transition-all text-xs font-medium tracking-wider shadow-2xs cursor-pointer rounded-xs"
-              title="Call: +963 995 764 573"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-              <span className="hidden sm:inline ms-1.5">{t.nav.call}</span>
-            </a>
-
-            {/* Language Switcher */}
-            <div className="relative">
-              <button
-                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center gap-1 p-2 sm:px-2.5 sm:py-1.5 border border-[#E5DFD5] bg-[#FFFFFF] hover:border-[#9E7241] text-xs text-[#5C554E] hover:text-[#1C1917] transition-colors cursor-pointer shadow-2xs rounded-xs"
-                id="language-dropdown-btn"
-                aria-label="Select Language"
-              >
-                <Globe className="w-3.5 h-3.5 text-[#9E7241]" />
-                <span className="uppercase font-mono text-[10.5px] sm:text-[11px] font-semibold">{currentLang}</span>
-                <ChevronDown className="w-2.5 h-2.5 text-[#78716A]" />
-              </button>
-
-              {langDropdownOpen && (
-                <div 
-                  className="absolute end-0 mt-1 w-32 bg-[#FFFFFF] border border-[#E5DFD5] shadow-lg py-1 z-50 animate-fadeIn"
-                  onClick={() => setLangDropdownOpen(false)}
-                >
-                  <a
-                    href={buildPath({ ...route, lang: 'ar' })}
-                hrefLang="ar"
-                onClick={(e) => { e.preventDefault(); onLanguageChange('ar'); }}
-                    className={`w-full px-3 py-2 text-start text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
-                      currentLang === 'ar' ? 'text-[#9E7241] font-bold bg-[#FAF7F2]' : 'text-[#5C554E]'
-                    }`}
-                  >
-                    <span>العربية</span>
-                    {currentLang === 'ar' && <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />}
-                  </a>
-
-                  <a
-                    href={buildPath({ ...route, lang: 'en' })}
-                hrefLang="en"
-                onClick={(e) => { e.preventDefault(); onLanguageChange('en'); }}
-                    className={`w-full px-3 py-2 text-start text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
-                      currentLang === 'en' ? 'text-[#9E7241] font-bold bg-[#FAF7F2]' : 'text-[#5C554E]'
-                    }`}
-                  >
-                    <span>English</span>
-                    {currentLang === 'en' && <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />}
-                  </a>
-
-                  <a
-                    href={buildPath({ ...route, lang: 'tr' })}
-                hrefLang="tr"
-                onClick={(e) => { e.preventDefault(); onLanguageChange('tr'); }}
-                    className={`w-full px-3 py-2 text-start text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
-                      currentLang === 'tr' ? 'text-[#9E7241] font-bold bg-[#FAF7F2]' : 'text-[#5C554E]'
-                    }`}
-                  >
-                    <span>Türkçe</span>
-                    {currentLang === 'tr' && <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />}
-                  </a>
-                </div>
+              {(['ar', 'en', 'tr'] as Language[]).map((l) =>
+                langLink(
+                  l,
+                  `px-3 py-1.5 rounded-full transition-colors ${
+                    l === currentLang ? 'bg-brass text-ink' : overHero ? 'text-white/85 hover:text-white' : 'text-muted hover:text-ink'
+                  }`,
+                  LANG_LABEL[l]
+                )
               )}
             </div>
 
-            {/* Mobile Menu Toggle Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 md:hidden border border-[#E5DFD5] bg-[#FFFFFF] text-[#1C1917] hover:text-[#9E7241] hover:border-[#9E7241] transition-colors cursor-pointer rounded-xs"
-              aria-label="Toggle Navigation Menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-4 h-4 text-[#1C1917]" /> : <Menu className="w-4 h-4 text-[#1C1917]" />}
-            </button>
-
-          </div>
-
-        </div>
-      </div>
-
-      {/* Mobile Drawer Menu - Clean, Organized, Intuitive */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#E5DFD5] bg-[#FAF7F2] px-4 pt-3 pb-6 animate-fadeIn shadow-xl">
-          {/* Main Navigation Links */}
-          <div className="space-y-1.5">
-            {/* 1. About Us */}
             <a
-              href={sectionPath(currentLang, 'about')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}
-              className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-medium flex items-center justify-between transition-colors shadow-2xs rounded-xs"
-            >
-              <span>{t.nav.about || (currentLang === 'ar' ? 'من نحن' : 'About Us')}</span>
-            </a>
-
-            {/* 2. Product Catalogue */}
-            <a
-              href={sectionPath(currentLang, 'catalogue')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('catalogue'); }}
-              className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-bold flex items-center justify-between transition-colors shadow-2xs rounded-xs"
-            >
-              <span>{currentLang === 'ar' ? 'كتالوج المنتجات' : currentLang === 'en' ? 'Product Catalogue' : 'Ürün Kataloğu'}</span>
-              <span className="text-[10px] text-[#9E7241] font-bold font-mono">41 Models</span>
-            </a>
-
-            {/* 3. Montaj guide and videos */}
-            <a
-              href={sectionPath(currentLang, 'installation')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('installation'); }}
-              className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#DDD5C7] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#9E7241] font-bold flex items-center justify-between transition-colors shadow-2xs rounded-xs"
-            >
-              <span className="flex items-center gap-2">
-                <Film className="w-4 h-4 text-[#9E7241]" />
-                <span>{currentLang === 'ar' ? 'دليل وفيديوهات التركيب' : currentLang === 'en' ? 'Installation Videos & Resources' : 'Montaj ve Uygulama Rehberi'}</span>
-              </span>
-              <span className="text-[10px] bg-[#9E7241]/10 text-[#9E7241] px-2 py-0.5 font-bold font-mono">6 Videos</span>
-            </a>
-
-            {/* 4. Lattakia Office */}
-            <a
-              href={sectionPath(currentLang, 'office')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('office'); }}
-              className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-medium flex items-center justify-between transition-colors shadow-2xs rounded-xs"
-            >
-              <span>{t.nav.office}</span>
-            </a>
-
-            {/* 5. The Founder */}
-            <a
-              href={sectionPath(currentLang, 'founder')}
-              onClick={(e) => { e.preventDefault(); handleNavClick('founder'); }}
-              className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-medium flex items-center justify-between transition-colors shadow-2xs rounded-xs"
-            >
-              <span>{currentLang === 'ar' ? 'مؤسس الشركة (المهندس يوسف حداد)' : currentLang === 'en' ? 'Our Founder' : 'Kurucumuz'}</span>
-            </a>
-          </div>
-
-          {/* Quick Action Contact Cards */}
-          <div className="pt-3 grid grid-cols-2 gap-2">
-            <a
-              href="https://wa.me/963995764573"
+              href={whatsappLink(UI.generalWhatsApp[currentLang])}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-2.5 px-3 bg-[#1E7E45] hover:bg-[#186638] text-white text-xs font-semibold text-center flex items-center justify-center gap-1.5 shadow-xs transition-colors rounded-xs"
+              className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-wa hover:bg-wa-deep text-white text-sm font-bold transition-colors"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>{t.nav.whatsapp}</span>
+              <MessageSquare className="w-4 h-4" />
+              {UI.whatsapp[currentLang]}
             </a>
 
-            <a
-              href="tel:+963995764573"
-              className="py-2.5 px-3 bg-[#24201D] hover:bg-[#3D3732] text-white text-xs font-semibold text-center flex items-center justify-center gap-1.5 shadow-xs transition-colors rounded-xs"
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label={UI.menu[currentLang]}
+              aria-expanded={open}
+              className={`lg:hidden inline-flex items-center gap-2 h-11 px-3.5 rounded-full text-sm font-bold transition-colors ${
+                overHero ? 'bg-white/15 backdrop-blur-sm text-white' : 'bg-ink text-white'
+              }`}
             >
-              <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>{t.nav.call}</span>
-            </a>
+              <Menu className="w-5 h-5" />
+              <span>{UI.menu[currentLang]}</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Full-screen mobile menu */}
+      {open && (
+        <div className="fixed inset-0 z-50 bg-ink text-white flex flex-col animate-fade-in lg:hidden" role="dialog" aria-modal="true">
+          <div className="h-16 px-4 flex items-center justify-between shrink-0">
+            <span className="w-11 h-11 rounded-xl bg-white flex items-center justify-center overflow-hidden">
+              <img src="/logo-192.png" alt="" width={44} height={44} className="w-full h-full object-contain" />
+            </span>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label={UI.close[currentLang]}
+              className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          {/* Language Selector Bar inside Drawer */}
-          <div className="mt-3 pt-3 border-t border-[#E8E2D8]">
-            <span className="text-[10px] text-[#78716A] block mb-1.5 font-medium">
-              {currentLang === 'ar' ? 'اللغة / Language:' : 'Language / Dil:'}
-            </span>
-            <div className="grid grid-cols-3 gap-1.5 text-center">
+          <nav className="flex-1 overflow-y-auto px-6 pt-4">
+            {[{ id: 'hero', label: UI.home[currentLang] }, ...links].map((l, i) => (
               <a
-                href={buildPath({ ...route, lang: 'ar' })}
-                hrefLang="ar"
-                onClick={(e) => { e.preventDefault(); onLanguageChange('ar'); }}
-                className={`py-1.5 text-xs rounded-xs font-medium transition-colors cursor-pointer border ${
-                  currentLang === 'ar' 
-                    ? 'border-[#9E7241] bg-[#9E7241] text-white font-bold' 
-                    : 'border-[#E0D7C9] bg-white text-[#5C554E] hover:border-[#9E7241]'
-                }`}
+                key={l.id}
+                href={sectionPath(currentLang, l.id)}
+                onClick={go(l.id)}
+                style={{ animationDelay: `${i * 45}ms` }}
+                className="flex items-baseline gap-4 py-3.5 border-b border-white/10 text-2xl font-extrabold animate-fade-up"
               >
-                العربية
+                <span className="text-xs font-bold text-brass-light tabular-nums" dir="ltr">
+                  0{i + 1}
+                </span>
+                {l.label}
               </a>
+            ))}
+
+            <div className="mt-6 flex gap-2">
+              {(['ar', 'en', 'tr'] as Language[]).map((l) =>
+                langLink(
+                  l,
+                  `flex-1 text-center py-2.5 rounded-full text-sm font-bold border ${
+                    l === currentLang ? 'bg-brass border-brass text-ink' : 'border-white/20 text-white/85'
+                  }`,
+                  LANG_FULL[l]
+                )
+              )}
+            </div>
+          </nav>
+
+          <div className="shrink-0 px-6 pt-4 pb-6 space-y-3">
+            <div className="grid grid-cols-2 gap-3">
               <a
-                href={buildPath({ ...route, lang: 'en' })}
-                hrefLang="en"
-                onClick={(e) => { e.preventDefault(); onLanguageChange('en'); }}
-                className={`py-1.5 text-xs rounded-xs font-medium transition-colors cursor-pointer border ${
-                  currentLang === 'en' 
-                    ? 'border-[#9E7241] bg-[#9E7241] text-white font-bold' 
-                    : 'border-[#E0D7C9] bg-white text-[#5C554E] hover:border-[#9E7241]'
-                }`}
+                href={whatsappLink(UI.generalWhatsApp[currentLang])}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3.5 rounded-full bg-wa text-white font-bold"
               >
-                English
+                <MessageSquare className="w-5 h-5" />
+                {UI.whatsapp[currentLang]}
               </a>
-              <a
-                href={buildPath({ ...route, lang: 'tr' })}
-                hrefLang="tr"
-                onClick={(e) => { e.preventDefault(); onLanguageChange('tr'); }}
-                className={`py-1.5 text-xs rounded-xs font-medium transition-colors cursor-pointer border ${
-                  currentLang === 'tr' 
-                    ? 'border-[#9E7241] bg-[#9E7241] text-white font-bold' 
-                    : 'border-[#E0D7C9] bg-white text-[#5C554E] hover:border-[#9E7241]'
-                }`}
-              >
-                Türkçe
+              <a href={TEL_HREF} className="flex items-center justify-center gap-2 py-3.5 rounded-full bg-white text-ink font-bold">
+                <Phone className="w-5 h-5" />
+                {UI.call[currentLang]}
               </a>
             </div>
-          </div>
-
-          {/* Quick Location & Shipping Hint */}
-          <div className="mt-3 p-2.5 bg-[#FFFFFF] border border-[#E8E2D8] rounded-xs text-[11px] text-[#78716A] flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5 text-[#9E7241] shrink-0" />
-            <span className="leading-tight">
-              {currentLang === 'ar' 
-                ? 'اللاذقية • شحن وتوريد لكافة المحافظات السورية' 
-                : 'Lattakia • Delivery across all Syrian cities'}
-            </span>
+            <p className="flex flex-wrap items-center justify-center gap-x-2 text-xs text-white/60">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>{currentLang === 'ar' ? 'اللاذقية • توصيل لكل المحافظات السورية' : 'Lattakia • Delivery across Syria'}</span>
+              <span dir="ltr">{PHONE_DISPLAY}</span>
+            </p>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };

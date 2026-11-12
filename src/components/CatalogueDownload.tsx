@@ -35,8 +35,8 @@ export const CatalogueDownload: React.FC<{ currentLang: Language }> = ({ current
   const pdfUrl = `${SITE_ORIGIN}${cataloguePdfPath(currentLang)}`;
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(`${t.shareMsg} ${pdfUrl}`)}`;
   return (
-    <section className="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
-      <div className="bg-[#1C1917] text-white p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+    <section className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pb-16" data-reveal>
+      <div className="rounded-3xl bg-ink text-white p-6 sm:p-9 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
         <div className="max-w-xl">
           <h2 className="text-xl sm:text-2xl font-bold mb-2">{t.title}</h2>
           <p className="text-sm text-[#E5DFD5] leading-relaxed">{t.body}</p>
@@ -45,7 +45,7 @@ export const CatalogueDownload: React.FC<{ currentLang: Language }> = ({ current
           <a
             href={cataloguePdfPath(currentLang)}
             download
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#D4991A] hover:bg-[#BE8613] text-white font-bold text-sm transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold text-sm transition-colors"
           >
             <Download className="w-4 h-4" />
             {t.download}
@@ -54,7 +54,7 @@ export const CatalogueDownload: React.FC<{ currentLang: Language }> = ({ current
             href={shareUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#1E7E45] hover:bg-[#186638] text-white font-semibold text-sm transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-wa hover:bg-wa-deep text-white font-bold text-sm transition-colors"
           >
             <MessageSquare className="w-4 h-4" />
             {t.share}

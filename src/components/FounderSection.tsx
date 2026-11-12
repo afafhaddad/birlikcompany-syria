@@ -44,7 +44,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({
           
           {/* Header: Minimal Badge + Founder Name */}
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-[#9E7241] font-bold block mb-2">
+            <span className="text-xs font-mono text-[#9E7241] font-bold block mb-2">
               {labels.badge}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#1C1917] leading-tight">
@@ -88,7 +88,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({
 
               {/* Name & Title inside photo */}
               <div className="absolute bottom-5 start-5 end-5 text-white pointer-events-none text-start">
-                <h3 className="font-serif text-xl sm:text-2xl font-bold tracking-wide text-white drop-shadow-sm">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-white drop-shadow-sm">
                   {FOUNDER_DATA.name[currentLang]}
                 </h3>
                 <p className="text-xs sm:text-sm text-[#E5DFD5] font-light mt-0.5">

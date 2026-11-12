@@ -1,147 +1,163 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  ArrowRight,
-  ArrowLeft,
-  PhoneCall
-} from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, MessageSquare, Droplets, Truck, Layers, ChevronDown } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
-import { useMedia } from '../context/MediaContext';
-import { sectionPath } from '../routing';
+import { PRODUCT_MODELS } from '../data/products';
+import { catalogueRoute } from '../routing';
+import { Link } from '../router';
+import { UI, whatsappLink } from '../site';
 
 interface HeroProps {
   currentLang: Language;
   onNavigate: (sectionId: string) => void;
-  onSelectCategory?: (category: any) => void;
-  onOpenCatalogue?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({
-  currentLang,
-  onNavigate,
-  onOpenCatalogue
-}) => {
+/**
+ * Full-screen hero. The poster image (21–41 KB) paints immediately; the short muted
+ * video loop (0.5 MB on phones, 1 MB on desktop) is only fetched after the page has
+ * loaded, and never on Data Saver, 2G-class connections or reduced-motion devices.
+ */
+function shouldLoadVideo(): boolean {
+  if (typeof window === 'undefined') return false;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  if (conn?.saveData) return false;
+  if (conn?.effectiveType && /2g/.test(conn.effectiveType)) return false;
+  return true;
+}
+
+export const Hero: React.FC<HeroProps> = ({ currentLang, onNavigate }) => {
   const t = TRANSLATIONS[currentLang];
-  const isRtl = currentLang === 'ar';
-  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
-
-  const defaultHeroFallback = '/hero.jpg';
-  const { getHeroImageUrl } = useMedia();
-  const heroImageFromRegistry = getHeroImageUrl(defaultHeroFallback);
-
-  const [currentHeroSrc, setCurrentHeroSrc] = useState<string>(heroImageFromRegistry || defaultHeroFallback);
+  const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
-    setCurrentHeroSrc(heroImageFromRegistry || defaultHeroFallback);
-  }, [heroImageFromRegistry, defaultHeroFallback]);
-
-  const handleHeroImageError = () => {
-    if (currentHeroSrc !== defaultHeroFallback) {
-      setCurrentHeroSrc(defaultHeroFallback);
+    if (!shouldLoadVideo()) return;
+    const start = () => {
+      const mobile = window.matchMedia('(max-width: 767px)').matches;
+      setVideoSrc(mobile ? '/media/hero-mobile.mp4' : '/media/hero-desktop.mp4');
+    };
+    if (document.readyState === 'complete') {
+      const id = window.setTimeout(start, 600);
+      return () => window.clearTimeout(id);
     }
-  };
+    window.addEventListener('load', start, { once: true });
+    return () => window.removeEventListener('load', start);
+  }, []);
+
+  useEffect(() => {
+    if (videoSrc) videoRef.current?.play().catch(() => {});
+  }, [videoSrc]);
+
+  const stats = [
+    { icon: Layers, value: `${PRODUCT_MODELS.length}+`, label: UI.models[currentLang] },
+    { icon: Droplets, value: '100%', label: currentLang === 'ar' ? 'مقاوم للماء' : currentLang === 'tr' ? 'su geçirmez' : 'waterproof' },
+    { icon: Truck, value: '14', label: currentLang === 'ar' ? 'محافظة نوصل إليها' : currentLang === 'tr' ? 'ile teslimat' : 'governorates served' },
+  ];
 
   return (
-    <section 
-      id="hero" 
-      className="relative min-h-[640px] md:min-h-[720px] lg:min-h-[800px] flex items-center justify-center overflow-hidden border-b border-[#E5DFD5]"
-    >
-      {/* Interior Decor Background Image with Admin Drop Zone */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={currentHeroSrc || defaultHeroFallback}
+    <section id="hero" className="relative h-[100svh] min-h-[620px] max-h-[980px] flex flex-col justify-end bg-ink text-white overflow-hidden">
+      {/* Poster (always) */}
+      <picture>
+        <source media="(max-width: 767px)" srcSet="/media/hero-mobile.webp" />
+        <img
+          src="/media/hero-desktop.webp"
+          alt={currentLang === 'ar' ? 'ديكور داخلي بألواح بديل الخشب من شركة بيرليك' : 'Interior finished with Birlik wall panels'}
           fetchPriority="high"
-          decoding="async" 
-          alt="شركة بيرليك - الوجهة الأولى للتشطيبات الداخلية الفاخرة في سوريا" 
-          onError={handleHeroImageError}
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-subtle-zoom"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover motion-safe:animate-slow-zoom"
         />
-        {/* Balanced Luxury Architectural Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#141210]/80 via-[#141210]/55 to-[#141210]/85 pointer-events-none" />
+      </picture>
 
-      </div>
+      {/* Video loop (good connections only) */}
+      {videoSrc && (
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          muted
+          loop
+          playsInline
+          autoPlay
+          preload="auto"
+          aria-hidden="true"
+          onCanPlay={() => setVideoReady(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+        />
+      )}
 
-      {/* Hero Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        
-        {/* Right-aligned Hero Stack */}
-        <div className="w-full max-w-3xl text-start flex flex-col items-start">
-          
-          {/* Floating Brand Logo with Dropping White Banner Backdrop - Raised upwards */}
-          <div 
-            id="hero-floating-logo-container"
-            className="group/logo relative -mt-7 sm:-mt-9 md:-mt-11 mb-5 sm:mb-6 transition-transform duration-300 hover:scale-102 inline-flex flex-col items-center"
+      <div className="absolute inset-0 scrim-bottom" />
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-24 pb-24 md:pb-14">
+        <div className="max-w-3xl">
+          <p className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/12 backdrop-blur-sm border border-white/20 text-xs sm:text-sm font-semibold text-brass-light animate-fade-up">
+            <span className="w-1.5 h-1.5 rounded-full bg-brass-light" />
+            {currentLang === 'ar' ? 'اللاذقية • توصيل لكل المحافظات السورية' : currentLang === 'tr' ? 'Lazkiye • Tüm Suriye’ye teslimat' : 'Lattakia • Delivery across Syria'}
+          </p>
+
+          <h1
+            className="mt-4 text-[2rem] leading-[1.25] sm:text-5xl sm:leading-[1.2] lg:text-6xl lg:leading-[1.15] font-black text-balance animate-fade-up"
+            style={{ animationDelay: '90ms' }}
           >
-            {/* Dropping White Banner Backdrop: Shorter, tightly framed backdrop ending right at the logo bottom */}
-            <div 
-              className="absolute -top-[600px] bottom-0 inset-x-3 sm:inset-x-4 md:inset-x-5 bg-[#FFFFFF]/98 backdrop-blur-xs shadow-[0_10px_24px_rgba(0,0,0,0.28)] border-x border-b-2 border-[#D4991A]/60 rounded-b-xs pointer-events-none z-0"
-              aria-hidden="true"
-            >
-              {/* Refined Gold Accent Trim at the bottom edge */}
-              <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-[#D4991A]/50 via-[#D4991A] to-[#D4991A]/50" />
-            </div>
-
-            <img 
-              src="/logo-512.png" 
-              alt={t.brandName}
-              className="relative z-10 w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
-            />
-          </div>
-
-          {/* Main Headline - Bold condensed architectural style matching reference */}
-          <h1 className="font-['Cairo','Changa','Tajawal',sans-serif] font-black text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] text-white leading-[1.18] tracking-normal mb-5 drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)]">
-            {currentLang === 'ar' ? (
-              <>
-                <span className="block">شركة بيرليك .. الوجهة</span>
-                <span className="block">الأولى لمواد التجديد</span>
-                <span className="block">والإكساء الداخلية</span>
-                <span className="block">المبتكرة في سورية</span>
-              </>
-            ) : (
-              t.hero.mainHeadline || t.hero.title
-            )}
+            {t.hero.title}
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-[#F2ECE4] text-sm sm:text-base md:text-lg font-['Cairo','Tajawal',sans-serif] font-medium leading-relaxed max-w-2xl mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+          <p
+            className="mt-4 text-sm sm:text-lg leading-relaxed text-white/85 max-w-2xl line-clamp-3 sm:line-clamp-none animate-fade-up"
+            style={{ animationDelay: '180ms' }}
+          >
             {t.hero.subtitle}
           </p>
 
-          {/* Call-to-Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4">
-            
-            {/* Button 1: Explore Catalog - Styled with the warm gold/amber from the reference image */}
-            <button
-              onClick={() => {
-                if (onOpenCatalogue) {
-                  onOpenCatalogue();
-                } else {
-                  onNavigate('categories');
-                }
-              }}
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 animate-fade-up" style={{ animationDelay: '270ms' }}>
+            <Link
+              to={catalogueRoute(currentLang)}
               id="hero-explore-products-btn"
-              className="px-8 py-3.5 bg-[#D4991A] hover:bg-[#BE8613] text-white font-['Cairo','Tajawal',sans-serif] font-bold text-base sm:text-lg tracking-wide transition-all shadow-xl hover:shadow-2xl cursor-pointer flex items-center gap-2.5 rounded-xs"
+              className="group inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold text-base transition-colors"
             >
-              <span>{t.hero.exploreBtn}</span>
-              <ArrowIcon className="w-5 h-5" />
-            </button>
-
-            {/* Button 2: Contact Us */}
+              {t.hero.exploreBtn}
+              <Arrow className="w-5 h-5 transition-transform group-hover:-translate-x-1 ltr:group-hover:translate-x-1" />
+            </Link>
             <a
-              href={sectionPath(currentLang, 'office')}
-              onClick={(e) => { e.preventDefault(); onNavigate('office'); }}
-              id="hero-contact-us-btn"
-              className="px-6 py-3.5 bg-black/45 hover:bg-black/65 text-white backdrop-blur-md border border-white/30 hover:border-white font-['Cairo','Tajawal',sans-serif] font-medium text-sm sm:text-base tracking-wide transition-all shadow-lg hover:shadow-xl cursor-pointer flex items-center gap-2.5 rounded-xs"
+              href={whatsappLink(UI.generalWhatsApp[currentLang])}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-white/12 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold text-base transition-colors"
             >
-              <PhoneCall className="w-4 h-4 text-[#D4991A]" />
-              <span>{t.hero.contactBtn}</span>
+              <MessageSquare className="w-5 h-5 text-[#7CE0A3]" />
+              {UI.askPriceWhatsApp[currentLang]}
             </a>
-
           </div>
-
         </div>
 
+        {/* Stats */}
+        <dl
+          className="mt-8 grid grid-cols-3 gap-2 sm:gap-4 max-w-2xl border-t border-white/15 pt-5 animate-fade-up"
+          style={{ animationDelay: '360ms' }}
+        >
+          {stats.map(({ icon: Icon, value, label }) => (
+            <div key={label} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+              <Icon className="hidden sm:block w-6 h-6 text-brass-light shrink-0" />
+              <div>
+                <dd className="text-2xl sm:text-3xl font-black text-white tabular-nums" dir="ltr" data-keep-start="">
+                  {value}
+                </dd>
+                <dt className="text-[11px] sm:text-sm text-white/70">{label}</dt>
+              </div>
+            </div>
+          ))}
+        </dl>
+
+        <button
+          type="button"
+          onClick={() => onNavigate('categories')}
+          aria-label={UI.collections[currentLang]}
+          className="hidden md:flex absolute end-8 bottom-14 w-12 h-12 rounded-full border border-white/30 items-center justify-center text-white/80 hover:text-white hover:border-white motion-safe:animate-bounce"
+        >
+          <ChevronDown className="w-5 h-5" />
+        </button>
       </div>
     </section>
   );

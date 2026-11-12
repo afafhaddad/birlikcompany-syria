@@ -13,26 +13,17 @@ import { FounderSection } from './components/FounderSection';
 import { AboutUsSection } from './components/AboutUsSection';
 import { ProductCataloguePage } from './components/ProductCataloguePage';
 import { CategoryPage } from './components/CategoryPage';
-import { ProductDetailPage } from './components/ProductDetailPage';
+import { ProductDetailPage, productPriceMessage } from './components/ProductDetailPage';
 import { InstallationResourcesPage } from './components/InstallationResourcesPage';
 import { CataloguePrintPage } from './components/CataloguePrintPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { OfficeSection } from './components/OfficeSection';
-import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
+import { MobileTabBar, DesktopWhatsApp } from './components/MobileTabBar';
 import { Footer } from './components/Footer';
 import { SEOHead } from './components/SEOHead';
 import { RouterContext } from './router';
-import {
-  Route,
-  buildPath,
-  parseLocation,
-  findProduct,
-  homeRoute,
-  catalogueRoute,
-  installationRoute,
-  categoryRoute,
-  productRoute,
-} from './routing';
+import { Route, buildPath, parseLocation, findProduct, homeRoute, catalogueRoute, installationRoute, categoryRoute } from './routing';
+import { UI, whatsappLink } from './site';
 
 const scrollToSection = (id: string) => {
   const el = document.getElementById(id);
@@ -52,7 +43,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
     setRoute(to);
     if (opts?.scrollTo) {
       const id = opts.scrollTo;
-      setTimeout(() => scrollToSection(id), 60);
+      setTimeout(() => scrollToSection(id), 80);
     } else {
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
@@ -72,7 +63,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
       window.history.replaceState(null, '', canonicalPath + window.location.hash);
     }
     const hash = window.location.hash.slice(1);
-    if (hash) setTimeout(() => scrollToSection(hash), 100);
+    if (hash) setTimeout(() => scrollToSection(hash), 120);
   }, [initialRoute]);
 
   // Keep <html lang/dir> in sync when switching language in-app
@@ -80,6 +71,27 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
     document.documentElement.lang = currentLang;
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   }, [currentLang]);
+
+  // Scroll-reveal: fade sections in as they enter the viewport
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-in)'));
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('is-in'));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+          }
+        }),
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [route]);
 
   // Header / footer navigation by section id
   const handleNavigate = (sectionId: string) => {
@@ -93,11 +105,8 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
 
   const setLang = (lang: Language) => navigate({ ...route, lang });
   const openCatalogue = () => navigate(catalogueRoute(currentLang));
-  const openInstallation = () => navigate(installationRoute(currentLang));
   const openCategory = (cat: ProductCategory) => navigate(categoryRoute(currentLang, cat));
-  const openProduct = (model: ProductModel) => navigate(productRoute(currentLang, model));
   const backToHome = () => navigate(homeRoute(currentLang));
-  const backToCategory = () => navigate(categoryRoute(currentLang, route.category));
 
   const routerValue = useMemo(() => ({ route, navigate }), [route, navigate]);
 
@@ -111,54 +120,42 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
     );
   }
 
+  // WhatsApp button: on a product page it asks for that product's price
+  const whatsappHref = whatsappLink(activeProduct ? productPriceMessage(activeProduct, currentLang) : UI.generalWhatsApp[currentLang]);
+  const whatsappLabel = activeProduct ? UI.askPrice[currentLang] : UI.whatsapp[currentLang];
+
   return (
     <RouterContext.Provider value={routerValue}>
       <MediaProvider>
-        <div className={`min-h-screen bg-[#FAF7F2] text-[#1C1917] flex flex-col font-sans selection:bg-[#9E7241]/20 selection:text-[#1C1917] ${currentLang === 'ar' ? 'rtl' : 'ltr'}`}>
+        <div className="min-h-screen bg-ivory text-ink flex flex-col font-sans selection:bg-brass/25">
           <SEOHead route={route} />
 
           <Header currentLang={currentLang} onLanguageChange={setLang} onNavigate={handleNavigate} />
 
           <main className="flex-1">
             {route.view === 'installation' ? (
-              <InstallationResourcesPage
-                currentLang={currentLang}
-                onSelectCategory={openCategory}
-                onBackToHome={backToHome}
-                onBackToCatalogue={openCatalogue}
-              />
+              <div className="pt-16 md:pt-[4.5rem]">
+                <InstallationResourcesPage
+                  currentLang={currentLang}
+                  onSelectCategory={openCategory}
+                  onBackToHome={backToHome}
+                  onBackToCatalogue={openCatalogue}
+                />
+              </div>
             ) : route.view === 'product' && activeProduct ? (
-              <ProductDetailPage
-                model={activeProduct}
-                currentLang={currentLang}
-                onBackToCategory={backToCategory}
-                onBackToCatalogue={openCatalogue}
-                onBackToHome={backToHome}
-                onSelectAnotherModel={openProduct}
-              />
+              <ProductDetailPage model={activeProduct} currentLang={currentLang} />
             ) : route.view === 'category' ? (
-              <CategoryPage
-                categoryId={route.category}
-                currentLang={currentLang}
-                onBack={backToHome}
-                onBackToCatalogue={openCatalogue}
-                onSelectCategory={openCategory}
-                onSelectProduct={openProduct}
-                onOpenInstallation={openInstallation}
-              />
+              <CategoryPage categoryId={route.category} currentLang={currentLang} />
             ) : route.view === 'catalogue' ? (
-              <ProductCataloguePage currentLang={currentLang} onSelectCategory={openCategory} onBackToHome={backToHome} />
+              <ProductCataloguePage currentLang={currentLang} />
             ) : route.view === 'notfound' ? (
-              <NotFoundPage currentLang={currentLang} />
+              <div className="pt-16 md:pt-[4.5rem]">
+                <NotFoundPage currentLang={currentLang} />
+              </div>
             ) : (
               <>
-                <Hero
-                  currentLang={currentLang}
-                  onNavigate={handleNavigate}
-                  onSelectCategory={openCategory}
-                  onOpenCatalogue={openCatalogue}
-                />
-                <ProductCategoriesSection currentLang={currentLang} onSelectCategory={openCategory} />
+                <Hero currentLang={currentLang} onNavigate={handleNavigate} />
+                <ProductCategoriesSection currentLang={currentLang} />
                 <FounderSection currentLang={currentLang} onNavigate={handleNavigate} />
                 <AboutUsSection currentLang={currentLang} onNavigate={handleNavigate} />
                 <OfficeSection currentLang={currentLang} />
@@ -166,9 +163,13 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
             )}
           </main>
 
-          <WhatsAppFloatingButton currentLang={currentLang} />
-
           <Footer currentLang={currentLang} onLanguageChange={setLang} onNavigate={handleNavigate} />
+
+          {/* Space for the fixed bottom bar on phones */}
+          <div className="md:hidden h-16 bg-[#1F1B18] pb-safe box-content" aria-hidden="true" />
+
+          <MobileTabBar currentLang={currentLang} whatsappHref={whatsappHref} whatsappLabel={whatsappLabel} />
+          <DesktopWhatsApp href={whatsappHref} label={whatsappLabel} />
         </div>
       </MediaProvider>
     </RouterContext.Provider>

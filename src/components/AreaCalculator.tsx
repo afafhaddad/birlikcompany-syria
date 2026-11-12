@@ -111,7 +111,7 @@ const Field: React.FC<{ label: string; value: string; onChange: (v: string) => v
       value={value}
       onChange={(e) => onChange(e.target.value)}
       dir="ltr"
-      className="w-full px-3 py-2.5 border border-[#DDD5C7] bg-white text-base text-[#1C1917] focus:outline-none focus:border-[#9E7241] focus:ring-1 focus:ring-[#9E7241]"
+      className="w-full px-4 py-3 rounded-xl border border-line bg-ivory text-base text-[#1C1917] focus:outline-none focus:border-[#9E7241] focus:ring-1 focus:ring-[#9E7241]"
       placeholder="0"
     />
     {hint && <span className="block text-[11px] text-[#8C8278] mt-1">{hint}</span>}
@@ -162,7 +162,7 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
   };
 
   return (
-    <section className="mt-6 border border-[#DDD5C7] bg-[#FFFFFF] p-4 sm:p-5" aria-labelledby="calc-title">
+    <section className="mt-6 rounded-3xl border border-line bg-white p-5 sm:p-6" aria-labelledby="calc-title">
       <h2 id="calc-title" className="flex items-center gap-2 text-base font-bold text-[#1C1917] mb-4">
         <Calculator className="w-5 h-5 text-[#9E7241]" />
         {t.title}
@@ -202,7 +202,7 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
               role="radio"
               aria-checked={waste === w}
               onClick={() => setWaste(w)}
-              className={`flex-1 py-2 text-sm border transition-colors ${
+              className={`flex-1 py-2.5 text-sm font-bold rounded-full border transition-colors ${
                 waste === w ? 'bg-[#1C1917] text-white border-[#1C1917]' : 'bg-white text-[#5C554E] border-[#DDD5C7] hover:border-[#9E7241]'
               }`}
             >
@@ -212,7 +212,7 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
         </div>
       </div>
 
-      <div className="mt-4 p-3.5 bg-[#FAF7F2] border border-[#E5DFD5]" aria-live="polite">
+      <div className="mt-4 p-4 rounded-2xl bg-sand" aria-live="polite">
         {result ? (
           <div className="flex items-end justify-between gap-3">
             <div className="text-xs text-[#5C554E] space-y-0.5">
@@ -244,7 +244,7 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
         onClick={(e) => {
           if (!result) e.preventDefault();
         }}
-        className={`mt-3 w-full py-3 px-4 font-bold text-sm flex items-center justify-center gap-2 transition-colors ${
+        className={`mt-3 w-full py-3.5 px-4 rounded-full font-extrabold text-sm flex items-center justify-center gap-2 transition-colors ${
           result ? 'bg-[#1E7E45] hover:bg-[#166034] text-white' : 'bg-[#E5DFD5] text-[#8C8278] cursor-not-allowed'
         }`}
       >

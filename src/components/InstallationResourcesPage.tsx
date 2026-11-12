@@ -145,7 +145,7 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
 
           {/* Title and Subtitle */}
           <div className="space-y-4 max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FFFFFF] border border-[#DDD5C7] text-xs font-bold font-mono tracking-widest text-[#9E7241] uppercase shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FFFFFF] border border-[#DDD5C7] text-xs font-bold font-mono text-[#9E7241] shadow-2xs">
               <Film className="w-3.5 h-3.5 text-[#9E7241]" />
               <span>{t.pageBadge}</span>
             </div>
@@ -208,7 +208,7 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
                   <div className="space-y-2 max-w-2xl">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="px-2.5 py-0.5 bg-[#9E7241]/10 text-[#9E7241] text-[11px] font-bold font-mono tracking-wider uppercase border border-[#9E7241]/20">
+                      <span className="px-2.5 py-0.5 bg-[#9E7241]/10 text-[#9E7241] text-[11px] font-bold font-mono border border-[#9E7241]/20">
                         0{idx + 1} • {guide.badge[currentLang]}
                       </span>
                       <span className="text-xs text-[#78716A] font-mono">
@@ -230,9 +230,9 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
                     <a
                       href={categoryPath(currentLang, guide.categoryId)}
                   onClick={(e) => { e.preventDefault(); onSelectCategory(guide.categoryId); }}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1C1917] hover:bg-[#38332E] text-white text-xs font-semibold tracking-wider transition-colors cursor-pointer shadow-xs group"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1C1917] hover:bg-[#38332E] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs group"
                     >
-                      <Layers className="w-3.5 h-3.5 text-[#D4AF37]" />
+                      <Layers className="w-3.5 h-3.5 text-[#DFC08A]" />
                       <span>{t.viewCategoryModels}</span>
                       <NextArrowIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
                     </a>
@@ -298,7 +298,7 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
                 
                 {/* Left/Main Column: Step-by-Step Instructions */}
                 <div className="lg:col-span-8 space-y-4">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#1C1917] flex items-center gap-2">
+                  <h3 className="text-sm font-bold text-[#1C1917] flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#1E7E45]" />
                     <span>{t.stepsTitle}</span>
                   </h3>
@@ -324,7 +324,7 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
                 <div className="lg:col-span-4 space-y-5">
                   {/* Recommended Tools */}
                   <div className="p-4 bg-[#F5EFE6] border border-[#DDD5C7] space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#1C1917] flex items-center gap-2">
+                    <h4 className="text-xs font-bold text-[#1C1917] flex items-center gap-2">
                       <Wrench className="w-3.5 h-3.5 text-[#9E7241]" />
                       <span>{t.toolsTitle}</span>
                     </h4>
@@ -342,7 +342,7 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
                   {/* Architectural Pro Tip */}
                   <div className="p-4 bg-[#FFFFFF] border-l-4 rtl:border-l-0 rtl:border-r-4 border-[#9E7241] border-t border-b border-r rtl:border-l border-[#DDD5C7] shadow-2xs space-y-2">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-[#9E7241]">
-                      <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#DFC08A]" />
                       <span>{t.tipLabel}</span>
                     </div>
                     <p className="text-xs text-[#5C554E] leading-relaxed italic">
@@ -362,7 +362,7 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24">
         <div className="bg-[#24201D] text-white p-8 sm:p-12 border border-[#9E7241]/40 shadow-xl relative overflow-hidden">
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#9E7241]/20 border border-[#9E7241]/40 text-[#D4AF37] text-xs font-mono font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#9E7241]/20 border border-[#9E7241]/40 text-[#DFC08A] text-xs font-mono font-bold">
               <HelpCircle className="w-3.5 h-3.5" />
               <span>Birlik Technical Engineering Support</span>
             </div>
@@ -380,7 +380,7 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
                 href="https://wa.me/963995764573?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9%20%D8%AD%D9%88%D9%84%20%D8%B7%D8%B1%D9%8A%D9%82%D8%A9%20%D8%AA%D8%B1%D9%83%D9%8A%D8%A8%20%D9%85%D9%88%D8%A7%D8%AF%20%D8%A7%D9%84%D8%A5%D9%83%D8%B3%D8%A7%D8%A1%20%D9%84%D8%AF%D9%8A%D9%83%D9%85."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 bg-[#1E7E45] hover:bg-[#166536] text-white text-xs font-bold tracking-wider transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
+                className="px-5 py-3 bg-[#1E7E45] hover:bg-[#166536] text-white text-xs font-bold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4 text-white" />
                 <span>{t.contactWhatsApp}</span>
@@ -388,9 +388,9 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
 
               <a
                 href="tel:+963995764573"
-                className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-medium tracking-wider transition-all inline-flex items-center gap-2 cursor-pointer"
+                className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-medium transition-all inline-flex items-center gap-2 cursor-pointer"
               >
-                <PhoneCall className="w-4 h-4 text-[#D4AF37]" />
+                <PhoneCall className="w-4 h-4 text-[#DFC08A]" />
                 <span dir="ltr">+963 995 764 573</span>
               </a>
             </div>

@@ -114,7 +114,7 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
             <Building2 className="w-4 h-4 text-[#9E7241]" />
-            <span className="text-[11px] uppercase tracking-[0.25em] text-[#9E7241] font-semibold">
+            <span className="text-[11px] tracking-[0.25em] text-[#9E7241] font-semibold">
               {text.tag}
             </span>
           </div>
@@ -206,7 +206,7 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
 
               <div className="space-y-3 text-xs sm:text-[13px]">
                 <div>
-                  <span className="block text-[11px] uppercase tracking-wider text-[#8C8278] mb-0.5">
+                  <span className="block text-[11px] text-[#8C8278] mb-0.5">
                     {text.phoneLabel}
                   </span>
                   <a
@@ -219,7 +219,7 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
                 </div>
 
                 <div>
-                  <span className="block text-[11px] uppercase tracking-wider text-[#8C8278] mb-0.5">
+                  <span className="block text-[11px] text-[#8C8278] mb-0.5">
                     {text.emailLabel}
                   </span>
                   <a
@@ -262,7 +262,7 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
                   <h4 className="font-serif font-bold text-base sm:text-lg text-[#1C1917]">
                     {text.mapBadgeTitle}
                   </h4>
-                  <span className="text-[10px] uppercase font-mono px-2 py-0.5 bg-[#9E7241] text-white font-semibold tracking-wider">
+                  <span className="text-[10px] font-mono px-2 py-0.5 bg-[#9E7241] text-white font-semibold">
                     HQ
                   </span>
                 </div>
@@ -276,10 +276,10 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#1C1917] hover:bg-[#3D3732] text-white text-xs font-semibold tracking-wider uppercase transition-all shadow-xs shrink-0"
+              className="inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#1C1917] hover:bg-[#3D3732] text-white text-xs font-semibold transition-all shadow-xs shrink-0"
               id="open-google-maps-btn"
             >
-              <Navigation className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <Navigation className="w-3.5 h-3.5 text-[#DFC08A]" />
               <span>{text.openInMapsBtn}</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-80" />
             </a>
@@ -306,7 +306,7 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
             href={getWhatsAppAppointmentLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 py-3.5 px-6 bg-[#1E7E45] hover:bg-[#166034] text-white text-xs font-semibold uppercase tracking-wider transition-all shadow-xs"
+            className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 py-3.5 px-6 bg-[#1E7E45] hover:bg-[#166034] text-white text-xs font-semibold transition-all shadow-xs"
             id="office-whatsapp-cta"
           >
             <MessageSquare className="w-4 h-4" />
@@ -315,7 +315,7 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
 
           <a
             href="tel:+963995764573"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 py-3.5 px-6 border border-[#DDD5C7] bg-[#FFFFFF] hover:border-[#9E7241] text-[#24201D] hover:text-[#9E7241] text-xs font-medium uppercase tracking-wider transition-all shadow-2xs"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 py-3.5 px-6 border border-[#DDD5C7] bg-[#FFFFFF] hover:border-[#9E7241] text-[#24201D] hover:text-[#9E7241] text-xs font-medium transition-all shadow-2xs"
             id="office-call-cta"
           >
             <Phone className="w-4 h-4 text-[#9E7241]" />
