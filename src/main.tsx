@@ -4,8 +4,10 @@ import App from './App.tsx';
 import './index.css';
 import { installImageFallback } from './utils/optimizeImage';
 import { parseLocation } from './routing';
+import { initAnalytics } from './analytics';
 
 installImageFallback();
+initAnalytics();
 
 const container = document.getElementById('root')!;
 const initialRoute = parseLocation(window.location.pathname, window.location.search);

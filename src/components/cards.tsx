@@ -11,11 +11,12 @@ import { UI } from '../site';
 const FALLBACK = '/media/hero-desktop.webp';
 
 /** Tall photo tile for a product category. */
-export const CategoryTile: React.FC<{ card: CategoryCard; index: number; currentLang: Language; className?: string }> = ({
+export const CategoryTile: React.FC<{ card: CategoryCard; index: number; currentLang: Language; className?: string; compact?: boolean }> = ({
   card,
   index,
   currentLang,
   className = '',
+  compact = false,
 }) => {
   const { getCategoryImageUrl } = useMedia();
   const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
@@ -34,7 +35,7 @@ export const CategoryTile: React.FC<{ card: CategoryCard; index: number; current
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
       <div className="absolute inset-0 scrim-bottom" />
-      <div className="absolute top-4 inset-x-4 flex items-center justify-between text-xs font-bold">
+      <div className={`absolute flex items-center justify-between text-xs font-bold ${compact ? 'top-3 inset-x-3 sm:top-4 sm:inset-x-4' : 'top-4 inset-x-4'}`}>
         <span className="text-brass-light tabular-nums" dir="ltr">
           0{index + 1}
         </span>
@@ -42,13 +43,15 @@ export const CategoryTile: React.FC<{ card: CategoryCard; index: number; current
           {modelCount(card.id)} {UI.models[currentLang]}
         </span>
       </div>
-      <div className="absolute bottom-0 inset-x-0 p-5 text-white">
+      <div className={`absolute bottom-0 inset-x-0 text-white ${compact ? 'p-3.5 sm:p-5' : 'p-5'}`}>
         <p className="text-xs text-brass-light font-semibold mb-1" dir="auto">
           {card.tag[currentLang]}
         </p>
-        <h3 className="text-2xl font-black leading-snug">{card.name[currentLang]}</h3>
-        <p className="mt-2 text-[13px] leading-relaxed text-white/80 line-clamp-2">{card.description[currentLang]}</p>
-        <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-ink bg-brass group-hover:bg-brass-light px-4 py-2 rounded-full transition-colors">
+        <h3 className={`font-black leading-snug ${compact ? 'text-lg sm:text-2xl' : 'text-2xl'}`}>{card.name[currentLang]}</h3>
+        <div className={compact ? 'hidden sm:block' : undefined}>
+          <p className="mt-2 text-[13px] leading-relaxed text-white/80 line-clamp-2">{card.description[currentLang]}</p>
+        </div>
+        <span className={`inline-flex items-center gap-2 font-bold text-ink bg-brass group-hover:bg-brass-light rounded-full transition-colors ${compact ? 'mt-2.5 text-xs px-3 py-1.5 sm:mt-4 sm:text-sm sm:px-4 sm:py-2' : 'mt-4 text-sm px-4 py-2'}`}>
           {UI.viewModels[currentLang]}
           <Arrow className="w-4 h-4" />
         </span>
