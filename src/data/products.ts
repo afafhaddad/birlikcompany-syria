@@ -35,7 +35,7 @@ export const CATEGORIES_CONFIG = [
   { 
     id: 'ps_slats', 
     nameAr: 'قُضبان بي إس', 
-    nameEn: 'PS Wall Slaths', 
+    nameEn: 'PS Wall Slats', 
     nameTr: 'PS Duvar Çıtaları ve Profilleri' 
   },
   { 
@@ -317,12 +317,12 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       }
     }
   },
-  // 5. PS Wall Slaths ➔ قُضبان بي إس
+  // 5. PS Wall Slats ➔ قُضبان بي إس
   {
     id: 'ps_slats',
     name: {
-      ar: 'قُضبان بي إس (PS Wall Slaths)',
-      en: 'PS Wall Slaths',
+      ar: 'قُضبان بي إس (PS Wall Slats)',
+      en: 'PS Wall Slats',
       tr: 'PS Duvar Çıtaları ve Profilleri'
     },
     subtitle: {
@@ -359,8 +359,8 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
   {
     id: 'polystyrene_slats',
     name: {
-      ar: 'قُضبان بي إس (PS Wall Slaths)',
-      en: 'PS Wall Slaths',
+      ar: 'قُضبان بي إس (PS Wall Slats)',
+      en: 'PS Wall Slats',
       tr: 'PS Duvar Çıtaları ve Profilleri'
     },
     subtitle: {
@@ -491,7 +491,7 @@ export const isModelInCategory = (model: ProductModel, cat: ProductCategory): bo
   if (cat === 'spc_flooring') {
     return model.category === 'spc_flooring';
   }
-  // 5. PS Wall Slaths ➔ قُضبان بي إس
+  // 5. PS Wall Slats ➔ قُضبان بي إس
   if (cat === 'ps_slats' || cat === 'polystyrene_slats') {
     return model.category === 'ps_slats' || model.category === 'polystyrene_slats';
   }

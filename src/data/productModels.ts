@@ -1359,7 +1359,7 @@ export const ALL_PRODUCT_MODELS: ProductModel[] = [
   },
 
   // ==========================================
-  // 6. PS Slaths & Cornice (قُضبان وكورنيش بي إس)
+  // 6. PS Slats & Cornice (قُضبان وكورنيش بي إس)
   // Standardized Length: 240 cm | Widths: 1.5 cm, 2.5 cm, 4 cm, 4.8 cm, 10 cm | Thickness: mm
   // ==========================================
   {

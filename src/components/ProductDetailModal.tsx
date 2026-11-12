@@ -135,6 +135,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="space-y-3">
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#EFE9DF] border border-[#E5DFD5]">
               <img 
+                loading="lazy" 
+                decoding="async" 
                 src={safeMainImgSrc} 
                 alt={`${model.name[currentLang]} - ${safeActiveIdx + 1}`}
                 onError={(e) => {
@@ -202,6 +204,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     }`}
                   >
                     <img 
+                      loading="lazy" 
+                      decoding="async" 
                       src={imgUrl || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80'} 
                       alt={`Thumbnail ${idx + 1}`} 
                       onError={(e) => {

@@ -6,8 +6,6 @@ import {
 } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
-import heroImage from '../assets/images/hero.png';
-import { EMBEDDED_HERO_IMAGE } from '../data/embeddedAssets';
 import { useMedia } from '../context/MediaContext';
 import { DropZoneOverlay } from './DropZoneOverlay';
 
@@ -27,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({
   const isRtl = currentLang === 'ar';
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
-  const defaultHeroFallback = EMBEDDED_HERO_IMAGE || heroImage;
+  const defaultHeroFallback = '/hero.jpg';
   const { getHeroImageUrl } = useMedia();
   const heroImageFromRegistry = getHeroImageUrl(defaultHeroFallback);
 
@@ -51,7 +49,9 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Interior Decor Background Image with Admin Drop Zone */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={currentHeroSrc || heroImage || '/hero.png'} 
+          src={currentHeroSrc || defaultHeroFallback}
+          fetchPriority="high"
+          decoding="async" 
           alt="شركة بيرليك - الوجهة الأولى للتشطيبات الداخلية الفاخرة في سوريا" 
           onError={handleHeroImageError}
           referrerPolicy="no-referrer"
@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             <img 
-              src="/logo.png" 
+              src="/logo-512.png" 
               alt={t.brandName}
               className="relative z-10 w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)]"
             />

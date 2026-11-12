@@ -325,13 +325,13 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     }
   },
 
-  // 5. قُضبان بي إس (PS Wall Slaths)
+  // 5. قُضبان بي إس (PS Wall Slats)
   {
     id: 'ps_slats',
     categoryId: 'ps_slats',
     categoryName: {
-      ar: 'قُضبان بي إس (PS Wall Slaths)',
-      en: 'PS Wall Slaths',
+      ar: 'قُضبان بي إس (PS Wall Slats)',
+      en: 'PS Wall Slats',
       tr: 'PS Duvar Çıtaları ve Profilleri'
     },
     subtitle: {
@@ -341,12 +341,12 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     badge: {
       ar: 'فيديو تطبيق قُضبان بي إس',
-      en: 'PS Slaths Application Video',
+      en: 'PS Slats Application Video',
       tr: 'PS Çıta Uygulama Videosu'
     },
     videoTitle: {
-      ar: 'طريقة وخطوات قص وتصميم وتركيب قُضبان بي إس الجدارية (PS Wall Slaths)',
-      en: 'Design, Miter Cutting & Installation: PS Wall Slaths & Moldings',
+      ar: 'طريقة وخطوات قص وتصميم وتركيب قُضبان بي إس الجدارية (PS Wall Slats)',
+      en: 'Design, Miter Cutting & Installation: PS Wall Slats & Moldings',
       tr: 'PS Duvar Çıtaları ve Panoları Kesim ve Montaj Kılavuzu'
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/SPZ2marfnMc?si=-qp7movQnPTWSR2l',

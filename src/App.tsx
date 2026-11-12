@@ -22,16 +22,63 @@ import { OfficeSection } from './components/OfficeSection';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { Footer } from './components/Footer';
 import { SEOHead } from './components/SEOHead';
-import { PRODUCT_MODELS } from './data/products';
+import { PRODUCT_MODELS, CATEGORIES_DATA } from './data/products';
+
+interface InitialRoute {
+  view: AppView;
+  category: ProductCategory;
+  product: ProductModel | null;
+  openAdmin: boolean;
+}
+
+function resolveInitialRoute(): InitialRoute {
+  const route: InitialRoute = { view: 'home', category: 'ps_wood', product: null, openAdmin: false };
+  if (typeof window === 'undefined') return route;
+
+  const params = new URLSearchParams(window.location.search);
+  route.openAdmin = params.has('admin') || window.location.hash === '#admin';
+
+  const pageParam = params.get('page');
+  const categoryParam = params.get('category');
+  const productParam = params.get('product');
+  const validCategory = categoryParam && CATEGORIES_DATA.some((c) => c.id === categoryParam)
+    ? (categoryParam as ProductCategory)
+    : null;
+
+  if (productParam) {
+    const foundProduct = PRODUCT_MODELS.find(
+      (m) => m.id === productParam || m.code.toLowerCase() === productParam.toLowerCase()
+    );
+    if (foundProduct) {
+      route.product = foundProduct;
+      route.category = validCategory || (foundProduct.category as ProductCategory) || route.category;
+      route.view = 'product';
+      return route;
+    }
+  }
+
+  if (validCategory) {
+    route.category = validCategory;
+    route.view = 'category';
+    return route;
+  }
+
+  if (pageParam === 'catalogue') route.view = 'catalogue';
+  else if (pageParam === 'installation') route.view = 'installation';
+
+  return route;
+}
 
 export default function App() {
   // Default language is Arabic with toggles for English and Turkish
   const [currentLang, setCurrentLang] = useState<Language>('ar');
   
-  // Page Routing State
-  const [currentView, setCurrentView] = useState<AppView>('home');
-  const [activeCategory, setActiveCategory] = useState<ProductCategory>('ps_wood');
-  const [activeProduct, setActiveProduct] = useState<ProductModel | null>(null);
+  // Page Routing State — resolved synchronously from the URL on first render so that
+  // deep links (?page=, ?category=, ?product=) survive before SEOHead rewrites the URL.
+  const [initialRoute] = useState(() => resolveInitialRoute());
+  const [currentView, setCurrentView] = useState<AppView>(initialRoute.view);
+  const [activeCategory, setActiveCategory] = useState<ProductCategory>(initialRoute.category);
+  const [activeProduct, setActiveProduct] = useState<ProductModel | null>(initialRoute.product);
 
   // Admin login modal state
   const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
@@ -42,41 +89,12 @@ export default function App() {
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   }, [currentLang]);
 
-  // Check for deep links and ?admin parameter in URL on mount
+  // Check for ?admin parameter in URL on mount
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.has('admin') || window.location.hash === '#admin') {
+    if (initialRoute.openAdmin) {
       setIsAdminLoginOpen(true);
     }
-
-    const pageParam = params.get('page');
-    const categoryParam = params.get('category') as ProductCategory | null;
-    const productParam = params.get('product');
-
-    if (productParam) {
-      const foundProduct = PRODUCT_MODELS.find(
-        (m) => m.id === productParam || m.code.toLowerCase() === productParam.toLowerCase()
-      );
-      if (foundProduct) {
-        setActiveProduct(foundProduct);
-        if (categoryParam) setActiveCategory(categoryParam);
-        setCurrentView('product');
-        return;
-      }
-    }
-
-    if (categoryParam) {
-      setActiveCategory(categoryParam);
-      setCurrentView('category');
-      return;
-    }
-
-    if (pageParam === 'catalogue') {
-      setCurrentView('catalogue');
-    } else if (pageParam === 'installation') {
-      setCurrentView('installation');
-    }
-  }, []);
+  }, [initialRoute]);
 
   // Handle header / footer navigation
   const handleNavigate = (sectionId: string) => {

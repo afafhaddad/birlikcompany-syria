@@ -12,6 +12,7 @@ import {
   clearAllLocalMediaStorage
 } from '../utils/mediaStorage';
 import { optimizeImageForUpload } from '../utils/imageOptimizer';
+import { optimizeImage } from '../utils/optimizeImage';
 
 export interface MediaTarget {
   type: 'hero' | 'founder' | 'category' | 'product';
@@ -834,6 +835,8 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return resolved && resolved.trim() !== '' ? resolved : defaultImage;
   };
 
+  const adminRaw = isAdmin && !adminPreviewAsVisitor;
+
   return (
     <MediaContext.Provider
       value={{
@@ -859,11 +862,13 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         addProductImage,
         removeProductImage,
         setProductMainImage,
-        getHeroImageUrl,
-        getCategoryImageUrl,
-        getProductImageUrl,
-        getProductGalleryUrls,
-        getFounderImageUrl,
+        // Visitors get resized/compressed images; admins get the raw URLs so that
+        // image assignment/removal (which matches by URL) keeps working.
+        getHeroImageUrl: (d) => (adminRaw ? getHeroImageUrl(d) : optimizeImage(getHeroImageUrl(d), 1600)),
+        getCategoryImageUrl: (id, d) => (adminRaw ? getCategoryImageUrl(id, d) : optimizeImage(getCategoryImageUrl(id, d), 1080)),
+        getProductImageUrl: (id, d) => (adminRaw ? getProductImageUrl(id, d) : optimizeImage(getProductImageUrl(id, d), 1080)),
+        getProductGalleryUrls: (id, d) => (adminRaw ? getProductGalleryUrls(id, d) : getProductGalleryUrls(id, d).map((u) => optimizeImage(u, 1080))),
+        getFounderImageUrl: (d) => (adminRaw ? getFounderImageUrl(d) : optimizeImage(getFounderImageUrl(d), 640)),
       }}
     >
       {children}

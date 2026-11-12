@@ -297,7 +297,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 onClick={() => setLightboxOpen(true)}
               >
                 <img 
-                  src={activeProductImgSrc} 
+                  fetchPriority="high"
+                  decoding="async"
+                  src={activeProductImgSrc}
                   alt={`${model.code} - ${model.name[currentLang]} | ${categoryInfo.name[currentLang]} - شركة بيرليك لديكور وتكسية الجدران في اللاذقية وسوريا`} 
                   onError={(e) => {
                     const fallback = categoryInfo.image || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85';
@@ -411,6 +413,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         }`}
                       >
                         <img 
+                          loading="lazy" 
+                          decoding="async" 
                           src={img || categoryInfo.image || 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=400&q=80'} 
                           alt={`${model.code} - ${model.name[currentLang]} صورة #${idx + 1} | Birlik Company Lattakia Syria`} 
                           onError={(e) => {
@@ -691,6 +695,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <img 
+              loading="lazy" 
+              decoding="async" 
               src={activeProductImgSrc} 
               alt={`${model.code} - ${model.name[currentLang]} | ${categoryInfo.name[currentLang]} - خامات وتكسية جدران فاخرة في سوريا واللاذقية`} 
               onError={(e) => {

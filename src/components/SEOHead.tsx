@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { AppView, Language, ProductCategory, ProductModel } from '../types';
 import { CATEGORIES_DATA } from '../data/products';
+import { useMedia } from '../context/MediaContext';
+
+export const SITE_ORIGIN = 'https://www.birlik-insaat.com';
 
 interface SEOHeadProps {
   currentView: AppView;
@@ -15,15 +18,20 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   activeCategory,
   activeProduct,
 }) => {
+  // Raw (un-optimized) registry URLs: share previews need a direct, absolute image URL.
+  const { registry } = useMedia();
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const origin = window.location.origin;
+    // Always use the single canonical production domain so canonical/og URLs never
+    // point at preview deployments or the non-www redirect.
+    const origin = SITE_ORIGIN;
     const catInfo = CATEGORIES_DATA.find((c) => c.id === activeCategory) || CATEGORIES_DATA[0];
 
     // Helper to make absolute image URL
     const toAbsoluteUrl = (url: string | undefined): string => {
-      if (!url) return `${origin}/hero.png`;
+      if (!url) return registry.hero || `${origin}/hero.jpg`;
       if (url.startsWith('http://') || url.startsWith('https://')) return url;
       return `${origin}${url.startsWith('/') ? '' : '/'}${url}`;
     };
@@ -31,7 +39,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     let title = '';
     let description = '';
     let keywords = '';
-    let ogImage = `${origin}/hero.png`;
+    let ogImage = registry.hero || `${origin}/hero.jpg`;
     let ogUrl = `${origin}/`;
     let schemaData: object | null = null;
 
@@ -42,9 +50,11 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     if (currentView === 'product' && activeProduct) {
       const prodName = activeProduct.name[currentLang] || activeProduct.name.ar;
       const catName = catInfo.name[currentLang] || catInfo.name.ar;
-      const firstImg = activeProduct.images?.[0] || catInfo.image;
+      const registryProduct = registry.products?.[activeProduct.id];
+      const firstImg = registryProduct?.main || registryProduct?.gallery?.[0] || activeProduct.images?.[0] || registry.categories?.[activeProduct.category] || catInfo.image;
       ogImage = toAbsoluteUrl(firstImg);
-      ogUrl = `${origin}/?category=${activeCategory}&product=${activeProduct.id}`;
+      // Canonical product URL uses the product's own category so it matches sitemap.xml
+      ogUrl = `${origin}/?category=${activeProduct.category}&product=${activeProduct.id}`;
 
       if (currentLang === 'ar') {
         title = `${activeProduct.code} - ${prodName} | ${catName} — شركة بيرليك سوريا`;
@@ -61,7 +71,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: prodName,
-        image: activeProduct.images?.map(toAbsoluteUrl) || [ogImage],
+        image: [ogImage],
         description: description,
         sku: activeProduct.code,
         mpn: activeProduct.id,
@@ -75,26 +85,14 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           name: 'شركة بيرليك لمواد التكسية والديكور الجداري',
           url: origin,
         },
-        offers: {
-          '@type': 'Offer',
-          url: ogUrl,
-          priceCurrency: 'USD',
-          price: '0.00',
-          priceValidUntil: '2027-12-31',
-          availability: 'https://schema.org/InStock',
-          itemCondition: 'https://schema.org/NewCondition',
-          seller: {
-            '@type': 'Organization',
-            name: 'Birlik Company Syria',
-            telephone: '+963995764573',
-          },
-        },
+        // No `offers` block: prices are quoted on request, and a fake 0.00 price
+        // is flagged by Google as invalid/misleading structured data.
       };
 
     } else if (currentView === 'category') {
       const catName = catInfo.name[currentLang] || catInfo.name.ar;
       const catSubtitle = catInfo.subtitle[currentLang] || catInfo.subtitle.ar;
-      ogImage = toAbsoluteUrl(catInfo.image);
+      ogImage = toAbsoluteUrl(registry.categories?.[catInfo.id] || catInfo.image);
       ogUrl = `${origin}/?category=${activeCategory}`;
 
       if (currentLang === 'ar') {
@@ -140,7 +138,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       };
 
     } else if (currentView === 'catalogue') {
-      ogImage = toAbsoluteUrl(catInfo.image);
+      ogImage = toAbsoluteUrl(registry.categories?.[catInfo.id] || catInfo.image);
       ogUrl = `${origin}/?page=catalogue`;
 
       if (currentLang === 'ar') {
@@ -263,7 +261,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         newRelativeUrl
       );
     }
-  }, [currentView, currentLang, activeCategory, activeProduct]);
+  }, [currentView, currentLang, activeCategory, activeProduct, registry]);
 
   return null;
 };

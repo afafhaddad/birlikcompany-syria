@@ -135,7 +135,7 @@ export const TRANSLATIONS = {
     hero: {
       title: 'Birlik Company.. The Premier Destination for Innovative Interior Renovation & Finishing Materials in Syria',
       mainHeadline: 'Birlik Company.. The Premier Destination for Innovative Interior Renovation & Finishing Materials in Syria',
-      subtitle: 'An exclusive collection featuring: PS Wall Panels, PVC Wall Panels, SPC Wall Panels, SPC Flooring, PS Wall Slaths, and PS Baseboards; renewing your spaces with the highest standards of quality.',
+      subtitle: 'An exclusive collection featuring: PS Wall Panels, PVC Wall Panels, SPC Wall Panels, SPC Flooring, PS Wall Slats, and PS Baseboards; renewing your spaces with the highest standards of quality.',
       exploreBtn: 'Explore our products',
       contactBtn: 'Contact us'
     },
@@ -144,7 +144,7 @@ export const TRANSLATIONS = {
       subtitle: 'Browse our curated collections — multi-angle photography and precise technical specifications for each model',
       all: 'All Models',
       walls: 'PVC Wall Panels',
-      slats: 'PS Wall Slaths',
+      slats: 'PS Wall Slats',
       baseboards: 'PS Baseboards',
       modelCode: 'Model Code',
       viewGalleryAndSpecs: 'View Photography & Specs',

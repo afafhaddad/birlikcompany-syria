@@ -76,6 +76,8 @@ export const FounderSection: React.FC<FounderSectionProps> = ({
             {/* Photo Frame */}
             <div className="relative aspect-[3/4] w-full bg-[#E8E2D8] border border-[#DDD5C7] shadow-sm overflow-hidden">
               <img
+                loading="lazy"
+                decoding="async"
                 src={(imageError ? FOUNDER_DATA.defaultImage : founderImage) || FOUNDER_DATA.defaultImage}
                 alt={FOUNDER_DATA.name[currentLang]}
                 onError={() => setImageError(true)}

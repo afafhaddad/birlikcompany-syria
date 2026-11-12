@@ -102,11 +102,11 @@ export const ProductCategoriesSection: React.FC<ProductCategoriesSectionProps> =
       id: 'ps_slats' as ProductCategory,
       name: {
         ar: 'قُضبان بي إس',
-        en: 'PS Wall Slaths',
+        en: 'PS Wall Slats',
         tr: 'PS Duvar Çıtaları ve Profilleri'
       },
       tag: {
-        ar: 'PS Wall Slaths',
+        ar: 'PS Wall Slats',
         en: 'قُضبان بي إس',
         tr: 'PS Duvar Çıtaları'
       },
@@ -116,7 +116,7 @@ export const ProductCategoriesSection: React.FC<ProductCategoriesSectionProps> =
         tr: 'Fransız tarzı çıtalama ve duvar tasarımı imkanı sunan, her dekorasyon zevkine uyum sağlayan esnek ve dayanıklı dekoratif çıtalar.'
       },
       image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=2400&q=85',
-      code: 'PS Wall Slaths'
+      code: 'PS Wall Slats'
     },
     {
       id: 'ps_baseboards' as ProductCategory,
@@ -164,6 +164,8 @@ export const ProductCategoriesSection: React.FC<ProductCategoriesSectionProps> =
           >
             {/* Full Width Edge-to-Edge Background Image */}
             <img
+              loading="lazy"
+              decoding="async"
               src={getCategoryImageUrl(cat.id, cat.image) || cat.image || '/hero.png'}
               alt={cat.name[currentLang]}
               onError={(e) => {

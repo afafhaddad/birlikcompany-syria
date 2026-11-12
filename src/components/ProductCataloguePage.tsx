@@ -135,12 +135,12 @@ export const ProductCataloguePage: React.FC<ProductCataloguePageProps> = ({
       number: '05',
       name: {
         ar: 'قُضبان بي إس',
-        en: 'PS Wall Slaths',
+        en: 'PS Wall Slats',
         tr: 'PS Duvar Çıtaları ve Profilleri'
       },
       tag: {
-        ar: 'PS Wall Slaths',
-        en: 'PS Wall Slaths',
+        ar: 'PS Wall Slats',
+        en: 'PS Wall Slats',
         tr: 'PS Çıtalar'
       },
       description: {
@@ -397,6 +397,8 @@ export const ProductCataloguePage: React.FC<ProductCataloguePageProps> = ({
                 {/* Picture Area - Made significantly larger on mobile for maximum image clarity */}
                 <div className="relative h-80 sm:h-72 md:h-72 lg:h-80 overflow-hidden group">
                   <img 
+                    loading="lazy" 
+                    decoding="async" 
                     src={getCategoryImageUrl(cat.id, cat.image) || cat.image || '/hero.png'} 
                     alt={`${cat.name[currentLang]} - مواد تكسية وديكور جداري في سوريا واللاذقية | Birlik Company`} 
                     onError={(e) => {

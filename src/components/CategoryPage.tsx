@@ -268,6 +268,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
       <div className="relative bg-[#141210] text-white overflow-hidden border-b border-[#E5DFD5]">
         <div className="absolute inset-0">
           <img
+            loading="lazy"
+            decoding="async"
             src={getCategoryImageUrl(category.id, category.image) || category.image || '/hero.png'}
             alt={`${category.name[currentLang]} - خامات وتكسية جدران معمارية في اللاذقية وسوريا | Birlik Company Syria`}
             onError={(e) => {
@@ -446,6 +448,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                 {/* Product Photo - Enlarged on mobile for prominent clarity */}
                 <div className="relative h-72 sm:h-60 md:h-64 bg-[#1C1917] overflow-hidden">
                   <img 
+                    loading="lazy" 
+                    decoding="async" 
                     src={cardImgSrc}
                     alt={`${model.code} - ${model.name[currentLang]} | ${category.name[currentLang]} - شركة بيرليك لديكور وتكسية الجدران في اللاذقية وسوريا`}
                     onError={(e) => {
