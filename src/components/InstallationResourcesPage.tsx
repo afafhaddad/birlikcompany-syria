@@ -1,400 +1,272 @@
 import React, { useState } from 'react';
-import { 
-  Play, 
-  ArrowRight, 
-  ArrowLeft, 
-  Wrench, 
-  CheckCircle2, 
-  Sparkles, 
-  ExternalLink, 
-  Layers, 
-  PhoneCall, 
-  MessageSquare,
-  Maximize2,
-  HelpCircle,
-  Film
-} from 'lucide-react';
-import { Language, ProductCategory } from '../types';
+import { ArrowLeft, ArrowRight, ChevronDown, Lightbulb, MessageSquare, Play, Wrench } from 'lucide-react';
+import { Language } from '../types';
 import { INSTALLATION_GUIDES, InstallationGuide } from '../data/installationGuides';
+import { PRODUCT_MODELS, isModelInCategory } from '../data/products';
+import { categoryCard } from '../data/categoryCards';
 import { useMedia } from '../context/MediaContext';
-import { categoryPath } from '../routing';
+import { Link } from '../router';
+import { categoryRoute, productRoute } from '../routing';
+import { Breadcrumbs } from './Breadcrumbs';
+import { SectionHeading } from './cards';
+import { track } from '../analytics';
+import { UI, whatsappLink } from '../site';
 
-interface InstallationResourcesPageProps {
-  currentLang: Language;
-  onSelectCategory: (categoryId: ProductCategory) => void;
-  onBackToHome: () => void;
-  onBackToCatalogue: () => void;
-}
+const TEXT = {
+  ar: {
+    sub: 'فيديو قصير وخطوات واضحة لكل فئة — اختر المنتج لتشاهد طريقة تركيبه، ثم انتقل مباشرة إلى موديلاته.',
+    watch: 'شاهد فيديو التركيب',
+    method: 'طريقة التثبيت',
+    steps: 'خطوات التركيب',
+    more: 'الأدوات ونصيحة المهندس',
+    tools: 'الأدوات المطلوبة',
+    viewModels: (n: number, c: string) => `عرض موديلات ${c} (${n})`,
+    models: 'موديلات من هذه الفئة',
+    helpTitle: 'تحتاج معلّم تركيب أو استشارة؟',
+    helpBody: 'أرسل لنا صور المكان والقياسات، ونساعدك في الكميات وطريقة التركيب المناسبة.',
+    helpBtn: 'تواصل معنا على واتساب',
+    waMsg: 'مرحباً شركة بيرليك، أحتاج استشارة حول تركيب منتجاتكم.',
+  },
+  en: {
+    sub: 'A short video and clear steps for every range — pick a product to see how it is installed, then jump straight to its models.',
+    watch: 'Watch the installation video',
+    method: 'Fixing method',
+    steps: 'Installation steps',
+    more: 'Tools & pro tip',
+    tools: 'Tools you need',
+    viewModels: (n: number, c: string) => `View ${c} models (${n})`,
+    models: 'Models in this range',
+    helpTitle: 'Need an installer or some advice?',
+    helpBody: 'Send us photos of the space and your measurements and we will help with quantities and the right installation method.',
+    helpBtn: 'Message us on WhatsApp',
+    waMsg: 'Hello Birlik Company, I need advice about installing your products.',
+  },
+  tr: {
+    sub: 'Her ürün grubu için kısa bir video ve net adımlar — montajını görmek için ürünü seçin, ardından modellerine geçin.',
+    watch: 'Montaj videosunu izleyin',
+    method: 'Sabitleme yöntemi',
+    steps: 'Montaj adımları',
+    more: 'Aletler ve usta tavsiyesi',
+    tools: 'Gerekli aletler',
+    viewModels: (n: number, c: string) => `${c} modellerini gör (${n})`,
+    models: 'Bu gruptaki modeller',
+    helpTitle: 'Usta veya danışmanlık mı lazım?',
+    helpBody: 'Mekân fotoğraflarını ve ölçüleri gönderin; miktar ve doğru montaj yöntemi konusunda yardımcı olalım.',
+    helpBtn: "WhatsApp'tan yazın",
+    waMsg: 'Merhaba Birlik Şirketi, ürünlerinizin montajı hakkında danışmak istiyorum.',
+  },
+};
 
-export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps> = ({
-  currentLang,
-  onSelectCategory,
-  onBackToHome,
-  onBackToCatalogue
-}) => {
-  const { getCategoryImageUrl } = useMedia();
-  const isRtl = currentLang === 'ar';
-  const ArrowIcon = isRtl ? ArrowRight : ArrowLeft;
-  const NextArrowIcon = isRtl ? ArrowLeft : ArrowRight;
+/** YouTube thumbnail that only loads the heavy player after a tap (saves ~1 MB per video). */
+const LiteVideo: React.FC<{ guide: InstallationGuide; title: string; label: string }> = ({ guide, title, label }) => {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div className="relative aspect-video rounded-3xl overflow-hidden bg-ink-soft shadow-lg">
+      {playing ? (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${guide.youtubeId}?autoplay=1&rel=0&playsinline=1`}
+          title={title}
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full"
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            setPlaying(true);
+            track('video_play', { category: guide.id });
+          }}
+          aria-label={`${label}: ${title}`}
+          className="group absolute inset-0 w-full h-full"
+        >
+          <img
+            src={`https://i.ytimg.com/vi/${guide.youtubeId}/hqdefault.jpg`}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <span className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-ink/20" />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brass text-ink flex items-center justify-center shadow-xl transition-transform group-hover:scale-110">
+              <Play className="w-7 h-7 sm:w-8 sm:h-8 ms-1 fill-current" />
+            </span>
+          </span>
+          <span className="absolute bottom-3 inset-x-4 text-start text-white text-sm font-bold">{label}</span>
+        </button>
+      )}
+    </div>
+  );
+};
 
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('all');
-
-  const scrollToSection = (id: string) => {
-    setActiveCategoryFilter(id);
-    if (id === 'all') {
-      window.scrollTo({ top: 350, behavior: 'smooth' });
-      return;
-    }
-    const el = document.getElementById(`install-${id}`);
-    if (el) {
-      const yOffset = -90;
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
-
-  const t = {
-    ar: {
-      breadcrumbHome: 'الرئيسية',
-      breadcrumbCatalogue: 'كتالوج المنتجات',
-      breadcrumbCurrent: 'فيديوهات ودليل التركيب',
-      pageBadge: 'فيديوهات ودليل التركيب والتطبيق',
-      pageTitle: 'دليل وفيديوهات تطبيق وتركيب المنتجات',
-      pageSubtitle: 'شروحات عملية وفيديوهات مرئية توضح خطوات قص وتثبيت وتركيب كافة ألواح ومنتجات شركة بيرليك بأعلى معايير الإتقان المعماري.',
-      filterAll: 'كافة الفئات (6 فيديوهات)',
-      dimensionsLabel: 'المقاس الموحد',
-      thicknessLabel: 'السماكة الفنية',
-      methodLabel: 'طريقة التثبيت',
-      stepsTitle: 'خطوات وطريقة التركيب',
-      toolsTitle: 'الأدوات والمعدات الموصى بها',
-      viewCategoryModels: 'استعراض موديلات هذا الصنف',
-      watchOnYoutube: 'مشاهدة على يوتيوب',
-      needHelpTitle: 'هل تحتاج استشارة فنية خاصة بمشروعك؟',
-      needHelpSubtitle: 'فريقنا الهندسي في مكتب اللاذقية جاهز لإرشادك حول الكميات وطرق التركيب الأمثل لأي مشروع سكني أو تجاري في سورية.',
-      contactWhatsApp: 'محادثة المهندس عبر واتساب',
-      callDirect: 'اتصال مباشر بفريق الدعم الفني',
-      tipLabel: 'نصيحة المهندس للتركيب المثالي'
-    },
-    en: {
-      breadcrumbHome: 'Home',
-      breadcrumbCatalogue: 'Product Catalogue',
-      breadcrumbCurrent: 'Installation Videos & Resources',
-      pageBadge: 'Installation & Application Video Guides',
-      pageTitle: 'Product Installation Resources & Video Walkthroughs',
-      pageSubtitle: 'Practical step-by-step videos and technical guides demonstrating the correct cutting, adhesive bonding, and installation process for each Birlik product category.',
-      filterAll: 'All Categories (6 Videos)',
-      dimensionsLabel: 'Standard Size',
-      thicknessLabel: 'Technical Thickness',
-      methodLabel: 'Installation Method',
-      stepsTitle: 'Installation Steps & Procedure',
-      toolsTitle: 'Recommended Tools & Equipment',
-      viewCategoryModels: 'Explore Models in this Category',
-      watchOnYoutube: 'Watch on YouTube',
-      needHelpTitle: 'Need Technical Advice for Your Project?',
-      needHelpSubtitle: 'Our engineering specialists at the Latakia headquarters are ready to assist with quantity takeoffs and proper application guidelines across Syria.',
-      contactWhatsApp: 'Consult via WhatsApp',
-      callDirect: 'Direct Phone Support',
-      tipLabel: 'Architectural Pro Tip'
-    },
-    tr: {
-      breadcrumbHome: 'Ana Sayfa',
-      breadcrumbCatalogue: 'Ürün Kataloğu',
-      breadcrumbCurrent: 'Montaj Videoları ve Rehberi',
-      pageBadge: 'Montaj ve Uygulama Video Rehberi',
-      pageTitle: 'Ürün Uygulama ve Montaj Videoları',
-      pageSubtitle: 'Birlik Şirketi ürünlerinin doğru kesim, yapıştırma ve montaj süreçlerini adım adım gösteren görsel rehberler ve videolar.',
-      filterAll: 'Tüm Kategoriler (6 Video)',
-      dimensionsLabel: 'Standart Ölçü',
-      thicknessLabel: 'Teknik Kalınlık',
-      methodLabel: 'Uygulama Yöntemi',
-      stepsTitle: 'Montaj Adımları ve Yöntemi',
-      toolsTitle: 'Önerilen Araç ve Gereçler',
-      viewCategoryModels: 'Bu Kategorideki Modelleri İncele',
-      watchOnYoutube: "YouTube'da İzle",
-      needHelpTitle: 'Projeniz İçin Teknik Danışmanlığa mı İhtiyacınız Var?',
-      needHelpSubtitle: 'Lazkiye merkez ofisimizdeki mimar ve mühendislerimiz malzeme hesabı ve uygulama konusunda yardıma hazırdır.',
-      contactWhatsApp: "WhatsApp'tan Danışın",
-      callDirect: 'Teknik Destek Hattı',
-      tipLabel: 'Mimarın Montaj Tavsiyesi'
-    }
-  }[currentLang];
+const GuideSection: React.FC<{ guide: InstallationGuide; index: number; currentLang: Language }> = ({ guide, index, currentLang }) => {
+  const { getProductImageUrl, getCategoryImageUrl } = useMedia();
+  const t = TEXT[currentLang];
+  const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
+  const card = categoryCard(guide.categoryId);
+  const name = card.name[currentLang];
+  const models = PRODUCT_MODELS.filter((m) => isModelInCategory(m, guide.categoryId));
+  const flip = index % 2 === 1;
 
   return (
-    <div className="bg-[#FAF7F2] min-h-screen text-[#1C1917] pb-24">
-      {/* 1. Header / Breadcrumbs & Hero Title */}
-      <section className="bg-[#F3ECE0]/60 border-b border-[#E5DFD5] pt-8 pb-12 sm:pt-10 sm:pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-xs font-mono text-[#78716A] mb-6 flex-wrap">
-            <button
-              onClick={onBackToHome}
-              className="hover:text-[#9E7241] transition-colors flex items-center gap-1 cursor-pointer"
-            >
-              <span>{t.breadcrumbHome}</span>
-            </button>
-            <span>/</span>
-            <button
-              onClick={onBackToCatalogue}
-              className="hover:text-[#9E7241] transition-colors flex items-center gap-1 cursor-pointer"
-            >
-              <span>{t.breadcrumbCatalogue}</span>
-            </button>
-            <span>/</span>
-            <span className="text-[#1C1917] font-semibold">{t.breadcrumbCurrent}</span>
-          </nav>
+    <section id={`install-${guide.id}`} className={`scroll-mt-32 ${index % 2 === 0 ? 'bg-ivory' : 'bg-sand/50'}`} aria-labelledby={`install-title-${guide.id}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
+        {/* Video */}
+        <div className={`min-w-0 lg:sticky lg:top-36 ${flip ? 'lg:order-2' : ''}`} data-reveal>
+          <LiteVideo guide={guide} title={guide.videoTitle[currentLang]} label={t.watch} />
+        </div>
 
-          {/* Title and Subtitle */}
-          <div className="space-y-4 max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FFFFFF] border border-[#DDD5C7] text-xs font-bold font-mono text-[#9E7241] shadow-2xs">
-              <Film className="w-3.5 h-3.5 text-[#9E7241]" />
-              <span>{t.pageBadge}</span>
+        {/* Guide */}
+        <div className="min-w-0" data-reveal>
+          <p className="flex items-center gap-2 text-sm font-bold text-brass-deep">
+            <span className="tabular-nums" dir="ltr">
+              0{index + 1}
+            </span>
+            <span className="w-6 h-0.5 bg-current" />
+            <span dir="auto">{card.tag[currentLang]}</span>
+          </p>
+          <h2 id={`install-title-${guide.id}`} className="mt-1 text-3xl sm:text-4xl font-black leading-tight">
+            {name}
+          </h2>
+          <p className="mt-2 text-sm sm:text-base leading-relaxed text-muted">{guide.subtitle[currentLang]}</p>
+
+          <p className="mt-4 rounded-2xl bg-white border border-line p-4 text-sm leading-relaxed">
+            <span className="block text-[11px] font-bold text-muted mb-1">{t.method}</span>
+            <span className="font-bold text-ink">{guide.installationMethod[currentLang]}</span>
+          </p>
+
+          <h3 className="mt-6 text-lg font-black">{t.steps}</h3>
+          <ol className="mt-3 space-y-3">
+            {guide.steps[currentLang].map((step, i) => (
+              <li key={i} className="flex gap-3">
+                <span className="w-8 h-8 rounded-full bg-ink text-brass-light text-sm font-black flex items-center justify-center shrink-0 tabular-nums">
+                  {i + 1}
+                </span>
+                <p className="text-sm leading-relaxed text-ink/90 pt-1">{step}</p>
+              </li>
+            ))}
+          </ol>
+
+          <details className="group mt-5 rounded-2xl bg-white border border-line">
+            <summary className="flex items-center justify-between gap-3 p-4 cursor-pointer list-none font-bold text-sm [&::-webkit-details-marker]:hidden">
+              <span className="flex items-center gap-2">
+                <Wrench className="w-4 h-4 text-brass-deep" />
+                {t.more}
+              </span>
+              <ChevronDown className="w-4 h-4 text-muted transition-transform group-open:rotate-180" />
+            </summary>
+            <div className="px-4 pb-4">
+              <p className="text-[11px] font-bold text-muted mb-2">{t.tools}</p>
+              <ul className="flex flex-wrap gap-2">
+                {guide.tools[currentLang].map((tool) => (
+                  <li key={tool} className="px-3 py-1.5 rounded-full bg-sand text-xs font-semibold">
+                    {tool}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 flex gap-3 rounded-xl bg-brass/15 p-3.5 text-sm leading-relaxed">
+                <Lightbulb className="w-5 h-5 text-brass-deep shrink-0 mt-0.5" />
+                {guide.proTip[currentLang]}
+              </p>
+            </div>
+          </details>
+
+          {/* Links to the category and its products */}
+          <div className="mt-6">
+            <p className="text-[11px] font-bold text-muted mb-2">{t.models}</p>
+            <div className="snap-rail gap-2.5 -mx-4 px-4 sm:mx-0 sm:px-0 scroll-px-4">
+              {models.slice(0, 6).map((m) => (
+                <Link
+                  key={m.id}
+                  to={productRoute(currentLang, m)}
+                  style={{ scrollSnapAlign: 'start' }}
+                  className="group w-28 sm:w-32 rounded-2xl overflow-hidden bg-white border border-line hover:border-brass transition-colors"
+                >
+                  <span className="block aspect-square bg-ink-soft overflow-hidden">
+                    <img
+                      src={getProductImageUrl(m.id, getCategoryImageUrl(guide.categoryId, guide.categoryImage))}
+                      alt={`${m.code} ${m.name[currentLang]}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </span>
+                  <span className="block p-2 text-xs font-bold text-ink truncate">{m.name[currentLang]}</span>
+                </Link>
+              ))}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#1C1917] tracking-tight leading-tight">
-              {t.pageTitle}
-            </h1>
-
-            <p className="text-sm sm:text-base text-[#5C554E] leading-relaxed max-w-3xl">
-              {t.pageSubtitle}
-            </p>
-          </div>
-
-          {/* Quick Jump Category Filter Tabs */}
-          <div className="mt-8 pt-6 border-t border-[#E0D7C8] flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={() => scrollToSection('all')}
-              className={`px-3 py-1.5 text-xs font-medium transition-all cursor-pointer border ${
-                activeCategoryFilter === 'all'
-                  ? 'bg-[#1C1917] text-white border-[#1C1917] shadow-xs'
-                  : 'bg-white text-[#5C554E] border-[#DDD5C7] hover:border-[#9E7241]'
-              }`}
+            <Link
+              to={categoryRoute(currentLang, guide.categoryId)}
+              className="group mt-4 inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-3.5 rounded-full bg-ink hover:bg-ink-soft text-white font-extrabold text-sm transition-colors"
             >
-              {t.filterAll}
-            </button>
+              {t.viewModels(models.length, name)}
+              <Arrow className="w-4 h-4 text-brass-light" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-            {INSTALLATION_GUIDES.map((guide) => (
-              <button
-                key={guide.id}
-                type="button"
-                onClick={() => scrollToSection(guide.id)}
-                className={`px-3 py-1.5 text-xs font-medium transition-all cursor-pointer border flex items-center gap-1.5 ${
-                  activeCategoryFilter === guide.id
-                    ? 'bg-[#9E7241] text-white border-[#9E7241] shadow-xs font-bold'
-                    : 'bg-white text-[#5C554E] border-[#DDD5C7] hover:border-[#9E7241] hover:text-[#1C1917]'
-                }`}
-              >
-                <Play className="w-2.5 h-2.5 fill-current shrink-0" />
-                <span>{guide.categoryName[currentLang]}</span>
-              </button>
-            ))}
+export const InstallationResourcesPage: React.FC<{ currentLang: Language }> = ({ currentLang }) => {
+  const t = TEXT[currentLang];
+  const jump = (id: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById(`install-${id}`)?.scrollIntoView({ behavior: 'smooth' });
+    window.history.replaceState(null, '', `#install-${id}`);
+  };
+
+  return (
+    <div className="pt-16 md:pt-[4.5rem]">
+      <section className="bg-ink text-white">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-6 pb-8 md:pb-12">
+          <Breadcrumbs dark currentLang={currentLang} items={[{ label: UI.installationLong[currentLang] }]} />
+          <div className="mt-6">
+            <SectionHeading as="h1" dark eyebrow={`${INSTALLATION_GUIDES.length} ${currentLang === 'ar' ? 'فيديوهات' : currentLang === 'tr' ? 'video' : 'videos'}`} title={UI.installationLong[currentLang]} sub={t.sub} />
           </div>
         </div>
       </section>
 
-      {/* 2. Main Content: Each Category Card with Video Directly Below It */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 space-y-16 sm:space-y-20">
-        {INSTALLATION_GUIDES.map((guide, idx) => {
-          const categoryPhoto = getCategoryImageUrl(guide.categoryId, guide.categoryImage);
-
-          return (
-            <article
-              key={guide.id}
-              id={`install-${guide.id}`}
-              className="bg-[#FFFFFF] border border-[#DDD5C7] shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
+      {/* Jump to a product range */}
+      <nav className="sticky top-16 md:top-[4.5rem] z-30 bg-ivory/95 backdrop-blur-md border-b border-line" aria-label={UI.installationLong[currentLang]}>
+        <div className="snap-rail gap-2 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-3 scroll-px-5">
+          {INSTALLATION_GUIDES.map((g) => (
+            <a
+              key={g.id}
+              href={`#install-${g.id}`}
+              onClick={jump(g.id)}
+              style={{ scrollSnapAlign: 'start' }}
+              className="px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap border bg-white text-ink/80 border-line hover:border-brass hover:text-ink transition-colors"
             >
-              {/* Category Header Bar */}
-              <div className="p-6 sm:p-8 bg-gradient-to-b from-[#FAF7F2] to-[#FFFFFF] border-b border-[#E5DFD5]">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-                  <div className="space-y-2 max-w-2xl">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="px-2.5 py-0.5 bg-[#9E7241]/10 text-[#9E7241] text-[11px] font-bold font-mono border border-[#9E7241]/20">
-                        0{idx + 1} • {guide.badge[currentLang]}
-                      </span>
-                      <span className="text-xs text-[#78716A] font-mono">
-                        {guide.dimensions}
-                      </span>
-                    </div>
+              {categoryCard(g.categoryId).name[currentLang]}
+            </a>
+          ))}
+        </div>
+      </nav>
 
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-[#1C1917]">
-                      {guide.categoryName[currentLang]}
-                    </h2>
+      {INSTALLATION_GUIDES.map((g, i) => (
+        <GuideSection key={g.id} guide={g} index={i} currentLang={currentLang} />
+      ))}
 
-                    <p className="text-xs sm:text-sm text-[#5C554E] leading-relaxed">
-                      {guide.subtitle[currentLang]}
-                    </p>
-                  </div>
-
-                  {/* Category Fast Navigation Button */}
-                  <div className="shrink-0 flex items-center gap-3">
-                    <a
-                      href={categoryPath(currentLang, guide.categoryId)}
-                  onClick={(e) => { e.preventDefault(); onSelectCategory(guide.categoryId); }}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1C1917] hover:bg-[#38332E] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs group"
-                    >
-                      <Layers className="w-3.5 h-3.5 text-[#DFC08A]" />
-                      <span>{t.viewCategoryModels}</span>
-                      <NextArrowIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Key Technical Specs Pill Strip */}
-                <div className="mt-6 pt-4 border-t border-[#EFE9DF] grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <div className="p-2.5 bg-[#FAF7F2] border border-[#E8E2D8]">
-                    <span className="text-[11px] text-[#78716A] block mb-0.5">{t.dimensionsLabel}:</span>
-                    <span className="font-mono font-bold text-[#1C1917]" dir="ltr">{guide.dimensions}</span>
-                  </div>
-                  <div className="p-2.5 bg-[#FAF7F2] border border-[#E8E2D8]">
-                    <span className="text-[11px] text-[#78716A] block mb-0.5">{t.thicknessLabel}:</span>
-                    <span className="font-mono font-bold text-[#1C1917]" dir="ltr">{guide.thickness}</span>
-                  </div>
-                  <div className="p-2.5 bg-[#FAF7F2] border border-[#E8E2D8]">
-                    <span className="text-[11px] text-[#78716A] block mb-0.5">{t.methodLabel}:</span>
-                    <span className="font-medium text-[#1C1917] text-[11.5px] truncate block">{guide.installationMethod[currentLang]}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* VIDEO EMBED CONTAINER DIRECTLY BELOW THE CATEGORY */}
-              <div className="p-5 sm:p-8 bg-[#1C1917]/3 border-b border-[#E5DFD5]">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#1C1917]">
-                      <Play className="w-4 h-4 text-[#9E7241] fill-[#9E7241]" />
-                      <span>{guide.videoTitle[currentLang]}</span>
-                    </div>
-
-                    <a
-                      href={`https://www.youtube.com/watch?v=${guide.youtubeId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[11px] text-[#9E7241] hover:text-[#7A542A] hover:underline inline-flex items-center gap-1 font-medium transition-colors"
-                      title={t.watchOnYoutube}
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                      <span className="hidden sm:inline">{t.watchOnYoutube}</span>
-                    </a>
-                  </div>
-
-                  {/* Responsive 16:9 Video Frame */}
-                  <div className="relative w-full aspect-video bg-black shadow-lg overflow-hidden border border-[#DDD5C7]">
-                    <iframe
-                      className="absolute inset-0 w-full h-full"
-                      src={guide.videoEmbedUrl}
-                      title={guide.videoTitle[currentLang]}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Installation Steps, Tools & Professional Tips */}
-              <div className="p-6 sm:p-8 bg-white grid grid-cols-1 lg:grid-cols-12 gap-8">
-                
-                {/* Left/Main Column: Step-by-Step Instructions */}
-                <div className="lg:col-span-8 space-y-4">
-                  <h3 className="text-sm font-bold text-[#1C1917] flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#1E7E45]" />
-                    <span>{t.stepsTitle}</span>
-                  </h3>
-
-                  <ol className="space-y-3">
-                    {guide.steps[currentLang].map((step, sIdx) => (
-                      <li 
-                        key={sIdx}
-                        className="flex items-start gap-3 p-3 bg-[#FAF7F2] border border-[#E8E2D8] hover:border-[#9E7241]/40 transition-colors"
-                      >
-                        <span className="w-5 h-5 rounded-full bg-[#1C1917] text-white text-[11px] font-mono font-bold flex items-center justify-center shrink-0 mt-0.5">
-                          {sIdx + 1}
-                        </span>
-                        <p className="text-xs sm:text-sm text-[#3D352E] leading-relaxed font-normal">
-                          {step}
-                        </p>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-
-                {/* Right/Side Column: Tools & Pro Tip */}
-                <div className="lg:col-span-4 space-y-5">
-                  {/* Recommended Tools */}
-                  <div className="p-4 bg-[#F5EFE6] border border-[#DDD5C7] space-y-3">
-                    <h4 className="text-xs font-bold text-[#1C1917] flex items-center gap-2">
-                      <Wrench className="w-3.5 h-3.5 text-[#9E7241]" />
-                      <span>{t.toolsTitle}</span>
-                    </h4>
-
-                    <ul className="space-y-1.5">
-                      {guide.tools[currentLang].map((tool, tIdx) => (
-                        <li key={tIdx} className="text-xs text-[#5C554E] flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />
-                          <span>{tool}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Architectural Pro Tip */}
-                  <div className="p-4 bg-[#FFFFFF] border-l-4 rtl:border-l-0 rtl:border-r-4 border-[#9E7241] border-t border-b border-r rtl:border-l border-[#DDD5C7] shadow-2xs space-y-2">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#9E7241]">
-                      <Sparkles className="w-3.5 h-3.5 text-[#DFC08A]" />
-                      <span>{t.tipLabel}</span>
-                    </div>
-                    <p className="text-xs text-[#5C554E] leading-relaxed italic">
-                      {guide.proTip[currentLang]}
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-            </article>
-          );
-        })}
-      </section>
-
-      {/* 3. Bottom Technical Consultation & Support CTA Banner */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24">
-        <div className="bg-[#24201D] text-white p-8 sm:p-12 border border-[#9E7241]/40 shadow-xl relative overflow-hidden">
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#9E7241]/20 border border-[#9E7241]/40 text-[#DFC08A] text-xs font-mono font-bold">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Birlik Technical Engineering Support</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white tracking-tight">
-              {t.needHelpTitle}
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#D6CEBF] leading-relaxed">
-              {t.needHelpSubtitle}
-            </p>
-
-            <div className="pt-4 flex flex-wrap items-center gap-3">
-              <a
-                href="https://wa.me/963995764573?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9%20%D8%AD%D9%88%D9%84%20%D8%B7%D8%B1%D9%8A%D9%82%D8%A9%20%D8%AA%D8%B1%D9%83%D9%8A%D8%A8%20%D9%85%D9%88%D8%A7%D8%AF%20%D8%A7%D9%84%D8%A5%D9%83%D8%B3%D8%A7%D8%A1%20%D9%84%D8%AF%D9%8A%D9%83%D9%85."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3 bg-[#1E7E45] hover:bg-[#166536] text-white text-xs font-bold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
-              >
-                <MessageSquare className="w-4 h-4 text-white" />
-                <span>{t.contactWhatsApp}</span>
-              </a>
-
-              <a
-                href="tel:+963995764573"
-                className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-medium transition-all inline-flex items-center gap-2 cursor-pointer"
-              >
-                <PhoneCall className="w-4 h-4 text-[#DFC08A]" />
-                <span dir="ltr">+963 995 764 573</span>
-              </a>
-            </div>
+      {/* Help */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="rounded-3xl bg-ink text-white p-6 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6" data-reveal>
+          <div className="max-w-xl">
+            <h2 className="text-2xl sm:text-3xl font-black leading-snug">{t.helpTitle}</h2>
+            <p className="mt-2 text-sm sm:text-base leading-relaxed text-white/75">{t.helpBody}</p>
           </div>
+          <a
+            href={whatsappLink(t.waMsg)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-wa hover:bg-wa-deep font-extrabold transition-colors shrink-0"
+          >
+            <MessageSquare className="w-5 h-5" />
+            {t.helpBtn}
+          </a>
         </div>
       </section>
     </div>

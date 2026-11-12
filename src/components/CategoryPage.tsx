@@ -108,6 +108,7 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
               </span>
               <Link
                 to={installationRoute(currentLang)}
+                scrollTo={`install-${card.id}`}
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-brass text-ink hover:bg-brass-light transition-colors"
               >
                 <PlayCircle className="w-4 h-4" />

@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Language, ProductCategory, ProductModel } from './types';
+import { Language, ProductModel } from './types';
 import { MediaProvider } from './context/MediaContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -22,7 +22,7 @@ import { MobileTabBar, DesktopWhatsApp } from './components/MobileTabBar';
 import { Footer } from './components/Footer';
 import { SEOHead } from './components/SEOHead';
 import { RouterContext } from './router';
-import { Route, buildPath, parseLocation, findProduct, homeRoute, catalogueRoute, installationRoute, categoryRoute } from './routing';
+import { Route, buildPath, parseLocation, findProduct, homeRoute, catalogueRoute, installationRoute } from './routing';
 import { UI, whatsappLink } from './site';
 
 const scrollToSection = (id: string) => {
@@ -104,9 +104,6 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
   };
 
   const setLang = (lang: Language) => navigate({ ...route, lang });
-  const openCatalogue = () => navigate(catalogueRoute(currentLang));
-  const openCategory = (cat: ProductCategory) => navigate(categoryRoute(currentLang, cat));
-  const backToHome = () => navigate(homeRoute(currentLang));
 
   const routerValue = useMemo(() => ({ route, navigate }), [route, navigate]);
 
@@ -134,14 +131,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
 
           <main className="flex-1">
             {route.view === 'installation' ? (
-              <div className="pt-16 md:pt-[4.5rem]">
-                <InstallationResourcesPage
-                  currentLang={currentLang}
-                  onSelectCategory={openCategory}
-                  onBackToHome={backToHome}
-                  onBackToCatalogue={openCatalogue}
-                />
-              </div>
+              <InstallationResourcesPage currentLang={currentLang} />
             ) : route.view === 'product' && activeProduct ? (
               <ProductDetailPage model={activeProduct} currentLang={currentLang} />
             ) : route.view === 'category' ? (
