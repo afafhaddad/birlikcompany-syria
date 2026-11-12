@@ -146,8 +146,8 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
               <>
                 <Hero currentLang={currentLang} onNavigate={handleNavigate} />
                 <ProductCategoriesSection currentLang={currentLang} />
-                <FounderSection currentLang={currentLang} onNavigate={handleNavigate} />
-                <AboutUsSection currentLang={currentLang} onNavigate={handleNavigate} />
+                <FounderSection currentLang={currentLang} />
+                <AboutUsSection currentLang={currentLang} />
                 <OfficeSection currentLang={currentLang} />
               </>
             )}

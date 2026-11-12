@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapPin, Clock, MessageSquare, Phone, Mail, ExternalLink, Navigation, Building2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Clock, MessageSquare, Phone, Mail, ExternalLink, Navigation, Store, Map as MapIcon } from 'lucide-react';
 import { Language } from '../types';
 
 interface OfficeSectionProps {
@@ -91,6 +91,8 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
   };
 
   const text = content[currentLang];
+  const [showMap, setShowMap] = useState(false);
+  const showMapLabel = currentLang === 'ar' ? 'عرض الخريطة هنا' : currentLang === 'tr' ? 'Haritayı burada göster' : 'Show the map here';
   const googleMapsUrl = 'https://maps.google.com/?q=35.510707,35.774618';
   const embedMapsUrl = 'https://maps.google.com/maps?q=35.510707,35.774618+(%D8%B4%D8%B1%D9%83%D8%A9%20%D8%A8%D9%8A%D8%B1%D9%84%D9%8A%D9%83%20-%20Birlik%20Company)&t=&z=18&ie=UTF8&iwloc=B&output=embed';
 
@@ -104,225 +106,150 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
   };
 
   return (
-    <section 
-      id="office" 
-      className="py-16 sm:py-20 md:py-24 bg-[#F2EDE4] border-b border-[#E0D7C9] text-[#24201D] font-sans"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Building2 className="w-4 h-4 text-[#9E7241]" />
-            <span className="text-[11px] tracking-[0.25em] text-[#9E7241] font-semibold">
-              {text.tag}
-            </span>
-          </div>
+    <section id="office" className="bg-ivory py-14 md:py-24">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        {/* Details */}
+        <div className="min-w-0" data-reveal>
+          <p className="flex items-center gap-2 text-sm font-bold text-brass-deep mb-2">
+            <span className="w-6 h-0.5 bg-current" />
+            {text.tag}
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-black leading-tight text-balance">{text.title}</h2>
+          <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted">{text.description}</p>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-light text-[#24201D] tracking-tight mb-4">
-            {text.title}
-          </h2>
-
-          <p className="text-sm sm:text-base text-[#6E645A] font-light leading-relaxed">
-            {text.description}
+          <p className="mt-5 flex items-center gap-3 rounded-2xl bg-wa/10 text-wa-deep p-4 text-sm font-bold">
+            <Store className="w-5 h-5 shrink-0" />
+            {text.sampleNotice}
           </p>
 
-          <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 bg-[#E8E1D5] border border-[#DDD5C7] text-xs text-[#5C554E]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />
-            <span>{text.sampleNotice}</span>
-          </div>
-        </div>
-
-        {/* 3 Information Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-          
-          {/* 1. Address & Location */}
-          <div className="p-6 bg-[#FFFFFF] border border-[#DDD5C7] shadow-xs flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-[#9E7241] mb-3">
-                <MapPin className="w-5 h-5 shrink-0" />
-                <h3 className="font-serif text-base font-semibold text-[#1C1917]">
-                  {text.addressTitle}
-                </h3>
-              </div>
-              <p className="text-sm text-[#423C36] leading-relaxed font-medium mb-3">
-                {text.addressValue}
-              </p>
-              <div className="inline-flex items-center gap-1.5 text-xs text-[#6E645A] bg-[#F7F4EE] px-2.5 py-1 border border-[#E8E2D8]">
-                <span className="font-mono text-[#9E7241] font-semibold">Plus Code:</span>
-                <span className="font-mono">{text.plusCode}</span>
-              </div>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-[#EFECE4]">
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#9E7241] hover:text-[#7A562D] transition-colors"
-              >
-                <span>{text.openInMapsBtn}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
-          {/* 2. Official Working Hours */}
-          <div className="p-6 bg-[#FFFFFF] border border-[#DDD5C7] shadow-xs flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-[#9E7241] mb-3">
-                <Clock className="w-5 h-5 shrink-0" />
-                <h3 className="font-serif text-base font-semibold text-[#1C1917]">
-                  {text.hoursTitle}
-                </h3>
-              </div>
-              
-              <ul className="space-y-2.5 text-xs sm:text-[13px]">
-                {text.hours.map((item, i) => (
-                  <li key={i} className="flex items-center justify-between py-1 border-b border-[#F0EBE3] last:border-0">
-                    <span className="text-[#6E645A] font-medium">{item.days}:</span>
-                    <span className={`font-semibold ${item.time === 'عطلة أسبوعية' || item.time === 'Closed' || item.time === 'Kapalı' ? 'text-[#C62828]' : 'text-[#1C1917]'}`}>
-                      {item.time}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-[#EFECE4] text-[11px] text-[#8C8278]">
-              {currentLang === 'ar' ? 'الاستقبال متاح خلال أوقات العمل الرسمية' : 'Walk-ins welcomed during open hours'}
-            </div>
-          </div>
-
-          {/* 3. Direct Contact Channels */}
-          <div className="p-6 bg-[#FFFFFF] border border-[#DDD5C7] shadow-xs flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-[#9E7241] mb-3">
-                <Phone className="w-5 h-5 shrink-0" />
-                <h3 className="font-serif text-base font-semibold text-[#1C1917]">
-                  {text.contactTitle}
-                </h3>
-              </div>
-
-              <div className="space-y-3 text-xs sm:text-[13px]">
-                <div>
-                  <span className="block text-[11px] text-[#8C8278] mb-0.5">
-                    {text.phoneLabel}
-                  </span>
-                  <a
-                    href="tel:+963995764573"
-                    className="font-mono text-sm font-bold text-[#1C1917] hover:text-[#9E7241] transition-colors"
-                    dir="ltr"
-                  >
-                    +963 995 764 573
-                  </a>
-                </div>
-
-                <div>
-                  <span className="block text-[11px] text-[#8C8278] mb-0.5">
-                    {text.emailLabel}
-                  </span>
-                  <a
-                    href="mailto:info@birlik-insaat.com"
-                    className="font-mono text-xs sm:text-sm font-medium text-[#1C1917] hover:text-[#9E7241] transition-colors break-all"
-                  >
-                    info@birlik-insaat.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-5 pt-4 border-t border-[#EFECE4]">
-              <a
-                href={getWhatsAppAppointmentLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-[#1E7E45] hover:text-[#166034] transition-colors"
-              >
-                <MessageSquare className="w-3.5 h-3.5" />
-                <span>{currentLang === 'ar' ? 'محادثة واتساب مباشرة' : 'Direct WhatsApp Chat'}</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Interactive Google Map with Branded Birlik Company Pin */}
-        <div className="bg-[#FFFFFF] border border-[#DDD5C7] shadow-sm overflow-hidden mb-10">
-          
-          {/* Map Top Bar with Pin & External Navigation Link */}
-          <div className="p-4 sm:p-5 bg-[#FAF7F2] border-b border-[#DDD5C7] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            
-            <div className="flex items-start sm:items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#9E7241]/15 text-[#9E7241] flex items-center justify-center shrink-0 border border-[#9E7241]/30">
-                <MapPin className="w-5 h-5 fill-[#9E7241] text-white" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h4 className="font-serif font-bold text-base sm:text-lg text-[#1C1917]">
-                    {text.mapBadgeTitle}
-                  </h4>
-                  <span className="text-[10px] font-mono px-2 py-0.5 bg-[#9E7241] text-white font-semibold">
-                    HQ
-                  </span>
-                </div>
-                <p className="text-xs text-[#6E645A] mt-0.5">
-                  {text.mapBadgeSubtitle} • <span className="font-mono text-[#9E7241] font-semibold">{text.plusCode}</span>
-                </p>
-              </div>
-            </div>
-
+          <div className="mt-5 grid sm:grid-cols-2 gap-3">
+            {/* Address */}
             <a
               href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#1C1917] hover:bg-[#3D3732] text-white text-xs font-semibold transition-all shadow-xs shrink-0"
-              id="open-google-maps-btn"
+              className="sm:col-span-2 flex gap-3 rounded-2xl bg-white border border-line hover:border-brass p-4 transition-colors"
             >
-              <Navigation className="w-3.5 h-3.5 text-[#DFC08A]" />
-              <span>{text.openInMapsBtn}</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+              <span className="w-10 h-10 rounded-full bg-sand text-brass-deep flex items-center justify-center shrink-0">
+                <MapPin className="w-5 h-5" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[11px] font-bold text-muted">{text.addressTitle}</span>
+                <span className="block mt-0.5 text-sm font-bold text-ink leading-relaxed">{text.addressValue}</span>
+                <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-brass-deep">
+                  {text.openInMapsBtn}
+                  <ExternalLink className="w-3 h-3" />
+                </span>
+              </span>
             </a>
 
+            {/* Hours */}
+            <div className="flex gap-3 rounded-2xl bg-white border border-line p-4">
+              <span className="w-10 h-10 rounded-full bg-sand text-brass-deep flex items-center justify-center shrink-0">
+                <Clock className="w-5 h-5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-bold text-muted">{text.hoursTitle}</p>
+                <dl className="mt-1 space-y-1.5 text-sm">
+                  {text.hours.map((h) => (
+                    <div key={h.days}>
+                      <dt className="font-bold text-ink">{h.days}</dt>
+                      <dd className="text-muted text-xs">{h.time}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div className="flex gap-3 rounded-2xl bg-white border border-line p-4">
+              <span className="w-10 h-10 rounded-full bg-sand text-brass-deep flex items-center justify-center shrink-0">
+                <Phone className="w-5 h-5" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-[11px] font-bold text-muted">{text.contactTitle}</p>
+                <a href="tel:+963995764573" className="block mt-1 text-sm font-extrabold text-ink hover:text-brass-deep">
+                  <bdi dir="ltr">{text.phoneValue}</bdi>
+                </a>
+                <p className="text-xs text-muted">{text.phoneLabel}</p>
+                <a href={`mailto:${text.emailValue}`} className="mt-2 flex items-center gap-1.5 text-xs font-bold text-ink hover:text-brass-deep break-all">
+                  <Mail className="w-3.5 h-3.5 shrink-0 text-brass-deep" />
+                  {text.emailValue}
+                </a>
+              </div>
+            </div>
           </div>
 
-          {/* Embedded Map iFrame */}
-          <div className="relative w-full h-[320px] sm:h-[400px] md:h-[460px] bg-[#EFECE4]">
-            <iframe
-              title="موقع شركة بيرليك على خرائط Google"
-              src={embedMapsUrl}
-              className="w-full h-full border-0"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <div className="mt-5 grid sm:grid-cols-2 gap-3">
+            <a
+              href={getWhatsAppAppointmentLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-wa hover:bg-wa-deep text-white font-extrabold text-sm transition-colors"
+            >
+              <MessageSquare className="w-5 h-5" />
+              {text.whatsappAction}
+            </a>
+            <a
+              href="tel:+963995764573"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full bg-ink hover:bg-ink-soft text-white font-bold text-sm transition-colors"
+            >
+              <Phone className="w-4 h-4 text-brass-light" />
+              {text.callAction}
+            </a>
           </div>
-
         </div>
 
-        {/* Bottom CTA Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-lg mx-auto">
-          <a
-            href={getWhatsAppAppointmentLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 py-3.5 px-6 bg-[#1E7E45] hover:bg-[#166034] text-white text-xs font-semibold transition-all shadow-xs"
-            id="office-whatsapp-cta"
-          >
-            <MessageSquare className="w-4 h-4" />
-            <span>{text.whatsappAction}</span>
-          </a>
-
-          <a
-            href="tel:+963995764573"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 py-3.5 px-6 border border-[#DDD5C7] bg-[#FFFFFF] hover:border-[#9E7241] text-[#24201D] hover:text-[#9E7241] text-xs font-medium transition-all shadow-2xs"
-            id="office-call-cta"
-          >
-            <Phone className="w-4 h-4 text-[#9E7241]" />
-            <span>{text.callAction}: +963 995 764 573</span>
-          </a>
+        {/* Map: a light placeholder first; Google's map loads only when asked for */}
+        <div className="min-w-0 lg:sticky lg:top-28" data-reveal>
+          <div className="relative rounded-3xl overflow-hidden bg-ink text-white aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
+            {showMap ? (
+              <iframe
+                title={text.mapBadgeTitle}
+                src={embedMapsUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 w-full h-full border-0"
+                allowFullScreen
+              />
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-[radial-gradient(circle_at_50%_40%,rgba(185,138,69,0.28),transparent_60%)]">
+                <span className="relative flex items-center justify-center w-20 h-20">
+                  <span className="absolute inset-0 rounded-full bg-brass/30 motion-safe:animate-ping" />
+                  <span className="relative w-16 h-16 rounded-full bg-brass text-ink flex items-center justify-center shadow-xl">
+                    <MapPin className="w-7 h-7" />
+                  </span>
+                </span>
+                <p className="mt-5 text-xl font-black">{text.mapBadgeTitle}</p>
+                <p className="mt-1 text-sm leading-relaxed text-white/75 max-w-xs">{text.mapBadgeSubtitle}</p>
+                <p className="mt-1 text-xs text-white/50">
+                  <bdi dir="ltr">{text.plusCode}</bdi>
+                </p>
+                <div className="mt-6 flex flex-col sm:flex-row gap-3 w-full max-w-sm">
+                  <button
+                    type="button"
+                    onClick={() => setShowMap(true)}
+                    id="show-map-btn"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white text-ink font-extrabold text-sm hover:bg-sand transition-colors"
+                  >
+                    <MapIcon className="w-4 h-4" />
+                    {showMapLabel}
+                  </button>
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="open-google-maps-btn"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-brass text-ink font-extrabold text-sm hover:bg-brass-light transition-colors"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    {text.getDirectionsBtn}
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-
       </div>
     </section>
   );
