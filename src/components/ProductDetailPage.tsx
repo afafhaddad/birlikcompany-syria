@@ -154,7 +154,7 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
             <div
               ref={railRef}
               onScroll={onRailScroll}
-              className="snap-rail md:rounded-3xl overflow-hidden bg-ink-soft"
+              className="snap-rail overflow-y-hidden md:rounded-3xl bg-ink-soft"
               aria-roledescription="carousel"
             >
               {images.map((src, i) => (
