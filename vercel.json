@@ -2,6 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "trailingSlash": true,
   "images": {
     "sizes": [640, 1080, 1600],
     "formats": ["image/avif", "image/webp"],
@@ -13,6 +14,9 @@
       }
     ]
   },
+  "redirects": [
+    { "source": "/", "destination": "/ar/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -21,12 +25,10 @@
     {
       "source": "/(.*)\\.(png|jpg|jpeg|webp|svg|ico)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }]
-    }
-  ],
-  "rewrites": [
+    },
     {
-      "source": "/((?!assets/|uploads/|_vercel/|api/|.*\\..*).*)",
-      "destination": "/index.html"
+      "source": "/catalogue/(.*)\\.pdf",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
     }
   ]
 }

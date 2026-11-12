@@ -7,6 +7,7 @@ import {
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
 import { useMedia } from '../context/MediaContext';
+import { sectionPath } from '../routing';
 
 interface HeroProps {
   currentLang: Language;
@@ -127,14 +128,15 @@ export const Hero: React.FC<HeroProps> = ({
             </button>
 
             {/* Button 2: Contact Us */}
-            <button
-              onClick={() => onNavigate('office')}
+            <a
+              href={sectionPath(currentLang, 'office')}
+              onClick={(e) => { e.preventDefault(); onNavigate('office'); }}
               id="hero-contact-us-btn"
               className="px-6 py-3.5 bg-black/45 hover:bg-black/65 text-white backdrop-blur-md border border-white/30 hover:border-white font-['Cairo','Tajawal',sans-serif] font-medium text-sm sm:text-base tracking-wide transition-all shadow-lg hover:shadow-xl cursor-pointer flex items-center gap-2.5 rounded-xs"
             >
               <PhoneCall className="w-4 h-4 text-[#D4991A]" />
               <span>{t.hero.contactBtn}</span>
-            </button>
+            </a>
 
           </div>
 

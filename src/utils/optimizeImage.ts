@@ -18,10 +18,15 @@ export type ImageWidth = (typeof IMAGE_WIDTHS)[number];
 const BLOB_HOST_RE = /^https:\/\/[a-z0-9]+\.public\.blob\.vercel-storage\.com\//i;
 const OPTIMIZER_PATH = '/_vercel/image';
 
-function isVercelHost(): boolean {
-  if (typeof window === 'undefined') return false;
-  const h = window.location.hostname;
-  return h === 'birlik-insaat.com' || h.endsWith('.birlik-insaat.com') || h.endsWith('.vercel.app');
+// Decided at build time (not from window.location) so pre-rendered HTML and the
+// hydrated page produce identical image URLs. Set VITE_IMAGE_OPT=off for local builds
+// that run without Vercel's image optimizer (the error fallback also covers that case).
+const OPTIMIZER_ENABLED = import.meta.env.PROD && import.meta.env.VITE_IMAGE_OPT !== 'off';
+
+/** Absolute optimizer URL on the live site (used by the print/PDF catalogue). */
+export function liveOptimizedImage(url: string, width: ImageWidth = 640, quality = 70): string {
+  if (!BLOB_HOST_RE.test(url)) return url;
+  return `https://www.birlik-insaat.com${OPTIMIZER_PATH}?url=${encodeURIComponent(url)}&w=${width}&q=${quality}`;
 }
 
 export function optimizeImage(url: string | undefined, width: ImageWidth = 1080, quality = 75): string {
@@ -39,7 +44,7 @@ export function optimizeImage(url: string | undefined, width: ImageWidth = 1080,
     }
   }
 
-  if (BLOB_HOST_RE.test(url) && isVercelHost()) {
+  if (BLOB_HOST_RE.test(url) && OPTIMIZER_ENABLED) {
     return `${OPTIMIZER_PATH}?url=${encodeURIComponent(url)}&w=${width}&q=${quality}`;
   }
 

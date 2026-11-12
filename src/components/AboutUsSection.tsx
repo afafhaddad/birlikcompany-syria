@@ -15,6 +15,7 @@ import {
   Users
 } from 'lucide-react';
 import { TRANSLATIONS } from '../data/translations';
+import { sectionPath } from '../routing';
 
 interface AboutUsSectionProps {
   currentLang: 'ar' | 'en' | 'tr';
@@ -187,13 +188,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </div>
 
             <div className="mt-6 pt-4 border-t border-[#F0EBE1] text-start">
-              <button 
-                onClick={() => onNavigate('categories')}
+              <a 
+                href={sectionPath(currentLang, 'categories')}
+              onClick={(e) => { e.preventDefault(); onNavigate('categories'); }}
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-bold text-[#9E7241] hover:text-[#7A552D] transition-colors cursor-pointer"
               >
                 <span>{t.about.exploreCatalogBtn}</span>
                 <ArrowIcon className="w-3.5 h-3.5" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -235,13 +237,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </div>
 
             <div className="mt-6 pt-4 border-t border-[#F0EBE1] flex flex-wrap items-center gap-3 text-start">
-              <button
-                onClick={() => onNavigate('office')}
+              <a
+                href={sectionPath(currentLang, 'office')}
+              onClick={(e) => { e.preventDefault(); onNavigate('office'); }}
                 className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1E7E45] hover:bg-[#166034] text-white text-xs font-bold uppercase tracking-wider rounded-xs transition-colors shadow-2xs cursor-pointer"
               >
                 <MapPin className="w-3.5 h-3.5" />
                 <span>{t.about.freeSamplesBtn}</span>
-              </button>
+              </a>
 
               <a 
                 href={whatsappSampleUrl}
@@ -278,13 +281,14 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
           </div>
 
           <div className="flex items-center gap-2.5 w-full sm:w-auto shrink-0">
-            <button
-              onClick={() => onNavigate('office')}
+            <a
+              href={sectionPath(currentLang, 'office')}
+              onClick={(e) => { e.preventDefault(); onNavigate('office'); }}
               className="flex-1 sm:flex-none px-5 py-3 bg-[#D4991A] hover:bg-[#BE8613] text-white font-bold text-xs sm:text-sm tracking-wide transition-all shadow-md flex items-center justify-center gap-2 rounded-xs cursor-pointer font-['Cairo','Tajawal',sans-serif]"
             >
               <MapPin className="w-4 h-4" />
               <span>{currentLang === 'ar' ? 'زيارة مقرنا باللاذقية' : 'Visit Lattakia HQ'}</span>
-            </button>
+            </a>
 
             <a
               href={whatsappSampleUrl}

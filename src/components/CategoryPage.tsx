@@ -21,6 +21,7 @@ import {
 import { Language, ProductCategory, ProductModel, CategoryInfo } from '../types';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { useMedia } from '../context/MediaContext';
+import { categoryPath, productPath } from '../routing';
 
 interface CategoryPageProps {
   categoryId: ProductCategory;
@@ -245,9 +246,10 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                 (c.id === 'ps_baseboards' && (category.id === 'polystyrene_baseboards' || category.id === 'baseboards'))
               );
               return (
-                <button
+                <a
                   key={c.id}
-                  onClick={() => onSelectCategory(c.id)}
+                  href={categoryPath(currentLang, c.id)}
+                  onClick={(e) => { e.preventDefault(); onSelectCategory(c.id); }}
                   className={`px-3 py-1 text-xs whitespace-nowrap transition-all cursor-pointer border ${
                     isCurrent
                       ? 'bg-[#1C1917] text-white border-[#1C1917] font-semibold'
@@ -255,7 +257,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                   }`}
                 >
                   {c.name[currentLang]}
-                </button>
+                </a>
               );
             })}
           </div>
@@ -502,12 +504,14 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
 
                   {/* CTA: Click to Designated Page */}
                   <div className="mt-4 pt-3 border-t border-[#EFECE4]">
-                    <button
+                    <a
+                      href={productPath(currentLang, model)}
+                      onClick={(e) => e.preventDefault()}
                       className="w-full py-2.5 px-3 bg-[#FAF7F2] group-hover:bg-[#D4991A] group-hover:text-white border border-[#DDD5C7] group-hover:border-[#D4991A] text-xs font-semibold text-[#1C1917] transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <span>{t.clickToOpenModel}</span>
                       <ArrowIcon className="w-3.5 h-3.5" />
-                    </button>
+                    </a>
                   </div>
                 </div>
 

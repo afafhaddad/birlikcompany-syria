@@ -11,6 +11,8 @@ import {
 import { Language, ProductCategory } from '../types';
 import { useMedia } from '../context/MediaContext';
 import { CATEGORIES_DATA } from '../data/products';
+import { categoryPath } from '../routing';
+import { CatalogueDownload } from './CatalogueDownload';
 
 interface ProductCataloguePageProps {
   currentLang: Language;
@@ -462,8 +464,10 @@ export const ProductCataloguePage: React.FC<ProductCataloguePageProps> = ({
 
                   {/* Enter Button */}
                   <div className="mt-5 pt-1">
-                    <button
+                    <a
+                      href={categoryPath(currentLang, cat.id)}
                       onClick={(e) => {
+                        e.preventDefault();
                         e.stopPropagation();
                         onSelectCategory(cat.id);
                       }}
@@ -472,7 +476,7 @@ export const ProductCataloguePage: React.FC<ProductCataloguePageProps> = ({
                     >
                       <span>{t.enterCategoryBtn}</span>
                       <ArrowIcon className="w-4 h-4" />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -522,6 +526,8 @@ export const ProductCataloguePage: React.FC<ProductCataloguePageProps> = ({
 
         </div>
       </div>
+
+      <CatalogueDownload currentLang={currentLang} />
 
     </div>
   );

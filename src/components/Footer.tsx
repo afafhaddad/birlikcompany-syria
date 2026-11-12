@@ -11,6 +11,9 @@ import {
 } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
+import { useRouter } from '../router';
+import { buildPath } from '../routing';
+import { sectionPath } from '../routing';
 
 interface FooterProps {
   currentLang: Language;
@@ -24,6 +27,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigate,
 }) => {
   const t = TRANSLATIONS[currentLang];
+  const { route } = useRouter();
 
   return (
     <footer className="bg-[#1F1B18] text-[#A69C91] border-t border-[#2F2925] pb-10 font-sans">
@@ -57,24 +61,30 @@ export const Footer: React.FC<FooterProps> = ({
             {/* Language Selector */}
             <div className="flex items-center gap-2 text-xs pt-1">
               <Globe className="w-3.5 h-3.5 text-[#9E7241]" />
-              <button 
-                onClick={() => onLanguageChange('ar')} 
+              <a 
+                href={buildPath({ ...route, lang: 'ar' })}
+                hrefLang="ar"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('ar'); }} 
                 className={`px-2.5 py-1 border transition-colors cursor-pointer ${currentLang === 'ar' ? 'border-[#9E7241] text-[#9E7241] bg-[#292420]' : 'border-[#3D352F] text-[#8C8278] hover:text-white'}`}
               >
                 عربي
-              </button>
-              <button 
-                onClick={() => onLanguageChange('en')} 
+              </a>
+              <a 
+                href={buildPath({ ...route, lang: 'en' })}
+                hrefLang="en"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('en'); }} 
                 className={`px-2.5 py-1 border transition-colors cursor-pointer ${currentLang === 'en' ? 'border-[#9E7241] text-[#9E7241] bg-[#292420]' : 'border-[#3D352F] text-[#8C8278] hover:text-white'}`}
               >
                 EN
-              </button>
-              <button 
-                onClick={() => onLanguageChange('tr')} 
+              </a>
+              <a 
+                href={buildPath({ ...route, lang: 'tr' })}
+                hrefLang="tr"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('tr'); }} 
                 className={`px-2.5 py-1 border transition-colors cursor-pointer ${currentLang === 'tr' ? 'border-[#9E7241] text-[#9E7241] bg-[#292420]' : 'border-[#3D352F] text-[#8C8278] hover:text-white'}`}
               >
                 TR
-              </button>
+              </a>
             </div>
           </div>
 
@@ -85,44 +95,49 @@ export const Footer: React.FC<FooterProps> = ({
             </span>
             <ul className="space-y-2 text-[#A69C91]">
               <li>
-                <button 
-                  onClick={() => onNavigate('about')} 
+                <a 
+                  href={sectionPath(currentLang, 'about')}
+              onClick={(e) => { e.preventDefault(); onNavigate('about'); }} 
                   className="hover:text-[#9E7241] transition-colors cursor-pointer"
                 >
                   {t.nav.about || (currentLang === 'ar' ? 'من نحن' : 'About Us')}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onNavigate('catalogue')} 
+                <a 
+                  href={sectionPath(currentLang, 'catalogue')}
+              onClick={(e) => { e.preventDefault(); onNavigate('catalogue'); }} 
                   className="hover:text-[#9E7241] transition-colors cursor-pointer"
                 >
                   {currentLang === 'ar' ? 'كتالوج المنتجات' : currentLang === 'en' ? 'Product Catalogue' : 'Ürün Kataloğu'}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onNavigate('installation')} 
+                <a 
+                  href={sectionPath(currentLang, 'installation')}
+              onClick={(e) => { e.preventDefault(); onNavigate('installation'); }} 
                   className="hover:text-[#9E7241] transition-colors cursor-pointer text-[#D4AF37]"
                 >
                   {currentLang === 'ar' ? 'دليل وفيديوهات التركيب' : currentLang === 'en' ? 'Installation Video Guides' : 'Montaj ve Uygulama Rehberi'}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onNavigate('office')} 
+                <a 
+                  href={sectionPath(currentLang, 'office')}
+              onClick={(e) => { e.preventDefault(); onNavigate('office'); }} 
                   className="hover:text-[#9E7241] transition-colors cursor-pointer"
                 >
                   {t.nav.office}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onNavigate('founder')} 
+                <a 
+                  href={sectionPath(currentLang, 'founder')}
+              onClick={(e) => { e.preventDefault(); onNavigate('founder'); }} 
                   className="hover:text-[#9E7241] transition-colors cursor-pointer"
                 >
                   {currentLang === 'ar' ? 'مؤسس الشركة' : currentLang === 'en' ? 'Our Founder' : 'Kurucumuz'}
-                </button>
+                </a>
               </li>
             </ul>
           </div>

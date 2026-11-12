@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Language, ProductCategory } from '../types';
 import { useMedia } from '../context/MediaContext';
+import { categoryPath } from '../routing';
 
 interface ProductCategoriesSectionProps {
   currentLang: Language;
@@ -147,17 +148,14 @@ export const ProductCategoriesSection: React.FC<ProductCategoriesSectionProps> =
       {/* Full-width Horizontal Rectangular Category Cards Stacked On Top Of Each Other (Edge-to-Edge) */}
       <div className="w-full flex flex-col divide-y divide-white/15">
         {categories.map((cat, idx) => (
-          <div
+          <a
             key={cat.id}
             id={`category-row-${cat.id}`}
-            role="button"
-            tabIndex={0}
-            onClick={() => onSelectCategory(cat.id)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onSelectCategory(cat.id);
-              }
+            href={categoryPath(currentLang, cat.id)}
+            onClick={(e) => {
+              if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+              e.preventDefault();
+              onSelectCategory(cat.id);
             }}
             className="group relative w-full min-h-[220px] sm:min-h-[220px] md:h-64 lg:h-72 overflow-hidden cursor-pointer flex items-center bg-[#141210] transition-all duration-300"
           >
@@ -222,7 +220,7 @@ export const ProductCategoriesSection: React.FC<ProductCategoriesSectionProps> =
               </div>
 
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </section>

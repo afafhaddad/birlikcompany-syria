@@ -1,263 +1,67 @@
 import React, { useEffect } from 'react';
-import { AppView, Language, ProductCategory, ProductModel } from '../types';
-import { CATEGORIES_DATA } from '../data/products';
-import { useMedia } from '../context/MediaContext';
+import { Route } from '../routing';
+import { getSeo } from '../seo';
 
-export const SITE_ORIGIN = 'https://www.birlik-insaat.com';
+export { SITE_ORIGIN } from '../routing';
 
-interface SEOHeadProps {
-  currentView: AppView;
-  currentLang: Language;
-  activeCategory: ProductCategory;
-  activeProduct: ProductModel | null;
+const SCHEMA_ID = 'birlik-page-schema';
+
+function setMeta(attr: 'name' | 'property', key: string, content: string) {
+  let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
 }
 
-export const SEOHead: React.FC<SEOHeadProps> = ({
-  currentView,
-  currentLang,
-  activeCategory,
-  activeProduct,
-}) => {
-  // Raw (un-optimized) registry URLs: share previews need a direct, absolute image URL.
-  const { registry } = useMedia();
-
+/**
+ * Keeps <head> in sync with the current page. Pre-rendered pages already ship the
+ * right <head>; re-applying it is harmless and covers legacy-URL redirects and 404s.
+ */
+export const SEOHead: React.FC<{ route: Route }> = ({ route }) => {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    const seo = getSeo(route);
+    document.title = seo.title;
+    setMeta('name', 'description', seo.description);
+    setMeta('name', 'robots', seo.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large');
+    setMeta('property', 'og:title', seo.title);
+    setMeta('property', 'og:description', seo.description);
+    setMeta('property', 'og:url', seo.canonical);
+    setMeta('property', 'og:image', seo.ogImage);
+    setMeta('property', 'og:type', seo.ogType);
+    setMeta('property', 'og:locale', seo.ogLocale);
+    setMeta('name', 'twitter:title', seo.title);
+    setMeta('name', 'twitter:description', seo.description);
+    setMeta('name', 'twitter:image', seo.ogImage);
 
-    // Always use the single canonical production domain so canonical/og URLs never
-    // point at preview deployments or the non-www redirect.
-    const origin = SITE_ORIGIN;
-    const catInfo = CATEGORIES_DATA.find((c) => c.id === activeCategory) || CATEGORIES_DATA[0];
-
-    // Helper to make absolute image URL
-    const toAbsoluteUrl = (url: string | undefined): string => {
-      if (!url) return registry.hero || `${origin}/hero.jpg`;
-      if (url.startsWith('http://') || url.startsWith('https://')) return url;
-      return `${origin}${url.startsWith('/') ? '' : '/'}${url}`;
-    };
-
-    let title = '';
-    let description = '';
-    let keywords = '';
-    let ogImage = registry.hero || `${origin}/hero.jpg`;
-    let ogUrl = `${origin}/`;
-    let schemaData: object | null = null;
-
-    // Common high-ranking keywords for Syria & Lattakia interior decor
-    const baseKeywordsAr = 'شركة بيرليك, بيرليك للديكور, مواد تكسية الجدران سوريا, ديكور داخلي اللاذقية, تشطيبات معمارية دمشق, ترميم منازل سوريا, بديل الخشب اللاذقية, بديل الرخام سوريا, بديل الشيبورد الحجري, بديل الباركيه, قُضبان بي إس, نعلات معمارية فوم, تكسية جدران ضد الماء 100%, مهندس يوسف حداد';
-    const baseKeywordsEn = 'Birlik Company, Birlik Insaat, luxury architectural wall cladding Syria, interior decor Lattakia, home renovation Damascus, interior design Syria, waterproof wall panels, PS wall panels, PVC marble sheets, SPC wall panels, rigid stone parquet, PS moldings, architectural baseboards, Turkish finishing materials Syria';
-
-    if (currentView === 'product' && activeProduct) {
-      const prodName = activeProduct.name[currentLang] || activeProduct.name.ar;
-      const catName = catInfo.name[currentLang] || catInfo.name.ar;
-      const registryProduct = registry.products?.[activeProduct.id];
-      const firstImg = registryProduct?.main || registryProduct?.gallery?.[0] || activeProduct.images?.[0] || registry.categories?.[activeProduct.category] || catInfo.image;
-      ogImage = toAbsoluteUrl(firstImg);
-      // Canonical product URL uses the product's own category so it matches sitemap.xml
-      ogUrl = `${origin}/?category=${activeProduct.category}&product=${activeProduct.id}`;
-
-      if (currentLang === 'ar') {
-        title = `${activeProduct.code} - ${prodName} | ${catName} — شركة بيرليك سوريا`;
-        description = `اكتشف مواصفات ${activeProduct.code} (${prodName}) ضمن فئة ${catName} من شركة بيرليك في اللاذقية وسوريا. مقاوم للماء بنسبة 100% مع تشطيب معماري فائق وشحن لكافة المحافظات.`;
-        keywords = `${activeProduct.code}, ${prodName}, ${catName}, بديل الخشب, بديل الرخام, ديكور جداري اللاذقية, ديكور داخلي سوريا, مواد تكسية, ${baseKeywordsAr}`;
-      } else {
-        title = `${activeProduct.code} - ${prodName} | ${catName} — Birlik Company Syria`;
-        description = `Explore technical specifications for ${activeProduct.code} (${prodName}) under ${catName} from Birlik Company in Lattakia, Syria. 100% waterproof architectural wall materials with Syria-wide delivery.`;
-        keywords = `${activeProduct.code}, ${prodName}, ${catName}, architectural wall panels Syria, Lattakia interior decor, ${baseKeywordsEn}`;
-      }
-
-      // Schema.org Product
-      schemaData = {
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: prodName,
-        image: [ogImage],
-        description: description,
-        sku: activeProduct.code,
-        mpn: activeProduct.id,
-        category: catName,
-        brand: {
-          '@type': 'Brand',
-          name: 'Birlik Company',
-        },
-        manufacturer: {
-          '@type': 'Organization',
-          name: 'شركة بيرليك لمواد التكسية والديكور الجداري',
-          url: origin,
-        },
-        // No `offers` block: prices are quoted on request, and a fake 0.00 price
-        // is flagged by Google as invalid/misleading structured data.
-      };
-
-    } else if (currentView === 'category') {
-      const catName = catInfo.name[currentLang] || catInfo.name.ar;
-      const catSubtitle = catInfo.subtitle[currentLang] || catInfo.subtitle.ar;
-      ogImage = toAbsoluteUrl(registry.categories?.[catInfo.id] || catInfo.image);
-      ogUrl = `${origin}/?category=${activeCategory}`;
-
-      if (currentLang === 'ar') {
-        title = `${catName} | مواد تكسية وديكور جداري في سوريا واللاذقية — شركة بيرليك`;
-        description = `${catSubtitle}. تشكيلة واسعة بمواصفات عالمية ومقاومة للماء والرطوبة 100% من شركة بيرليك باللاذقية. متوفرة مع خدمة التوصيل والاستشارة لجميع المدن السورية.`;
-        keywords = `${catName}, ${catInfo.id}, بديل الخشب سوريا, بديل الرخام اللاذقية, ألواح جدارية, ديكور داخلي سوريا, تشطيبات فندقية وسكنية, ${baseKeywordsAr}`;
-      } else {
-        title = `${catName} | Architectural Wall Cladding Syria & Lattakia — Birlik Company`;
-        description = `${catSubtitle}. Explore our premium 100% waterproof interior wall cladding collections from Birlik Company in Lattakia, Syria. Nationwide delivery and project consultations.`;
-        keywords = `${catName}, ${catInfo.id}, architectural wall panels Syria, Lattakia interior decor, ${baseKeywordsEn}`;
-      }
-
-      // Schema.org CollectionPage & Breadcrumbs
-      schemaData = {
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        name: catName,
-        description: description,
-        url: ogUrl,
-        breadcrumb: {
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: currentLang === 'ar' ? 'الرئيسية' : 'Home',
-              item: origin,
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: currentLang === 'ar' ? 'الكتالوج' : 'Catalogue',
-              item: `${origin}/?page=catalogue`,
-            },
-            {
-              '@type': 'ListItem',
-              position: 3,
-              name: catName,
-              item: ogUrl,
-            },
-          ],
-        },
-      };
-
-    } else if (currentView === 'catalogue') {
-      ogImage = toAbsoluteUrl(registry.categories?.[catInfo.id] || catInfo.image);
-      ogUrl = `${origin}/?page=catalogue`;
-
-      if (currentLang === 'ar') {
-        title = 'كتالوج مواد التكسية والديكور الداخلي المعماري | شركة بيرليك سوريا';
-        description = 'تصفح الكتالوج الشامل لشركة بيرليك في اللاذقية وسوريا: بديل الخشب (PS)، بديل الرخام (PVC)، بديل الشيبورد الحجري (SPC)، بديل الباركيه، والقُضبان والنعلات المعمارية المقاومة للماء 100%.';
-        keywords = `كتالوج مواد الديكور, كتالوج تكسية الجدران, بديل الخشب, بديل الرخام, بديل الشيبورد, بديل الباركيه, قُضبان جدارية, نعلات فوم, ديكورات سوريا, اللاذقية, دمشق, ${baseKeywordsAr}`;
-      } else {
-        title = 'Architectural Wall Cladding Product Catalogue | Birlik Company Syria';
-        description = 'Browse the comprehensive architectural materials catalogue from Birlik Company in Lattakia, Syria: PS fluted wood panels, PVC marble sheets, SPC wall boards, SPC click parquet, and baseboards.';
-        keywords = `wall cladding catalogue Syria, interior materials Lattakia, PS wood panels, PVC marble, SPC flooring, ${baseKeywordsEn}`;
-      }
-
-    } else if (currentView === 'installation') {
-      ogUrl = `${origin}/?page=installation`;
-
-      if (currentLang === 'ar') {
-        title = 'دليل ومقاطع فيديو التركيب لمواد التكسية | شركة بيرليك سوريا';
-        description = 'شاهد مقاطع الفيديو التوضيحية وإرشادات التركيب الصحيحة لألواح بديل الخشب، بديل الرخام، بديل الشيبورد، وبديل الباركيه من شركة بيرليك في اللاذقية وسوريا.';
-        keywords = `تركيب بديل الخشب, طريقة تركيب بديل الرخام, تركيب ألواح SPC, تركيب باركيه كليك, تركيب نعلات فوم, شركة بيرليك, ديكورات سوريا, اللاذقية`;
-      } else {
-        title = 'Installation Guide & Videos | Birlik Company Syria';
-        description = 'Watch step-by-step installation guides and videos for PS wood panels, PVC marble, SPC wall boards, and SPC flooring from Birlik Company Syria.';
-        keywords = `wall panel installation Syria, how to install PVC marble, SPC flooring installation, Birlik Company Lattakia`;
-      }
-
-    } else {
-      // Home page
-      ogUrl = `${origin}/`;
-      if (currentLang === 'ar') {
-        title = 'شركة بيرليك لمواد التكسية والديكور الداخلي | اللاذقية، سوريا';
-        description = 'شركة بيرليك — خامات ومواد تكسية الجدران الفاخرة المقاومة للماء 100% في سوريا واللاذقية. ألواح بديل الخشب PS، بديل الرخام PVC، بديل الشيبورد SPC، بديل الباركيه، والنعلات مع شحن لكافة المحافظات السورية.';
-        keywords = `${baseKeywordsAr}, ${baseKeywordsEn}`;
-      } else {
-        title = 'Birlik Company | Luxury Architectural Wall Cladding & Interior Decor — Syria';
-        description = 'Birlik Company — Premium 100% waterproof architectural wall cladding materials in Lattakia, Syria. PS wood panels, PVC marble sheets, SPC stone boards, and baseboards with nationwide shipping.';
-        keywords = `${baseKeywordsEn}, ${baseKeywordsAr}`;
-      }
-    }
-
-    // 1. Update Document Title
-    document.title = title;
-
-    // 2. Helper to set or create meta tag
-    const setMetaTag = (attributeName: string, attributeValue: string, content: string) => {
-      let element = document.querySelector(`meta[${attributeName}="${attributeValue}"]`);
-      if (!element) {
-        element = document.createElement('meta');
-        element.setAttribute(attributeName, attributeValue);
-        document.head.appendChild(element);
-      }
-      element.setAttribute('content', content);
-    };
-
-    // Standard Meta Tags
-    setMetaTag('name', 'description', description);
-    setMetaTag('name', 'keywords', keywords);
-
-    // OpenGraph Tags
-    setMetaTag('property', 'og:title', title);
-    setMetaTag('property', 'og:description', description);
-    setMetaTag('property', 'og:image', ogImage);
-    setMetaTag('property', 'og:url', ogUrl);
-    setMetaTag('property', 'og:type', currentView === 'product' ? 'product' : 'website');
-
-    // Twitter Tags
-    setMetaTag('name', 'twitter:title', title);
-    setMetaTag('name', 'twitter:description', description);
-    setMetaTag('name', 'twitter:image', ogImage);
-
-    // Canonical Link Tag
-    let canonical = document.querySelector('link[rel="canonical"]');
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
+      canonical.rel = 'canonical';
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', ogUrl);
+    canonical.href = seo.canonical;
 
-    // 3. Dynamic JSON-LD Structured Data Injection
-    const SCRIPT_ID = 'birlik-dynamic-seo-schema';
-    let scriptTag = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
-    if (schemaData) {
-      if (!scriptTag) {
-        scriptTag = document.createElement('script');
-        scriptTag.id = SCRIPT_ID;
-        scriptTag.type = 'application/ld+json';
-        document.head.appendChild(scriptTag);
-      }
-      scriptTag.textContent = JSON.stringify(schemaData);
-    } else if (scriptTag) {
-      scriptTag.remove();
+    document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((n) => n.remove());
+    seo.alternates.forEach((a) => {
+      const l = document.createElement('link');
+      l.rel = 'alternate';
+      l.hreflang = a.hreflang;
+      l.href = a.href;
+      document.head.appendChild(l);
+    });
+
+    document.getElementById(SCHEMA_ID)?.remove();
+    if (seo.schema) {
+      const s = document.createElement('script');
+      s.id = SCHEMA_ID;
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify(seo.schema);
+      document.head.appendChild(s);
     }
-
-    // 4. Update browser URL history seamlessly without reloading
-    const newParams = new URLSearchParams();
-
-    if (currentView === 'product' && activeProduct) {
-      newParams.set('category', activeCategory);
-      newParams.set('product', activeProduct.id);
-    } else if (currentView === 'category') {
-      newParams.set('category', activeCategory);
-    } else if (currentView === 'catalogue') {
-      newParams.set('page', 'catalogue');
-    } else if (currentView === 'installation') {
-      newParams.set('page', 'installation');
-    }
-
-    const newQuery = newParams.toString();
-    const newRelativeUrl = newQuery ? `?${newQuery}` : window.location.pathname;
-    
-    // Only update history if query changed to avoid cluttering history stack
-    if (window.location.search !== (newQuery ? `?${newQuery}` : '')) {
-      window.history.replaceState(
-        { view: currentView, category: activeCategory, product: activeProduct?.id },
-        title,
-        newRelativeUrl
-      );
-    }
-  }, [currentView, currentLang, activeCategory, activeProduct, registry]);
+  }, [route]);
 
   return null;
 };

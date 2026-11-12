@@ -12,6 +12,9 @@ import {
 } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
+import { useRouter } from '../router';
+import { buildPath } from '../routing';
+import { sectionPath } from '../routing';
 
 interface HeaderProps {
   currentLang: Language;
@@ -27,6 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const t = TRANSLATIONS[currentLang];
+  const { route } = useRouter();
   const isRtl = currentLang === 'ar';
 
   const handleNavClick = (sectionId: string) => {
@@ -63,8 +67,9 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center justify-between h-16 sm:h-20 md:h-22">
           
           {/* Brand Logo */}
-          <button 
-            onClick={() => handleNavClick('hero')} 
+          <a 
+            href={sectionPath(currentLang, 'hero')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }} 
             className="flex items-center text-start group cursor-pointer focus:outline-none"
             id="brand-logo-btn"
             aria-label="Birlik Company Logo"
@@ -74,50 +79,55 @@ export const Header: React.FC<HeaderProps> = ({
               alt="Birlik Company" 
               className="h-10 sm:h-13 md:h-16 w-auto max-w-[170px] sm:max-w-[240px] md:max-w-[280px] object-contain transition-transform duration-200 group-hover:scale-102 filter drop-shadow-2xs"
             />
-          </button>
+          </a>
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs uppercase tracking-widest font-sans text-[#5C554E]">
             {/* 1. About Us */}
-            <button
-              onClick={() => handleNavClick('about')}
+            <a
+              href={sectionPath(currentLang, 'about')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}
               className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-medium text-[#5C554E]"
             >
               {t.nav.about || (currentLang === 'ar' ? 'من نحن' : 'About Us')}
-            </button>
+            </a>
 
             {/* 2. Product Catalogue */}
-            <button
-              onClick={() => handleNavClick('catalogue')}
+            <a
+              href={sectionPath(currentLang, 'catalogue')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('catalogue'); }}
               className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-bold text-[#1C1917]"
             >
               {currentLang === 'ar' ? 'كتالوج المنتجات' : currentLang === 'en' ? 'Product Catalogue' : 'Ürün Kataloğu'}
-            </button>
+            </a>
 
             {/* 3. Montaj guide and videos */}
-            <button
-              onClick={() => handleNavClick('installation')}
+            <a
+              href={sectionPath(currentLang, 'installation')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('installation'); }}
               className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-semibold text-[#9E7241] flex items-center gap-1.5"
             >
               <Film className="w-3.5 h-3.5 text-[#9E7241]" />
               <span>{currentLang === 'ar' ? 'دليل وفيديوهات التركيب' : currentLang === 'en' ? 'Installation Guides' : 'Montaj Rehberi'}</span>
-            </button>
+            </a>
 
             {/* 4. Lattakia Office */}
-            <button
-              onClick={() => handleNavClick('office')}
+            <a
+              href={sectionPath(currentLang, 'office')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('office'); }}
               className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-medium text-[#5C554E]"
             >
               {t.nav.office}
-            </button>
+            </a>
 
             {/* 5. The Founder */}
-            <button
-              onClick={() => handleNavClick('founder')}
+            <a
+              href={sectionPath(currentLang, 'founder')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('founder'); }}
               className="hover:text-[#9E7241] transition-colors py-2 cursor-pointer font-medium text-[#5C554E]"
             >
               {currentLang === 'ar' ? 'مؤسس الشركة' : currentLang === 'en' ? 'Our Founder' : 'Kurucumuz'}
-            </button>
+            </a>
           </nav>
 
           {/* Right Actions: Clean, Balanced and Mobile-Optimized */}
@@ -165,35 +175,41 @@ export const Header: React.FC<HeaderProps> = ({
                   className="absolute end-0 mt-1 w-32 bg-[#FFFFFF] border border-[#E5DFD5] shadow-lg py-1 z-50 animate-fadeIn"
                   onClick={() => setLangDropdownOpen(false)}
                 >
-                  <button
-                    onClick={() => onLanguageChange('ar')}
+                  <a
+                    href={buildPath({ ...route, lang: 'ar' })}
+                hrefLang="ar"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('ar'); }}
                     className={`w-full px-3 py-2 text-start text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
                       currentLang === 'ar' ? 'text-[#9E7241] font-bold bg-[#FAF7F2]' : 'text-[#5C554E]'
                     }`}
                   >
                     <span>العربية</span>
                     {currentLang === 'ar' && <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />}
-                  </button>
+                  </a>
 
-                  <button
-                    onClick={() => onLanguageChange('en')}
+                  <a
+                    href={buildPath({ ...route, lang: 'en' })}
+                hrefLang="en"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('en'); }}
                     className={`w-full px-3 py-2 text-start text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
                       currentLang === 'en' ? 'text-[#9E7241] font-bold bg-[#FAF7F2]' : 'text-[#5C554E]'
                     }`}
                   >
                     <span>English</span>
                     {currentLang === 'en' && <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />}
-                  </button>
+                  </a>
 
-                  <button
-                    onClick={() => onLanguageChange('tr')}
+                  <a
+                    href={buildPath({ ...route, lang: 'tr' })}
+                hrefLang="tr"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('tr'); }}
                     className={`w-full px-3 py-2 text-start text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
                       currentLang === 'tr' ? 'text-[#9E7241] font-bold bg-[#FAF7F2]' : 'text-[#5C554E]'
                     }`}
                   >
                     <span>Türkçe</span>
                     {currentLang === 'tr' && <span className="w-1.5 h-1.5 rounded-full bg-[#9E7241]" />}
-                  </button>
+                  </a>
                 </div>
               )}
             </div>
@@ -219,25 +235,28 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Main Navigation Links */}
           <div className="space-y-1.5">
             {/* 1. About Us */}
-            <button
-              onClick={() => handleNavClick('about')}
+            <a
+              href={sectionPath(currentLang, 'about')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}
               className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-medium flex items-center justify-between transition-colors shadow-2xs rounded-xs"
             >
               <span>{t.nav.about || (currentLang === 'ar' ? 'من نحن' : 'About Us')}</span>
-            </button>
+            </a>
 
             {/* 2. Product Catalogue */}
-            <button
-              onClick={() => handleNavClick('catalogue')}
+            <a
+              href={sectionPath(currentLang, 'catalogue')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('catalogue'); }}
               className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-bold flex items-center justify-between transition-colors shadow-2xs rounded-xs"
             >
               <span>{currentLang === 'ar' ? 'كتالوج المنتجات' : currentLang === 'en' ? 'Product Catalogue' : 'Ürün Kataloğu'}</span>
               <span className="text-[10px] text-[#9E7241] font-bold font-mono">41 Models</span>
-            </button>
+            </a>
 
             {/* 3. Montaj guide and videos */}
-            <button
-              onClick={() => handleNavClick('installation')}
+            <a
+              href={sectionPath(currentLang, 'installation')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('installation'); }}
               className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#DDD5C7] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#9E7241] font-bold flex items-center justify-between transition-colors shadow-2xs rounded-xs"
             >
               <span className="flex items-center gap-2">
@@ -245,23 +264,25 @@ export const Header: React.FC<HeaderProps> = ({
                 <span>{currentLang === 'ar' ? 'دليل وفيديوهات التركيب' : currentLang === 'en' ? 'Installation Videos & Resources' : 'Montaj ve Uygulama Rehberi'}</span>
               </span>
               <span className="text-[10px] bg-[#9E7241]/10 text-[#9E7241] px-2 py-0.5 font-bold font-mono">6 Videos</span>
-            </button>
+            </a>
 
             {/* 4. Lattakia Office */}
-            <button
-              onClick={() => handleNavClick('office')}
+            <a
+              href={sectionPath(currentLang, 'office')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('office'); }}
               className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-medium flex items-center justify-between transition-colors shadow-2xs rounded-xs"
             >
               <span>{t.nav.office}</span>
-            </button>
+            </a>
 
             {/* 5. The Founder */}
-            <button
-              onClick={() => handleNavClick('founder')}
+            <a
+              href={sectionPath(currentLang, 'founder')}
+              onClick={(e) => { e.preventDefault(); handleNavClick('founder'); }}
               className="w-full text-start py-3 px-4 bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#9E7241] text-xs uppercase tracking-wider text-[#1C1917] font-medium flex items-center justify-between transition-colors shadow-2xs rounded-xs"
             >
               <span>{currentLang === 'ar' ? 'مؤسس الشركة (المهندس يوسف حداد)' : currentLang === 'en' ? 'Our Founder' : 'Kurucumuz'}</span>
-            </button>
+            </a>
           </div>
 
           {/* Quick Action Contact Cards */}
@@ -291,8 +312,10 @@ export const Header: React.FC<HeaderProps> = ({
               {currentLang === 'ar' ? 'اللغة / Language:' : 'Language / Dil:'}
             </span>
             <div className="grid grid-cols-3 gap-1.5 text-center">
-              <button
-                onClick={() => onLanguageChange('ar')}
+              <a
+                href={buildPath({ ...route, lang: 'ar' })}
+                hrefLang="ar"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('ar'); }}
                 className={`py-1.5 text-xs rounded-xs font-medium transition-colors cursor-pointer border ${
                   currentLang === 'ar' 
                     ? 'border-[#9E7241] bg-[#9E7241] text-white font-bold' 
@@ -300,9 +323,11 @@ export const Header: React.FC<HeaderProps> = ({
                 }`}
               >
                 العربية
-              </button>
-              <button
-                onClick={() => onLanguageChange('en')}
+              </a>
+              <a
+                href={buildPath({ ...route, lang: 'en' })}
+                hrefLang="en"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('en'); }}
                 className={`py-1.5 text-xs rounded-xs font-medium transition-colors cursor-pointer border ${
                   currentLang === 'en' 
                     ? 'border-[#9E7241] bg-[#9E7241] text-white font-bold' 
@@ -310,9 +335,11 @@ export const Header: React.FC<HeaderProps> = ({
                 }`}
               >
                 English
-              </button>
-              <button
-                onClick={() => onLanguageChange('tr')}
+              </a>
+              <a
+                href={buildPath({ ...route, lang: 'tr' })}
+                hrefLang="tr"
+                onClick={(e) => { e.preventDefault(); onLanguageChange('tr'); }}
                 className={`py-1.5 text-xs rounded-xs font-medium transition-colors cursor-pointer border ${
                   currentLang === 'tr' 
                     ? 'border-[#9E7241] bg-[#9E7241] text-white font-bold' 
@@ -320,7 +347,7 @@ export const Header: React.FC<HeaderProps> = ({
                 }`}
               >
                 Türkçe
-              </button>
+              </a>
             </div>
           </div>
 

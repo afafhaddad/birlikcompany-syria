@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
-import { Language, ProductCategory, ProductModel, AppView } from './types';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { Language, ProductCategory, ProductModel } from './types';
 import { MediaProvider } from './context/MediaContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -15,248 +15,162 @@ import { ProductCataloguePage } from './components/ProductCataloguePage';
 import { CategoryPage } from './components/CategoryPage';
 import { ProductDetailPage } from './components/ProductDetailPage';
 import { InstallationResourcesPage } from './components/InstallationResourcesPage';
+import { CataloguePrintPage } from './components/CataloguePrintPage';
+import { NotFoundPage } from './components/NotFoundPage';
 import { OfficeSection } from './components/OfficeSection';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { Footer } from './components/Footer';
 import { SEOHead } from './components/SEOHead';
-import { PRODUCT_MODELS, CATEGORIES_DATA } from './data/products';
+import { RouterContext } from './router';
+import {
+  Route,
+  buildPath,
+  parseLocation,
+  findProduct,
+  homeRoute,
+  catalogueRoute,
+  installationRoute,
+  categoryRoute,
+  productRoute,
+} from './routing';
 
-interface InitialRoute {
-  view: AppView;
-  category: ProductCategory;
-  product: ProductModel | null;
-}
+const scrollToSection = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
-function resolveInitialRoute(): InitialRoute {
-  const route: InitialRoute = { view: 'home', category: 'ps_wood', product: null };
-  if (typeof window === 'undefined') return route;
+export default function App({ initialRoute }: { initialRoute: Route }) {
+  const [route, setRoute] = useState<Route>(initialRoute);
+  const currentLang: Language = route.lang;
+  const activeProduct: ProductModel | undefined = route.view === 'product' ? findProduct(route.productId) : undefined;
 
-  const params = new URLSearchParams(window.location.search);
-
-  const pageParam = params.get('page');
-  const categoryParam = params.get('category');
-  const productParam = params.get('product');
-  const validCategory = categoryParam && CATEGORIES_DATA.some((c) => c.id === categoryParam)
-    ? (categoryParam as ProductCategory)
-    : null;
-
-  if (productParam) {
-    const foundProduct = PRODUCT_MODELS.find(
-      (m) => m.id === productParam || m.code.toLowerCase() === productParam.toLowerCase()
-    );
-    if (foundProduct) {
-      route.product = foundProduct;
-      route.category = validCategory || (foundProduct.category as ProductCategory) || route.category;
-      route.view = 'product';
-      return route;
+  const navigate = useCallback((to: Route, opts?: { replace?: boolean; scrollTo?: string }) => {
+    const path = buildPath(to) + (opts?.scrollTo ? `#${opts.scrollTo}` : '');
+    if (opts?.replace) window.history.replaceState(null, '', path);
+    else if (window.location.pathname + window.location.hash !== path) window.history.pushState(null, '', path);
+    setRoute(to);
+    if (opts?.scrollTo) {
+      const id = opts.scrollTo;
+      setTimeout(() => scrollToSection(id), 60);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
-  }
+  }, []);
 
-  if (validCategory) {
-    route.category = validCategory;
-    route.view = 'category';
-    return route;
-  }
+  // Browser back/forward
+  useEffect(() => {
+    const onPop = () => setRoute(parseLocation(window.location.pathname, window.location.search));
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
-  if (pageParam === 'catalogue') route.view = 'catalogue';
-  else if (pageParam === 'installation') route.view = 'installation';
+  // Old ?category=/?product= links → canonical path; scroll to #section on first load
+  useEffect(() => {
+    const canonicalPath = buildPath(initialRoute);
+    if (initialRoute.view !== 'notfound' && window.location.pathname !== canonicalPath) {
+      window.history.replaceState(null, '', canonicalPath + window.location.hash);
+    }
+    const hash = window.location.hash.slice(1);
+    if (hash) setTimeout(() => scrollToSection(hash), 100);
+  }, [initialRoute]);
 
-  return route;
-}
-
-export default function App() {
-  // Default language is Arabic with toggles for English and Turkish
-  const [currentLang, setCurrentLang] = useState<Language>('ar');
-  
-  // Page Routing State — resolved synchronously from the URL on first render so that
-  // deep links (?page=, ?category=, ?product=) survive before SEOHead rewrites the URL.
-  const [initialRoute] = useState(() => resolveInitialRoute());
-  const [currentView, setCurrentView] = useState<AppView>(initialRoute.view);
-  const [activeCategory, setActiveCategory] = useState<ProductCategory>(initialRoute.category);
-  const [activeProduct, setActiveProduct] = useState<ProductModel | null>(initialRoute.product);
-
-  // Sync HTML document direction and language code
+  // Keep <html lang/dir> in sync when switching language in-app
   useEffect(() => {
     document.documentElement.lang = currentLang;
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   }, [currentLang]);
 
-  // Handle header / footer navigation
+  // Header / footer navigation by section id
   const handleNavigate = (sectionId: string) => {
-    if (sectionId === 'categories-page' || sectionId === 'catalogue') {
-      setCurrentView('catalogue');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
+    if (sectionId === 'categories-page' || sectionId === 'catalogue') return navigate(catalogueRoute(currentLang));
     if (sectionId === 'installation' || sectionId === 'resources' || sectionId === 'installation-videos') {
-      setCurrentView('installation');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
+      return navigate(installationRoute(currentLang));
     }
-
-    if (currentView !== 'home') {
-      setCurrentView('home');
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }, 50);
-      return;
-    }
-
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (route.view !== 'home') return navigate(homeRoute(currentLang), { scrollTo: sectionId === 'hero' ? undefined : sectionId });
+    scrollToSection(sectionId);
   };
 
-  // Navigations
-  const handleOpenCatalogue = () => {
-    setCurrentView('catalogue');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const setLang = (lang: Language) => navigate({ ...route, lang });
+  const openCatalogue = () => navigate(catalogueRoute(currentLang));
+  const openInstallation = () => navigate(installationRoute(currentLang));
+  const openCategory = (cat: ProductCategory) => navigate(categoryRoute(currentLang, cat));
+  const openProduct = (model: ProductModel) => navigate(productRoute(currentLang, model));
+  const backToHome = () => navigate(homeRoute(currentLang));
+  const backToCategory = () => navigate(categoryRoute(currentLang, route.category));
 
-  const handleOpenCategory = (cat: ProductCategory) => {
-    setActiveCategory(cat);
-    setCurrentView('category');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const routerValue = useMemo(() => ({ route, navigate }), [route, navigate]);
 
-  const handleOpenProduct = (model: ProductModel) => {
-    setActiveProduct(model);
-    setCurrentView('product');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBackToHome = () => {
-    setCurrentView('home');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBackToCatalogue = () => {
-    setCurrentView('catalogue');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBackToCategory = () => {
-    setCurrentView('category');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  if (route.view === 'print') {
+    return (
+      <RouterContext.Provider value={routerValue}>
+        <MediaProvider>
+          <CataloguePrintPage currentLang={currentLang} />
+        </MediaProvider>
+      </RouterContext.Provider>
+    );
+  }
 
   return (
-    <MediaProvider>
-      <div className={`min-h-screen bg-[#FAF7F2] text-[#1C1917] flex flex-col font-sans selection:bg-[#9E7241]/20 selection:text-[#1C1917] ${currentLang === 'ar' ? 'rtl' : 'ltr'}`}>
-        
-        {/* Dynamic SEO, OpenGraph & Schema.org Metadata Management */}
-        <SEOHead
-          currentView={currentView}
-          currentLang={currentLang}
-          activeCategory={activeCategory}
-          activeProduct={activeProduct}
-        />
+    <RouterContext.Provider value={routerValue}>
+      <MediaProvider>
+        <div className={`min-h-screen bg-[#FAF7F2] text-[#1C1917] flex flex-col font-sans selection:bg-[#9E7241]/20 selection:text-[#1C1917] ${currentLang === 'ar' ? 'rtl' : 'ltr'}`}>
+          <SEOHead route={route} />
 
-        {/* Sticky Top Header */}
-        <Header
-          currentLang={currentLang}
-          onLanguageChange={setCurrentLang}
-          onNavigate={handleNavigate}
-        />
+          <Header currentLang={currentLang} onLanguageChange={setLang} onNavigate={handleNavigate} />
 
-        {/* Main Content Area Routing */}
-        <main className="flex-1">
-          {/* 1. Product Installation Resources & Video Walkthroughs */}
-          {currentView === 'installation' ? (
-            <InstallationResourcesPage
-              currentLang={currentLang}
-              onSelectCategory={handleOpenCategory}
-              onBackToHome={handleBackToHome}
-              onBackToCatalogue={handleBackToCatalogue}
-            />
-          ) : currentView === 'product' && activeProduct ? (
-            /* 2. Designated Product Page */
-            <ProductDetailPage
-              model={activeProduct}
-              currentLang={currentLang}
-              onBackToCategory={handleBackToCategory}
-              onBackToCatalogue={handleBackToCatalogue}
-              onBackToHome={handleBackToHome}
-              onSelectAnotherModel={handleOpenProduct}
-            />
-          ) : currentView === 'category' ? (
-            /* 2. Designated Category Page with Category Descriptions and Product Carousel */
-            <CategoryPage
-              categoryId={activeCategory}
-              currentLang={currentLang}
-              onBack={handleBackToHome}
-              onBackToCatalogue={handleBackToCatalogue}
-              onSelectCategory={handleOpenCategory}
-              onSelectProduct={handleOpenProduct}
-              onOpenInstallation={() => {
-                setCurrentView('installation');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            />
-          ) : currentView === 'catalogue' ? (
-            /* 3. Product Categories Catalogue Page with Carousel-like Cards & Exact Descriptions */
-            <ProductCataloguePage
-              currentLang={currentLang}
-              onSelectCategory={handleOpenCategory}
-              onBackToHome={handleBackToHome}
-            />
-          ) : (
-            /* 4. Homepage */
-            <>
-              {/* Architectural Hero */}
-              <Hero
+          <main className="flex-1">
+            {route.view === 'installation' ? (
+              <InstallationResourcesPage
                 currentLang={currentLang}
-                onNavigate={handleNavigate}
-                onSelectCategory={handleOpenCategory}
-                onOpenCatalogue={handleOpenCatalogue}
+                onSelectCategory={openCategory}
+                onBackToHome={backToHome}
+                onBackToCatalogue={openCatalogue}
               />
-
-              {/* Edge-to-edge Horizontal Category Cards on Homepage */}
-              <ProductCategoriesSection
+            ) : route.view === 'product' && activeProduct ? (
+              <ProductDetailPage
+                model={activeProduct}
                 currentLang={currentLang}
-                onSelectCategory={handleOpenCategory}
+                onBackToCategory={backToCategory}
+                onBackToCatalogue={openCatalogue}
+                onBackToHome={backToHome}
+                onSelectAnotherModel={openProduct}
               />
-
-              {/* Our Founder Section */}
-              <FounderSection
+            ) : route.view === 'category' ? (
+              <CategoryPage
+                categoryId={route.category}
                 currentLang={currentLang}
-                onNavigate={handleNavigate}
+                onBack={backToHome}
+                onBackToCatalogue={openCatalogue}
+                onSelectCategory={openCategory}
+                onSelectProduct={openProduct}
+                onOpenInstallation={openInstallation}
               />
+            ) : route.view === 'catalogue' ? (
+              <ProductCataloguePage currentLang={currentLang} onSelectCategory={openCategory} onBackToHome={backToHome} />
+            ) : route.view === 'notfound' ? (
+              <NotFoundPage currentLang={currentLang} />
+            ) : (
+              <>
+                <Hero
+                  currentLang={currentLang}
+                  onNavigate={handleNavigate}
+                  onSelectCategory={openCategory}
+                  onOpenCatalogue={openCatalogue}
+                />
+                <ProductCategoriesSection currentLang={currentLang} onSelectCategory={openCategory} />
+                <FounderSection currentLang={currentLang} onNavigate={handleNavigate} />
+                <AboutUsSection currentLang={currentLang} onNavigate={handleNavigate} />
+                <OfficeSection currentLang={currentLang} />
+              </>
+            )}
+          </main>
 
-              {/* About Us Section */}
-              <AboutUsSection
-                currentLang={currentLang}
-                onNavigate={handleNavigate}
-              />
+          <WhatsAppFloatingButton currentLang={currentLang} />
 
-              {/* Headquarters & Consultation Section */}
-              <OfficeSection
-                currentLang={currentLang}
-              />
-            </>
-          )}
-        </main>
-
-        {/* Floating WhatsApp Action */}
-        <WhatsAppFloatingButton currentLang={currentLang} />
-
-        {/* Minimal Sleek Footer */}
-        <Footer
-          currentLang={currentLang}
-          onLanguageChange={setCurrentLang}
-          onNavigate={handleNavigate}
-        />
-
-      </div>
-    </MediaProvider>
+          <Footer currentLang={currentLang} onLanguageChange={setLang} onNavigate={handleNavigate} />
+        </div>
+      </MediaProvider>
+    </RouterContext.Provider>
   );
 }

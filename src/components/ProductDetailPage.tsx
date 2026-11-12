@@ -25,6 +25,8 @@ import {
 import { Language, ProductCategory, ProductModel } from '../types';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { useMedia } from '../context/MediaContext';
+import { productPath, SITE_ORIGIN } from '../routing';
+import { AreaCalculator } from './AreaCalculator';
 
 interface ProductDetailPageProps {
   model: ProductModel;
@@ -116,11 +118,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
   // WhatsApp order text with model code and name
   const getWhatsAppOrderLink = () => {
+    const pageUrl = `${SITE_ORIGIN}${productPath(currentLang, model)}`;
     const text = currentLang === 'ar'
-      ? `مرحباً شركة بيرليك، أود الاستفسار عن تفاصيل وتوفر وسعر موديل: ${model.name.ar} (كود: ${model.code}) لقسم (${categoryInfo.name.ar}) والشحن إلى مدينتي في سوريا.`
+      ? `مرحباً شركة بيرليك، أريد معرفة سعر الموديل ${model.code} (${model.name.ar}) من ${categoryInfo.name.ar}، والتوصيل إلى مدينتي.\n${pageUrl}`
       : currentLang === 'tr'
-      ? `Merhaba Birlik Şirketi, ${categoryInfo.name.tr} kategorisindeki ${model.name.tr} (Kod: ${model.code}) modelinin fiyatı, stoğu ve teslimat detayları hakkında bilgi almak istiyorum.`
-      : `Hello Birlik Company, I would like to inquire about availability, pricing, and Syrian shipping for model: ${model.name.en} (Code: ${model.code}) in category (${categoryInfo.name.en}).`;
+      ? `Merhaba Birlik Şirketi, ${categoryInfo.name.tr} kategorisindeki ${model.code} (${model.name.tr}) modelinin fiyatını ve teslimatını öğrenmek istiyorum.\n${pageUrl}`
+      : `Hello Birlik Company, I'd like the price of model ${model.code} (${model.name.en}) from ${categoryInfo.name.en}, and delivery to my city.\n${pageUrl}`;
     return `https://wa.me/963995764573?text=${encodeURIComponent(text)}`;
   };
 
@@ -137,7 +140,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       thicknessLabel: 'السماكة',
       waterproofLabel: 'مقاومة الرطوبة والماء',
       waterproofValue: 'مقاوم للماء والرطوبة بنسبة 100%',
-      orderViaWhatsApp: 'طلب واستفسار عبر واتساب',
+      orderViaWhatsApp: 'اسأل عن السعر عبر واتساب',
       callSales: 'اتصال مباشر بفريق المبيعات',
       sampleNotice: 'المعاينة الحية لعينات هذا الموديل متوفرة في مقرنا باللاذقية',
       prevProduct: 'الموديل السابق',
@@ -157,7 +160,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       thicknessLabel: 'Thickness',
       waterproofLabel: 'Waterproof Rating',
       waterproofValue: '100% Water & Moisture Impervious',
-      orderViaWhatsApp: 'Inquire & Order via WhatsApp',
+      orderViaWhatsApp: 'Ask for the price on WhatsApp',
       callSales: 'Call Sales Team',
       sampleNotice: 'Physical sample swatches for this model available at our Lattakia headquarters',
       prevProduct: 'Previous Model',
@@ -177,7 +180,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
       thicknessLabel: 'Kalınlık',
       waterproofLabel: 'Su Geçirmezlik',
       waterproofValue: '%100 Su ve Nem Geçirmez',
-      orderViaWhatsApp: 'WhatsApp ile Bilgi ve Sipariş',
+      orderViaWhatsApp: "Fiyatı WhatsApp'tan sorun",
       callSales: 'Satış Ekibini Ara',
       sampleNotice: 'Bu modelin gerçek numuneleri Lazkiye merkezimizde incelenebilir',
       prevProduct: 'Önceki Model',
@@ -263,22 +266,24 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           {/* Previous / Next Model Steppers in this Category */}
           {siblingModels.length > 1 && (
             <div className="flex items-center gap-2 self-start sm:self-center">
-              <button
-                onClick={() => onSelectAnotherModel(prevModel)}
+              <a
+                href={productPath(currentLang, prevModel)}
+                onClick={(e) => { e.preventDefault(); onSelectAnotherModel(prevModel); }}
                 className="px-3 py-1.5 border border-[#DDD5C7] bg-[#FFFFFF] hover:border-[#9E7241] text-xs text-[#5C554E] hover:text-[#9E7241] flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                 title={prevModel.name[currentLang]}
               >
                 <PrevChevron className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">{t.prevProduct}</span>
-              </button>
-              <button
-                onClick={() => onSelectAnotherModel(nextModel)}
+              </a>
+              <a
+                href={productPath(currentLang, nextModel)}
+                onClick={(e) => { e.preventDefault(); onSelectAnotherModel(nextModel); }}
                 className="px-3 py-1.5 border border-[#DDD5C7] bg-[#FFFFFF] hover:border-[#9E7241] text-xs text-[#5C554E] hover:text-[#9E7241] flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                 title={nextModel.name[currentLang]}
               >
                 <span className="hidden sm:inline">{t.nextProduct}</span>
                 <NextChevron className="w-3.5 h-3.5" />
-              </button>
+              </a>
             </div>
           )}
         </div>
@@ -640,10 +645,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 href={getWhatsAppOrderLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-6 bg-[#1E7E45] hover:bg-[#166034] text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2.5 shadow-sm"
+                className="w-full py-4 px-6 bg-[#1E7E45] hover:bg-[#166034] text-white font-bold text-sm tracking-wide transition-all flex items-center justify-center gap-2.5 shadow-sm"
                 id="whatsapp-product-inquiry-btn"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-5 h-5" />
                 <span>{t.orderViaWhatsApp}</span>
               </a>
 
@@ -658,6 +663,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               </a>
 
             </div>
+
+            <AreaCalculator model={model} currentLang={currentLang} />
 
           </div>
 

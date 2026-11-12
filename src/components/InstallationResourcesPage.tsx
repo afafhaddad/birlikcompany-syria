@@ -17,6 +17,7 @@ import {
 import { Language, ProductCategory } from '../types';
 import { INSTALLATION_GUIDES, InstallationGuide } from '../data/installationGuides';
 import { useMedia } from '../context/MediaContext';
+import { categoryPath } from '../routing';
 
 interface InstallationResourcesPageProps {
   currentLang: Language;
@@ -226,15 +227,15 @@ export const InstallationResourcesPage: React.FC<InstallationResourcesPageProps>
 
                   {/* Category Fast Navigation Button */}
                   <div className="shrink-0 flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => onSelectCategory(guide.categoryId)}
+                    <a
+                      href={categoryPath(currentLang, guide.categoryId)}
+                  onClick={(e) => { e.preventDefault(); onSelectCategory(guide.categoryId); }}
                       className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1C1917] hover:bg-[#38332E] text-white text-xs font-semibold tracking-wider transition-colors cursor-pointer shadow-xs group"
                     >
                       <Layers className="w-3.5 h-3.5 text-[#D4AF37]" />
                       <span>{t.viewCategoryModels}</span>
                       <NextArrowIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
