@@ -108,8 +108,15 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
   const goTo = (i: number) => {
     const el = railRef.current;
     if (!el) return;
-    const child = el.children[i] as HTMLElement | undefined;
-    child?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    // Scroll the rail itself (never the page). In RTL the scroll offset runs negative.
+    const sign = getComputedStyle(el).direction === 'rtl' ? -1 : 1;
+    const left = sign * i * el.clientWidth;
+    setActive(i);
+    el.scrollTo({ left, behavior: 'smooth' });
+    // Some browsers drop smooth scrolling on snap containers: make sure we arrive.
+    window.setTimeout(() => {
+      if (Math.abs(el.scrollLeft - left) > 4) el.scrollTo({ left, behavior: 'instant' as ScrollBehavior });
+    }, 450);
   };
 
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -179,7 +186,7 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
                   type="button"
                   onClick={() => setLightbox(true)}
                   aria-label={t.zoom}
-                  className="relative w-full aspect-[4/5] sm:aspect-[4/3] md:aspect-[4/5] cursor-zoom-in"
+                  className="relative w-full aspect-[4/5] sm:aspect-[4/3] md:aspect-auto md:h-[min(calc(100vh-17rem),44rem)] md:min-h-[20rem] cursor-zoom-in"
                 >
                   <img
                     src={src}
@@ -199,6 +206,27 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
             <span className="absolute top-3 end-3 w-9 h-9 rounded-full bg-ink/60 backdrop-blur-sm text-white flex items-center justify-center pointer-events-none">
               <Maximize2 className="w-4 h-4" />
             </span>
+
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => goTo((active - 1 + images.length) % images.length)}
+                  aria-label={t.prev}
+                  className="hidden md:flex absolute top-1/2 -translate-y-1/2 start-3 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-ink shadow-lg items-center justify-center transition-colors"
+                >
+                  <Prev className="w-5 h-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => goTo((active + 1) % images.length)}
+                  aria-label={t.next}
+                  className="hidden md:flex absolute top-1/2 -translate-y-1/2 end-3 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-ink shadow-lg items-center justify-center transition-colors"
+                >
+                  <Next className="w-5 h-5" />
+                </button>
+              </>
+            )}
 
             {images.length > 1 && (
               <div className="absolute bottom-0 inset-x-0 flex items-center justify-center">
