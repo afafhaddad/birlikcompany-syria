@@ -9,6 +9,9 @@ import { canonicalCategory, catalogueRoute, categoryRoute, productPath, productR
 import { Breadcrumbs } from './Breadcrumbs';
 import { ProductCard } from './cards';
 import { AreaCalculator } from './AreaCalculator';
+import { richDescription } from '../data/productCopy';
+import { articleByCategory } from '../data/articles';
+import { articleRoute } from '../routing';
 import { PHONE_DISPLAY, TEL_HREF, UI, whatsappLink } from '../site';
 
 const TEXT = {
@@ -109,16 +112,29 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
     child?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   };
 
+  const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setLightbox(false);
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const step = (d: number) => setActive((i) => (i + d + images.length) % images.length);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightbox(false);
+      else if (e.key === 'Tab') {
+        // The close button is the only control: keep focus on it
+        e.preventDefault();
+        closeRef.current?.focus();
+      } else if (e.key === 'ArrowLeft') step(isRtl ? 1 : -1);
+      else if (e.key === 'ArrowRight') step(isRtl ? -1 : 1);
+    };
     window.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
+      opener?.focus?.();
     };
-  }, [lightbox]);
+  }, [lightbox, images.length, isRtl]);
 
   const waHref = whatsappLink(productPriceMessage(model, currentLang));
 
@@ -269,11 +285,29 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
             </a>
           </div>
 
+          <section className="mt-6" aria-labelledby="about-model">
+            <h2 id="about-model" className="text-lg font-black mb-2">
+              {currentLang === 'ar' ? `عن موديل ${model.name.ar}` : currentLang === 'tr' ? `${model.name.tr} hakkında` : `About ${model.name.en}`}
+            </h2>
+            <div className="space-y-3 text-[15px] leading-loose text-ink/85">
+              {richDescription(model, currentLang).map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+            {articleByCategory(catId) && (
+              <Link
+                to={articleRoute(currentLang, articleByCategory(catId)!.slug)}
+                className="mt-3 inline-block text-sm font-extrabold text-brass-deep hover:text-ink underline underline-offset-4"
+              >
+                {UI.readGuide[currentLang]}: {card.name[currentLang]}
+              </Link>
+            )}
+          </section>
+
           <AreaCalculator model={model} currentLang={currentLang} />
 
           <section className="mt-6 rounded-3xl bg-white border border-line p-5 sm:p-6">
             <h2 className="text-lg font-black mb-2">{t.specs}</h2>
-            <p className="text-sm leading-relaxed text-muted mb-3">{model.description[currentLang]}</p>
             <dl className="divide-y divide-line">
               {specRows.map((s) => (
                 <div key={s.label} className="py-2.5 grid grid-cols-5 gap-3 text-sm">
@@ -331,6 +365,7 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
         <div className="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center animate-fade-in" role="dialog" aria-modal="true" onClick={() => setLightbox(false)}>
           <img src={images[active]} alt={model.name[currentLang]} className="max-w-full max-h-full object-contain" />
           <button
+            ref={closeRef}
             type="button"
             aria-label={UI.close[currentLang]}
             className="absolute top-4 end-4 w-12 h-12 rounded-full bg-white/15 text-white flex items-center justify-center"

@@ -13,7 +13,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const ssrEntry = path.join(root, 'dist-ssr', 'entry-server.js');
 
-type Route = { lang: 'ar' | 'en' | 'tr'; view: string; category: string; productId?: string };
+type Route = { lang: 'ar' | 'en' | 'tr'; view: string; category: string; productId?: string; slug?: string };
 type Seo = {
   title: string;
   description: string;
@@ -98,7 +98,7 @@ async function main() {
       const alts = seo.alternates
         .map((a) => `    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}" />`)
         .join('\n');
-      const priority = r.view === 'home' ? '1.0' : r.view === 'catalogue' ? '0.9' : r.view === 'category' ? '0.8' : r.view === 'installation' ? '0.7' : '0.6';
+      const priority = r.view === 'home' ? '1.0' : r.view === 'catalogue' ? '0.9' : r.view === 'category' || r.view === 'article' ? '0.8' : r.view === 'blog' ? '0.7' : r.view === 'installation' ? '0.7' : '0.6';
       return `  <url>\n    <loc>${esc(seo.canonical)}</loc>\n${alts}\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
     });
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`;

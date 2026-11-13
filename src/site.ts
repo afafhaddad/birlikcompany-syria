@@ -19,6 +19,8 @@ export const UI = {
   installationLong: l('دليل وفيديوهات التركيب', 'Installation guides & videos', 'Montaj rehberi ve videolar'),
   about: l('من نحن', 'About us', 'Hakkımızda'),
   founder: l('مؤسس الشركة', 'Our founder', 'Kurucumuz'),
+  blog: l('دليل المواد', 'Material guides', 'Malzeme rehberi'),
+  readGuide: l('اقرأ الدليل الكامل', 'Read the full guide', 'Rehberin tamamını okuyun'),
   showroom: l('المعرض', 'Showroom', 'Showroom'),
   showroomLong: l('معرض اللاذقية', 'Lattakia showroom', 'Lazkiye showroom'),
   whatsapp: l('واتساب', 'WhatsApp', 'WhatsApp'),

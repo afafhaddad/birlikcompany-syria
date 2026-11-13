@@ -7,6 +7,10 @@ import { useMedia } from '../context/MediaContext';
 import { Link } from '../router';
 import { catalogueRoute, categoryRoute, installationRoute } from '../routing';
 import { Breadcrumbs } from './Breadcrumbs';
+import { BackgroundVideo } from './BackgroundVideo';
+import { articleByCategory } from '../data/articles';
+import { articleRoute } from '../routing';
+import { BookOpen } from 'lucide-react';
 import { ProductCard } from './cards';
 import { UI, whatsappLink } from '../site';
 
@@ -83,8 +87,14 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
           alt=""
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover opacity-55"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+        <BackgroundVideo
+          mobileSrc={`/media/cat-${card.id}-mobile.mp4`}
+          desktopSrc={`/media/cat-${card.id}-desktop.mp4`}
+          delayMs={900}
+        />
+        <div className="absolute inset-0 bg-ink/35" />
         <div className="absolute inset-0 scrim-bottom" />
         <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-6 pb-8 md:pt-8 md:pb-14">
           <Breadcrumbs
@@ -170,6 +180,15 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
             ))}
           </dl>
           <p className="mt-4 text-sm leading-relaxed text-muted">{info.description[currentLang]}</p>
+          {articleByCategory(card.id) && (
+            <Link
+              to={articleRoute(currentLang, articleByCategory(card.id)!.slug)}
+              className="mt-4 inline-flex items-center gap-2 px-5 py-3 rounded-full bg-sand hover:bg-line text-ink font-extrabold text-sm transition-colors"
+            >
+              <BookOpen className="w-4 h-4 text-brass-deep" />
+              {UI.readGuide[currentLang]}: {name}
+            </Link>
+          )}
         </div>
 
         <div className="lg:col-span-2 rounded-3xl bg-ink text-white p-6 sm:p-7 flex flex-col justify-between gap-6" data-reveal>

@@ -1,55 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { ArrowLeft, ArrowRight, MessageSquare } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../data/translations';
 import { catalogueRoute } from '../routing';
 import { Link } from '../router';
 import { UI, whatsappLink } from '../site';
+import { BackgroundVideo } from './BackgroundVideo';
 
 interface HeroProps {
   currentLang: Language;
   onNavigate: (sectionId: string) => void;
 }
 
-/**
- * Full-screen hero. The poster image (21–41 KB) paints immediately; the short muted
- * video loop (0.5 MB on phones, 1 MB on desktop) is only fetched after the page has
- * loaded, and never on Data Saver, 2G-class connections or reduced-motion devices.
- */
-function shouldLoadVideo(): boolean {
-  if (typeof window === 'undefined') return false;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
-  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-  if (conn?.saveData) return false;
-  if (conn?.effectiveType && /2g/.test(conn.effectiveType)) return false;
-  return true;
-}
-
+/** Full-screen hero: a light poster paints first, the video loop follows on good connections. */
 export const Hero: React.FC<HeroProps> = ({ currentLang, onNavigate }) => {
   const t = TRANSLATIONS[currentLang];
   const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoSrc, setVideoSrc] = useState<string | null>(null);
-  const [videoReady, setVideoReady] = useState(false);
-
-  useEffect(() => {
-    if (!shouldLoadVideo()) return;
-    const start = () => {
-      const mobile = window.matchMedia('(max-width: 767px)').matches;
-      setVideoSrc(mobile ? '/media/hero-mobile.mp4' : '/media/hero-desktop.mp4');
-    };
-    if (document.readyState === 'complete') {
-      const id = window.setTimeout(start, 600);
-      return () => window.clearTimeout(id);
-    }
-    window.addEventListener('load', start, { once: true });
-    return () => window.removeEventListener('load', start);
-  }, []);
-
-  useEffect(() => {
-    if (videoSrc) videoRef.current?.play().catch(() => {});
-  }, [videoSrc]);
-
   return (
     <section id="hero" className="relative h-[100svh] min-h-[520px] max-h-[980px] flex flex-col justify-end bg-ink text-white overflow-hidden">
       {/* Poster (always) */}
@@ -64,21 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ currentLang, onNavigate }) => {
         />
       </picture>
 
-      {/* Video loop (good connections only) */}
-      {videoSrc && (
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          muted
-          loop
-          playsInline
-          autoPlay
-          preload="auto"
-          aria-hidden="true"
-          onCanPlay={() => setVideoReady(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-        />
-      )}
+      <BackgroundVideo mobileSrc="/media/hero-mobile.mp4" desktopSrc="/media/hero-desktop.mp4" />
 
       <div className="absolute inset-0 scrim-bottom" />
 

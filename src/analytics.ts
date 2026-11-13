@@ -26,6 +26,41 @@ declare global {
 }
 
 let enabled = false;
+const CONSENT_KEY = 'birlik_consent';
+
+/** 'granted' | 'denied' | null (no choice made yet) */
+export function consentChoice(): 'granted' | 'denied' | null {
+  try {
+    const v = window.localStorage.getItem(CONSENT_KEY);
+    return v === 'granted' || v === 'denied' ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Visitors in Europe / Turkey must opt in first; elsewhere analytics run until declined. */
+function needsOptIn(): boolean {
+  try {
+    return /^Europe\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+  } catch {
+    return false;
+  }
+}
+
+export function setConsent(granted: boolean) {
+  try {
+    window.localStorage.setItem(CONSENT_KEY, granted ? 'granted' : 'denied');
+  } catch {
+    /* private mode: choice lasts for this page only */
+  }
+  if (granted) initAnalytics();
+  else if (enabled) {
+    // Stop sending for the rest of this visit; nothing loads on the next one
+    enabled = false;
+    (window as unknown as Record<string, unknown>)[`ga-disable-${GA4_ID}`] = true;
+    window.clarity?.('consent', false);
+  }
+}
 
 function isLiveSite(): boolean {
   const h = window.location.hostname;
@@ -113,6 +148,8 @@ function onInput(e: Event) {
 
 export function initAnalytics() {
   if (typeof window === 'undefined' || enabled || !isLiveSite()) return;
+  const choice = consentChoice();
+  if (choice === 'denied' || (choice === null && needsOptIn())) return;
   enabled = true;
 
   // Queues: calls made before the real scripts load are replayed by them.

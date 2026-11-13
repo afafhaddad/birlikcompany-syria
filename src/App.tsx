@@ -17,12 +17,16 @@ import { ProductDetailPage, productPriceMessage } from './components/ProductDeta
 import { InstallationResourcesPage } from './components/InstallationResourcesPage';
 import { CataloguePrintPage } from './components/CataloguePrintPage';
 import { NotFoundPage } from './components/NotFoundPage';
+import { ArticlePage } from './components/ArticlePage';
+import { BlogIndexPage, GuidesTeaser } from './components/BlogIndexPage';
+import { articleBySlug } from './data/articles';
 import { OfficeSection } from './components/OfficeSection';
 import { MobileTabBar, DesktopWhatsApp } from './components/MobileTabBar';
 import { Footer } from './components/Footer';
 import { SEOHead } from './components/SEOHead';
+import { CookieNotice } from './components/CookieNotice';
 import { RouterContext } from './router';
-import { Route, buildPath, parseLocation, findProduct, homeRoute, catalogueRoute, installationRoute } from './routing';
+import { Route, buildPath, parseLocation, findProduct, homeRoute, catalogueRoute, installationRoute, blogRoute } from './routing';
 import { UI, whatsappLink } from './site';
 
 const scrollToSection = (id: string) => {
@@ -35,6 +39,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
   const [route, setRoute] = useState<Route>(initialRoute);
   const currentLang: Language = route.lang;
   const activeProduct: ProductModel | undefined = route.view === 'product' ? findProduct(route.productId) : undefined;
+  const activeArticle = route.view === 'article' ? articleBySlug(route.slug) : undefined;
 
   const navigate = useCallback((to: Route, opts?: { replace?: boolean; scrollTo?: string }) => {
     const path = buildPath(to) + (opts?.scrollTo ? `#${opts.scrollTo}` : '');
@@ -96,6 +101,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
   // Header / footer navigation by section id
   const handleNavigate = (sectionId: string) => {
     if (sectionId === 'categories-page' || sectionId === 'catalogue') return navigate(catalogueRoute(currentLang));
+    if (sectionId === 'blog') return navigate(blogRoute(currentLang));
     if (sectionId === 'installation' || sectionId === 'resources' || sectionId === 'installation-videos') {
       return navigate(installationRoute(currentLang));
     }
@@ -138,6 +144,10 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
               <CategoryPage categoryId={route.category} currentLang={currentLang} />
             ) : route.view === 'catalogue' ? (
               <ProductCataloguePage currentLang={currentLang} />
+            ) : route.view === 'article' && activeArticle ? (
+              <ArticlePage meta={activeArticle} currentLang={currentLang} />
+            ) : route.view === 'blog' ? (
+              <BlogIndexPage currentLang={currentLang} />
             ) : route.view === 'notfound' ? (
               <div className="pt-16 md:pt-[4.5rem]">
                 <NotFoundPage currentLang={currentLang} />
@@ -148,6 +158,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
                 <ProductCategoriesSection currentLang={currentLang} />
                 <FounderSection currentLang={currentLang} />
                 <AboutUsSection currentLang={currentLang} />
+                <GuidesTeaser currentLang={currentLang} />
                 <OfficeSection currentLang={currentLang} />
               </>
             )}
@@ -160,6 +171,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
 
           <MobileTabBar currentLang={currentLang} whatsappHref={whatsappHref} whatsappLabel={whatsappLabel} />
           <DesktopWhatsApp href={whatsappHref} label={whatsappLabel} />
+          <CookieNotice currentLang={currentLang} />
         </div>
       </MediaProvider>
     </RouterContext.Provider>

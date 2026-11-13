@@ -5,6 +5,7 @@
 import { Language } from './types';
 import { CATEGORIES_DATA } from './data/products';
 import mediaRegistry from './data/mediaRegistry.json';
+import { ARTICLES, articleBySlug, articleContent } from './data/articles';
 import { Route, SITE_ORIGIN, LANGS, DEFAULT_LANG, buildPath, findProduct, canonicalCategory } from './routing';
 
 export interface SeoData {
@@ -12,7 +13,7 @@ export interface SeoData {
   description: string;
   canonical: string;
   ogImage: string;
-  ogType: 'website' | 'product';
+  ogType: 'website' | 'product' | 'article';
   ogLocale: string;
   noindex: boolean;
   alternates: Array<{ hreflang: string; href: string }>;
@@ -50,6 +51,7 @@ function breadcrumb(items: Array<{ name: string; url: string }>) {
 }
 
 const HOME_NAME: Record<Language, string> = { ar: 'الرئيسية', en: 'Home', tr: 'Ana Sayfa' };
+const BLOG_NAME: Record<Language, string> = { ar: 'دليل المواد', en: 'Material guides', tr: 'Malzeme rehberi' };
 const CATALOGUE_NAME: Record<Language, string> = { ar: 'كتالوج المنتجات', en: 'Product Catalogue', tr: 'Ürün Kataloğu' };
 
 export function getSeo(route: Route): SeoData {
@@ -159,6 +161,85 @@ export function getSeo(route: Route): SeoData {
           breadcrumb([
             { name: HOME_NAME[lang], url: homeUrl },
             { name: CATALOGUE_NAME[lang], url: canonical },
+          ]),
+        ],
+      },
+    };
+  }
+
+  if (route.view === 'article') {
+    const meta = articleBySlug(route.slug);
+    if (meta) {
+      const c = articleContent(meta, lang);
+      const img = abs(registry.categories?.[meta.categoryId] || catInfo.image);
+      const blogUrl = `${SITE_ORIGIN}/${lang}/blog/`;
+      return {
+        ...base,
+        ogType: 'article',
+        title: `${c.title} | ${BRAND[lang]}`,
+        description: c.description,
+        ogImage: img,
+        schema: {
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'Article',
+              headline: c.title,
+              description: c.description,
+              image: [img],
+              inLanguage: lang,
+              datePublished: meta.published,
+              dateModified: meta.updated,
+              mainEntityOfPage: canonical,
+              articleSection: catName,
+              author: { '@type': 'Organization', name: 'Birlik Company', url: SITE_ORIGIN },
+              publisher: {
+                '@type': 'Organization',
+                name: 'Birlik Company',
+                logo: { '@type': 'ImageObject', url: `${SITE_ORIGIN}/logo-512.png` },
+              },
+            },
+            breadcrumb([
+              { name: HOME_NAME[lang], url: homeUrl },
+              { name: BLOG_NAME[lang], url: blogUrl },
+              { name: c.title, url: canonical },
+            ]),
+          ],
+        },
+      };
+    }
+  }
+
+  if (route.view === 'blog') {
+    return {
+      ...base,
+      title: {
+        ar: 'دليل مواد الإكساء: بديل الخشب، بديل الرخام، SPC والنعلات | شركة بيرليك سوريا',
+        en: 'Material Guides: PS, PVC Marble, SPC Panels & Flooring | Birlik Company Syria',
+        tr: 'Malzeme Rehberi: PS, PVC Mermer, SPC Panel ve Zemin | Birlik Şirketi Suriye',
+      }[lang],
+      description: {
+        ar: 'أدلة شاملة عن مواد تكسية الجدران والأرضيات في سوريا: بديل الخشب، بديل الرخام، بديل الشيبورد الحجري، بديل الباركيه، القُضبان والنعلات — التصنيع، المميزات، الاستخدام والتركيب.',
+        en: 'In-depth guides to wall and floor finishing materials in Syria: PS wood-alternative panels, PVC marble, SPC wall panels, SPC flooring, mouldings and baseboards — how they are made, benefits, uses and installation.',
+        tr: 'Suriye’de duvar ve zemin kaplama malzemeleri rehberleri: PS ahşap alternatifi, PVC mermer, SPC duvar panelleri, SPC zemin, çıta ve süpürgelikler — üretim, avantajlar, kullanım ve montaj.',
+      }[lang],
+      ogImage: abs(registry.hero),
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'CollectionPage',
+            name: BLOG_NAME[lang],
+            url: canonical,
+            hasPart: ARTICLES.map((a) => ({
+              '@type': 'Article',
+              headline: articleContent(a, lang).title,
+              url: `${SITE_ORIGIN}/${lang}/blog/${a.slug}/`,
+            })),
+          },
+          breadcrumb([
+            { name: HOME_NAME[lang], url: homeUrl },
+            { name: BLOG_NAME[lang], url: canonical },
           ]),
         ],
       },

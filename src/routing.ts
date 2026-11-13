@@ -13,6 +13,7 @@
  */
 import { AppView, Language, ProductCategory, ProductModel } from './types';
 import { PRODUCT_MODELS } from './data/products';
+import { ARTICLES, articleBySlug } from './data/articles';
 
 export const SITE_ORIGIN = 'https://www.birlik-insaat.com';
 export const LANGS: Language[] = ['ar', 'en', 'tr'];
@@ -38,13 +39,15 @@ const CATEGORY_ALIASES: Partial<Record<ProductCategory, ProductCategory>> = {
   baseboards: 'ps_baseboards',
 };
 
-export type RouteView = AppView | 'print' | 'notfound';
+export type RouteView = AppView | 'print' | 'notfound' | 'blog' | 'article';
 
 export interface Route {
   lang: Language;
   view: RouteView;
   category: ProductCategory;
   productId?: string;
+  /** Article slug for view === 'article' */
+  slug?: string;
 }
 
 export const canonicalCategory = (cat: ProductCategory): ProductCategory =>
@@ -71,6 +74,10 @@ export function buildPath(route: Route): string {
       return `${base}catalogue/print/`;
     case 'installation':
       return `${base}installation/`;
+    case 'blog':
+      return `${base}blog/`;
+    case 'article':
+      return articleBySlug(route.slug) ? `${base}blog/${route.slug}/` : `${base}blog/`;
     case 'category':
       return `${base}${categorySlug(route.category)}/`;
     case 'product': {
@@ -85,6 +92,11 @@ export function buildPath(route: Route): string {
 export const homeRoute = (lang: Language): Route => ({ lang, view: 'home', category: 'ps_wood' });
 export const catalogueRoute = (lang: Language): Route => ({ lang, view: 'catalogue', category: 'ps_wood' });
 export const installationRoute = (lang: Language): Route => ({ lang, view: 'installation', category: 'ps_wood' });
+export const blogRoute = (lang: Language): Route => ({ lang, view: 'blog', category: 'ps_wood' });
+export const articleRoute = (lang: Language, slug: string): Route => {
+  const meta = articleBySlug(slug);
+  return { lang, view: 'article', category: meta ? meta.categoryId : 'ps_wood', slug };
+};
 export const categoryRoute = (lang: Language, cat: ProductCategory): Route => ({
   lang,
   view: 'category',
@@ -103,6 +115,7 @@ export const sectionPath = (lang: Language, sectionId: string): string => {
   if (sectionId === 'installation' || sectionId === 'resources' || sectionId === 'installation-videos') {
     return buildPath(installationRoute(lang));
   }
+  if (sectionId === 'blog') return buildPath(blogRoute(lang));
   if (sectionId === 'hero') return buildPath(homeRoute(lang));
   return `${buildPath(homeRoute(lang))}#${sectionId}`;
 };
@@ -137,6 +150,8 @@ export function parseLocation(pathname: string, search = ''): Route {
     return { lang, view: 'print', category: 'ps_wood' };
   }
   if (parts[0] === 'installation' && parts.length === 1) return installationRoute(lang);
+  if (parts[0] === 'blog' && parts.length === 1) return blogRoute(lang);
+  if (parts[0] === 'blog' && parts.length === 2 && articleBySlug(parts[1])) return articleRoute(lang, parts[1]);
 
   const cat = slugToCategory(parts[0]);
   if (cat && parts.length === 1) return categoryRoute(lang, cat);
@@ -153,6 +168,8 @@ export function allRoutes(): Route[] {
   for (const lang of LANGS) {
     routes.push(homeRoute(lang), catalogueRoute(lang), installationRoute(lang));
     routes.push({ lang, view: 'print', category: 'ps_wood' });
+    routes.push(blogRoute(lang));
+    for (const a of ARTICLES) routes.push(articleRoute(lang, a.slug));
     for (const cat of MAIN_CATEGORIES) routes.push(categoryRoute(lang, cat));
     for (const model of PRODUCT_MODELS) routes.push(productRoute(lang, model));
   }
