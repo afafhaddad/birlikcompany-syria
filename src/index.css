@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 
 /* ───────── Design tokens ───────── */
 @theme {
@@ -125,3 +126,9 @@ html.js [data-reveal].is-in {
 /* LTR values (codes, sizes) inside RTL pages stay aligned to the reading start */
 html[dir="rtl"] [data-keep-start] { text-align: right; }
 
+
+/* Comfortable tap targets for the text links in the footer (min ~40px tall) */
+footer a,
+footer button {
+  padding-block: 0.6rem;
+}

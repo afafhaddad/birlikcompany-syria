@@ -28,7 +28,9 @@ export const CategoryTile: React.FC<{ card: CategoryCard; index: number; current
       className={`group relative block overflow-hidden rounded-3xl bg-ink-soft aspect-[3/4] sm:aspect-[4/5] ${className}`}
     >
       <img
-        src={getCategoryImageUrl(card.id, base)}
+        src={getCategoryImageUrl(card.id, base, 640)}
+        srcSet={`${getCategoryImageUrl(card.id, base, 640)} 640w, ${getCategoryImageUrl(card.id, base, 1080)} 1080w`}
+        sizes={compact ? '(min-width: 1024px) 400px, 50vw' : '(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw'}
         alt={card.name[currentLang]}
         loading="lazy"
         decoding="async"
@@ -67,7 +69,8 @@ export const ProductCard: React.FC<{ model: ProductModel; currentLang: Language;
   className = '',
 }) => {
   const { getProductImageUrl, getCategoryImageUrl } = useMedia();
-  const src = getProductImageUrl(model.id, getCategoryImageUrl(model.category, FALLBACK));
+  const img = (w: 384 | 640) => getProductImageUrl(model.id, getCategoryImageUrl(model.category, FALLBACK, w), w);
+  const src = img(640);
   return (
     <Link
       to={productRoute(currentLang, model)}
@@ -77,6 +80,8 @@ export const ProductCard: React.FC<{ model: ProductModel; currentLang: Language;
       <div className="relative aspect-[4/5] bg-ink-soft overflow-hidden">
         <img
           src={src}
+          srcSet={`${img(384)} 384w, ${img(640)} 640w`}
+          sizes="(min-width: 1024px) 300px, (min-width: 768px) 33vw, 50vw"
           alt={`${model.code} ${model.name[currentLang]}`}
           loading="lazy"
           decoding="async"

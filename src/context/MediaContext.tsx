@@ -11,7 +11,7 @@
  */
 import React, { createContext, useContext, ReactNode } from 'react';
 import mediaRegistryJson from '../data/mediaRegistry.json';
-import { optimizeImage } from '../utils/optimizeImage';
+import { optimizeImage, ImageWidth } from '../utils/optimizeImage';
 
 export interface MediaTarget {
   type: 'hero' | 'founder' | 'category' | 'product';
@@ -32,8 +32,8 @@ interface MediaContextType {
   isAdmin: boolean;
   registry: MediaRegistryData;
   getHeroImageUrl: (defaultImage: string) => string;
-  getCategoryImageUrl: (categoryId: string, defaultImage: string) => string;
-  getProductImageUrl: (productId: string, defaultImage: string) => string;
+  getCategoryImageUrl: (categoryId: string, defaultImage: string, width?: ImageWidth) => string;
+  getProductImageUrl: (productId: string, defaultImage: string, width?: ImageWidth) => string;
   getProductGalleryUrls: (productId: string, defaultImages: string[]) => string[];
   getFounderImageUrl: (defaultImage: string) => string;
   // No-op stubs for legacy admin UI paths (unreachable because isAdmin is false)
@@ -59,9 +59,9 @@ const DEFAULT_PRODUCT_IMAGE =
 
 const getHeroImageUrl = (d: string) => optimizeImage(nonEmpty(registry.hero) ? registry.hero : d, 1600);
 
-const getCategoryImageUrl = (id: string, d: string) => {
+const getCategoryImageUrl = (id: string, d: string, width: ImageWidth = 1080) => {
   const custom = registry.categories[id];
-  return optimizeImage(nonEmpty(custom) ? custom : d, 1080);
+  return optimizeImage(nonEmpty(custom) ? custom : d, width);
 };
 
 const getProductGalleryUrls = (id: string, defaults: string[]) => {
@@ -78,10 +78,10 @@ const getProductGalleryUrls = (id: string, defaults: string[]) => {
   return chosen.map((u) => optimizeImage(u, 1080));
 };
 
-const getProductImageUrl = (id: string, d: string) => {
+const getProductImageUrl = (id: string, d: string, width: ImageWidth = 1080) => {
   const p = registry.products[id];
   const first = p ? [p.main, ...(p.gallery || [])].find(nonEmpty) : undefined;
-  return optimizeImage(first || d, 1080);
+  return optimizeImage(first || d, width);
 };
 
 const getFounderImageUrl = (d: string) => optimizeImage(nonEmpty(registry.founder) ? registry.founder : d, 640);

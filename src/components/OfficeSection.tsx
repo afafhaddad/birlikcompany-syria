@@ -168,11 +168,11 @@ export const OfficeSection: React.FC<OfficeSectionProps> = ({
               </span>
               <div className="min-w-0">
                 <p className="text-[11px] font-bold text-muted">{text.contactTitle}</p>
-                <a href="tel:+963995764573" className="block mt-1 text-sm font-extrabold text-ink hover:text-brass-deep">
+                <a href="tel:+963995764573" className="block py-2 text-sm font-extrabold text-ink hover:text-brass-deep">
                   <bdi dir="ltr">{text.phoneValue}</bdi>
                 </a>
                 <p className="text-xs text-muted">{text.phoneLabel}</p>
-                <a href={`mailto:${text.emailValue}`} className="mt-2 flex items-center gap-1.5 text-xs font-bold text-ink hover:text-brass-deep break-all">
+                <a href={`mailto:${text.emailValue}`} className="flex items-center gap-1.5 py-2.5 text-xs font-bold text-ink hover:text-brass-deep break-all">
                   <Mail className="w-3.5 h-3.5 shrink-0 text-brass-deep" />
                   {text.emailValue}
                 </a>

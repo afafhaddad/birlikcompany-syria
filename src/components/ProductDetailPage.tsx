@@ -185,15 +185,17 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
             </span>
 
             {images.length > 1 && (
-              <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-1.5">
+              <div className="absolute bottom-0 inset-x-0 flex items-center justify-center">
                 {images.map((_, i) => (
                   <button
                     key={i}
                     type="button"
                     onClick={() => goTo(i)}
                     aria-label={`${t.photo} ${i + 1}`}
-                    className={`h-1.5 rounded-full transition-all ${i === active ? 'w-7 bg-white' : 'w-1.5 bg-white/55'}`}
-                  />
+                    className="px-1.5 py-4"
+                  >
+                    <span className={`block h-1.5 rounded-full transition-all ${i === active ? 'w-7 bg-white' : 'w-1.5 bg-white/55'}`} />
+                  </button>
                 ))}
               </div>
             )}

@@ -121,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange, o
               {(['ar', 'en', 'tr'] as Language[]).map((l) =>
                 langLink(
                   l,
-                  `px-3 py-1.5 rounded-full transition-colors ${
+                  `px-3.5 py-2.5 rounded-full transition-colors ${
                     l === currentLang ? 'bg-brass text-ink' : overHero ? 'text-white/85 hover:text-white' : 'text-muted hover:text-ink'
                   }`,
                   LANG_LABEL[l]

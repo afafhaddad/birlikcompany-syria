@@ -12,7 +12,7 @@
  */
 
 // Must match the "sizes" list in vercel.json
-export const IMAGE_WIDTHS = [640, 1080, 1600] as const;
+export const IMAGE_WIDTHS = [384, 640, 1080, 1600] as const;
 export type ImageWidth = (typeof IMAGE_WIDTHS)[number];
 
 const BLOB_HOST_RE = /^https:\/\/[a-z0-9]+\.public\.blob\.vercel-storage\.com\//i;
