@@ -13,7 +13,7 @@
 param(
   [string]$BaseUrl = 'http://localhost:4180',
   [string[]]$Langs = @('ar', 'en', 'tr'),
-  [int]$JpegQuality = 70
+  [int]$JpegQuality = 62
 )
 
 $ErrorActionPreference = 'Stop'
