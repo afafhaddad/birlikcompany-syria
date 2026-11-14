@@ -3,17 +3,23 @@ import React, { useEffect, useRef, useState } from 'react';
 /**
  * Muted background video loop that sits on top of a poster image.
  * - Fetched only after the page has loaded (never blocks the first screen).
- * - Skipped on Data Saver, 2G-class connections and reduced-motion devices.
+ * - Phones/tablets: Wi-Fi or wired only (still image on mobile data). Desktops: unless cellular.
+ * - Skipped on Data Saver, slow connections and reduced-motion devices.
  * - Phones get the portrait file, larger screens the landscape one.
  * - Pauses while off-screen to save battery and data.
  */
 function allowed(): boolean {
   if (typeof window === 'undefined') return false;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
-  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string; type?: string } }).connection;
   if (conn?.saveData) return false;
   if (conn?.effectiveType && /2g/.test(conn.effectiveType)) return false;
-  return true;
+  // Phones and tablets: only on Wi-Fi or a wired connection. If the browser does not say
+  // (e.g. iPhone Safari), assume mobile data and keep the still image.
+  const handheld = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (handheld) return conn?.type === 'wifi' || conn?.type === 'ethernet';
+  // Desktops and laptops: on unless the connection is reported as cellular
+  return conn?.type !== 'cellular';
 }
 
 export const BackgroundVideo: React.FC<{ mobileSrc: string; desktopSrc: string; className?: string; delayMs?: number }> = ({

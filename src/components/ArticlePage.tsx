@@ -14,7 +14,7 @@ import {
   X as XIcon,
 } from 'lucide-react';
 import { Language } from '../types';
-import { ARTICLES, ArticleMeta, articleContent, readingMinutes } from '../data/articles';
+import { ARTICLES, ArticleMeta, articleContent, articleSummary, readingMinutes } from '../data/articles';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { categoryCard } from '../data/categoryCards';
 import { INSTALLATION_GUIDES } from '../data/installationGuides';
@@ -428,7 +428,7 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
 /** Card linking to a guide; used on the blog index, article footers and the home page. */
 export const ArticleCard: React.FC<{ meta: ArticleMeta; currentLang: Language }> = ({ meta, currentLang }) => {
   const { getCategoryImageUrl } = useMedia();
-  const c = articleContent(meta, currentLang);
+  const c = articleSummary(meta, currentLang);
   const card = categoryCard(meta.categoryId);
   const info = CATEGORIES_DATA.find((x) => x.id === meta.categoryId) || CATEGORIES_DATA[0];
   return (

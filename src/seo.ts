@@ -5,7 +5,7 @@
 import { Language } from './types';
 import { CATEGORIES_DATA } from './data/products';
 import mediaRegistry from './data/mediaRegistry.json';
-import { ARTICLES, articleBySlug, articleContent } from './data/articles';
+import { ARTICLES, articleBySlug, articleSummary } from './data/articles';
 import { Route, SITE_ORIGIN, LANGS, DEFAULT_LANG, buildPath, findProduct, canonicalCategory } from './routing';
 
 export interface SeoData {
@@ -170,7 +170,7 @@ export function getSeo(route: Route): SeoData {
   if (route.view === 'article') {
     const meta = articleBySlug(route.slug);
     if (meta) {
-      const c = articleContent(meta, lang);
+      const c = articleSummary(meta, lang);
       const img = abs(registry.categories?.[meta.categoryId] || catInfo.image);
       const blogUrl = `${SITE_ORIGIN}/${lang}/blog/`;
       return {
@@ -233,7 +233,7 @@ export function getSeo(route: Route): SeoData {
             url: canonical,
             hasPart: ARTICLES.map((a) => ({
               '@type': 'Article',
-              headline: articleContent(a, lang).title,
+              headline: articleSummary(a, lang).title,
               url: `${SITE_ORIGIN}/${lang}/blog/${a.slug}/`,
             })),
           },

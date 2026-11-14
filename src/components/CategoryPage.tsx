@@ -159,7 +159,7 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
           {models.map((m, i) => (
             <div key={m.id} data-reveal style={{ '--reveal-delay': `${(i % 4) * 60}ms` } as React.CSSProperties}>
-              <ProductCard model={m} currentLang={currentLang} className="h-full" />
+              <ProductCard model={m} currentLang={currentLang} className="h-full" eager={i < 2} />
             </div>
           ))}
         </div>

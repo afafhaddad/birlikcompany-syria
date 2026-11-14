@@ -5,6 +5,7 @@ import './index.css';
 import { installImageFallback } from './utils/optimizeImage';
 import { parseLocation } from './routing';
 import { initAnalytics } from './analytics';
+import { loadArticleContent } from './data/articles';
 
 installImageFallback();
 initAnalytics();
@@ -21,9 +22,14 @@ const app = (
 // A legacy ?category= link arrives on the pre-rendered home page but resolves to a
 // different route, so render fresh instead of hydrating mismatched markup.
 const prerenderedPath = container.getAttribute('data-path');
-if (container.hasChildNodes() && prerenderedPath === window.location.pathname && !window.location.search) {
-  hydrateRoot(container, app);
-} else {
-  container.innerHTML = '';
-  createRoot(container).render(app);
-}
+const start = () => {
+  if (container.hasChildNodes() && prerenderedPath === window.location.pathname && !window.location.search) {
+    hydrateRoot(container, app);
+  } else {
+    container.innerHTML = '';
+    createRoot(container).render(app);
+  }
+};
+// A guide page needs its text before hydrating (the HTML is already on screen meanwhile)
+if (initialRoute.view === 'article') loadArticleContent(initialRoute.lang).then(start, start);
+else start();

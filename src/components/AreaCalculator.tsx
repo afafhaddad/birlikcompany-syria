@@ -19,7 +19,7 @@ const parseDims = (dims: string) => {
 };
 
 /** Accepts Arabic-Indic digits and comma / Arabic decimal separators. */
-const toNumber = (raw: string): number => {
+export const toNumber = (raw: string): number => {
   const ascii = raw
     .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
     .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))

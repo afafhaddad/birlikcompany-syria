@@ -19,7 +19,7 @@ import { CataloguePrintPage } from './components/CataloguePrintPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ArticlePage } from './components/ArticlePage';
 import { BlogIndexPage, GuidesTeaser } from './components/BlogIndexPage';
-import { articleBySlug } from './data/articles';
+import { articleBySlug, hasArticleContent, loadArticleContent } from './data/articles';
 import { OfficeSection } from './components/OfficeSection';
 import { MobileTabBar, DesktopWhatsApp } from './components/MobileTabBar';
 import { Footer } from './components/Footer';
@@ -42,6 +42,11 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
   const activeArticle = route.view === 'article' ? articleBySlug(route.slug) : undefined;
 
   const navigate = useCallback((to: Route, opts?: { replace?: boolean; scrollTo?: string }) => {
+    // Guide text is loaded on demand; fetch it before showing the page
+    if (to.view === 'article' && !hasArticleContent(to.lang)) {
+      loadArticleContent(to.lang).then(() => navigate(to, opts));
+      return;
+    }
     const path = buildPath(to) + (opts?.scrollTo ? `#${opts.scrollTo}` : '');
     if (opts?.replace) window.history.replaceState(null, '', path);
     else if (window.location.pathname + window.location.hash !== path) window.history.pushState(null, '', path);
@@ -56,7 +61,11 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
 
   // Browser back/forward
   useEffect(() => {
-    const onPop = () => setRoute(parseLocation(window.location.pathname, window.location.search));
+    const onPop = () => {
+      const next = parseLocation(window.location.pathname, window.location.search);
+      if (next.view === 'article' && !hasArticleContent(next.lang)) loadArticleContent(next.lang).then(() => setRoute(next));
+      else setRoute(next);
+    };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
@@ -79,11 +88,12 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
 
   // Scroll-reveal: fade sections in as they enter the viewport
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-in)'));
-    if (!('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('is-in'));
-      return;
-    }
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Only animate what the visitor has not seen yet; anything already on screen stays put.
+    const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]:not(.reveal-wait)')).filter(
+      (el) => el.getBoundingClientRect().top > window.innerHeight
+    );
+    els.forEach((el) => el.classList.add('reveal-wait'));
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {

@@ -11,12 +11,13 @@ import { UI } from '../site';
 const FALLBACK = '/media/hero-desktop.webp';
 
 /** Tall photo tile for a product category. */
-export const CategoryTile: React.FC<{ card: CategoryCard; index: number; currentLang: Language; className?: string; compact?: boolean }> = ({
+export const CategoryTile: React.FC<{ card: CategoryCard; index: number; currentLang: Language; className?: string; compact?: boolean; eager?: boolean }> = ({
   card,
   index,
   currentLang,
   className = '',
   compact = false,
+  eager = false,
 }) => {
   const { getCategoryImageUrl } = useMedia();
   const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
@@ -32,7 +33,8 @@ export const CategoryTile: React.FC<{ card: CategoryCard; index: number; current
         srcSet={`${getCategoryImageUrl(card.id, base, 640)} 640w, ${getCategoryImageUrl(card.id, base, 1080)} 1080w`}
         sizes={compact ? '(min-width: 1024px) 400px, 50vw' : '(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw'}
         alt={card.name[currentLang]}
-        loading="lazy"
+        loading={eager ? undefined : 'lazy'}
+        fetchPriority={eager ? 'high' : undefined}
         decoding="async"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
@@ -63,10 +65,11 @@ export const CategoryTile: React.FC<{ card: CategoryCard; index: number; current
 };
 
 /** Product card used in category grids and "more models" rails. */
-export const ProductCard: React.FC<{ model: ProductModel; currentLang: Language; className?: string }> = ({
+export const ProductCard: React.FC<{ model: ProductModel; currentLang: Language; className?: string; eager?: boolean }> = ({
   model,
   currentLang,
   className = '',
+  eager = false,
 }) => {
   const { getProductImageUrl, getCategoryImageUrl } = useMedia();
   const img = (w: 384 | 640) => getProductImageUrl(model.id, getCategoryImageUrl(model.category, FALLBACK, w), w);
@@ -83,7 +86,7 @@ export const ProductCard: React.FC<{ model: ProductModel; currentLang: Language;
           srcSet={`${img(384)} 384w, ${img(640)} 640w`}
           sizes="(min-width: 1024px) 300px, (min-width: 768px) 33vw, 50vw"
           alt={`${model.code} ${model.name[currentLang]}`}
-          loading="lazy"
+          loading={eager ? undefined : 'lazy'}
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />

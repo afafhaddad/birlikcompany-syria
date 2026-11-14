@@ -28,7 +28,7 @@ export const ProductCataloguePage: React.FC<{ currentLang: Language }> = ({ curr
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
         {CATEGORY_CARDS.map((card, i) => (
           <div key={card.id} data-reveal style={{ '--reveal-delay': `${(i % 3) * 80}ms` } as React.CSSProperties}>
-            <CategoryTile card={card} index={i} currentLang={currentLang} />
+            <CategoryTile card={card} index={i} currentLang={currentLang} eager={i < 2} />
           </div>
         ))}
       </div>
