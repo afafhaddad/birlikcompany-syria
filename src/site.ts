@@ -1,6 +1,12 @@
 /** Contact details and shared UI strings in one place. */
 import { Language } from './types';
 
+/** Official social profiles (also listed as "sameAs" in index.html) */
+export const SOCIAL_PROFILES = [
+  'https://www.facebook.com/people/Birlik-company/61560270204237/',
+  'https://www.instagram.com/birlikcompanysr/',
+];
+
 export const PHONE_E164 = '+963995764573';
 export const PHONE_DISPLAY = '+963 995 764 573';
 export const TEL_HREF = `tel:${PHONE_E164}`;

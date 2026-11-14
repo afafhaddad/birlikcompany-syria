@@ -1,12 +1,12 @@
 {
-  "hero": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_ui7h6zui7h6zui7h.webp",
-  "founder": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/founderimage%281%29.webp",
+  "hero": "/uploads/site/birlik-wall-cladding-living-room.webp",
+  "founder": "/uploads/site/birlik-company-founder.webp",
   "categories": {
-    "ps_wood": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pswallpanelsbirlikcompany.webp",
-    "pvc_marble": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pvcwallpanelbirlikcompany.webp",
-    "spc_wall": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/spcwallpanelbirlikcompany.webp",
-    "spc_flooring": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/spcflooringbirlikcompany.webp",
-    "ps_slats": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pswallslathsbirlikcompany.webp",
-    "ps_baseboards": "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/psbaseboardbirlikcompany.webp"
+    "ps_wood": "/uploads/categories/wood-alternative-ps-wall-panels.webp",
+    "pvc_marble": "/uploads/categories/marble-alternative-pvc-wall-panels.webp",
+    "spc_wall": "/uploads/categories/spc-stone-wall-panels.webp",
+    "spc_flooring": "/uploads/categories/spc-flooring.webp",
+    "ps_slats": "/uploads/categories/ps-wall-mouldings.webp",
+    "ps_baseboards": "/uploads/categories/ps-baseboards.webp"
   }
 }

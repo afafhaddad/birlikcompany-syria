@@ -1,6 +1,8 @@
 import type { ArticleContent } from './articles';
+import { TOPICS_AR } from './articles.topics.ar';
 
 export const ARTICLES_AR: Record<string, ArticleContent> = {
+  ...TOPICS_AR,
   ps_wood: {
     title: 'بديل الخشب (ألواح PS): ما هو، كيف يُصنع، مميزاته وطريقة تركيبه',
     description:

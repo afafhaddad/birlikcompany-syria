@@ -91,6 +91,7 @@ async function main() {
 
   // Sitemap with hreflang alternates (indexable pages only)
   const today = new Date().toISOString().slice(0, 10);
+  let imageCount = 0;
   const urls = routes
     .filter((r) => r.view !== 'print')
     .map((r) => {
@@ -99,13 +100,18 @@ async function main() {
         .map((a) => `    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}" />`)
         .join('\n');
       const priority = r.view === 'home' ? '1.0' : r.view === 'catalogue' ? '0.9' : r.view === 'category' || r.view === 'article' ? '0.8' : r.view === 'blog' ? '0.7' : r.view === 'installation' ? '0.7' : '0.6';
-      return `  <url>\n    <loc>${esc(seo.canonical)}</loc>\n${alts}\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
+      // Image sitemap entries: the photos shown on this page (Google Images)
+      const images = (ssr.sitemapImages(r) as string[])
+        .map((u) => `    <image:image>\n      <image:loc>${esc(encodeURI(u))}</image:loc>\n    </image:image>`)
+        .join('\n');
+      imageCount += ssr.sitemapImages(r).length;
+      return `  <url>\n    <loc>${esc(seo.canonical)}</loc>\n${alts}${images ? `\n${images}` : ''}\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
     });
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join('\n')}\n</urlset>\n`;
   fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap, 'utf8');
 
   fs.rmSync(path.join(root, 'dist-ssr'), { recursive: true, force: true });
-  console.log(`Pre-rendered ${count} pages + 404.html; sitemap.xml has ${urls.length} URLs.`);
+  console.log(`Pre-rendered ${count} pages + 404.html; sitemap.xml has ${urls.length} URLs and ${imageCount} image entries.`);
 }
 
 main().catch((e) => {

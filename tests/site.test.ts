@@ -11,7 +11,7 @@ import { ARTICLES_AR } from '../src/data/articles.ar';
 import { ARTICLES_EN } from '../src/data/articles.en';
 import { ARTICLES_TR } from '../src/data/articles.tr';
 import { richDescription } from '../src/data/productCopy';
-import { INSTALLATION_GUIDES } from '../src/data/installationGuides';
+import { INSTALLATION_GUIDES, VIDEO_META } from '../src/data/installationGuides';
 import { toNumber } from '../src/components/AreaCalculator';
 import registry from '../src/data/mediaRegistry.json';
 
@@ -132,7 +132,7 @@ describe('products', () => {
 describe('guides', () => {
   it('every range has a guide and an installation guide', () => {
     for (const c of MAIN_CATEGORIES) {
-      expect(ARTICLES.some((a) => a.categoryId === c), c).toBe(true);
+      expect(ARTICLES.some((a) => a.kind === 'guide' && a.categoryId === c), c).toBe(true);
       expect(INSTALLATION_GUIDES.some((g) => g.categoryId === c), c).toBe(true);
     }
   });
@@ -141,11 +141,30 @@ describe('guides', () => {
     for (const a of ARTICLES) {
       for (const lang of LANGS) {
         const c = articleContent(a, lang);
-        expect(c.sections.length, `${a.slug} ${lang}`).toBeGreaterThanOrEqual(5);
+        expect(c.sections.length, `${a.slug} ${lang}`).toBeGreaterThanOrEqual(a.kind === 'guide' ? 5 : 4);
         expect(c.compare.rows.length, `${a.slug} ${lang}`).toBeGreaterThanOrEqual(4);
         expect(articleSummary(a, lang).title, `${a.slug} ${lang}`).toBe(c.title);
+        // the same section layout in every language
+        expect(c.sections.map((s) => s.id), `${a.slug} ${lang}`).toEqual(articleContent(a, 'ar').sections.map((s) => s.id));
       }
     }
+  });
+
+  it('price, comparison and problem articles have a label and cover real ranges', () => {
+    expect(new Set(ARTICLES.map((a) => a.key)).size).toBe(ARTICLES.length);
+    for (const a of ARTICLES.filter((x) => x.kind === 'topic')) {
+      for (const r of a.ranges || [a.categoryId]) expect(MAIN_CATEGORIES, a.slug).toContain(r);
+      for (const lang of LANGS) {
+        const c = articleContent(a, lang);
+        expect(c.label?.trim(), `${a.slug} ${lang} label`).toBeTruthy();
+        expect(c.compare.ours?.trim(), `${a.slug} ${lang} compare.ours`).toBeTruthy();
+        expect(articleSummary(a, lang).label, `${a.slug} ${lang}`).toBe(c.label);
+      }
+    }
+  });
+
+  it('installation videos have markup data', () => {
+    for (const g of INSTALLATION_GUIDES) expect(VIDEO_META[g.youtubeId], g.id).toBeTruthy();
   });
 });
 

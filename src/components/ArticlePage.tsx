@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
+  Bath,
+  Calculator,
   Check,
   Clock,
+  Droplets,
   Factory,
   Home,
   Layers,
+  Lightbulb,
   MessageSquare,
   PlayCircle,
+  Scale,
   ShieldCheck,
   Sparkles,
+  Wallet,
   X as XIcon,
 } from 'lucide-react';
-import { Language } from '../types';
-import { ARTICLES, ArticleMeta, articleContent, articleSummary, readingMinutes } from '../data/articles';
+import { Language, ProductCategory } from '../types';
+import { ARTICLES, ArticleMeta, articleContent, articleRanges, articleSummary, readingMinutes } from '../data/articles';
+import { AreaCalculator } from './AreaCalculator';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { categoryCard } from '../data/categoryCards';
 import { INSTALLATION_GUIDES } from '../data/installationGuides';
@@ -52,6 +59,10 @@ const TEXT = {
     ctaBtn: 'تواصل معنا على واتساب',
     waMsg: (c: string) => `مرحباً شركة بيرليك، قرأت دليل ${c} وأريد معرفة الأسعار والموديلات المتوفرة.`,
     more: 'أدلة أخرى قد تهمك',
+    calc: 'احسب الكمية التي تحتاجها',
+    calcIntro: 'اختر نوع المادة وأدخل قياسات الجدار أو الأرضية، ثم أرسل النتيجة على واتساب لنعطيك السعر الدقيق.',
+    suggested: 'موديلات مقترحة',
+    ranges: 'تصفّح الفئات',
   },
   en: {
     minutes: 'min read',
@@ -77,6 +88,10 @@ const TEXT = {
     ctaBtn: 'Message us on WhatsApp',
     waMsg: (c: string) => `Hello Birlik Company, I read your ${c} guide and would like prices and available models.`,
     more: 'More guides',
+    calc: 'Work out the quantity you need',
+    calcIntro: 'Pick the material, enter your wall or floor measurements, then send the result on WhatsApp for an exact price.',
+    suggested: 'Suggested models',
+    ranges: 'Browse the ranges',
   },
   tr: {
     minutes: 'dk okuma',
@@ -102,6 +117,10 @@ const TEXT = {
     ctaBtn: "WhatsApp'tan yazın",
     waMsg: (c: string) => `Merhaba Birlik Şirketi, ${c} rehberinizi okudum; fiyat ve mevcut modelleri öğrenmek istiyorum.`,
     more: 'Diğer rehberler',
+    calc: 'İhtiyacınız olan miktarı hesaplayın',
+    calcIntro: 'Malzemeyi seçin, duvar veya zemin ölçülerinizi girin, sonra kesin fiyat için sonucu WhatsApp ile gönderin.',
+    suggested: 'Önerilen modeller',
+    ranges: 'Kategorilere göz atın',
   },
 };
 
@@ -111,6 +130,43 @@ const SECTION_ICON: Record<string, React.ComponentType<{ className?: string }>> 
   benefits: Sparkles,
   strength: ShieldCheck,
   where: Home,
+  price: Wallet,
+  versus: Scale,
+  damp: Droplets,
+  bathroom: Bath,
+  tips: Lightbulb,
+  calc: Calculator,
+};
+
+/** Quantity calculator with a material picker (topic articles about cost). */
+const RangeCalculator: React.FC<{ ranges: ProductCategory[]; currentLang: Language }> = ({ ranges, currentLang }) => {
+  const options = ranges
+    .map((r) => ({ r, model: PRODUCT_MODELS.find((m) => isModelInCategory(m, r)) }))
+    .filter((o): o is { r: ProductCategory; model: (typeof PRODUCT_MODELS)[number] } => !!o.model);
+  const [sel, setSel] = useState(0);
+  const current = options[sel] || options[0];
+  if (!current) return null;
+  return (
+    <div>
+      <div className="flex flex-wrap gap-2" role="tablist">
+        {options.map((o, i) => (
+          <button
+            key={o.r}
+            type="button"
+            role="tab"
+            aria-selected={i === sel}
+            onClick={() => setSel(i)}
+            className={`px-4 py-2.5 rounded-full text-sm font-bold border transition-colors ${
+              i === sel ? 'bg-ink text-white border-ink' : 'bg-white text-ink/80 border-line hover:border-brass'
+            }`}
+          >
+            {categoryCard(o.r).name[currentLang]}
+          </button>
+        ))}
+      </div>
+      <AreaCalculator model={current.model} currentLang={currentLang} />
+    </div>
+  );
 };
 
 const formatDate = (iso: string, lang: Language) => {
@@ -124,18 +180,27 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
   const c = articleContent(meta, currentLang);
   const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
   const catId = meta.categoryId;
+  const isTopic = meta.kind === 'topic';
+  const ranges = articleRanges(meta);
   const info = CATEGORIES_DATA.find((x) => x.id === catId) || CATEGORIES_DATA[0];
   const card = categoryCard(catId);
-  const name = card.name[currentLang];
-  const guide = INSTALLATION_GUIDES.find((g) => g.categoryId === catId);
-  const models = PRODUCT_MODELS.filter((m) => isModelInCategory(m, catId));
+  const rangeName = card.name[currentLang];
+  // Topic articles are named by their own short label (e.g. "Cost guide"), range guides by the range
+  const name = isTopic ? c.label || c.title : rangeName;
+  const guide = isTopic ? undefined : INSTALLATION_GUIDES.find((g) => g.categoryId === catId);
+  const rangeModels = ranges.map((r) => PRODUCT_MODELS.filter((m) => isModelInCategory(m, r)));
+  // Interleave the ranges so a mixed list shows a bit of each
+  const models: typeof PRODUCT_MODELS = [];
+  for (let i = 0; models.length < rangeModels.flat().length; i++) {
+    rangeModels.forEach((list) => list[i] && models.push(list[i]));
+  }
 
   // Real product photos of this range, used to illustrate the sections
   const photos: Array<{ src: string; alt: string }> = [];
   models.forEach((m) => {
     m.images.forEach((u) => {
       if (u && !photos.some((p) => p.src === optimizeImage(u, 1080))) {
-        photos.push({ src: optimizeImage(u, 1080), alt: `${name} — ${m.name[currentLang]} (${m.code})` });
+        photos.push({ src: optimizeImage(u, 1080), alt: `${categoryCard(m.category).name[currentLang]} — ${m.name[currentLang]} (${m.code})` });
       }
     });
   });
@@ -143,10 +208,11 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
 
   const toc = [
     ...c.sections.map((s) => ({ id: s.id, label: s.heading })),
+    ...(meta.calculator ? [{ id: 'calculator', label: t.calc }] : []),
     { id: 'compare', label: t.compare },
-    { id: 'specs', label: t.specs },
+    ...(isTopic ? [] : [{ id: 'specs', label: t.specs }]),
     ...(guide ? [{ id: 'install', label: t.install }] : []),
-    { id: 'models', label: t.models(name) },
+    { id: 'models', label: isTopic ? t.suggested : t.models(name) },
   ];
   const jump = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -160,18 +226,20 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
       {/* Hero */}
       <header className="relative bg-ink text-white overflow-hidden">
         <img
-          src={getCategoryImageUrl(catId, info.image)}
+          src={meta.image ? optimizeImage(meta.image, 1080) : getCategoryImageUrl(catId, info.image)}
           alt={name}
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <BackgroundVideo mobileSrc={`/media/cat-${catId}-mobile.mp4`} desktopSrc={`/media/cat-${catId}-desktop.mp4`} delayMs={900} />
+        {/* Articles with their own cover photo keep it; range guides play the range video */}
+        {!meta.image && (
+          <BackgroundVideo mobileSrc={`/media/cat-${catId}-mobile.mp4`} desktopSrc={`/media/cat-${catId}-desktop.mp4`} delayMs={900} />
+        )}
         <div className="absolute inset-0 bg-ink/45" />
         <div className="absolute inset-0 scrim-bottom" />
         <div className="relative max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 pt-6 pb-10 md:pb-16">
-          <Breadcrumbs dark currentLang={currentLang} items={[{ label: UI.blog[currentLang], to: blogRoute(currentLang) }, { label: name }]} />
-          <div className="mt-20 md:mt-36 animate-fade-up">
+          <Breadcrumbs dark currentLang={currentLang} items={[{ label: UI.blog[currentLang], to: blogRoute(currentLang) }, { label: name }]} />          <div className="mt-20 md:mt-36 animate-fade-up">
             <p className="flex items-center gap-2 text-sm font-bold text-brass-light">
               <span className="w-6 h-0.5 bg-current" />
               {UI.blog[currentLang]}
@@ -273,17 +341,33 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
           );
         })}
 
+        {/* Quantity calculator (cost articles) */}
+        {meta.calculator && (
+          <section id="calculator" className="scroll-mt-32 py-10 md:py-14 border-b border-line">
+            <div data-reveal>
+              <span className="w-12 h-12 rounded-2xl bg-ink text-brass-light flex items-center justify-center">
+                <Calculator className="w-6 h-6" />
+              </span>
+              <h2 className="mt-4 text-2xl sm:text-3xl font-black leading-snug">{t.calc}</h2>
+              <p className="mt-3 text-base leading-loose text-ink/85">{t.calcIntro}</p>
+            </div>
+            <div className="mt-5">
+              <RangeCalculator ranges={ranges} currentLang={currentLang} />
+            </div>
+          </section>
+        )}
+
         {/* Comparison */}
         <section id="compare" className="scroll-mt-32 py-10 md:py-14 border-b border-line">
           <h2 className="text-2xl sm:text-3xl font-black leading-snug" data-reveal>
-            {t.compare}: {name} / {c.compare.other}
+            {t.compare}: {c.compare.ours || rangeName} / {c.compare.other}
           </h2>
           <div className="mt-6 rounded-3xl overflow-hidden border border-line bg-white" data-reveal>
             <table className="w-full text-sm sm:text-[15px]">
               <thead>
                 <tr className="bg-ink text-white text-start">
                   <th className="p-3 sm:p-4 text-start font-bold w-[30%]">{t.aspect}</th>
-                  <th className="p-3 sm:p-4 text-start font-black text-brass-light">{name}</th>
+                  <th className="p-3 sm:p-4 text-start font-black text-brass-light">{c.compare.ours || rangeName}</th>
                   <th className="p-3 sm:p-4 text-start font-bold text-white/75">{c.compare.other}</th>
                 </tr>
               </thead>
@@ -310,7 +394,8 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
           </div>
         </section>
 
-        {/* Specifications */}
+        {/* Specifications (range guides only) */}
+        {!isTopic && (
         <section id="specs" className="scroll-mt-32 py-10 md:py-14 border-b border-line">
           <h2 className="text-2xl sm:text-3xl font-black leading-snug" data-reveal>
             {t.specs}: {name}
@@ -333,6 +418,7 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
             </div>
           </dl>
         </section>
+        )}
 
         {/* Installation */}
         {guide && (
@@ -374,7 +460,7 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
       {/* Models */}
       <section id="models" className="scroll-mt-32 bg-sand/60 border-y border-line py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-black leading-snug">{t.models(name)}</h2>
+          <h2 className="text-2xl sm:text-3xl font-black leading-snug">{isTopic ? t.suggested : t.models(name)}</h2>
         </div>
         <div className="mt-6 snap-rail gap-3 sm:gap-5 px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-px-5">
           {models.slice(0, 10).map((m) => (
@@ -384,13 +470,31 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
           ))}
         </div>
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 mt-6">
-          <Link
-            to={categoryRoute(currentLang, catId)}
-            className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-4 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold transition-colors"
-          >
-            {t.viewAll(models.length, name)}
-            <Arrow className="w-5 h-5" />
-          </Link>
+          {isTopic ? (
+            <div>
+              <p className="text-sm font-bold text-muted mb-3">{t.ranges}</p>
+              <div className="flex flex-wrap gap-2.5">
+                {ranges.map((r) => (
+                  <Link
+                    key={r}
+                    to={categoryRoute(currentLang, r)}
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold text-sm transition-colors"
+                  >
+                    {categoryCard(r).name[currentLang]}
+                    <Arrow className="w-4 h-4" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <Link
+              to={categoryRoute(currentLang, catId)}
+              className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-4 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold transition-colors"
+            >
+              {t.viewAll(models.length, name)}
+              <Arrow className="w-5 h-5" />
+            </Link>
+          )}
         </div>
       </section>
 
@@ -415,9 +519,15 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
       <section className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pb-14">
         <h2 className="text-xl sm:text-2xl font-black mb-5">{t.more}</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {ARTICLES.filter((a) => a.slug !== meta.slug).map((a) => (
-            <ArticleCard key={a.slug} meta={a} currentLang={currentLang} />
-          ))}
+          {[
+            // Most related first: other articles about the same ranges, then the rest
+            ...ARTICLES.filter((a) => a.slug !== meta.slug && articleRanges(a).some((r) => ranges.includes(r))),
+            ...ARTICLES.filter((a) => a.slug !== meta.slug && !articleRanges(a).some((r) => ranges.includes(r))),
+          ]
+            .slice(0, 6)
+            .map((a) => (
+              <ArticleCard key={a.slug} meta={a} currentLang={currentLang} />
+            ))}
         </div>
       </section>
     </article>
@@ -429,6 +539,7 @@ export const ArticleCard: React.FC<{ meta: ArticleMeta; currentLang: Language }>
   const { getCategoryImageUrl } = useMedia();
   const c = articleSummary(meta, currentLang);
   const card = categoryCard(meta.categoryId);
+  const badge = meta.kind === 'topic' && c.label ? c.label : card.name[currentLang];
   const info = CATEGORIES_DATA.find((x) => x.id === meta.categoryId) || CATEGORIES_DATA[0];
   return (
     <Link
@@ -437,13 +548,13 @@ export const ArticleCard: React.FC<{ meta: ArticleMeta; currentLang: Language }>
     >
       <span className="relative block aspect-[16/9] bg-ink-soft overflow-hidden">
         <img
-          src={getCategoryImageUrl(meta.categoryId, info.image, 640)}
+          src={meta.image ? optimizeImage(meta.image, 640) : getCategoryImageUrl(meta.categoryId, info.image, 640)}
           alt={card.name[currentLang]}
           loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <span className="absolute top-3 start-3 px-3 py-1 rounded-full bg-ink/80 backdrop-blur-sm text-white text-xs font-bold">{card.name[currentLang]}</span>
+        <span className="absolute top-3 start-3 px-3 py-1 rounded-full bg-ink/80 backdrop-blur-sm text-white text-xs font-bold">{badge}</span>
       </span>
       <span className="flex-1 flex flex-col p-5">
         <span className="font-black text-lg leading-snug text-ink group-hover:text-brass-deep transition-colors">{c.title}</span>

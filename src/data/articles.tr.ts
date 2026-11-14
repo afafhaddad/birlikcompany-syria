@@ -1,6 +1,8 @@
 import type { ArticleContent } from './articles';
+import { TOPICS_TR } from './articles.topics.tr';
 
 export const ARTICLES_TR: Record<string, ArticleContent> = {
+  ...TOPICS_TR,
   ps_wood: {
     title: 'PS Duvar Panelleri (Ahşap Alternatifi): Nedir, Nasıl Üretilir, Avantajları ve Montajı',
     description:

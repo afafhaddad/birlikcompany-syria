@@ -15,20 +15,36 @@ const TEXT = {
     homeTitle: 'تعرّف على المواد قبل أن تختار',
     homeSub: 'دليل لكل مادة: التصنيع، المميزات، الاستخدام والتركيب.',
     all: 'كل الأدلة',
+    topics: 'قبل أن تشتري: الأسعار والمقارنات والحلول',
+    guides: 'دليل كل مادة',
   },
   en: {
     sub: 'In-depth guides to every material we supply: what it is made of, its benefits and durability, where to use it and how it is installed.',
     homeTitle: 'Know the materials before you choose',
     homeSub: 'A guide for every material: manufacture, benefits, uses and installation.',
     all: 'All guides',
+    topics: 'Before you buy: costs, comparisons and fixes',
+    guides: 'A guide to each material',
   },
   tr: {
     sub: 'Sunduğumuz her malzeme için ayrıntılı rehberler: neyden üretilir, avantajları, dayanıklılığı, kullanım alanları ve montajı.',
     homeTitle: 'Seçmeden önce malzemeleri tanıyın',
     homeSub: 'Her malzeme için bir rehber: üretim, avantajlar, kullanım ve montaj.',
     all: 'Tüm rehberler',
+    topics: 'Satın almadan önce: maliyet, karşılaştırma ve çözümler',
+    guides: 'Her malzeme için rehber',
   },
 };
+
+const ArticleGrid: React.FC<{ list: typeof ARTICLES; currentLang: Language }> = ({ list, currentLang }) => (
+  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    {list.map((a, i) => (
+      <div key={a.slug} data-reveal style={{ '--reveal-delay': `${(i % 3) * 80}ms` } as React.CSSProperties}>
+        <ArticleCard meta={a} currentLang={currentLang} />
+      </div>
+    ))}
+  </div>
+);
 
 export const BlogIndexPage: React.FC<{ currentLang: Language }> = ({ currentLang }) => (
   <div className="pt-16 md:pt-[4.5rem]">
@@ -41,13 +57,10 @@ export const BlogIndexPage: React.FC<{ currentLang: Language }> = ({ currentLang
       </div>
     </section>
     <section className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 md:py-14">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {ARTICLES.map((a, i) => (
-          <div key={a.slug} data-reveal style={{ '--reveal-delay': `${(i % 3) * 80}ms` } as React.CSSProperties}>
-            <ArticleCard meta={a} currentLang={currentLang} />
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl sm:text-2xl font-black mb-5">{TEXT[currentLang].topics}</h2>
+      <ArticleGrid list={ARTICLES.filter((a) => a.kind === 'topic')} currentLang={currentLang} />
+      <h2 className="mt-12 text-xl sm:text-2xl font-black mb-5">{TEXT[currentLang].guides}</h2>
+      <ArticleGrid list={ARTICLES.filter((a) => a.kind === 'guide')} currentLang={currentLang} />
     </section>
   </div>
 );
@@ -70,7 +83,10 @@ export const GuidesTeaser: React.FC<{ currentLang: Language }> = ({ currentLang 
           </Link>
         </div>
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {ARTICLES.slice(0, 3).map((a, i) => (
+          {[
+            ...ARTICLES.filter((a) => a.kind === 'topic').slice(0, 1),
+            ...ARTICLES.filter((a) => a.kind === 'guide').slice(0, 2),
+          ].map((a, i) => (
             <div key={a.slug} data-reveal style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}>
               <ArticleCard meta={a} currentLang={currentLang} />
             </div>

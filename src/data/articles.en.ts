@@ -1,6 +1,8 @@
 import type { ArticleContent } from './articles';
+import { TOPICS_EN } from './articles.topics.en';
 
 export const ARTICLES_EN: Record<string, ArticleContent> = {
+  ...TOPICS_EN,
   ps_wood: {
     title: 'PS Wall Panels (Wood Alternative): What They Are, How They Are Made, Benefits and Installation',
     description:

@@ -8,7 +8,7 @@ import { Link } from '../router';
 import { catalogueRoute, categoryRoute, installationRoute } from '../routing';
 import { Breadcrumbs } from './Breadcrumbs';
 import { BackgroundVideo } from './BackgroundVideo';
-import { articleByCategory } from '../data/articles';
+import { articleByCategory, articleSummary, topicsForCategory } from '../data/articles';
 import { articleRoute } from '../routing';
 import { BookOpen } from 'lucide-react';
 import { ProductCard } from './cards';
@@ -188,6 +188,20 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
               <BookOpen className="w-4 h-4 text-brass-deep" />
               {UI.readGuide[currentLang]}: {name}
             </Link>
+          )}
+          {topicsForCategory(card.id).length > 0 && (
+            <ul className="mt-4 space-y-2">
+              {topicsForCategory(card.id).map((a) => (
+                <li key={a.slug}>
+                  <Link
+                    to={articleRoute(currentLang, a.slug)}
+                    className="text-sm font-bold text-brass-deep hover:text-ink underline underline-offset-4"
+                  >
+                    {articleSummary(a, currentLang).title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
 

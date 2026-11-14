@@ -50,6 +50,16 @@ export interface InstallationGuide {
   };
 }
 
+/** Upload date and length of each YouTube installation video (for Google's video markup). */
+export const VIDEO_META: Record<string, { uploadDate: string; seconds: number }> = {
+  juMn9nsURXI: { uploadDate: '2026-09-06T08:00:24-07:00', seconds: 207 },
+  '6ZdIQCAViWU': { uploadDate: '2024-10-02T21:15:00-07:00', seconds: 134 },
+  '4nZ1mbiGysw': { uploadDate: '2024-09-03T03:03:46-07:00', seconds: 106 },
+  '0gYVmiqxfPo': { uploadDate: '2024-09-22T04:00:02-07:00', seconds: 393 },
+  SPZ2marfnMc: { uploadDate: '2023-04-17T17:54:55-07:00', seconds: 30 },
+  TmHRwLfY3VE: { uploadDate: '2026-07-23T07:00:08-07:00', seconds: 56 },
+};
+
 export const INSTALLATION_GUIDES: InstallationGuide[] = [
   // 1. بديل الخشب (PS Wall Panels)
   {
@@ -77,7 +87,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/juMn9nsURXI?si=9p5iDaPJ3avjacST',
     youtubeId: 'juMn9nsURXI',
-    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pswallpanelsbirlikcompany.webp',
+    categoryImage: '/uploads/categories/wood-alternative-ps-wall-panels.webp',
     dimensions: '12.1 cm - 16 cm × 290 cm',
     thickness: '9 mm - 14.8 mm',
     installationMethod: {
@@ -143,7 +153,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/6ZdIQCAViWU?si=eqo14_R2LYxJ0d4X',
     youtubeId: '6ZdIQCAViWU',
-    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pvcwallpanelbirlikcompany.webp',
+    categoryImage: '/uploads/categories/marble-alternative-pvc-wall-panels.webp',
     dimensions: '122 cm × 240 cm',
     thickness: '2.5 mm',
     installationMethod: {
@@ -212,7 +222,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/4nZ1mbiGysw?si=0A4C1cT59ov8AyF_',
     youtubeId: '4nZ1mbiGysw',
-    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/spcwallpanelbirlikcompany.webp',
+    categoryImage: '/uploads/categories/spc-stone-wall-panels.webp',
     dimensions: '96 cm × 280 cm',
     thickness: '4.0 mm - 5.0 mm',
     installationMethod: {
@@ -280,7 +290,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/0gYVmiqxfPo?si=hWFS6ACHZ0gygf6x',
     youtubeId: '0gYVmiqxfPo',
-    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/spcflooringbirlikcompany.webp',
+    categoryImage: '/uploads/categories/spc-flooring.webp',
     dimensions: '30.3 cm × 60.6 cm',
     thickness: '5.0 mm - 5.5 mm (4.5 مم + 1.0 مم IXPE)',
     installationMethod: {
@@ -351,7 +361,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/SPZ2marfnMc?si=-qp7movQnPTWSR2l',
     youtubeId: 'SPZ2marfnMc',
-    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/pswallslathsbirlikcompany.webp',
+    categoryImage: '/uploads/categories/ps-wall-mouldings.webp',
     dimensions: '1.5 cm - 10 cm × 240 cm',
     thickness: '10 mm - 20 mm',
     installationMethod: {
@@ -420,7 +430,7 @@ export const INSTALLATION_GUIDES: InstallationGuide[] = [
     },
     videoEmbedUrl: 'https://www.youtube.com/embed/TmHRwLfY3VE?si=WRhI4j6qmUV3pLEC',
     youtubeId: 'TmHRwLfY3VE',
-    categoryImage: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/psbaseboardbirlikcompany.webp',
+    categoryImage: '/uploads/categories/ps-baseboards.webp',
     dimensions: '10 cm - 11.5 cm × 240 cm',
     thickness: '12 mm - 15 mm',
     installationMethod: {

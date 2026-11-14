@@ -10,7 +10,7 @@ import { Breadcrumbs } from './Breadcrumbs';
 import { ProductCard } from './cards';
 import { AreaCalculator } from './AreaCalculator';
 import { richDescription } from '../data/productCopy';
-import { articleByCategory } from '../data/articles';
+import { articleByCategory, articleSummary, topicsForCategory } from '../data/articles';
 import { articleRoute } from '../routing';
 import { PHONE_DISPLAY, TEL_HREF, UI, whatsappLink } from '../site';
 
@@ -330,6 +330,15 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
                 {UI.readGuide[currentLang]}: {card.name[currentLang]}
               </Link>
             )}
+            {topicsForCategory(catId).slice(0, 2).map((a) => (
+              <Link
+                key={a.slug}
+                to={articleRoute(currentLang, a.slug)}
+                className="mt-2 block text-sm font-bold text-brass-deep hover:text-ink underline underline-offset-4"
+              >
+                {articleSummary(a, currentLang).title}
+              </Link>
+            ))}
           </section>
 
           <AreaCalculator model={model} currentLang={currentLang} />

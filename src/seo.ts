@@ -5,6 +5,8 @@
 import { Language } from './types';
 import { CATEGORIES_DATA } from './data/products';
 import mediaRegistry from './data/mediaRegistry.json';
+import { INSTALLATION_GUIDES, VIDEO_META } from './data/installationGuides';
+import { SOCIAL_PROFILES } from './site';
 import { ARTICLES, articleBySlug, articleSummary } from './data/articles';
 import { Route, SITE_ORIGIN, LANGS, DEFAULT_LANG, buildPath, findProduct, canonicalCategory } from './routing';
 
@@ -99,7 +101,7 @@ export function getSeo(route: Route): SeoData {
               primaryImageOfPage: { '@type': 'ImageObject', url: img },
               image: gallery.length ? gallery : [img],
               about: catName,
-              publisher: { '@type': 'Organization', name: 'Birlik Company', url: SITE_ORIGIN },
+              publisher: { '@type': 'Organization', name: 'Birlik Company', url: SITE_ORIGIN, sameAs: SOCIAL_PROFILES },
             },
             breadcrumb([
               { name: HOME_NAME[lang], url: homeUrl },
@@ -171,7 +173,7 @@ export function getSeo(route: Route): SeoData {
     const meta = articleBySlug(route.slug);
     if (meta) {
       const c = articleSummary(meta, lang);
-      const img = abs(registry.categories?.[meta.categoryId] || catInfo.image);
+      const img = abs(meta.image || registry.categories?.[meta.categoryId] || catInfo.image);
       const blogUrl = `${SITE_ORIGIN}/${lang}/blog/`;
       return {
         ...base,
@@ -191,8 +193,8 @@ export function getSeo(route: Route): SeoData {
               datePublished: meta.published,
               dateModified: meta.updated,
               mainEntityOfPage: canonical,
-              articleSection: catName,
-              author: { '@type': 'Organization', name: 'Birlik Company', url: SITE_ORIGIN },
+              articleSection: c.label || catName,
+              author: { '@type': 'Organization', name: 'Birlik Company', url: SITE_ORIGIN, sameAs: SOCIAL_PROFILES },
               publisher: {
                 '@type': 'Organization',
                 name: 'Birlik Company',
@@ -262,10 +264,24 @@ export function getSeo(route: Route): SeoData {
       ogImage: abs(registry.hero),
       schema: {
         '@context': 'https://schema.org',
-        ...breadcrumb([
-          { name: HOME_NAME[lang], url: homeUrl },
-          { name: lang === 'ar' ? 'دليل التركيب' : lang === 'tr' ? 'Montaj Rehberi' : 'Installation Guide', url: canonical },
-        ]),
+        '@graph': [
+          breadcrumb([
+            { name: HOME_NAME[lang], url: homeUrl },
+            { name: lang === 'ar' ? 'دليل التركيب' : lang === 'tr' ? 'Montaj Rehberi' : 'Installation Guide', url: canonical },
+          ]),
+          // Video markup so the installation videos can appear in Google video results
+          ...INSTALLATION_GUIDES.filter((g) => VIDEO_META[g.youtubeId]).map((g) => ({
+            '@type': 'VideoObject',
+            name: g.videoTitle[lang],
+            description: `${g.subtitle[lang]} — ${g.installationMethod[lang]}`,
+            thumbnailUrl: [`https://i.ytimg.com/vi/${g.youtubeId}/hqdefault.jpg`],
+            uploadDate: VIDEO_META[g.youtubeId].uploadDate,
+            duration: `PT${Math.floor(VIDEO_META[g.youtubeId].seconds / 60)}M${VIDEO_META[g.youtubeId].seconds % 60}S`,
+            embedUrl: `https://www.youtube.com/embed/${g.youtubeId}`,
+            contentUrl: `https://www.youtube.com/watch?v=${g.youtubeId}`,
+            inLanguage: lang,
+          })),
+        ],
       },
     };
   }

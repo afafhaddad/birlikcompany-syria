@@ -450,7 +450,7 @@ export const CATEGORIES_DATA: CategoryInfo[] = [
       en: 'Precision architectural skirting boards crafted from water-impervious high-density polystyrene.',
       tr: 'Zemin ve duvar birleşimini kusursuz şekilde kapatan suya dayanıklı süpürgelikler.'
     },
-    image: 'https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/psbaseboardbirlikcompany.webp',
+    image: '/uploads/categories/ps-baseboards.webp',
     specs: {
       dimensions: '10 cm - 11.5 cm × 240 cm',
       thickness: '12 mm - 15 mm',
