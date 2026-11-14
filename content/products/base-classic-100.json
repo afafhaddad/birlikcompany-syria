@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Classic Baseboard",
+    "en": "Classic Baseboard",
+    "tr": "Klasik Süpürgelik"
+  },
+  "category": "ps_baseboards",
+  "code": "PS-SPR-100-3",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_uwxtrwuwxtrwuwxt.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_9oqe5m9oqe5m9oqe.webp"
+  ],
+  "subtitle": {
+    "ar": "تصميم كلاسيكي ناصع مقاوم للصدمات والماء بارتفاع 10 سم × طول 240 سم",
+    "en": "Timeless crisp baseboard profile with 10 cm height and 240 cm length",
+    "tr": "Klasik zarif hatlara sahip 10 cm × 240 cm suya dayanıklı süpürgelik"
+  },
+  "description": {
+    "ar": "نعلة بي إس كلاسيك بمقاس موحد ارتفاع 10 سم × طول 240 سم وسماكة 12 مم.",
+    "en": "Classic Baseboard. Unified 10 cm × 240 cm, 12 mm thickness.",
+    "tr": "10 cm × 240 cm, 12 mm Klasik PS süpürgelik."
+  },
+  "dimensions": "10 cm × 240 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#F5F5F7",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (الارتفاع × الطول)",
+        "en": "Unified Dimensions (H × L)",
+        "tr": "Standart Ölçü (Yükseklik × Boy)"
+      },
+      "value": {
+        "ar": "10 سم × 240 سم",
+        "en": "10 cm × 240 cm",
+        "tr": "10 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 mm"
+      }
+    }
+  ],
+  "order": 360
+}

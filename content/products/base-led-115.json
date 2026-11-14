@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "LED Baseboard",
+    "en": "LED Baseboard",
+    "tr": "LED Süpürgelik"
+  },
+  "category": "ps_baseboards",
+  "code": "PS-SPR-115-1",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_et6fj1et6fj1et6f.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_k6g282k6g282k6g2.webp"
+  ],
+  "subtitle": {
+    "ar": "نعلة بوليميرية مجهزة بمجرى إضاءة ليد مخفية بارتفاع 11.5 سم × طول 240 سم",
+    "en": "Architectural polymer baseboard with integrated recessed LED channel",
+    "tr": "Entegre gizli LED kanallı 11.5 cm yükseklik ve 240 cm uzunlukta süpürgelik"
+  },
+  "description": {
+    "ar": "نعلة بي إس ليد بمقاس موحد ارتفاع 11.5 سم × طول 240 سم وسماكة 15 مم، مقاومة للماء والصدمات.",
+    "en": "LED Baseboard. Unified 11.5 cm × 240 cm, 15 mm thickness.",
+    "tr": "11.5 cm × 240 cm, 15 mm LED kanallı PS süpürgelik."
+  },
+  "dimensions": "11.5 cm × 240 cm",
+  "thickness": "15 mm",
+  "waterproof": true,
+  "colorHex": "#FFFFFF",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (الارتفاع × الطول)",
+        "en": "Unified Dimensions (H × L)",
+        "tr": "Standart Ölçü (Yükseklik × Boy)"
+      },
+      "value": {
+        "ar": "11.5 سم × 240 سم",
+        "en": "11.5 cm × 240 cm",
+        "tr": "11.5 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "15 مم",
+        "en": "15 mm",
+        "tr": "15 mm"
+      }
+    }
+  ],
+  "order": 350
+}

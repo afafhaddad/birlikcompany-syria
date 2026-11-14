@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Calcatta",
+    "en": "Calcatta",
+    "tr": "Calacatta Mermer"
+  },
+  "category": "spc_wall",
+  "code": "HM-251029-06",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_ikdrzoikdrzoikdr.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_tzp6iotzp6iotzp6.webp"
+  ],
+  "subtitle": {
+    "ar": "رخام Calcatta الإيطالي الأبيض بعروق رمادية ورمادية دافئة بسماكة 4 مم",
+    "en": "Italian Calacatta marble design on 4.0 mm rigid click stone panel",
+    "tr": "Klasik İtalyan Calacatta desenli 4.0 mm geçmeli SPC panel"
+  },
+  "description": {
+    "ar": "لوح بديل الشيبورد الحجري Calcatta بمقاس 96 سم × 280 سم وسماكة 4.0 مم.",
+    "en": "Calcatta SPC Wall Panel. 96 cm × 280 cm, 4.0 mm thickness.",
+    "tr": "96 cm × 280 cm, 4.0 mm Calcatta SPC panel."
+  },
+  "dimensions": "96 cm × 280 cm",
+  "thickness": "4.0 mm",
+  "waterproof": true,
+  "colorHex": "#F0ECE6",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "96 سم × 280 سم",
+        "en": "96 cm × 280 cm",
+        "tr": "96 cm × 280 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "4.0 مم",
+        "en": "4.0 mm",
+        "tr": "4.0 mm"
+      }
+    }
+  ],
+  "order": 300
+}

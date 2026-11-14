@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Velvet",
+    "en": "Velvet",
+    "tr": "Kadife Velvet"
+  },
+  "category": "ps_wood",
+  "code": "D25 (2) Velvet",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_tb8zcutb8zcutb8z.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_tb4txwtb4txwtb4t.webp"
+  ],
+  "subtitle": {
+    "ar": "ملمس ناعم غير لامع بعرض 16 سم وسماكة 12 مم",
+    "en": "Velvety matte feel on expansive 16 cm acoustic fluted slats",
+    "tr": "16 cm genişliğinde mat kadifemsi dokuda PS panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Velvet بمقاس 16 سم × 290 سم وسماكة 12 مم.",
+    "en": "Velvet PS Wall Panel. 16 cm × 290 cm, 12 mm thickness.",
+    "tr": "16 cm × 290 cm, 12 mm Velvet PS panel."
+  },
+  "dimensions": "16 cm × 290 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#9B8B79",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "16 سم × 290 سم",
+        "en": "16 cm × 290 cm",
+        "tr": "16 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 mm"
+      }
+    }
+  ],
+  "order": 160
+}

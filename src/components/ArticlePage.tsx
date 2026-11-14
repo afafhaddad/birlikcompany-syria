@@ -119,7 +119,7 @@ const formatDate = (iso: string, lang: Language) => {
 };
 
 export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }> = ({ meta, currentLang }) => {
-  const { registry, getCategoryImageUrl } = useMedia();
+  const { getCategoryImageUrl } = useMedia();
   const t = TEXT[currentLang];
   const c = articleContent(meta, currentLang);
   const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
@@ -133,8 +133,7 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
   // Real product photos of this range, used to illustrate the sections
   const photos: Array<{ src: string; alt: string }> = [];
   models.forEach((m) => {
-    const rp = registry.products[m.id];
-    [rp?.main, ...(rp?.gallery || [])].forEach((u) => {
+    m.images.forEach((u) => {
       if (u && !photos.some((p) => p.src === optimizeImage(u, 1080))) {
         photos.push({ src: optimizeImage(u, 1080), alt: `${name} — ${m.name[currentLang]} (${m.code})` });
       }

@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Pine",
+    "en": "Pine",
+    "tr": "Çam Ahşabı"
+  },
+  "category": "ps_wood",
+  "code": "D45",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_jew7hcjew7hcjew7.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_a1ug76a1ug76a1ug.webp"
+  ],
+  "subtitle": {
+    "ar": "نقشة خشب الصنوبر الطبيعي بعرض 13 سم وسماكة 10.8 مم",
+    "en": "Authentic pine grain pattern with 13 cm width and 10.8 mm profile",
+    "tr": "13 cm genişlikte doğal çam desenli 10.8 mm PS panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Pine بمقاس 13 سم × 290 سم وسماكة 10.8 مم.",
+    "en": "Pine PS Wall Panel. 13 cm × 290 cm, 10.8 mm thickness.",
+    "tr": "13 cm × 290 cm, 10.8 mm Çam PS panel."
+  },
+  "dimensions": "13 cm × 290 cm",
+  "thickness": "10.8 mm",
+  "waterproof": true,
+  "colorHex": "#B28E63",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "13 سم × 290 سم",
+        "en": "13 cm × 290 cm",
+        "tr": "13 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "10.8 مم",
+        "en": "10.8 mm",
+        "tr": "10.8 mm"
+      }
+    }
+  ],
+  "order": 200
+}

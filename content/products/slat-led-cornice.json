@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "LED Cornice",
+    "en": "LED Cornice",
+    "tr": "LED Tavan Kornişi"
+  },
+  "category": "ps_slats",
+  "code": "PS-LED-4",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_duvm6uduvm6uduvm.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/CBGTN.webp"
+  ],
+  "subtitle": {
+    "ar": "كورنيش سقفي مزود بمجرى إضاءة ليد مخفية بعرض 10 سم × طول 240 سم",
+    "en": "Ceiling architectural cornice with integrated recessed LED channel",
+    "tr": "Gizli LED aydınlatmalı 10 cm × 240 cm tavan kornişi"
+  },
+  "description": {
+    "ar": "كورنيش بي إس ليد بمقاس موحد 10 سم × 240 سم وسماكة 20 مم.",
+    "en": "LED Cornice. Unified 10 cm × 240 cm, 20 mm thickness.",
+    "tr": "10 cm × 240 cm, 20 mm LED PS korniş profili."
+  },
+  "dimensions": "10 cm × 240 cm",
+  "thickness": "20 mm",
+  "waterproof": true,
+  "colorHex": "#FFFFFF",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "10 سم × 240 سم",
+        "en": "10 cm × 240 cm",
+        "tr": "10 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "20 مم",
+        "en": "20 mm",
+        "tr": "20 mm"
+      }
+    }
+  ],
+  "order": 370
+}

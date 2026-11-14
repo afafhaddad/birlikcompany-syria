@@ -1,9 +1,9 @@
 /**
  * Read-only media registry.
  *
- * Which image is shown for the hero, founder, each category and each product is
- * defined in src/data/mediaRegistry.json. To change an image, edit that file in
- * GitHub (paste the new Vercel Blob URL) and push — Vercel redeploys automatically.
+ * Which image is shown for the hero, founder and each category is defined in
+ * src/data/mediaRegistry.json ("Site photos" in the /admin/ editor). Product photos
+ * live in each product's own file, content/products/<id>.json.
  *
  * The previous in-browser admin panel (passcode login, drag & drop, media library)
  * was removed: its passcode was public in the bundle, and its edits were only saved
@@ -11,6 +11,7 @@
  */
 import React, { createContext, useContext, ReactNode } from 'react';
 import mediaRegistryJson from '../data/mediaRegistry.json';
+import { ALL_PRODUCT_MODELS } from '../data/productModels';
 import { optimizeImage, ImageWidth } from '../utils/optimizeImage';
 
 export interface MediaTarget {
@@ -24,7 +25,6 @@ export interface MediaRegistryData {
   hero?: string;
   founder: string;
   categories: Record<string, string>;
-  products: Record<string, { main?: string; gallery?: string[] }>;
 }
 
 interface MediaContextType {
@@ -49,7 +49,6 @@ const registry: MediaRegistryData = {
   hero: raw.hero || '',
   founder: raw.founder || '',
   categories: raw.categories || {},
-  products: raw.products || {},
 };
 
 const nonEmpty = (u: string | undefined): u is string => typeof u === 'string' && u.trim() !== '';
@@ -64,23 +63,18 @@ const getCategoryImageUrl = (id: string, d: string, width: ImageWidth = 1080) =>
   return optimizeImage(nonEmpty(custom) ? custom : d, width);
 };
 
+// Product photos live in each product's file (content/products/<id>.json → "images").
+const productImages = new Map(ALL_PRODUCT_MODELS.map((m) => [m.id, m.images]));
+
 const getProductGalleryUrls = (id: string, defaults: string[]) => {
-  const p = registry.products[id];
-  const list: string[] = [];
-  if (p) {
-    if (nonEmpty(p.main)) list.push(p.main);
-    (p.gallery || []).forEach((g) => {
-      if (nonEmpty(g) && !list.includes(g)) list.push(g);
-    });
-  }
+  const list = [...new Set((productImages.get(id) || []).filter(nonEmpty))];
   const cleanDefaults = (defaults || []).filter(nonEmpty);
   const chosen = list.length > 0 ? list : cleanDefaults.length > 0 ? cleanDefaults : [DEFAULT_PRODUCT_IMAGE];
   return chosen.map((u) => optimizeImage(u, 1080));
 };
 
 const getProductImageUrl = (id: string, d: string, width: ImageWidth = 1080) => {
-  const p = registry.products[id];
-  const first = p ? [p.main, ...(p.gallery || [])].find(nonEmpty) : undefined;
+  const first = (productImages.get(id) || []).find(nonEmpty);
   return optimizeImage(first || d, width);
 };
 

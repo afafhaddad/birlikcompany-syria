@@ -1,0 +1,57 @@
+{
+  "name": {
+    "ar": "Beige Timber",
+    "en": "Beige Timber",
+    "tr": "Bej Ahşap"
+  },
+  "category": "ps_wood",
+  "code": "D02-MM20141",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_mwqb5fmwqb5fmwqb.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_x9ytkvx9ytkvx9yt.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_96ydn696ydn696yd.webp"
+  ],
+  "subtitle": {
+    "ar": "خشب بيج طبيعي دافئ يمنح الفراغات شعوراً بالراحة والاتساع",
+    "en": "Warm natural beige oak tone with soft Scandinavian elegance",
+    "tr": "Ferah ve sıcak doğal bej ahşap tonlu çıtalı panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Beige Timber بمقاس موحد 12.1 سم × 290 سم وسماكة 11.8 مم.",
+    "en": "Beige Timber PS Wall Panel. Unified 12.1 cm × 290 cm, 11.8 mm thickness.",
+    "tr": "12.1 cm × 290 cm, 11.8 mm Bej Ahşap PS panel."
+  },
+  "dimensions": "12.1 cm × 290 cm",
+  "thickness": "11.8 mm",
+  "waterproof": true,
+  "colorHex": "#CBB496",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "12.1 سم × 290 سم",
+        "en": "12.1 cm × 290 cm",
+        "tr": "12.1 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "11.8 مم",
+        "en": "11.8 mm",
+        "tr": "11.8 mm"
+      }
+    }
+  ],
+  "order": 100
+}

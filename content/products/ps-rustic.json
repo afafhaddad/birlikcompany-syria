@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Rustic",
+    "en": "Rustic",
+    "tr": "Rustik Ahşap"
+  },
+  "category": "ps_wood",
+  "code": "PNL-20120-R",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_n1wlx3n1wlx3n1wl.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_1uyn0v1uyn0v1uyn.webp"
+  ],
+  "subtitle": {
+    "ar": "مظهر الخشب الريفي المعتق بعرض 12 سم × طول 290 سم وسماكة 12 مم",
+    "en": "Weathered rustic timber character in 12 cm × 290 cm format",
+    "tr": "12 cm × 290 cm rustik ahşap dokulu 12 mm panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Rustic بمقاس 12 سم × 290 سم وسماكة 12 مم.",
+    "en": "Rustic PS Wall Panel. 12 cm × 290 cm, 12 mm thickness.",
+    "tr": "12 cm × 290 cm, 12 mm Rustik PS panel."
+  },
+  "dimensions": "12 cm × 290 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#80593B",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "12 سم × 290 سم",
+        "en": "12 cm × 290 cm",
+        "tr": "12 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 mm"
+      }
+    }
+  ],
+  "order": 210
+}

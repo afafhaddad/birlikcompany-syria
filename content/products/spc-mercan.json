@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Mercan",
+    "en": "Mercan",
+    "tr": "Mercan Kireçtaşı"
+  },
+  "category": "spc_wall",
+  "code": "HM-251029-04",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_g1qwyug1qwyug1qw.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_joarerjoarerjoar.webp"
+  ],
+  "subtitle": {
+    "ar": "خامة حجرية متوسطية ناعمة تعكس هدوء الطبيعة بسماكة 5 مم ونظام كليك",
+    "en": "Soft Mediterranean stone aesthetic with subtle natural grain",
+    "tr": "Yumuşak Akdeniz kireçtaşı dokulu 5.0 mm kilitli panel"
+  },
+  "description": {
+    "ar": "لوح بديل الشيبورد الحجري Mercan بمقاس 96 سم × 280 سم وسماكة 5.0 مم.",
+    "en": "Mercan SPC Wall Panel. 96 cm × 280 cm, 5.0 mm thickness.",
+    "tr": "96 cm × 280 cm, 5.0 mm Mercan SPC panel."
+  },
+  "dimensions": "96 cm × 280 cm",
+  "thickness": "5.0 mm",
+  "waterproof": true,
+  "colorHex": "#D8CFC4",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "96 سم × 280 سم",
+        "en": "96 cm × 280 cm",
+        "tr": "96 cm × 280 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "5.0 مم",
+        "en": "5.0 mm",
+        "tr": "5.0 mm"
+      }
+    }
+  ],
+  "order": 280
+}

@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Charcoal",
+    "en": "Charcoal",
+    "tr": "Kömür Karası Charcoal"
+  },
+  "category": "spc_wall",
+  "code": "HM-251029-07",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_eemqfbeemqfbeemq.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202026-07-10%20at%2020.33.13.webp"
+  ],
+  "subtitle": {
+    "ar": "فحمي عميق داكن بملمس حجري خشن مانع للبصمات بسماكة 4 مم",
+    "en": "Deep charcoal matte stone finish with anti-fingerprint surface and click joint",
+    "tr": "Derin kömür siyahı mat yüzeyli 4.0 mm kilitli SPC panel"
+  },
+  "description": {
+    "ar": "لوح بديل الشيبورد الحجري Charcoal بمقاس 96 سم × 280 سم وسماكة 4.0 مم.",
+    "en": "Charcoal SPC Wall Panel. 96 cm × 280 cm, 4.0 mm thickness.",
+    "tr": "96 cm × 280 cm, 4.0 mm Charcoal SPC panel."
+  },
+  "dimensions": "96 cm × 280 cm",
+  "thickness": "4.0 mm",
+  "waterproof": true,
+  "colorHex": "#26272B",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "96 سم × 280 سم",
+        "en": "96 cm × 280 cm",
+        "tr": "96 cm × 280 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "4.0 مم",
+        "en": "4.0 mm",
+        "tr": "4.0 mm"
+      }
+    }
+  ],
+  "order": 310
+}

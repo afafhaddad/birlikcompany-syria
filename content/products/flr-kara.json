@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Kara",
+    "en": "Kara",
+    "tr": "Kara Koyu Taş"
+  },
+  "category": "spc_flooring",
+  "code": "HM 24",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_oap7ewoap7ewoap7.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_oh4uisoh4uisoh4u.webp"
+  ],
+  "subtitle": {
+    "ar": "حجر داكن أنيق بسماكة 4.5 مم + 1.0 مم عازل صوتي IXPE بنظام كليك متطور",
+    "en": "Sophisticated dark graphite stone tile with integrated acoustic foam",
+    "tr": "Koyu füme taş desenli ses yalıtımlı lüks SPC zemin kaplaması"
+  },
+  "description": {
+    "ar": "بلاطة بديل الباركيه Kara بمقاس 30.3 سم × 60.6 سم وسماكة 4.5 مم + 1.0 مم IXPE.",
+    "en": "Kara SPC Flooring tile. Unified 30.3 cm × 60.6 cm, 4.5 mm + 1.0 mm IXPE.",
+    "tr": "30.3 cm × 60.6 cm, 4.5mm + 1.0mm IXPE Kara SPC parke."
+  },
+  "dimensions": "30.3 cm × 60.6 cm",
+  "thickness": "4.5 mm + 1.0 mm IXPE (5.5 mm)",
+  "waterproof": true,
+  "colorHex": "#3A3A3D",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "30.3 سم × 60.6 سم",
+        "en": "30.3 cm × 60.6 cm",
+        "tr": "30.3 cm × 60.6 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "4.5 مم + 1.0 مم IXPE عازل للصوت",
+        "en": "4.5 mm + 1.0 mm IXPE acoustic backing",
+        "tr": "4.5 mm + 1.0 mm IXPE akustik taban"
+      }
+    }
+  ],
+  "order": 340
+}

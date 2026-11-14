@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Crown Teak Black",
+    "en": "Crown Teak Black",
+    "tr": "Crown Tik Siyah"
+  },
+  "category": "ps_wood",
+  "code": "PNL-20120-CTB",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_nbk6z8nbk6z8nbk6.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_lp513wlp513wlp51.webp"
+  ],
+  "subtitle": {
+    "ar": "خشب التيك الملكي بلون داكن فخم بعرض 15 سم × طول 290 سم وسماكة 12 مم",
+    "en": "Regal Crown Teak in dark dramatic black finish with 15 cm fluted profile",
+    "tr": "15 cm × 290 cm, 12 mm Crown Tik siyah lüks panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Crown Teak Black بمقاس 15 سم × 290 سم وسماكة 12 مم.",
+    "en": "Crown Teak Black PS Wall Panel. 15 cm × 290 cm, 12 mm thickness.",
+    "tr": "15 cm × 290 cm, 12 mm Crown Tik Siyah PS panel."
+  },
+  "dimensions": "15 cm × 290 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#222326",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "15 سم × 290 سم",
+        "en": "15 cm × 290 cm",
+        "tr": "15 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 mm"
+      }
+    }
+  ],
+  "order": 240
+}

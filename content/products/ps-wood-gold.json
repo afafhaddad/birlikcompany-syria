@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Wood Gold",
+    "en": "Wood Gold",
+    "tr": "Ahşap Altın"
+  },
+  "category": "ps_wood",
+  "code": "D75 (2) Wood",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_fpxlgufpxlgufpxl.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_xz00k2xz00k2xz00.webp"
+  ],
+  "subtitle": {
+    "ar": "تضليع عميق بسماكة 14.8 مم يجمع دفء الخشب الكلاسيكي مع خيوط الذهب",
+    "en": "Deep 14.8 mm profile depth uniting classic natural wood warmth with gold",
+    "tr": "14.8 mm kalınlıkta klasik ahşap ve altın uyumu"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Wood Gold بمقاس 16 سم × 290 سم وسماكة 14.8 مم.",
+    "en": "Wood Gold PS Wall Panel. 16 cm × 290 cm, 14.8 mm thickness.",
+    "tr": "16 cm × 290 cm, 14.8 mm Wood Gold PS panel."
+  },
+  "dimensions": "16 cm × 290 cm",
+  "thickness": "14.8 mm",
+  "waterproof": true,
+  "colorHex": "#99734A",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "16 سم × 290 سم",
+        "en": "16 cm × 290 cm",
+        "tr": "16 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "14.8 مم",
+        "en": "14.8 mm",
+        "tr": "14.8 mm"
+      }
+    }
+  ],
+  "order": 190
+}

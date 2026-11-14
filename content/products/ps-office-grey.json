@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Office Grey",
+    "en": "Office Grey",
+    "tr": "Ofis Grisi"
+  },
+  "category": "ps_wood",
+  "code": "D02-22032",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_7eudyp7eudyp7eud.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_u30rn5u30rn5u30r.webp"
+  ],
+  "subtitle": {
+    "ar": "رمادي احترافي أنيق للمكاتب الحديثة والمساحات المعاصرة",
+    "en": "Sleek executive grey finish ideal for modern workspaces and homes",
+    "tr": "Modern ofisler ve çağdaş evler için şık gri ahşap dokusu"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Office Grey بمقاس 12.1 سم × 290 سم وسماكة 11.8 مم.",
+    "en": "Office Grey PS Wall Panel. Unified 12.1 cm × 290 cm, 11.8 mm thickness.",
+    "tr": "12.1 cm × 290 cm, 11.8 mm Ofis Grisi PS panel."
+  },
+  "dimensions": "12.1 cm × 290 cm",
+  "thickness": "11.8 mm",
+  "waterproof": true,
+  "colorHex": "#7D7E82",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "12.1 سم × 290 سم",
+        "en": "12.1 cm × 290 cm",
+        "tr": "12.1 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "11.8 مم",
+        "en": "11.8 mm",
+        "tr": "11.8 mm"
+      }
+    }
+  ],
+  "order": 110
+}

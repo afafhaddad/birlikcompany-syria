@@ -1,0 +1,57 @@
+{
+  "name": {
+    "ar": "Marbella",
+    "en": "Marbella",
+    "tr": "Marbella"
+  },
+  "category": "pvc_marble",
+  "code": "9010(1)",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_bwxvpibwxvpibwxv.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_3s22al3s22al3s22.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_y4pe6ly4pe6ly4pe.webp"
+  ],
+  "subtitle": {
+    "ar": "عروق رخامية كلاسيكية بنقاء أندلسي فائق ولمسات دافئة",
+    "en": "Classic Andalusian marble aesthetic with bright ambient sheen",
+    "tr": "Klasik Endülüs mermer dokusu ve sıcak çizgiler"
+  },
+  "description": {
+    "ar": "لوح بديل الرخام Marbella بمقاس 122 سم × 240 سم وسماكة 2.5 مم.",
+    "en": "Marbella PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.",
+    "tr": "122 cm × 240 cm, 2.5 mm Marbella PVC panel."
+  },
+  "dimensions": "122 cm × 240 cm",
+  "thickness": "2.5 mm",
+  "waterproof": true,
+  "colorHex": "#ECE7DE",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (سم)",
+        "en": "Unified Size (cm)",
+        "tr": "Standart Ölçü (cm)"
+      },
+      "value": {
+        "ar": "122 سم × 240 سم",
+        "en": "122 cm × 240 cm",
+        "tr": "122 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "2.5 مم",
+        "en": "2.5 mm",
+        "tr": "2.5 mm"
+      }
+    }
+  ],
+  "order": 30
+}

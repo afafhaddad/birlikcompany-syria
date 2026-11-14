@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "4 cm Classic",
+    "en": "4 cm Classic",
+    "tr": "4 cm Klasik Çıta"
+  },
+  "category": "ps_slats",
+  "code": "PS-C-105",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/dd82c827845b6aa45a489b0283317d90.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202024-11-13%20at%2010.27.57.webp"
+  ],
+  "subtitle": {
+    "ar": "قضيب وبانو جداري كلاسيكي للإطارات بعرض 4 سم × طول 240 سم وسماكة 15 مم",
+    "en": "Classic architectural wall molding trim for wainscoting and wall frames",
+    "tr": "Duvar çıtalama ve çerçeve için 4 cm × 240 cm klasik profil"
+  },
+  "description": {
+    "ar": "قضيب بي إس 4 سم كلاسيك بمقاس موحد 4 سم × 240 سم وسماكة 15 مم.",
+    "en": "4 cm Classic PS Slath. Unified 4 cm × 240 cm, 15 mm thickness.",
+    "tr": "4 cm × 240 cm, 15 mm Klasik PS çıta."
+  },
+  "dimensions": "4 cm × 240 cm",
+  "thickness": "15 mm",
+  "waterproof": true,
+  "colorHex": "#F7F6F3",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "4 سم × 240 سم",
+        "en": "4 cm × 240 cm",
+        "tr": "4 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "15 مم",
+        "en": "15 mm",
+        "tr": "15 مم"
+      }
+    }
+  ],
+  "order": 380
+}

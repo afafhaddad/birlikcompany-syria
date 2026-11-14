@@ -71,14 +71,13 @@ export function getSeo(route: Route): SeoData {
     const p = findProduct(route.productId);
     if (p) {
       const name = pick(p.name, lang);
-      const rp = registry.products?.[p.id];
-      const img = abs(rp?.main || rp?.gallery?.[0] || p.images?.[0] || registry.categories?.[canonicalCategory(p.category)] || catInfo.image);
+      const img = abs(p.images?.[0] || registry.categories?.[canonicalCategory(p.category)] || catInfo.image);
       const desc = {
         ar: `${p.code} ${name} من ${catName} — المقاس ${p.dimensions}، السماكة ${p.thickness}، مقاوم للماء 100%. متوفر لدى شركة بيرليك في اللاذقية مع التوصيل لكل المحافظات السورية. اسأل عن السعر عبر واتساب.`,
         en: `${p.code} ${name} — ${catName}. Size ${p.dimensions}, thickness ${p.thickness}, 100% waterproof. Available from Birlik Company in Lattakia with delivery across Syria. Ask for the price on WhatsApp.`,
         tr: `${p.code} ${name} — ${catName}. Ölçü ${p.dimensions}, kalınlık ${p.thickness}, %100 su geçirmez. Birlik Şirketi, Lazkiye — Suriye geneline teslimat. Fiyat için WhatsApp'tan yazın.`,
       }[lang];
-      const gallery = [rp?.main, ...(rp?.gallery || [])].filter((u): u is string => !!u).map(abs);
+      const gallery = p.images.map(abs);
       return {
         ...base,
         ogType: 'product',

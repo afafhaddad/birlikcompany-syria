@@ -1,0 +1,57 @@
+{
+  "name": {
+    "ar": "Woody Forest",
+    "en": "Woody Forest",
+    "tr": "Orman Ahşabı"
+  },
+  "category": "spc_wall",
+  "code": "HM-251029-01",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202026-07-10%20at%2020.08.21%281%29.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202026-07-10%20at%2020.08.21.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202026-07-10%20at%2020.08.21%282%29.webp"
+  ],
+  "subtitle": {
+    "ar": "بديل الشيبورد الحجري بنظام تعشيق كليك ومظهر خشب الغابات وسماكة 5 مم",
+    "en": "Rigid stone composite click wall panel in deep organic forest wood",
+    "tr": "Geçmeli kilitli, 5.0 mm kalınlıkta orman ahşap dokulu SPC sunta alternatifi"
+  },
+  "description": {
+    "ar": "لوح بديل الشيبورد الحجري بنظام كليك بمقاس موحد 96 سم × 280 سم وسماكة 5.0 مم، صلب لا ينتفخ بالماء.",
+    "en": "SPC Click Wall Panel Woody Forest. Unified 96 cm × 280 cm, 5.0 mm thickness.",
+    "tr": "96 cm × 280 cm, 5.0 mm Woody Forest SPC taş duvar paneli."
+  },
+  "dimensions": "96 cm × 280 cm",
+  "thickness": "5.0 mm",
+  "waterproof": true,
+  "colorHex": "#6D5038",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "96 سم × 280 سم",
+        "en": "96 cm × 280 cm",
+        "tr": "96 cm × 280 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "5.0 مم",
+        "en": "5.0 mm",
+        "tr": "5.0 mm"
+      }
+    }
+  ],
+  "order": 250
+}

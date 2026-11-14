@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Blanche",
+    "en": "Blanche",
+    "tr": "Blanche Beyaz Taş"
+  },
+  "category": "spc_flooring",
+  "code": "HM 21",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_q5tfetq5tfetq5tf.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_z9zzw7z9zzw7z9zz.webp"
+  ],
+  "subtitle": {
+    "ar": "حجر أبيض لؤلؤي بسماكة 4.5 مم + 1.0 مم طبقة IXPE عازلة للصوت (إجمالي 5.5 مم)",
+    "en": "Pearl white stone finish with 4.5mm core + 1.0mm IXPE acoustic underlay",
+    "tr": "İnci beyazı taş desenli, 4.5mm + 1.0mm IXPE ses yalıtımlı SPC zemin"
+  },
+  "description": {
+    "ar": "بلاطة بديل الباركيه Blanche بمقاس 30.3 سم × 60.6 سم وسماكة إجمالية 5.5 مم (4.5 مم قلب صلب + 1.0 مم IXPE).",
+    "en": "Blanche SPC Flooring tile. Unified 30.3 cm × 60.6 cm, 4.5 mm + 1.0 mm IXPE underlay.",
+    "tr": "30.3 cm × 60.6 cm, 4.5mm + 1.0mm IXPE Blanche SPC parke."
+  },
+  "dimensions": "30.3 cm × 60.6 cm",
+  "thickness": "4.5 mm + 1.0 mm IXPE (5.5 mm)",
+  "waterproof": true,
+  "colorHex": "#ECE7DF",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "30.3 سم × 60.6 سم",
+        "en": "30.3 cm × 60.6 cm",
+        "tr": "30.3 cm × 60.6 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "4.5 مم + 1.0 مم IXPE عازل للصوت",
+        "en": "4.5 mm + 1.0 mm IXPE acoustic backing",
+        "tr": "4.5 mm + 1.0 mm IXPE akustik taban"
+      }
+    }
+  ],
+  "order": 330
+}

@@ -1,0 +1,57 @@
+{
+  "name": {
+    "ar": "Vangoh",
+    "en": "Vangoh",
+    "tr": "Vangoh"
+  },
+  "category": "ps_wood",
+  "code": "D02-Q22016-6",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/vangohpswallpanel.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%202%2C%202026%2C%2002_50_49%20PM.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%202%2C%202026%2C%2002_48_29%20PM.webp"
+  ],
+  "subtitle": {
+    "ar": "تموجات فنية عميقة مستوحاة من لوحات فان غوخ مع تضليع ثلاثي الأبعاد",
+    "en": "Artistic linear fluting with rich organic wood grain texture",
+    "tr": "Sanatsal derin ahşap dokulu 3D akustik panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب (PS Wall Panel) موديل Vangoh بمقاس موحد 12.1 سم × 290 سم وسماكة 11.8 مم، مقاومة 100% للرطوبة والعفن.",
+    "en": "PS Wall Panel Vangoh model. Unified 12.1 cm × 290 cm, 11.8 mm thickness.",
+    "tr": "12.1 cm × 290 cm standart boyutta, 11.8 mm kalınlıkta Vangoh PS duvar paneli."
+  },
+  "dimensions": "12.1 cm × 290 cm",
+  "thickness": "11.8 mm",
+  "waterproof": true,
+  "colorHex": "#8C6747",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "12.1 سم × 290 سم",
+        "en": "12.1 cm × 290 cm",
+        "tr": "12.1 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "11.8 مم",
+        "en": "11.8 mm",
+        "tr": "11.8 mm"
+      }
+    }
+  ],
+  "order": 90
+}

@@ -1,0 +1,55 @@
+{
+  "name": {
+    "ar": "Balsam Black",
+    "en": "Balsam Black",
+    "tr": "Balsam Siyah"
+  },
+  "category": "ps_wood",
+  "code": "PNL-20120-BB",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_elnhn9elnhn9elnh.webp"
+  ],
+  "subtitle": {
+    "ar": "أسود فحمي مات مطفي بعرض 14 سم × طول 290 سم وسماكة 12 مم",
+    "en": "Monochrome charcoal black finish with 14 cm width and 12 mm thickness",
+    "tr": "14 cm × 290 cm, 12 mm mat siyah Balsam PS panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Balsam Black بمقاس 14 سم × 290 سم وسماكة 12 مم.",
+    "en": "Balsam Black PS Wall Panel. 14 cm × 290 cm, 12 mm thickness.",
+    "tr": "14 cm × 290 cm, 12 mm Balsam Siyah PS panel."
+  },
+  "dimensions": "14 cm × 290 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#1D1D20",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "14 سم × 290 سم",
+        "en": "14 cm × 290 cm",
+        "tr": "14 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 مم"
+      }
+    }
+  ],
+  "order": 230
+}

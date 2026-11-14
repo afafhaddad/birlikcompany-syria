@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Grey Gold",
+    "en": "Grey Gold",
+    "tr": "Gri Altın"
+  },
+  "category": "ps_wood",
+  "code": "D75 Grey",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_r1ps8lr1ps8lr1ps.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_fi03l3fi03l3fi03.webp"
+  ],
+  "subtitle": {
+    "ar": "سماكة قوية 14.8 مم وعرض 16 سم بلمسة رمادية مذهبة فاخرة",
+    "en": "Substantial 14.8 mm depth on 16 cm slat combining sleek grey with gold",
+    "tr": "14.8 mm kalınlık ve 16 cm genişlikte lüks gri-altın panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Grey Gold بمقاس 16 سم × 290 سم وسماكة 14.8 مم.",
+    "en": "Grey Gold PS Wall Panel. 16 cm × 290 cm, 14.8 mm thickness.",
+    "tr": "16 cm × 290 cm, 14.8 mm Grey Gold PS panel."
+  },
+  "dimensions": "16 cm × 290 cm",
+  "thickness": "14.8 mm",
+  "waterproof": true,
+  "colorHex": "#808285",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "16 سم × 290 سم",
+        "en": "16 cm × 290 cm",
+        "tr": "16 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "14.8 مم",
+        "en": "14.8 mm",
+        "tr": "14.8 mm"
+      }
+    }
+  ],
+  "order": 180
+}

@@ -1,0 +1,55 @@
+{
+  "name": {
+    "ar": "1.5 cm Round",
+    "en": "1.5 cm Round",
+    "tr": "1.5 cm Yuvarlak Çıta"
+  },
+  "category": "ps_slats",
+  "code": "PS-C-101",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202024-11-13%20at%2010.24.12%20%281%29.webp"
+  ],
+  "subtitle": {
+    "ar": "قضيب نصف دائري رفيع للتشطيبات المتقنة بعرض 1.5 سم × طول 240 سم",
+    "en": "Half-round slim profile trim for precision borders and finish lines",
+    "tr": "Hassas kenar bitişleri için 1.5 cm × 240 cm yarım yuvarlak çıta"
+  },
+  "description": {
+    "ar": "قضيب بي إس 1.5 سم دائري بمقاس موحد 1.5 سم × 240 سم وسماكة 10 مم.",
+    "en": "1.5 cm Round PS Slath. Unified 1.5 cm × 240 cm, 10 mm thickness.",
+    "tr": "1.5 cm × 240 cm, 10 mm Yuvarlak PS çıta."
+  },
+  "dimensions": "1.5 cm × 240 cm",
+  "thickness": "10 mm",
+  "waterproof": true,
+  "colorHex": "#FFFFFF",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "1.5 سم × 240 سم",
+        "en": "1.5 cm × 240 cm",
+        "tr": "1.5 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "10 مم",
+        "en": "10 mm",
+        "tr": "10 mm"
+      }
+    }
+  ],
+  "order": 410
+}

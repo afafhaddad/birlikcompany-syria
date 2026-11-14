@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Athena Grey",
+    "en": "Athena Grey",
+    "tr": "Athena Gri"
+  },
+  "category": "pvc_marble",
+  "code": "A9021-3",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_m9eqpvm9eqpvm9eq.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_e2r13ae2r13ae2r1.webp"
+  ],
+  "subtitle": {
+    "ar": "رخام رمادي أثيني فاخر مع تموجات بيضاء ناعمة ولمعان كريستالي",
+    "en": "Refined Athena grey marble with delicate mist veining and crystal luster",
+    "tr": "Zarif beyaz damarlı lüks gri mermer desenli panel"
+  },
+  "description": {
+    "ar": "لوح بديل الرخام (PVC Wall Panel) عالي اللمعان والجودة بمقاس موحد 122 سم × 240 سم وسماكة 2.5 مم، مقاوم 100% للرطوبة والماء.",
+    "en": "High-gloss PVC marble panel in standardized 122 cm × 240 cm format with 2.5 mm thickness. 100% moisture and water impervious.",
+    "tr": "122 cm × 240 cm standart ölçüde, 2.5 mm kalınlığında %100 su geçirmez PVC mermer panel."
+  },
+  "dimensions": "122 cm × 240 cm",
+  "thickness": "2.5 mm",
+  "waterproof": true,
+  "colorHex": "#C5C7C9",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (سم)",
+        "en": "Unified Size (cm)",
+        "tr": "Standart Ölçü (cm)"
+      },
+      "value": {
+        "ar": "122 سم × 240 سم",
+        "en": "122 cm × 240 cm",
+        "tr": "122 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "2.5 مم",
+        "en": "2.5 mm",
+        "tr": "2.5 mm"
+      }
+    }
+  ],
+  "order": 10
+}

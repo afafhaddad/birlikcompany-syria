@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Velvet Gold",
+    "en": "Velvet Gold",
+    "tr": "Kadife Altın"
+  },
+  "category": "ps_wood",
+  "code": "D10-2 (2) Velvet Gold",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Generated%20Image%20September%2027%2C%202026%20-%2012_38PM.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Generated%20Image%20September%2027%2C%202026%20-%2012_50PM.webp"
+  ],
+  "subtitle": {
+    "ar": "ملمس مخملي ناعم مع لمعة ذهبية دافئة بعرض 15 سم وسماكة 9 مم",
+    "en": "Silk velvet tactile feel highlighted by ambient gold sheen",
+    "tr": "Kadife mat dokusu ve altın ışıltısıyla 15 cm geniş panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Velvet Gold بمقاس 15 سم × 290 سم وسماكة 9 مم.",
+    "en": "Velvet Gold PS Wall Panel. 15 cm × 290 cm, 9 mm thickness.",
+    "tr": "15 cm × 290 cm, 9 mm Velvet Gold PS panel."
+  },
+  "dimensions": "15 cm × 290 cm",
+  "thickness": "9 mm",
+  "waterproof": true,
+  "colorHex": "#BFA06B",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "15 سم × 290 سم",
+        "en": "15 cm × 290 cm",
+        "tr": "15 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "9 مم",
+        "en": "9 mm",
+        "tr": "9 mm"
+      }
+    }
+  ],
+  "order": 140
+}

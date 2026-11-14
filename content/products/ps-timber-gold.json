@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Timber Gold",
+    "en": "Timber Gold",
+    "tr": "Altın Ahşap Timber"
+  },
+  "category": "ps_wood",
+  "code": "D25 Timber Gold",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_nf76zdnf76zdnf76.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_8pr5fy8pr5fy8pr5%281%29.webp"
+  ],
+  "subtitle": {
+    "ar": "عرض معماري 16 سم بتضليع بارز وسماكة 12 مم مع لمسات خشبية ذهبية",
+    "en": "Generous 16 cm width fluted slat with rich timber-gold character",
+    "tr": "16 cm genişlik ve 12 mm et kalınlığında altın ahşap çıtalı panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Timber Gold بمقاس 16 سم × 290 سم وسماكة 12 مم.",
+    "en": "Timber Gold PS Wall Panel. 16 cm × 290 cm, 12 mm thickness.",
+    "tr": "16 cm × 290 cm, 12 mm Timber Gold PS panel."
+  },
+  "dimensions": "16 cm × 290 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#A37943",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "16 سم × 290 سم",
+        "en": "16 cm × 290 cm",
+        "tr": "16 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 mm"
+      }
+    }
+  ],
+  "order": 150
+}

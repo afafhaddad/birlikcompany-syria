@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "2.5 cm Classic",
+    "en": "2.5 cm Classic",
+    "tr": "2.5 cm İnce Çıta"
+  },
+  "category": "ps_slats",
+  "code": "PS-C-103",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202024-11-13%20at%2010.24.12.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/WhatsApp%20Image%202024-11-13%20at%2010.27.56%20%281%29.webp"
+  ],
+  "subtitle": {
+    "ar": "قضيب رفيع دقيق للإطارات المزدوجة الفرنسية بعرض 2.5 سم × طول 240 سم",
+    "en": "Slender delicate molding trim designed for French double-framing wainscot",
+    "tr": "Fransız çıtalama için 2.5 cm × 240 cm ince zarif çıta"
+  },
+  "description": {
+    "ar": "قضيب بي إس 2.5 سم كلاسيك بمقاس موحد 2.5 سم × 240 سم وسماكة 12 مم.",
+    "en": "2.5 cm Classic PS Slath. Unified 2.5 cm × 240 cm, 12 mm thickness.",
+    "tr": "2.5 cm × 240 cm, 12 mm İnce Klasik PS çıta."
+  },
+  "dimensions": "2.5 cm × 240 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#FFFFFF",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "2.5 سم × 240 سم",
+        "en": "2.5 cm × 240 cm",
+        "tr": "2.5 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 mm"
+      }
+    }
+  ],
+  "order": 400
+}

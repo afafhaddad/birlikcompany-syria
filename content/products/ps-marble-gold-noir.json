@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Marble Gold Noir",
+    "en": "Marble Gold Noir",
+    "tr": "Mermer Altın Siyah"
+  },
+  "category": "ps_wood",
+  "code": "D10-1",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_q6br7wq6br7wq6br.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_q9a3apq9a3apq9a3.webp"
+  ],
+  "subtitle": {
+    "ar": "عرض 15 سم بسطح أسود رخامي داكن ولمسات ذهبية باهرة",
+    "en": "15 cm wide fluted profile with dark marble texture and golden nuances",
+    "tr": "15 cm genişliğinde altın damarlı siyah mermer dokulu çıtalı panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب العريضة 15 سم × 290 سم بسماكة 10 مم مع تعشيق متقن.",
+    "en": "Wide 15 cm × 290 cm fluted panel with 10 mm thickness.",
+    "tr": "15 cm × 290 cm, 10 mm kalınlığında geniş PS panel."
+  },
+  "dimensions": "15 cm × 290 cm",
+  "thickness": "10 mm",
+  "waterproof": true,
+  "colorHex": "#252528",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "15 سم × 290 سم",
+        "en": "15 cm × 290 cm",
+        "tr": "15 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "10 مم",
+        "en": "10 mm",
+        "tr": "10 mm"
+      }
+    }
+  ],
+  "order": 120
+}

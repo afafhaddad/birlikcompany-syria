@@ -88,9 +88,29 @@ describe('products', () => {
     }
   });
 
-  it('every product has a photo in the media registry', () => {
-    const products = (registry as { products: Record<string, { main?: string }> }).products;
-    for (const m of PRODUCT_MODELS) expect(products[m.id]?.main, m.id).toMatch(/^https:\/\//);
+  it('every product has a photo', () => {
+    for (const m of PRODUCT_MODELS) expect(m.images[0], m.id).toMatch(/^(https:\/\/|\/uploads\/)/);
+  });
+
+  it('product files from the editor are complete', () => {
+    const ids = new Set<string>();
+    for (const m of PRODUCT_MODELS) {
+      expect(m.id, m.id).toMatch(/^[a-z0-9-]+$/);
+      expect(ids.has(m.id), `duplicate ${m.id}`).toBe(false);
+      ids.add(m.id);
+      for (const lang of LANGS) {
+        expect(m.name?.[lang]?.trim(), `${m.id} name.${lang}`).toBeTruthy();
+        expect(m.subtitle?.[lang]?.trim(), `${m.id} subtitle.${lang}`).toBeTruthy();
+      }
+      expect(m.code?.trim(), `${m.id} code`).toBeTruthy();
+      expect(m.dimensions?.trim(), `${m.id} dimensions`).toBeTruthy();
+      expect(m.thickness?.trim(), `${m.id} thickness`).toBeTruthy();
+    }
+  });
+
+  it('category photos are set in the media registry', () => {
+    const cats = (registry as { categories: Record<string, string> }).categories;
+    for (const c of MAIN_CATEGORIES) expect(cats[c], c).toMatch(/^(https:\/\/|\/uploads\/)/);
   });
 
   it('every product has three description paragraphs in every language', () => {

@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Inky Gold",
+    "en": "Inky Gold",
+    "tr": "Mürekkep Altın"
+  },
+  "category": "pvc_marble",
+  "code": "9010",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_w2do1tw2do1tw2do.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_hmzp79hmzp79hmzp.webp"
+  ],
+  "subtitle": {
+    "ar": "عروق حبرية متداخلة مع خيوط الذهب الفاخر على أرضية رخامية ناصعة",
+    "en": "Dynamic inky streaks infused with metallic golden veins",
+    "tr": "Mürekkep akıntılı ve altın damarlı lüks mermer görünümü"
+  },
+  "description": {
+    "ar": "لوح بديل الرخام Inky Gold بمقاس 122 سم × 240 سم وسماكة 2.5 مم.",
+    "en": "Inky Gold PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.",
+    "tr": "122 cm × 240 cm, 2.5 mm Inky Gold PVC panel."
+  },
+  "dimensions": "122 cm × 240 cm",
+  "thickness": "2.5 mm",
+  "waterproof": true,
+  "colorHex": "#EAE5D9",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (سم)",
+        "en": "Unified Size (cm)",
+        "tr": "Standart Ölçü (cm)"
+      },
+      "value": {
+        "ar": "122 سم × 240 سم",
+        "en": "122 cm × 240 cm",
+        "tr": "122 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "2.5 مم",
+        "en": "2.5 mm",
+        "tr": "2.5 mm"
+      }
+    }
+  ],
+  "order": 40
+}

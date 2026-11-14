@@ -1,0 +1,55 @@
+{
+  "name": {
+    "ar": "Balsam",
+    "en": "Balsam",
+    "tr": "Balsam Doğal Ahşap"
+  },
+  "category": "ps_wood",
+  "code": "PNL-20120-B",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_21bar21bar21bar2.webp"
+  ],
+  "subtitle": {
+    "ar": "درجة بلسمية هادئة من خشب البلوط بعرض 12 سم × طول 290 سم وسماكة 12 مم",
+    "en": "Soothing natural balsam oak tone with 12 cm width and 12 mm thickness",
+    "tr": "12 cm × 290 cm, 12 mm Balsam açık meşe tonlu panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Balsam بمقاس 12 سم × 290 سم وسماكة 12 مم.",
+    "en": "Balsam PS Wall Panel. 12 cm × 290 cm, 12 mm thickness.",
+    "tr": "12 cm × 290 cm, 12 mm Balsam PS panel."
+  },
+  "dimensions": "12 cm × 290 cm",
+  "thickness": "12 mm",
+  "waterproof": true,
+  "colorHex": "#BA9C78",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "12 سم × 290 سم",
+        "en": "12 cm × 290 cm",
+        "tr": "12 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "12 مم",
+        "en": "12 mm",
+        "tr": "12 mm"
+      }
+    }
+  ],
+  "order": 220
+}

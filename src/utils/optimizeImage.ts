@@ -25,7 +25,7 @@ const OPTIMIZER_ENABLED = import.meta.env.PROD && import.meta.env.VITE_IMAGE_OPT
 
 /** Absolute optimizer URL on the live site (used by the print/PDF catalogue). */
 export function liveOptimizedImage(url: string, width: ImageWidth = 640, quality = 70): string {
-  if (!BLOB_HOST_RE.test(url)) return url;
+  if (!BLOB_HOST_RE.test(url) && !url.startsWith('/uploads/')) return url;
   return `https://www.birlik-insaat.com${OPTIMIZER_PATH}?url=${encodeURIComponent(url)}&w=${width}&q=${quality}`;
 }
 
@@ -44,7 +44,8 @@ export function optimizeImage(url: string | undefined, width: ImageWidth = 1080,
     }
   }
 
-  if (BLOB_HOST_RE.test(url) && OPTIMIZER_ENABLED) {
+  // Vercel Blob photos, and photos uploaded through the /admin/ editor (public/uploads)
+  if ((BLOB_HOST_RE.test(url) || url.startsWith('/uploads/')) && OPTIMIZER_ENABLED) {
     return `${OPTIMIZER_PATH}?url=${encodeURIComponent(url)}&w=${width}&q=${quality}`;
   }
 

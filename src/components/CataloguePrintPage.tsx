@@ -204,8 +204,7 @@ export const CataloguePrintPage: React.FC<{ currentLang: Language }> = ({ curren
   );
 
   const ProductPage: React.FC<{ m: ProductModel; n: number; catName: string; info: (typeof sections)[number]['info'] }> = ({ m, n, catName, info }) => {
-    const rp = registry.products[m.id];
-    const photos = [rp?.main, ...(rp?.gallery || [])].filter((u): u is string => !!u).slice(0, 3);
+    const photos = m.images.slice(0, 3);
     if (!photos.length && registry.categories[info.id]) photos.push(registry.categories[info.id]);
     const rows: Array<[string, React.ReactNode]> = [
       [t.code, ltr(m.code)],

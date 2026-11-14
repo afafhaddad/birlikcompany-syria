@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Golden Grey",
+    "en": "Golden Grey",
+    "tr": "Altın Gri"
+  },
+  "category": "pvc_marble",
+  "code": "MT9019-G",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_xoqouvxoqouvxoqo.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_ctp0zyctp0zyctp0.webp"
+  ],
+  "subtitle": {
+    "ar": "رمادي عصري أنيق تتخلله خيوط ذهبية دقيقة لدفء بصري متوازن",
+    "en": "Contemporary grey stone woven with delicate warm golden threads",
+    "tr": "Modern gri tonlarında ince altın çizgili panel"
+  },
+  "description": {
+    "ar": "لوح بديل الرخام Golden Grey بمقاس 122 سم × 240 سم وسماكة 2.5 مم.",
+    "en": "Golden Grey PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.",
+    "tr": "122 cm × 240 cm, 2.5 mm Golden Grey PVC panel."
+  },
+  "dimensions": "122 cm × 240 cm",
+  "thickness": "2.5 mm",
+  "waterproof": true,
+  "colorHex": "#8C8E91",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (سم)",
+        "en": "Unified Size (cm)",
+        "tr": "Standart Ölçü (cm)"
+      },
+      "value": {
+        "ar": "122 سم × 240 سم",
+        "en": "122 cm × 240 cm",
+        "tr": "122 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "2.5 مم",
+        "en": "2.5 mm",
+        "tr": "2.5 mm"
+      }
+    }
+  ],
+  "order": 70
+}

@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "4.8 cm Border",
+    "en": "4.8 cm Border",
+    "tr": "4.8 cm Bordür Çıtası"
+  },
+  "category": "ps_slats",
+  "code": "PS-C-010",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_3wfthl3wfthl3wft.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/dfdr.webp"
+  ],
+  "subtitle": {
+    "ar": "قضيب بوردر بارز لتأطير الجدران والمرايا بعرض 4.8 سم × طول 240 سم",
+    "en": "Prominent decorative border molding trim for mirrors and architectural framing",
+    "tr": "Ayna ve duvar çerçeveleme için 4.8 cm × 240 cm bordür çıtası"
+  },
+  "description": {
+    "ar": "قضيب بي إس 4.8 سم بوردر بمقاس موحد 4.8 سم × 240 سم وسماكة 15 مم.",
+    "en": "4.8 cm Border PS Slath. Unified 4.8 cm × 240 cm, 15 mm thickness.",
+    "tr": "4.8 cm × 240 cm, 15 mm Bordür PS çıta."
+  },
+  "dimensions": "4.8 cm × 240 cm",
+  "thickness": "15 mm",
+  "waterproof": true,
+  "colorHex": "#F2EFE9",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "4.8 سم × 240 سم",
+        "en": "4.8 cm × 240 cm",
+        "tr": "4.8 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "15 مم",
+        "en": "15 mm",
+        "tr": "15 مم"
+      }
+    }
+  ],
+  "order": 390
+}

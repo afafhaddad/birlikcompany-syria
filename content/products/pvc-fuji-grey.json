@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Fuji Grey",
+    "en": "Fuji Grey",
+    "tr": "Fuji Gri"
+  },
+  "category": "pvc_marble",
+  "code": "8015",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_2d1pn02d1pn02d1p.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_ualzm4ualzm4ualz.webp"
+  ],
+  "subtitle": {
+    "ar": "رمادي حجري هادئ مستوحى من قمم الجبال اليابانية بطبقة UV لامعة",
+    "en": "Subtle misty Fuji grey stone texture with protective UV gloss",
+    "tr": "Fuji dağı tonlarında dingin gri taş dokusu"
+  },
+  "description": {
+    "ar": "لوح بديل رخام PVC بتصميم Fuji Grey العصري مقاس 122 سم × 240 سم وسماكة 2.5 مم.",
+    "en": "Modern Fuji Grey PVC wall panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.",
+    "tr": "122 cm × 240 cm standart ölçüde, 2.5 mm kalınlıkta Fuji Gri PVC panel."
+  },
+  "dimensions": "122 cm × 240 cm",
+  "thickness": "2.5 mm",
+  "waterproof": true,
+  "colorHex": "#9E9FA3",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (سم)",
+        "en": "Unified Size (cm)",
+        "tr": "Standart Ölçü (cm)"
+      },
+      "value": {
+        "ar": "122 سم × 240 سم",
+        "en": "122 cm × 240 cm",
+        "tr": "122 cm × 240 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "2.5 مم",
+        "en": "2.5 mm",
+        "tr": "2.5 mm"
+      }
+    }
+  ],
+  "order": 20
+}

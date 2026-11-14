@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Concrete",
+    "en": "Concrete",
+    "tr": "Beton Görünümlü SPC"
+  },
+  "category": "spc_flooring",
+  "code": "HM 23",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_m9so9wm9so9wm9so.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_7nuwxq7nuwxq7nuw.webp"
+  ],
+  "subtitle": {
+    "ar": "أرضية حجرية بمظهر الإسمنت العصري بنظام كليك ومقاس 30.3 × 60.6 سم بسماكة 5 مم",
+    "en": "Architectural concrete tile format with click lock and 5.0 mm stone core",
+    "tr": "Modern brüt beton desenli 30.3 × 60.6 cm, 5.0 mm SPC kilitli parke"
+  },
+  "description": {
+    "ar": "بلاطة بديل الباركيه الحجري Concrete بمقاس موحد 30.3 سم × 60.6 سم وسماكة 5.0 مم، مقاومة 100% للماء والأوزان الثقيلة.",
+    "en": "Concrete SPC Flooring tile. Unified 30.3 cm × 60.6 cm, 5.0 mm thickness.",
+    "tr": "30.3 cm × 60.6 cm, 5.0 mm Beton SPC zemin kaplaması."
+  },
+  "dimensions": "30.3 cm × 60.6 cm",
+  "thickness": "5.0 mm",
+  "waterproof": true,
+  "colorHex": "#9E9E9E",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "30.3 سم × 60.6 سم",
+        "en": "30.3 cm × 60.6 cm",
+        "tr": "30.3 cm × 60.6 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "5.0 مم",
+        "en": "5.0 mm",
+        "tr": "5.0 mm"
+      }
+    }
+  ],
+  "order": 320
+}

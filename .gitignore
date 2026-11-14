@@ -7,3 +7,7 @@ coverage/
 .env*
 !.env.example
 dist-ssr/
+
+public/admin/
+
+tina/__generated__/

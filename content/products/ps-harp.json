@@ -1,0 +1,56 @@
+{
+  "name": {
+    "ar": "Harp",
+    "en": "Harp",
+    "tr": "Harp Arp Deseni"
+  },
+  "category": "ps_wood",
+  "code": "D33",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_jsbx8ujsbx8ujsbx.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_3y1ui13y1ui13y1u.webp"
+  ],
+  "subtitle": {
+    "ar": "تضليع أنيق متكرر يحاكي أوتار القيثارة بعرض 16 سم وسماكة 14 مم",
+    "en": "Harmonic linear fluting mirroring harp strings with 14 mm profile depth",
+    "tr": "Arp tellerini andıran 16 cm genişlik ve 14 mm kalınlıkta çıtalı panel"
+  },
+  "description": {
+    "ar": "شريحة بديل الخشب Harp بمقاس 16 سم × 290 سم وسماكة 14 مم.",
+    "en": "Harp PS Wall Panel. 16 cm × 290 cm, 14 mm thickness.",
+    "tr": "16 cm × 290 cm, 14 mm Harp PS panel."
+  },
+  "dimensions": "16 cm × 290 cm",
+  "thickness": "14 mm",
+  "waterproof": true,
+  "colorHex": "#695543",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "16 سم × 290 سم",
+        "en": "16 cm × 290 cm",
+        "tr": "16 cm × 290 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "14 مم",
+        "en": "14 mm",
+        "tr": "14 mm"
+      }
+    }
+  ],
+  "order": 170
+}

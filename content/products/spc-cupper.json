@@ -1,0 +1,57 @@
+{
+  "name": {
+    "ar": "Cupper",
+    "en": "Cupper",
+    "tr": "Bakır Cupper"
+  },
+  "category": "spc_wall",
+  "code": "HM-251029-05",
+  "images": [
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_ijypktijypktijyp.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_e7do08e7do08e7do.webp",
+    "https://4qvld2jfyoeta2jy.public.blob.vercel-storage.com/Gemini_Generated_Image_gsw0hbgsw0hbgsw0.webp"
+  ],
+  "subtitle": {
+    "ar": "تأثيرات المعدن النحاسي المؤكسد مع صلابة الحجر وسماكة 5 مم",
+    "en": "Industrial oxidized copper aesthetic merged with rigid stone durability",
+    "tr": "Endüstriyel bakır pası efektli 5.0 mm SPC kilitli panel"
+  },
+  "description": {
+    "ar": "لوح بديل الشيبورد الحجري Cupper بمقاس 96 سم × 280 سم وسماكة 5.0 مم.",
+    "en": "Cupper SPC Wall Panel. 96 cm × 280 cm, 5.0 mm thickness.",
+    "tr": "96 cm × 280 cm, 5.0 mm Bakır Cupper SPC panel."
+  },
+  "dimensions": "96 cm × 280 cm",
+  "thickness": "5.0 mm",
+  "waterproof": true,
+  "colorHex": "#8C5B3E",
+  "specs": [
+    {
+      "key": "dimensions_standard",
+      "label": {
+        "ar": "المقاس الموحد (العرض × الطول)",
+        "en": "Unified Dimensions (W × L)",
+        "tr": "Standart Ölçü (En × Boy)"
+      },
+      "value": {
+        "ar": "96 سم × 280 سم",
+        "en": "96 cm × 280 cm",
+        "tr": "96 cm × 280 cm"
+      }
+    },
+    {
+      "key": "thickness",
+      "label": {
+        "ar": "السماكة الفنية",
+        "en": "Thickness",
+        "tr": "Kalınlık"
+      },
+      "value": {
+        "ar": "5.0 مم",
+        "en": "5.0 mm",
+        "tr": "5.0 mm"
+      }
+    }
+  ],
+  "order": 290
+}
