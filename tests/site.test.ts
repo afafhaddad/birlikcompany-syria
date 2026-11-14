@@ -65,6 +65,10 @@ describe('SEO', () => {
     }
   });
 
+  it('no Product markup (Google requires a price for it; the site has none)', () => {
+    for (const r of routes) expect(JSON.stringify(getSeo(r).schema || {}), buildPath(r)).not.toContain('"@type":"Product"');
+  });
+
   it('only the print catalogue is noindex', () => {
     for (const r of routes) expect(getSeo(r).noindex, buildPath(r)).toBe(r.view === 'print');
   });

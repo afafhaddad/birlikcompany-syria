@@ -88,18 +88,19 @@ export function getSeo(route: Route): SeoData {
         schema: {
           '@context': 'https://schema.org',
           '@graph': [
+            // A product page described as a web page, not as a schema.org "Product":
+            // Google requires a price, reviews or a rating for Product markup, and this
+            // site does not publish prices.
             {
-              '@type': 'Product',
+              '@type': 'ItemPage',
               name: `${p.code} ${name}`,
-              sku: p.code,
-              category: catName,
               description: desc,
+              url: canonical,
+              inLanguage: lang,
+              primaryImageOfPage: { '@type': 'ImageObject', url: img },
               image: gallery.length ? gallery : [img],
-              brand: { '@type': 'Brand', name: 'Birlik Company' },
-              additionalProperty: [
-                { '@type': 'PropertyValue', name: lang === 'ar' ? 'المقاس' : 'Size', value: p.dimensions },
-                { '@type': 'PropertyValue', name: lang === 'ar' ? 'السماكة' : 'Thickness', value: p.thickness },
-              ],
+              about: catName,
+              publisher: { '@type': 'Organization', name: 'Birlik Company', url: SITE_ORIGIN },
             },
             breadcrumb([
               { name: HOME_NAME[lang], url: homeUrl },
