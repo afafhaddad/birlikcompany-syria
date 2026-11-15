@@ -33,7 +33,7 @@ export const CategoryTile: React.FC<{ card: CategoryCard; index: number; current
       <img
         src={getCategoryImageUrl(card.id, base, 1080)}
         srcSet={`${getCategoryImageUrl(card.id, base, 640)} 640w, ${getCategoryImageUrl(card.id, base, 1080)} 1080w, ${getCategoryImageUrl(card.id, base, 1600)} 1600w`}
-        sizes={compact ? '(min-width: 1024px) 1200px, 150vw' : '(min-width: 1024px) 1200px, (min-width: 640px) 150vw, 300vw'}
+        sizes={compact ? '(min-width: 1024px) 1200px, 140vw' : '(min-width: 1024px) 1200px, (min-width: 640px) 140vw, 280vw'}
         alt={card.name[currentLang]}
         loading={eager ? undefined : 'lazy'}
         fetchPriority={eager ? 'high' : undefined}
