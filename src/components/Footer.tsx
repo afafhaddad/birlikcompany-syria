@@ -14,6 +14,7 @@ import { TRANSLATIONS } from '../data/translations';
 import { useRouter } from '../router';
 import { buildPath } from '../routing';
 import { sectionPath } from '../routing';
+import { SocialLinks } from './SocialLinks';
 
 interface FooterProps {
   currentLang: Language;
@@ -57,6 +58,8 @@ export const Footer: React.FC<FooterProps> = ({
             <p className="text-xs sm:text-sm leading-relaxed text-[#A69C91] max-w-sm font-light pt-1">
               {t.footer.tagline}
             </p>
+
+            <SocialLinks currentLang={currentLang} />
 
             {/* Language Selector */}
             <div className="flex items-center gap-2 text-xs pt-1">

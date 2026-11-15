@@ -37,13 +37,41 @@ export const Hero: React.FC<HeroProps> = ({ currentLang, onNavigate }) => {
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-24 pb-28 md:pb-16">
         <div className="max-w-4xl">
-          <p className="hidden sm:inline-flex [@media(max-height:700px)]:hidden items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/12 backdrop-blur-sm border border-white/20 text-xs sm:text-sm font-semibold text-brass-light animate-fade-up">
-            <span className="w-1.5 h-1.5 rounded-full bg-brass-light" />
-            {currentLang === 'ar' ? 'اللاذقية • توصيل لكل المحافظات السورية' : currentLang === 'tr' ? 'Lazkiye • Tüm Suriye’ye teslimat' : 'Lattakia • Delivery across Syria'}
-          </p>
+          {/* Brand lockup: the logo the header hides while you're at the top of the page */}
+          <div className="flex items-center gap-3.5 sm:gap-5 [@media(max-height:560px)]:hidden">
+            <span className="shrink-0 w-[76px] h-[76px] sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-[22px] sm:rounded-[26px] bg-white p-1.5 ring-2 ring-brass/70 motion-safe:animate-logo-in">
+              <span className="block w-full h-full rounded-[18px] sm:rounded-[22px] motion-safe:animate-halo">
+                <img
+                  src="/logo-192.png"
+                  srcSet="/logo-192.png 192w, /logo-320.webp 320w"
+                  sizes="(min-width: 1024px) 112px, (min-width: 640px) 96px, 76px"
+                  alt="Birlik Company — شركة بيرليك"
+                  width={112}
+                  height={112}
+                  decoding="async"
+                  className="w-full h-full object-contain"
+                />
+              </span>
+            </span>
+            <span className="min-w-0 animate-fade-up" style={{ animationDelay: '120ms' }}>
+              <span className="block text-[1.65rem] sm:text-4xl lg:text-5xl font-black leading-none tracking-tight">
+                {currentLang === 'ar' ? 'شركة بيرليك' : currentLang === 'tr' ? 'Birlik Şirketi' : 'Birlik Company'}
+              </span>
+              <span className="mt-1.5 sm:mt-2 block text-[11px] sm:text-sm font-bold text-brass-light">
+                {currentLang === 'ar'
+                  ? 'مواد الإكساء والديكور • منذ 2022'
+                  : currentLang === 'tr'
+                    ? 'Kaplama ve dekor malzemeleri • 2022’den beri'
+                    : 'Wall & floor finishes • Since 2022'}
+              </span>
+              <span className="mt-0.5 block text-[11px] sm:text-xs font-semibold text-white/70">
+                {currentLang === 'ar' ? 'اللاذقية • توصيل لكل المحافظات السورية' : currentLang === 'tr' ? 'Lazkiye • Tüm Suriye’ye teslimat' : 'Lattakia • Delivery across Syria'}
+              </span>
+            </span>
+          </div>
 
           <h1
-            className="sm:mt-4 leading-[1.3] font-black text-balance animate-fade-up"
+            className="mt-5 sm:mt-7 leading-[1.3] font-black text-balance animate-fade-up"
             style={{ animationDelay: '90ms', fontSize: 'clamp(1.6rem, min(5vw, 6.2vh), 3.5rem)' }}
           >
             {t.hero.title}

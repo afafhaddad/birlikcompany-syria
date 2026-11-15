@@ -33,7 +33,7 @@ export const TRANSLATIONS = {
       }
     },
     hero: {
-      title: 'شركة بيرليك.. الوجهة الأولى لمواد التجديد والإكساء الداخلية المبتكرة في سورية',
+      title: 'الوجهة الأولى لمواد التجديد والإكساء الداخلية المبتكرة في سورية',
       mainHeadline: 'شركة بيرليك.. الوجهة الأولى لمواد التجديد والإكساء الداخلية المبتكرة في سورية',
       subtitle: 'تشكيلة حصرية ومتكاملة تشمل: بديل الخشب، بديل الرخام، بديل الشيبورد الحجري، بديل الباركيه الحجري، قُضبان بي إس، ونعلات بي إس؛ لتجديد مساحاتكم بأعلى معايير الجودة والفخامة',
       exploreBtn: 'استكشف كتالوج المنتجات',
@@ -133,7 +133,7 @@ export const TRANSLATIONS = {
       }
     },
     hero: {
-      title: 'Birlik Company.. The Premier Destination for Innovative Interior Renovation & Finishing Materials in Syria',
+      title: 'The Premier Destination for Innovative Interior Renovation & Finishing Materials in Syria',
       mainHeadline: 'Birlik Company.. The Premier Destination for Innovative Interior Renovation & Finishing Materials in Syria',
       subtitle: 'An exclusive collection featuring: PS Wall Panels, PVC Wall Panels, SPC Wall Panels, SPC Flooring, PS Wall Slats, and PS Baseboards; renewing your spaces with the highest standards of quality.',
       exploreBtn: 'Explore our products',
@@ -233,7 +233,7 @@ export const TRANSLATIONS = {
       }
     },
     hero: {
-      title: "Birlik Şirketi.. Suriye'de Yenilikçi İç Mekan Yenileme ve Kaplama Malzemelerinin Bir Numaralı Adresi",
+      title: "Suriye'de Yenilikçi İç Mekan Yenileme ve Kaplama Malzemelerinin Bir Numaralı Adresi",
       mainHeadline: "Birlik Şirketi.. Suriye'de Yenilikçi İç Mekan Yenileme ve Kaplama Malzemelerinin Bir Numaralı Adresi",
       subtitle: 'Özel ve entegre koleksiyonumuz: PS Duvar Panelleri, PVC Duvar Panelleri, SPC Duvar Panelleri, SPC Zemin Kaplaması, PS Duvar Çıtaları ve PS Süpürgelikler ile mekanlarınızı en üstün kaliteyle yenileyin.',
       exploreBtn: 'Ürünlerimizi Keşfedin',

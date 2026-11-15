@@ -4,6 +4,7 @@ import { Language } from '../types';
 import { useRouter } from '../router';
 import { buildPath, sectionPath } from '../routing';
 import { PHONE_DISPLAY, TEL_HREF, UI, whatsappLink } from '../site';
+import { SocialLinks } from './SocialLinks';
 
 interface HeaderProps {
   currentLang: Language;
@@ -82,7 +83,12 @@ export const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange, o
             href={sectionPath(currentLang, 'hero')}
             onClick={go('hero')}
             aria-label="Birlik Company"
-            className="flex items-center gap-2.5 shrink-0"
+            // On the home page the hero shows the big logo; the small one fades in once you scroll
+            className={`flex items-center gap-2.5 shrink-0 transition-all duration-500 ${
+              overHero ? 'opacity-0 -translate-y-1 pointer-events-none' : 'opacity-100'
+            }`}
+            aria-hidden={overHero || undefined}
+            tabIndex={overHero ? -1 : undefined}
           >
             <span className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center overflow-hidden">
               <img src="/logo-192.png" alt="Birlik Company" width={48} height={48} className="w-full h-full object-contain" />
@@ -217,6 +223,7 @@ export const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange, o
                 {UI.call[currentLang]}
               </a>
             </div>
+            <SocialLinks currentLang={currentLang} variant="menu" />
             <p className="flex flex-wrap items-center justify-center gap-x-2 text-xs text-white/60">
               <MapPin className="w-3.5 h-3.5" />
               <span>{currentLang === 'ar' ? 'اللاذقية • توصيل لكل المحافظات السورية' : 'Lattakia • Delivery across Syria'}</span>

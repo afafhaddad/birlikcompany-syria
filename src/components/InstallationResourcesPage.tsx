@@ -185,7 +185,7 @@ const GuideSection: React.FC<{ guide: InstallationGuide; index: number; currentL
                 >
                   <span className="block aspect-square bg-ink-soft overflow-hidden">
                     <img
-                      src={getProductImageUrl(m.id, getCategoryImageUrl(guide.categoryId, guide.categoryImage, 384), 384)}
+                      src={getProductImageUrl(m.id, getCategoryImageUrl(guide.categoryId, guide.categoryImage, 640), 640)}
                       alt={`${m.code} ${m.name[currentLang]}`}
                       loading="lazy"
                       decoding="async"

@@ -28,10 +28,12 @@ export const CategoryTile: React.FC<{ card: CategoryCard; index: number; current
       id={`category-row-${card.id}`}
       className={`group relative block overflow-hidden rounded-3xl bg-ink-soft aspect-[3/4] sm:aspect-[4/5] ${className}`}
     >
+      {/* Category photos are wide panoramas (about 2.4:1) cropped into a tall tile, so the
+          browser must load roughly 3× the tile's width to stay sharp after cropping. */}
       <img
-        src={getCategoryImageUrl(card.id, base, 640)}
-        srcSet={`${getCategoryImageUrl(card.id, base, 640)} 640w, ${getCategoryImageUrl(card.id, base, 1080)} 1080w`}
-        sizes={compact ? '(min-width: 1024px) 400px, 50vw' : '(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw'}
+        src={getCategoryImageUrl(card.id, base, 1080)}
+        srcSet={`${getCategoryImageUrl(card.id, base, 640)} 640w, ${getCategoryImageUrl(card.id, base, 1080)} 1080w, ${getCategoryImageUrl(card.id, base, 1600)} 1600w`}
+        sizes={compact ? '(min-width: 1024px) 1200px, 150vw' : '(min-width: 1024px) 1200px, (min-width: 640px) 150vw, 300vw'}
         alt={card.name[currentLang]}
         loading={eager ? undefined : 'lazy'}
         fetchPriority={eager ? 'high' : undefined}
@@ -72,7 +74,7 @@ export const ProductCard: React.FC<{ model: ProductModel; currentLang: Language;
   eager = false,
 }) => {
   const { getProductImageUrl, getCategoryImageUrl } = useMedia();
-  const img = (w: 384 | 640) => getProductImageUrl(model.id, getCategoryImageUrl(model.category, FALLBACK, w), w);
+  const img = (w: 384 | 640 | 1080) => getProductImageUrl(model.id, getCategoryImageUrl(model.category, FALLBACK, w), w);
   const src = img(640);
   return (
     <Link
@@ -83,8 +85,9 @@ export const ProductCard: React.FC<{ model: ProductModel; currentLang: Language;
       <div className="relative aspect-[4/5] bg-ink-soft overflow-hidden">
         <img
           src={src}
-          srcSet={`${img(384)} 384w, ${img(640)} 640w`}
-          sizes="(min-width: 1024px) 300px, (min-width: 768px) 33vw, 50vw"
+          // Most product photos are landscape (about 1.6:1) cropped into a 4:5 card: ask for ~2× the card width
+          srcSet={`${img(384)} 384w, ${img(640)} 640w, ${img(1080)} 1080w`}
+          sizes="(min-width: 1024px) 600px, (min-width: 768px) 66vw, 100vw"
           alt={`${model.code} ${model.name[currentLang]}`}
           loading={eager ? undefined : 'lazy'}
           decoding="async"

@@ -549,6 +549,10 @@ export const ArticleCard: React.FC<{ meta: ArticleMeta; currentLang: Language }>
       <span className="relative block aspect-[16/9] bg-ink-soft overflow-hidden">
         <img
           src={meta.image ? optimizeImage(meta.image, 640) : getCategoryImageUrl(meta.categoryId, info.image, 640)}
+          srcSet={[640, 1080]
+            .map((w) => `${meta.image ? optimizeImage(meta.image, w as 640 | 1080) : getCategoryImageUrl(meta.categoryId, info.image, w as 640 | 1080)} ${w}w`)
+            .join(', ')}
+          sizes="(min-width: 1024px) 560px, (min-width: 640px) 70vw, 130vw"
           alt={card.name[currentLang]}
           loading="lazy"
           decoding="async"
