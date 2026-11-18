@@ -21,6 +21,11 @@
     "en": "Marbella PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.",
     "tr": "122 cm × 240 cm, 2.5 mm Marbella PVC panel."
   },
+  "style": {
+    "ar": "رخام كلاسيكي بروح أندلسية وعروق دافئة ولمعة ناعمة، يجمع الأصالة مع الحداثة. مناسب للحمّامات ذات الإضاءة الخلفية حول المرايا، ولجدران المطاعم والمقاهي التي تبحث عن جوّ دافئ ومريح. يتناسق مع الخشب الطبيعي والنباتات واللمسات النحاسية.",
+    "en": "A classic marble with an Andalusian spirit, warm veining and a soft sheen that blends tradition with modern design. It suits bathrooms with backlit mirrors and restaurant or café walls that want a warm, welcoming mood. It goes well with natural wood, plants and copper details.",
+    "tr": "Endülüs ruhlu, sıcak damarlı ve yumuşak parlaklıkta klasik bir mermer; geleneği modern tasarımla buluşturur. Arkadan aydınlatmalı aynalı banyolara ve sıcak, samimi bir atmosfer arayan restoran ve kafe duvarlarına uygundur. Doğal ahşap, bitkiler ve bakır detaylarla uyumludur."
+  },
   "dimensions": "122 cm × 240 cm",
   "thickness": "2.5 mm",
   "waterproof": true,

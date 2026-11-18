@@ -309,5 +309,32 @@ export function richDescription(model: ProductModel, lang: Language): string[] {
     tr: `${name} (kod ${model.code}), ${pick(copy.what)} serimizdendir: ${look}. Ölçü ${model.dimensions}, kalınlık ${model.thickness}${cov ? `; ${cov}` : ''}.`,
   }[lang];
 
-  return [intro, `${pick(copy.why)} ${pick(copy.why, 1)}`, `${pick(copy.where)} ${pick(DELIVERY[lang])}`];
+  // The model's own style text (when written) comes right after the intro, so every page
+  // has wording no other page shares.
+  const style = model.style?.[lang]?.trim();
+  return [intro, ...(style ? [style] : []), `${pick(copy.why)} ${pick(copy.why, 1)}`, `${pick(copy.where)} ${pick(DELIVERY[lang])}`];
+}
+
+const hexToRgb = (hex?: string): [number, number, number] | null => {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex || '');
+  if (!m) return null;
+  const n = parseInt(m[1], 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+};
+
+/** Up to three models from other ranges whose main colour is closest: "Pairs well with". */
+export function pairings(model: ProductModel, count = 3): ProductModel[] {
+  const own = canonicalCategory(model.category);
+  const c = hexToRgb(model.colorHex);
+  if (!c) return [];
+  const best = new Map<string, { m: ProductModel; d: number }>();
+  for (const m of PRODUCT_MODELS) {
+    const cat = canonicalCategory(m.category);
+    const rgb = hexToRgb(m.colorHex);
+    if (cat === own || !rgb) continue;
+    const d = Math.hypot(rgb[0] - c[0], rgb[1] - c[1], rgb[2] - c[2]);
+    const cur = best.get(cat);
+    if (!cur || d < cur.d) best.set(cat, { m, d });
+  }
+  return [...best.values()].sort((a, b) => a.d - b.d).slice(0, count).map((x) => x.m);
 }

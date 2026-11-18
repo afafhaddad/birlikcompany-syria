@@ -91,6 +91,12 @@ export interface ProductModel {
     en: string;
     tr: string;
   };
+  /** Optional unique paragraph: the model's look, best rooms and what it pairs with */
+  style?: {
+    ar: string;
+    en: string;
+    tr: string;
+  };
   // Multiple photos for each model (at least 3 to 4 photos per model)
   images: string[];
   dimensions: string;

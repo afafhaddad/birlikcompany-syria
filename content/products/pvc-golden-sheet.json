@@ -20,6 +20,11 @@
     "en": "Golden Sheet PVC Wall Panel. Standardized 122 cm × 240 cm, 2.5 mm thickness.",
     "tr": "122 cm × 240 cm, 2.5 mm Golden Sheet PVC panel."
   },
+  "style": {
+    "ar": "رخام فاتح بدرجات ذهبية وكريمية دافئة يعطي إحساس الفنادق الفاخرة. يليق بخلفيات التلفزيون في الصالونات الواسعة وخلف الأسرّة، ويتناغم مع الكنب الأزرق أو الكحلي والسجاد الفاتح. يعكس الضوء فيكبّر المساحات الصغيرة بصرياً.",
+    "en": "A light marble in warm gold and cream tones with the feel of a luxury hotel. It suits TV walls in large living rooms and the wall behind the bed, and looks great with blue or navy sofas and light rugs. It reflects light, so small rooms look bigger.",
+    "tr": "Sıcak altın ve krem tonlarında, lüks otel havası veren açık renkli bir mermer. Geniş salonlarda TV duvarına ve yatak arkasına yakışır; mavi veya lacivert koltuklar ve açık renk halılarla çok güzel durur. Işığı yansıttığı için küçük odaları daha geniş gösterir."
+  },
   "dimensions": "122 cm × 240 cm",
   "thickness": "2.5 mm",
   "waterproof": true,

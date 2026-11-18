@@ -9,7 +9,7 @@ import { canonicalCategory, catalogueRoute, categoryRoute, productPath, productR
 import { Breadcrumbs } from './Breadcrumbs';
 import { ProductCard } from './cards';
 import { AreaCalculator } from './AreaCalculator';
-import { richDescription } from '../data/productCopy';
+import { pairings, richDescription } from '../data/productCopy';
 import { articleByCategory, articleSummary, topicsForCategory } from '../data/articles';
 import { articleRoute } from '../routing';
 import { PHONE_DISPLAY, TEL_HREF, UI, whatsappLink } from '../site';
@@ -340,6 +340,31 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
               </Link>
             ))}
           </section>
+
+          {/* Pairs well with: closest colours from the other ranges (unique per model, and internal links) */}
+          {pairings(model).length > 0 && (
+            <section className="mt-6" aria-labelledby="pairs-with">
+              <h2 id="pairs-with" className="text-lg font-black mb-3">
+                {currentLang === 'ar' ? `يتناسق مع ${model.name.ar}` : currentLang === 'tr' ? `${model.name.tr} ile uyumlu` : `Pairs well with ${model.name.en}`}
+              </h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                {pairings(model).map((m) => (
+                  <li key={m.id}>
+                    <Link
+                      to={productRoute(currentLang, m)}
+                      className="flex items-center gap-3 rounded-2xl bg-white border border-line hover:border-brass p-3 transition-colors"
+                    >
+                      <span className="w-8 h-8 rounded-full ring-1 ring-black/10 shrink-0" style={{ background: m.colorHex }} aria-hidden />
+                      <span className="min-w-0">
+                        <span className="block text-sm font-extrabold text-ink truncate">{m.name[currentLang]}</span>
+                        <span className="block text-xs text-muted truncate">{categoryCard(canonicalCategory(m.category)).name[currentLang]}</span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <AreaCalculator model={model} currentLang={currentLang} />
 

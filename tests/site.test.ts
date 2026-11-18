@@ -108,16 +108,28 @@ describe('products', () => {
     }
   });
 
+  it('marble-alternative product pages have unique text (Google skipped them as near-duplicates)', () => {
+    for (const lang of LANGS) {
+      const seen = new Map<string, string>();
+      for (const m of PRODUCT_MODELS.filter((x) => isModelInCategory(x, 'pvc_marble'))) {
+        expect(m.style?.[lang]?.trim(), `${m.id} style.${lang}`).toBeTruthy();
+        const text = richDescription(m, lang).join(' ');
+        for (const [other, t] of seen) expect(text, `${m.id} vs ${other} (${lang})`).not.toBe(t);
+        seen.set(m.id, text);
+      }
+    }
+  });
+
   it('category photos are set in the media registry', () => {
     const cats = (registry as { categories: Record<string, string> }).categories;
     for (const c of MAIN_CATEGORIES) expect(cats[c], c).toMatch(/^(https:\/\/|\/uploads\/)/);
   });
 
-  it('every product has three description paragraphs in every language', () => {
+  it('every product has its description paragraphs in every language (plus the style text when written)', () => {
     for (const m of PRODUCT_MODELS) {
       for (const lang of LANGS) {
         const paras = richDescription(m, lang);
-        expect(paras, `${m.id} ${lang}`).toHaveLength(3);
+        expect(paras, `${m.id} ${lang}`).toHaveLength(m.style?.[lang]?.trim() ? 4 : 3);
         paras.forEach((p) => expect(p.length, `${m.id} ${lang}`).toBeGreaterThan(40));
         expect(paras[0], `${m.id} ${lang}`).toContain(m.code);
       }

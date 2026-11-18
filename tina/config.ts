@@ -13,7 +13,7 @@ import { defineConfig, type Template, type TinaField } from 'tinacms';
 const LANG_LABELS = { ar: 'Arabic · عربي', en: 'English', tr: 'Turkish · Türkçe' } as const;
 
 /** One text per language, shown as three boxes. */
-const threeLangs = (name: string, label: string, description?: string, textarea = false): TinaField => ({
+const threeLangs = (name: string, label: string, description?: string, textarea = false, required = true): TinaField => ({
   type: 'object',
   name,
   label,
@@ -22,7 +22,7 @@ const threeLangs = (name: string, label: string, description?: string, textarea 
     type: 'string',
     name: lang,
     label: LANG_LABELS[lang],
-    required: true,
+    required,
     ...(textarea ? { ui: { component: 'textarea' } } : {}),
   })),
 });
@@ -118,6 +118,13 @@ export default defineConfig({
           },
           threeLangs('subtitle', 'Short tagline', 'One line under the model name.', true),
           threeLangs('description', 'Short description', 'One or two sentences: size, thickness, finish.', true),
+          threeLangs(
+            'style',
+            'Style & where it suits (optional)',
+            'Two or three sentences only about THIS model: its look, the rooms it suits, what it pairs with. Unique text helps Google index the page.',
+            true,
+            false
+          ),
           { type: 'string', name: 'dimensions', label: 'Size · المقاس', description: 'e.g. 122 cm × 240 cm', required: true },
           { type: 'string', name: 'thickness', label: 'Thickness · السماكة', description: 'e.g. 2.5 mm', required: true },
           { type: 'boolean', name: 'waterproof', label: 'Waterproof · مقاوم للماء' },

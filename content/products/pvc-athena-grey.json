@@ -20,6 +20,11 @@
     "en": "High-gloss PVC marble panel in standardized 122 cm × 240 cm format with 2.5 mm thickness. 100% moisture and water impervious.",
     "tr": "122 cm × 240 cm standart ölçüde, 2.5 mm kalınlığında %100 su geçirmez PVC mermer panel."
   },
+  "style": {
+    "ar": "أثينا غراي رخام أبيض مائل للرمادي بعروق ضبابية ناعمة، يمنح المكان صفاءً ويضاعف الإحساس بالضوء الطبيعي. يناسب المطابخ المفتوحة وجدران الحمّامات حول البانيو، ويتناغم مع الخشب الفاتح والإكسسوارات الذهبية أو الكروم. خيار آمن لمن يريد فخامة هادئة لا تُتعب العين.",
+    "en": "Athena Grey is a white-to-soft-grey marble with misty veining that makes a room feel brighter and calmer. It suits open kitchens and bathroom walls around the bathtub, and pairs well with light wood and gold or chrome fittings. A safe choice for understated luxury that never tires the eye.",
+    "tr": "Athena Gri, sisli damarlarıyla beyazdan yumuşak griye uzanan bir mermerdir; mekânı daha aydınlık ve sakin gösterir. Açık mutfaklara ve küvet çevresindeki banyo duvarlarına yakışır; açık ahşap ve altın ya da krom aksesuarlarla uyumludur. Göz yormayan sade bir lüks için güvenli bir seçimdir."
+  },
   "dimensions": "122 cm × 240 cm",
   "thickness": "2.5 mm",
   "waterproof": true,
