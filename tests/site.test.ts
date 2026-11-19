@@ -14,6 +14,8 @@ import { richDescription } from '../src/data/productCopy';
 import { INSTALLATION_GUIDES, VIDEO_META } from '../src/data/installationGuides';
 import { toNumber } from '../src/components/AreaCalculator';
 import registry from '../src/data/mediaRegistry.json';
+import { existsSync } from 'node:fs';
+import { cataloguePdfPath } from '../src/components/CatalogueDownload';
 
 beforeAll(() => {
   registerArticleContent('ar', ARTICLES_AR);
@@ -172,6 +174,13 @@ describe('guides', () => {
         expect(c.compare.ours?.trim(), `${a.slug} ${lang} compare.ours`).toBeTruthy();
         expect(articleSummary(a, lang).label, `${a.slug} ${lang}`).toBe(c.label);
       }
+    }
+  });
+
+  it('every category page has its PDF catalogue (and the full one exists) in every language', () => {
+    for (const lang of LANGS) {
+      expect(existsSync(`public${cataloguePdfPath(lang)}`), lang).toBe(true);
+      for (const c of MAIN_CATEGORIES) expect(existsSync(`public${cataloguePdfPath(lang, c)}`), `${c} ${lang}`).toBe(true);
     }
   });
 

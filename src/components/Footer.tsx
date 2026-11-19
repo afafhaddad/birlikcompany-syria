@@ -15,6 +15,7 @@ import { useRouter } from '../router';
 import { buildPath } from '../routing';
 import { sectionPath } from '../routing';
 import { SocialLinks } from './SocialLinks';
+import { EmailLink } from './EmailLink';
 
 interface FooterProps {
   currentLang: Language;
@@ -194,12 +195,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#9E7241] shrink-0" />
-                <a 
-                  href="mailto:info@birlik-insaat.com" 
-                  className="hover:text-[#9E7241] font-mono"
-                >
-                  info@birlik-insaat.com
-                </a>
+                <EmailLink currentLang={currentLang} className="hover:text-[#9E7241] font-mono cursor-pointer" />
               </div>
             </div>
           </div>

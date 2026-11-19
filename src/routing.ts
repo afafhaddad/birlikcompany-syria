@@ -48,6 +48,8 @@ export interface Route {
   productId?: string;
   /** Article slug for view === 'article' */
   slug?: string;
+  /** view === 'print' only: print one range instead of the whole catalogue */
+  range?: ProductCategory;
 }
 
 export const canonicalCategory = (cat: ProductCategory): ProductCategory =>
@@ -71,7 +73,7 @@ export function buildPath(route: Route): string {
     case 'catalogue':
       return `${base}catalogue/`;
     case 'print':
-      return `${base}catalogue/print/`;
+      return route.range ? `${base}catalogue/print/${categorySlug(route.range)}/` : `${base}catalogue/print/`;
     case 'installation':
       return `${base}installation/`;
     case 'blog':
@@ -149,6 +151,10 @@ export function parseLocation(pathname: string, search = ''): Route {
   if (parts[0] === 'catalogue' && parts[1] === 'print' && parts.length === 2) {
     return { lang, view: 'print', category: 'ps_wood' };
   }
+  if (parts[0] === 'catalogue' && parts[1] === 'print' && parts.length === 3) {
+    const range = slugToCategory(parts[2]);
+    if (range) return { lang, view: 'print', category: range, range };
+  }
   if (parts[0] === 'installation' && parts.length === 1) return installationRoute(lang);
   if (parts[0] === 'blog' && parts.length === 1) return blogRoute(lang);
   if (parts[0] === 'blog' && parts.length === 2 && articleBySlug(parts[1])) return articleRoute(lang, parts[1]);
@@ -168,6 +174,7 @@ export function allRoutes(): Route[] {
   for (const lang of LANGS) {
     routes.push(homeRoute(lang), catalogueRoute(lang), installationRoute(lang));
     routes.push({ lang, view: 'print', category: 'ps_wood' });
+    for (const range of MAIN_CATEGORIES) routes.push({ lang, view: 'print', category: range, range });
     routes.push(blogRoute(lang));
     for (const a of ARTICLES) routes.push(articleRoute(lang, a.slug));
     for (const cat of MAIN_CATEGORIES) routes.push(categoryRoute(lang, cat));

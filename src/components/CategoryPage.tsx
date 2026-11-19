@@ -1,5 +1,6 @@
 import React from 'react';
-import { Droplets, Layers, PlayCircle, MessageSquare, Ruler } from 'lucide-react';
+import { Download, Droplets, Layers, PlayCircle, MessageSquare, Ruler } from 'lucide-react';
+import { cataloguePdfPath } from './CatalogueDownload';
 import { Language, ProductCategory } from '../types';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { CATEGORY_CARDS, categoryCard } from '../data/categoryCards';
@@ -17,6 +18,7 @@ import { UI, whatsappLink } from '../site';
 const TEXT = {
   ar: {
     available: 'موديل متوفر',
+    download: (n: number) => `تحميل الموديلات PDF (${n})`,
     installVideo: 'شاهد طريقة التركيب',
     specs: 'مواصفات هذه الفئة',
     sizes: 'المقاسات',
@@ -32,6 +34,7 @@ const TEXT = {
   },
   en: {
     available: 'models available',
+    download: (n: number) => `Download models PDF (${n})`,
     installVideo: 'Watch how to install',
     specs: 'Range specifications',
     sizes: 'Sizes',
@@ -47,6 +50,7 @@ const TEXT = {
   },
   tr: {
     available: 'model mevcut',
+    download: (n: number) => `Modelleri indir PDF (${n})`,
     installVideo: 'Montajı izleyin',
     specs: 'Ürün grubu özellikleri',
     sizes: 'Ölçüler',
@@ -109,9 +113,16 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
             <h1 className="mt-1 text-4xl sm:text-5xl font-black leading-tight">{name}</h1>
             <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/85">{card.description[currentLang]}</p>
             <div className="mt-5 flex flex-wrap items-center gap-2.5 text-xs sm:text-sm font-bold">
-              <span className="px-3.5 py-2 rounded-full bg-white/12 backdrop-blur-sm border border-white/20">
-                {models.length} {t.available}
-              </span>
+              {/* Visitors kept tapping the old "N models" chip (Clarity dead clicks): it now downloads
+                  this range's own PDF catalogue (its models and installation steps). */}
+              <a
+                href={cataloguePdfPath(currentLang, card.id)}
+                download
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white text-ink hover:bg-ivory shadow-sm transition-colors"
+              >
+                <Download className="w-4 h-4 text-brass-deep" />
+                {t.download(models.length)}
+              </a>
               <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-wa/90">
                 <Droplets className="w-4 h-4" />
                 {UI.waterproof[currentLang]}

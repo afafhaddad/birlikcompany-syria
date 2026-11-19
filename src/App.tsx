@@ -127,7 +127,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
     return (
       <RouterContext.Provider value={routerValue}>
         <MediaProvider>
-          <CataloguePrintPage currentLang={currentLang} />
+          <CataloguePrintPage currentLang={currentLang} range={route.range} />
         </MediaProvider>
       </RouterContext.Provider>
     );

@@ -10,9 +10,15 @@
 # image optimizer at 640px, re-encodes it as JPEG (browsers embed JPEG in PDFs as-is,
 # but store WebP/AVIF uncompressed, which made the PDF ~19 MB), writes a script-free copy
 # of the page pointing at the JPEGs, and prints that copy with headless Microsoft Edge.
+#
+# It makes the full catalogue (birlik-catalogue-<lang>.pdf) and one short catalogue per range
+# (birlik-catalogue-<range>-<lang>.pdf, from /<lang>/catalogue/print/<range>/), which the
+# "download these models" button on each category page links to.
 param(
   [string]$BaseUrl = 'http://localhost:4180',
   [string[]]$Langs = @('ar', 'en', 'tr'),
+  [string[]]$Ranges = @('ps-wood', 'pvc-marble', 'spc-wall', 'spc-flooring', 'ps-slats', 'ps-baseboards'),
+  [switch]$RangesOnly,
   [int]$JpegQuality = 62
 )
 
@@ -49,8 +55,17 @@ function Convert-ToJpeg([string]$url, [string]$dest) {
 $profileDir = Join-Path $env:TEMP 'birlik-pdf-edge-profile'
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 
+$jobs = @()
 foreach ($lang in $Langs) {
-  $src = Join-Path $dist "$lang\catalogue\print\index.html"
+  if (-not $RangesOnly) { $jobs += @{ Lang = $lang; Range = '' } }
+  foreach ($r in $Ranges) { $jobs += @{ Lang = $lang; Range = $r } }
+}
+
+foreach ($job in $jobs) {
+  $lang = $job.Lang
+  $range = $job.Range
+  $srcRel = if ($range) { "$lang\catalogue\print\$range\index.html" } else { "$lang\catalogue\print\index.html" }
+  $src = Join-Path $dist $srcRel
   if (-not (Test-Path $src)) { throw "Missing $src - run npm run build first" }
   $html = [IO.File]::ReadAllText($src)
 
@@ -68,13 +83,15 @@ foreach ($lang in $Langs) {
   # Static copy: no app script (prevents React from swapping the images back)
   $html = [regex]::Replace($html, '<script type="module"[^>]*></script>', '')
   $html = [regex]::Replace($html, '<link rel="modulepreload"[^>]*>', '')
-  $pdfPage = Join-Path $dist "$lang\catalogue\print-pdf"
+  $pageName = if ($range) { "print-pdf-$range" } else { 'print-pdf' }
+  $pdfPage = Join-Path $dist "$lang\catalogue\$pageName"
   New-Item -ItemType Directory -Force $pdfPage | Out-Null
   [IO.File]::WriteAllText((Join-Path $pdfPage 'index.html'), $html, $utf8)
 
-  $out = Join-Path $outDir "birlik-catalogue-$lang.pdf"
+  $fileName = if ($range) { "birlik-catalogue-$range-$lang.pdf" } else { "birlik-catalogue-$lang.pdf" }
+  $out = Join-Path $outDir $fileName
   if (Test-Path $out) { Remove-Item $out }
-  $url = "$BaseUrl/$lang/catalogue/print-pdf/"
+  $url = "$BaseUrl/$lang/catalogue/$pageName/"
   Write-Host "Printing $url ($($map.Count) photos)"
   $edgeArgs = @(
     '--headless=new', '--disable-gpu', '--no-first-run', '--no-pdf-header-footer',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Language, ProductModel } from '../types';
+import { Language, ProductCategory, ProductModel } from '../types';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { CATEGORY_CARDS } from '../data/categoryCards';
 import { INSTALLATION_GUIDES } from '../data/installationGuides';
@@ -164,7 +164,8 @@ html, body { background: #2a2520 !important; margin: 0; }
 
 const ltr = (s: string) => <bdi dir="ltr">{s}</bdi>;
 
-export const CataloguePrintPage: React.FC<{ currentLang: Language }> = ({ currentLang }) => {
+/** The full catalogue, or with `range` a short catalogue of one range (cover, models, installation, back cover). */
+export const CataloguePrintPage: React.FC<{ currentLang: Language; range?: ProductCategory }> = ({ currentLang, range }) => {
   const { registry } = useMedia();
   const t = TEXT[currentLang];
   const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -174,14 +175,15 @@ export const CataloguePrintPage: React.FC<{ currentLang: Language }> = ({ curren
   const img = (u: string | undefined, w: 640 | 1080 = 640) => (u ? liveOptimizedImage(u, w) : '');
 
   // Build the page list first so the contents page and page numbers are exact.
-  const sections = MAIN_CATEGORIES.map((catId) => {
+  const sections = (range ? [range] : MAIN_CATEGORIES).map((catId) => {
     const info = CATEGORIES_DATA.find((c) => c.id === catId)!;
     const card = CATEGORY_CARDS.find((c) => c.id === catId)!;
     const guide = INSTALLATION_GUIDES.find((g) => g.categoryId === catId);
     const models = PRODUCT_MODELS.filter((m) => isModelInCategory(m, catId));
     return { catId, info, card, guide, models };
   });
-  let pageNo = 3; // cover = 1, contents = 2
+  const single = range ? sections[0] : null;
+  let pageNo = single ? 2 : 3; // cover = 1, contents = 2 (the full catalogue only)
   const numbered = sections.map((s) => {
     const opener = pageNo++;
     const modelPages = s.models.map(() => pageNo++);
@@ -286,7 +288,31 @@ export const CataloguePrintPage: React.FC<{ currentLang: Language }> = ({ curren
     <div className="pc" dir={dir}>
       <style>{PRINT_CSS}</style>
 
+      {/* ── Cover of a one-range catalogue ── */}
+      {single && (
+        <section className="pc-page pc-dark">
+          <img className="pc-img" src={img(registry.categories[single.catId] || single.models[0]?.images[0], 1080)} alt="" />
+          <div className="pc-scrim" />
+          <div style={{ position: 'absolute', top: '16mm', insetInlineStart: '15mm', background: '#fff', borderRadius: '4mm', padding: '2mm', width: '30mm', height: '30mm' }}>
+            <img src="/logo-512.png" alt="Birlik Company" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </div>
+          <div style={{ position: 'absolute', bottom: '24mm', insetInline: '15mm' }}>
+            <p className="pc-eyebrow">{t.catalogue} {year}</p>
+            <h1 className="pc-h1" style={{ fontSize: '46pt', marginTop: '2mm' }}>{single.card.name[currentLang]}</h1>
+            <p style={{ fontSize: '13pt', fontWeight: 600, color: 'rgba(255,255,255,.85)', margin: '3mm 0 0' }}>
+              <bdi>{single.card.tag[currentLang]}</bdi>
+            </p>
+            <div style={{ display: 'flex', gap: '8mm', marginTop: '10mm', paddingTop: '6mm', borderTop: '.3mm solid rgba(255,255,255,.25)', fontSize: '10pt', fontWeight: 700 }}>
+              <span>{single.models.length} {t.models}</span>
+              {single.guide && <span>{t.install}</span>}
+              <span>{t.delivery}</span>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── Cover ── */}
+      {!single && (
       <section className="pc-page pc-dark">
         <img className="pc-img" src={img(registry.hero, 1080)} alt="" />
         <div className="pc-scrim" />
@@ -304,8 +330,10 @@ export const CataloguePrintPage: React.FC<{ currentLang: Language }> = ({ curren
           </div>
         </div>
       </section>
+      )}
 
-      {/* ── Contents + about ── */}
+      {/* ── Contents + about (full catalogue only) ── */}
+      {!single && (
       <section className="pc-page">
         <div className="pc-pad">
           <p className="pc-eyebrow">{brand}</p>
@@ -339,6 +367,7 @@ export const CataloguePrintPage: React.FC<{ currentLang: Language }> = ({ curren
         </div>
         <Foot n={2} />
       </section>
+      )}
 
       {numbered.map((s, si) => {
         const name = s.card.name[currentLang];

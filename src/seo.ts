@@ -145,7 +145,8 @@ export function getSeo(route: Route): SeoData {
     return {
       ...base,
       noindex: route.view === 'print',
-      title: {
+      // One-range print pages: the PDF's title shows the range name
+      title: route.range ? `${catName} | ${CATALOGUE_NAME[lang]} — ${BRAND[lang]}` : {
         ar: 'كتالوج مواد التكسية والديكور الداخلي | شركة بيرليك سوريا',
         en: 'Wall Cladding & Flooring Catalogue | Birlik Company Syria',
         tr: 'Duvar Kaplama ve Zemin Kataloğu | Birlik Şirketi Suriye',
