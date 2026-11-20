@@ -20,6 +20,7 @@ export const ProductCataloguePage: React.FC<{ currentLang: Language }> = ({ curr
         <Breadcrumbs dark currentLang={currentLang} items={[{ label: UI.catalogueLong[currentLang] }]} />
         <div className="mt-6">
           <SectionHeading as="h1" dark eyebrow="Birlik" title={UI.catalogueLong[currentLang]} sub={TEXT[currentLang].sub} />
+          <CatalogueDownload currentLang={currentLang} inline />
         </div>
       </div>
     </section>
@@ -33,7 +34,5 @@ export const ProductCataloguePage: React.FC<{ currentLang: Language }> = ({ curr
         ))}
       </div>
     </section>
-
-    <CatalogueDownload currentLang={currentLang} />
   </div>
 );

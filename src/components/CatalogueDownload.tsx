@@ -32,10 +32,33 @@ const TEXT = {
   },
 };
 
-export const CatalogueDownload: React.FC<{ currentLang: Language }> = ({ currentLang }) => {
+export const CatalogueDownload: React.FC<{ currentLang: Language; inline?: boolean }> = ({ currentLang, inline }) => {
   const t = TEXT[currentLang];
   const pdfUrl = `${SITE_ORIGIN}${cataloguePdfPath(currentLang)}`;
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(`${t.shareMsg} ${pdfUrl}`)}`;
+  // Inline: just the two buttons, placed in the dark page header above the range cards.
+  if (inline)
+    return (
+      <div className="mt-6 flex flex-wrap gap-2.5">
+        <a
+          href={cataloguePdfPath(currentLang)}
+          download
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold text-sm transition-colors"
+        >
+          <Download className="w-4 h-4" />
+          {t.download}
+        </a>
+        <a
+          href={shareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-wa hover:bg-wa-deep text-white font-bold text-sm transition-colors"
+        >
+          <MessageSquare className="w-4 h-4" />
+          {t.share}
+        </a>
+      </div>
+    );
   return (
     <section className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pb-16" data-reveal>
       <div className="rounded-3xl bg-ink text-white p-6 sm:p-9 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
