@@ -101,7 +101,9 @@ export const AboutUsSection: React.FC<{ currentLang: Language }> = ({ currentLan
       </div>
 
       {/* Audiences as a slow, endless ribbon */}
-      <div className="relative mt-14 border-y border-white/10 py-4 overflow-hidden" aria-label={t.serve}>
+      {/* dir="ltr" on the frame too: in Arabic pages an RTL frame pinned the ribbon to the right
+          edge, so it slid out of view and left empty space after a few seconds */}
+      <div dir="ltr" className="relative mt-14 border-y border-white/10 py-4 overflow-hidden" aria-label={t.serve}>
         <div dir="ltr" className="flex w-max motion-safe:animate-marquee">
           {[0, 1].map((k) => (
             <div key={k} className="flex items-center shrink-0" aria-hidden={k === 1}>
