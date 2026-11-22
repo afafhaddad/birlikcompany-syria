@@ -43,7 +43,10 @@ const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = (
   const SMALL_SIZES = '(min-width: 1024px) 380px, (min-width: 640px) 340px, 64vw';
   const a = chosen.top || models[0]?.images[0];
   const b = chosen.bottom || models.find((m, i) => i > 0 && m.images[0])?.images[0] || models[0]?.images[1];
+  // Parallax: the three photos drift at different speeds (and the large one slowly settles from a
+  // slight zoom) while the chapter crosses the screen — strong enough to notice on a phone.
   const shift = (k: number) => ({ transform: `translateY(${(0.5 - p) * k}px)` });
+  const mainMotion = { transform: `translateY(${(0.5 - p) * -36}px) scale(${1 + Math.abs(0.5 - p) * 0.12})` };
   const side = flip ? 'start-0' : 'end-0';
   const otherSide = flip ? 'end-0' : 'start-0';
   return (
@@ -55,7 +58,8 @@ const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = (
         alt={alt}
         loading="lazy"
         decoding="async"
-        className={`absolute top-[12%] ${otherSide} w-[68%] h-[64%] object-cover rounded-2xl shadow-2xl`}
+        style={mainMotion}
+        className={`absolute top-[12%] ${otherSide} w-[68%] h-[64%] object-cover rounded-2xl shadow-2xl will-change-transform`}
       />
       {a && (
         <img
@@ -65,7 +69,7 @@ const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = (
           alt=""
           loading="lazy"
           decoding="async"
-          style={shift(50)}
+          style={shift(110)}
           className={`absolute top-0 ${side} w-[38%] h-[44%] object-cover rounded-2xl shadow-2xl will-change-transform`}
         />
       )}
@@ -77,7 +81,7 @@ const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = (
           alt=""
           loading="lazy"
           decoding="async"
-          style={shift(-40)}
+          style={shift(-90)}
           className={`absolute bottom-0 ${flip ? 'start-[8%]' : 'end-[8%]'} w-[44%] h-[42%] object-cover rounded-2xl shadow-2xl will-change-transform`}
         />
       )}
