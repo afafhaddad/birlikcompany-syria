@@ -6,6 +6,7 @@ import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/prod
 import { useMedia } from '../context/MediaContext';
 import { SITE_ORIGIN } from '../routing';
 import { cataloguePdfPath } from './CatalogueDownload';
+import { optimizeImage } from '../utils/optimizeImage';
 
 const TEXT = {
   ar: {
@@ -57,14 +58,25 @@ const TEXT = {
 
 /** A printed-catalogue cover: photo, range name down the side, brass label, logo. */
 const Cover: React.FC<{ id: ProductCategory; currentLang: Language; label: string; count: string }> = ({ id, currentLang, label, count }) => {
-  const { getCategoryImageUrl } = useMedia();
+  const { registry, getStoryPhotos } = useMedia();
   const info = CATEGORIES_DATA.find((c) => c.id === id) || CATEGORIES_DATA[0];
+  // The range chapter's large photo: same file, sizes and quality, so it comes from the cache
+  const main = getStoryPhotos(id).main || registry.categories[id] || info.image;
   const name = CATEGORY_CARDS.find((c) => c.id === id)!.name[currentLang];
   return (
     <span className="flex flex-col h-full rounded-xl bg-white p-2.5 sm:p-3 shadow-[0_25px_50px_-12px_rgba(0,0,0,.6)]">
       <span className="relative flex-1 flex gap-2 min-h-0">
         <span className="relative flex-1 rounded-md overflow-hidden bg-ink-soft">
-          <img src={getCategoryImageUrl(id, info.image, 640)} alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+          {/* Same files and sizes as the range chapters above, so phones reuse what is already loaded */}
+          <img
+            src={optimizeImage(main, 1080, 65)}
+            srcSet={([640, 1080, 1600] as const).map((w) => `${optimizeImage(main, w, 65)} ${w}w`).join(', ')}
+            sizes="(min-width: 1024px) 600px, (min-width: 640px) 520px, 90vw"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <span className="absolute bottom-2 start-0 px-2.5 py-1 bg-brass text-ink text-[10px] sm:text-xs font-black">{name}</span>
         </span>
         <span className="hidden sm:block [writing-mode:vertical-rl] text-[11px] font-black text-ink/80 tracking-wide whitespace-nowrap">

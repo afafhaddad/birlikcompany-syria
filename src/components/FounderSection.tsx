@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { reduced, useCountUp, useInView, useScrollProgress } from '../hooks/scroll';
+import { optimizeImage } from '../utils/optimizeImage';
 import { Building2, ChevronDown } from 'lucide-react';
 import { Language } from '../types';
 import { FOUNDER_DATA } from '../data/founder';
@@ -13,7 +14,7 @@ const TEXT = {
 };
 
 export const FounderSection: React.FC<{ currentLang: Language }> = ({ currentLang }) => {
-  const { getFounderImageUrl } = useMedia();
+  const { getFounderImageUrl, registry } = useMedia();
   const t = TEXT[currentLang];
   const f = FOUNDER_DATA;
   const ref = useRef<HTMLElement>(null);
@@ -34,6 +35,8 @@ export const FounderSection: React.FC<{ currentLang: Language }> = ({ currentLan
           <div className="relative rounded-[32px] overflow-hidden bg-ink-soft aspect-[4/5] max-w-md mx-auto lg:max-w-none shadow-2xl">
             <img
               src={getFounderImageUrl(f.defaultImage)}
+              srcSet={`${optimizeImage(registry.founder || f.defaultImage, 640, 65)} 640w, ${optimizeImage(registry.founder || f.defaultImage, 1080, 65)} 1080w`}
+              sizes="(min-width: 1024px) 570px, 92vw"
               alt={f.name[currentLang]}
               loading="lazy"
               decoding="async"

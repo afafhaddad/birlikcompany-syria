@@ -25,17 +25,22 @@ const SEE: Record<Language, (n: number) => string> = {
 
 /** Three photos per range: the range photo and two of its models. */
 const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = ({ id, alt, flip }) => {
-  const { getCategoryImageUrl, getStoryPhotos } = useMedia();
+  const { registry, getStoryPhotos } = useMedia();
   const ref = useRef<HTMLDivElement>(null);
   const p = useScrollProgress(ref);
   const info = CATEGORIES_DATA.find((c) => c.id === id) || CATEGORIES_DATA[0];
   const models = PRODUCT_MODELS.filter((m) => isModelInCategory(m, id));
   // Chosen in the editor (Site photos → Home page range story photos); otherwise picked automatically
   const chosen = getStoryPhotos(id);
-  const mainSrc = (w: 640 | 1080) => (chosen.main ? optimizeImage(chosen.main, w) : getCategoryImageUrl(id, info.image, w));
+  // Quality 65: indistinguishable from 75 side by side, ~30% lighter (matters on Syrian mobile data)
+  const mainSrc = (w: 640 | 1080 | 1600) => optimizeImage(chosen.main || registry.categories[id] || info.image, w, 65);
   const main = mainSrc(1080);
-  // Phones get the 640 px main photo and 384 px small ones; wide screens 1080 / 640
-  const smallSet = (u: string) => `${optimizeImage(u, 384)} 384w, ${optimizeImage(u, 640)} 640w`;
+  // The photos are wide (range photos ~2.4:1) but sit in near-square frames, so only their
+  // middle shows: "sizes" is the photo's rendered width after the crop, not the frame's width,
+  // or the browser picks a version that looks soft.
+  const mainSet = `${mainSrc(640)} 640w, ${main} 1080w, ${mainSrc(1600)} 1600w`;
+  const smallSet = (u: string) => `${optimizeImage(u, 384, 65)} 384w, ${optimizeImage(u, 640, 65)} 640w, ${optimizeImage(u, 1080, 65)} 1080w`;
+  const SMALL_SIZES = '(min-width: 1024px) 380px, (min-width: 640px) 340px, 64vw';
   const a = chosen.top || models[0]?.images[0];
   const b = chosen.bottom || models.find((m, i) => i > 0 && m.images[0])?.images[0] || models[0]?.images[1];
   const shift = (k: number) => ({ transform: `translateY(${(0.5 - p) * k}px)` });
@@ -45,8 +50,8 @@ const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = (
     <div ref={ref} className="relative h-[340px] sm:h-[480px] lg:h-[540px]">
       <img
         src={main}
-        srcSet={`${mainSrc(640)} 640w, ${main} 1080w`}
-        sizes="(min-width: 1024px) 420px, 66vw"
+        srcSet={mainSet}
+        sizes="(min-width: 1024px) 820px, (min-width: 640px) 730px, 140vw"
         alt={alt}
         loading="lazy"
         decoding="async"
@@ -56,7 +61,7 @@ const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = (
         <img
           src={optimizeImage(a, 640)}
           srcSet={smallSet(a)}
-          sizes="(min-width: 1024px) 240px, 38vw"
+          sizes={SMALL_SIZES}
           alt=""
           loading="lazy"
           decoding="async"
@@ -68,7 +73,7 @@ const Collage: React.FC<{ id: ProductCategory; alt: string; flip: boolean }> = (
         <img
           src={optimizeImage(b, 640)}
           srcSet={smallSet(b)}
-          sizes="(min-width: 1024px) 270px, 44vw"
+          sizes={SMALL_SIZES}
           alt=""
           loading="lazy"
           decoding="async"
