@@ -1,9 +1,11 @@
 import React from 'react';
-import { Home, LayoutGrid, MessageSquare, PlayCircle, MapPin } from 'lucide-react';
+import { Calculator, Home, LayoutGrid, MessageSquare, PlayCircle } from 'lucide-react';
 import { Language } from '../types';
 import { Link, useRouter } from '../router';
-import { catalogueRoute, homeRoute, installationRoute } from '../routing';
+import { calculatorRoute, catalogueRoute, homeRoute, installationRoute } from '../routing';
 import { UI } from '../site';
+
+export const CALC_LABEL: Record<Language, string> = { ar: 'احسب كميتك', en: 'Calculator', tr: 'Hesapla' };
 
 /**
  * App-style bottom navigation for phones. The centre button is always WhatsApp;
@@ -51,9 +53,10 @@ export const MobileTabBar: React.FC<{ currentLang: Language; whatsappHref: strin
           <PlayCircle className="w-5 h-5" />
           {UI.installation[currentLang]}
         </Link>
-        <Link to={homeRoute(currentLang)} scrollTo="office" className={item(false)}>
-          <MapPin className="w-5 h-5" />
-          {UI.showroom[currentLang]}
+        {/* Calculator users are the ones who end up messaging, so it gets a permanent tab */}
+        <Link to={calculatorRoute(currentLang)} className={item(route.view === 'calculator')}>
+          <Calculator className="w-5 h-5" />
+          {CALC_LABEL[currentLang]}
         </Link>
       </div>
     </nav>

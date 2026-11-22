@@ -154,6 +154,21 @@ export default defineConfig({
             label: 'Category photos',
             fields: CATEGORY_OPTIONS.map((c) => ({ type: 'image' as const, name: c.value, label: c.label })),
           },
+          {
+            type: 'object',
+            name: 'homeStory',
+            label: 'Home page range story photos (3 per range) · صور قصص الفئات في الصفحة الرئيسية',
+            fields: CATEGORY_OPTIONS.map((c) => ({
+              type: 'object' as const,
+              name: c.value,
+              label: c.label,
+              fields: [
+                { type: 'image' as const, name: 'main', label: 'Large photo · الصورة الكبيرة' },
+                { type: 'image' as const, name: 'top', label: 'Small photo (top) · الصورة الصغيرة العلوية' },
+                { type: 'image' as const, name: 'bottom', label: 'Small photo (bottom) · الصورة الصغيرة السفلية' },
+              ],
+            })),
+          },
         ],
       },
     ],

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Download, Droplets, Layers, PlayCircle, MessageSquare, Ruler } from 'lucide-react';
+import { Calculator, Download, Droplets, Layers, PlayCircle, MessageSquare, Ruler } from 'lucide-react';
+import { CalculatorIntro, QuantityCalculator } from './QuantityCalculator';
 import { cataloguePdfPath } from './CatalogueDownload';
 import { Language, ProductCategory } from '../types';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
@@ -31,6 +32,9 @@ const TEXT = {
     helpBtn: 'استشارة مجانية عبر واتساب',
     waMsg: (c: string) => `مرحباً شركة بيرليك، أحتاج مساعدة في اختيار موديل من ${c}.`,
     chooseModel: 'اختر الموديل',
+    calcChip: 'احسب كميتك',
+    calcTitle: (c: string) => `كم تحتاج من ${c}؟`,
+    calcBody: 'اختر اللون وأدخل قياس الجدار أو الأرضية — نرسم لك النتيجة، وترسلها على واتساب لتحصل على السعر.',
   },
   en: {
     available: 'models available',
@@ -47,6 +51,9 @@ const TEXT = {
     helpBtn: 'Free advice on WhatsApp',
     waMsg: (c: string) => `Hello Birlik Company, I need help choosing a model from ${c}.`,
     chooseModel: 'Choose a model',
+    calcChip: 'Calculate quantity',
+    calcTitle: (c: string) => `How much ${c} do you need?`,
+    calcBody: 'Pick a colour, enter your wall or floor size — we draw the result and you send it on WhatsApp for a price.',
   },
   tr: {
     available: 'model mevcut',
@@ -63,6 +70,9 @@ const TEXT = {
     helpBtn: "WhatsApp'tan ücretsiz danışın",
     waMsg: (c: string) => `Merhaba Birlik Şirketi, ${c} grubundan model seçmek için yardım istiyorum.`,
     chooseModel: 'Model seçin',
+    calcChip: 'Miktarı hesapla',
+    calcTitle: (c: string) => `Ne kadar ${c} gerekir?`,
+    calcBody: 'Rengi seçin, duvar veya zemin ölçüsünü girin — sonucu çizelim, fiyat için WhatsApp ile gönderin.',
   },
 };
 
@@ -123,10 +133,17 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
                 <Download className="w-4 h-4 text-brass-deep" />
                 {t.download(models.length)}
               </a>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-wa/90">
-                <Droplets className="w-4 h-4" />
-                {UI.waterproof[currentLang]}
-              </span>
+              <a
+                href="#calculator"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-wa hover:bg-wa-deep transition-colors"
+              >
+                <Calculator className="w-4 h-4" />
+                {t.calcChip}
+              </a>
               <Link
                 to={installationRoute(currentLang)}
                 scrollTo={`install-${card.id}`}
@@ -173,6 +190,18 @@ export const CategoryPage: React.FC<{ categoryId: ProductCategory; currentLang: 
               <ProductCard model={m} currentLang={currentLang} className="h-full" eager={i < 2} />
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Quantity calculator for this range */}
+      <section id="calculator" className="scroll-mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-14">
+        <div className="rounded-[32px] bg-ink p-5 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10 items-start">
+          <div className="min-w-0 lg:col-span-2" data-reveal>
+            <CalculatorIntro dark title={t.calcTitle(name)} body={t.calcBody} />
+          </div>
+          <div className="min-w-0 lg:col-span-3" data-reveal>
+            <QuantityCalculator currentLang={currentLang} ranges={[card.id]} dark />
+          </div>
         </div>
       </section>
 

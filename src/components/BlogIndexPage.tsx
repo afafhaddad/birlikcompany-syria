@@ -4,7 +4,7 @@ import { Language } from '../types';
 import { ARTICLES } from '../data/articles';
 import { Breadcrumbs } from './Breadcrumbs';
 import { SectionHeading } from './cards';
-import { ArticleCard } from './ArticlePage';
+import { ArticleCard, CompactArticleCard } from './ArticlePage';
 import { Link } from '../router';
 import { blogRoute } from '../routing';
 import { UI } from '../site';
@@ -70,7 +70,7 @@ export const GuidesTeaser: React.FC<{ currentLang: Language }> = ({ currentLang 
   const t = TEXT[currentLang];
   const Arrow = currentLang === 'ar' ? ArrowLeft : ArrowRight;
   return (
-    <section id="guides" className="bg-sand/50 py-14 md:py-24">
+    <section id="guides" className="bg-sand/50 py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <SectionHeading eyebrow={UI.blog[currentLang]} title={t.homeTitle} sub={t.homeSub} />
@@ -82,15 +82,15 @@ export const GuidesTeaser: React.FC<{ currentLang: Language }> = ({ currentLang 
             <Arrow className="w-4 h-4 text-brass-light" />
           </Link>
         </div>
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {[
-            ...ARTICLES.filter((a) => a.kind === 'topic').slice(0, 1),
-            ...ARTICLES.filter((a) => a.kind === 'guide').slice(0, 2),
-          ].map((a, i) => (
-            <div key={a.slug} data-reveal style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}>
-              <ArticleCard meta={a} currentLang={currentLang} />
-            </div>
-          ))}
+        {/* Compact cards: the questions people search for (price, comparisons, damp) */}
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {ARTICLES.filter((a) => a.kind === 'topic')
+            .slice(0, 4)
+            .map((a, i) => (
+              <div key={a.slug} data-reveal style={{ '--reveal-delay': `${i * 70}ms` } as React.CSSProperties}>
+                <CompactArticleCard meta={a} currentLang={currentLang} />
+              </div>
+            ))}
         </div>
       </div>
     </section>

@@ -31,6 +31,64 @@ export const toNumber = (raw: string): number => {
 
 const fmt = (n: number) => (Math.round(n * 100) / 100).toString();
 
+/**
+ * Live drawing of the visitor's wall or floor covered in the chosen model: seeing their
+ * own wall "fill up" is what makes people send the result (calculator users convert best).
+ */
+const SurfacePreview: React.FC<{ mode: 'wall' | 'floor'; a: number; b: number; pieceW: number; pieceL: number; color: string }> = ({
+  mode,
+  a,
+  b,
+  pieceW,
+  pieceL,
+  color,
+}) => {
+  const W = 240;
+  const H = Math.round(Math.min(150, Math.max(70, (W * b) / a)));
+  const seams: React.ReactNode[] = [];
+  if (mode === 'wall') {
+    // Vertical panels across the wall width
+    const n = Math.min(90, Math.max(1, Math.ceil((a * 100) / pieceW)));
+    for (let i = 1; i < n; i++) {
+      const x = (W * i) / n;
+      seams.push(<line key={i} x1={x} y1={0} x2={x} y2={H} stroke="rgba(0,0,0,.22)" strokeWidth={n > 50 ? 0.5 : 0.9} />);
+    }
+    // Soft fluting highlight on every other panel
+    for (let i = 0; i < n; i += 2) seams.push(<rect key={`h${i}`} x={(W * i) / n} y={0} width={W / n / 2} height={H} fill="rgba(255,255,255,.08)" />);
+  } else {
+    // Staggered floor planks
+    const rows = Math.min(40, Math.max(1, Math.ceil((b * 100) / pieceW)));
+    const plank = Math.max(8, (W * pieceL) / (a * 100));
+    for (let r = 0; r < rows; r++) {
+      const y = (H * r) / rows;
+      if (r) seams.push(<line key={`r${r}`} x1={0} y1={y} x2={W} y2={y} stroke="rgba(0,0,0,.22)" strokeWidth={0.7} />);
+      for (let x = (r % 3) * (plank / 3) + plank; x < W; x += plank) {
+        seams.push(<line key={`c${r}-${x}`} x1={x} y1={y} x2={x} y2={y + H / rows} stroke="rgba(0,0,0,.25)" strokeWidth={0.7} />);
+      }
+    }
+  }
+  return (
+    <svg viewBox={`-14 -4 ${W + 18} ${H + 22}`} className="w-full max-h-48 mt-3" dir="ltr" role="img" aria-hidden="true">
+      <defs>
+        <linearGradient id="calc-light" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#fff" stopOpacity=".28" />
+          <stop offset=".55" stopColor="#fff" stopOpacity="0" />
+          <stop offset="1" stopColor="#000" stopOpacity=".18" />
+        </linearGradient>
+      </defs>
+      <rect x={0} y={0} width={W} height={H} rx={3} fill={color} />
+      {seams}
+      <rect x={0} y={0} width={W} height={H} rx={3} fill="url(#calc-light)" stroke="rgba(0,0,0,.35)" strokeWidth={1} />
+      <text x={W / 2} y={H + 14} textAnchor="middle" fontSize={10} fontWeight={700} fill="#8C8278">
+        {fmt(a)} m
+      </text>
+      <text x={-6} y={H / 2} textAnchor="middle" fontSize={10} fontWeight={700} fill="#8C8278" transform={`rotate(-90 -6 ${H / 2})`}>
+        {fmt(b)} m
+      </text>
+    </svg>
+  );
+};
+
 const TEXT = {
   ar: {
     title: 'احسب الكمية التي تحتاجها',
@@ -118,7 +176,11 @@ const Field: React.FC<{ label: string; value: string; onChange: (v: string) => v
   </label>
 );
 
-export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Language }> = ({ model, currentLang }) => {
+export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Language; embedded?: boolean }> = ({
+  model,
+  currentLang,
+  embedded,
+}) => {
   const t = TEXT[currentLang];
   const mode = modeFor(model);
   const dims = parseDims(model.dimensions);
@@ -162,8 +224,8 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
   };
 
   return (
-    <section className="mt-6 rounded-3xl border border-line bg-white p-5 sm:p-6" aria-labelledby="calc-title">
-      <h2 id="calc-title" className="flex items-center gap-2 text-base font-bold text-[#1C1917] mb-4">
+    <section className={embedded ? '' : 'mt-6 rounded-3xl border border-line bg-white p-5 sm:p-6'} aria-labelledby="calc-title">
+      <h2 id="calc-title" className={embedded ? 'sr-only' : 'flex items-center gap-2 text-base font-bold text-[#1C1917] mb-4'}>
         <Calculator className="w-5 h-5 text-[#9E7241]" />
         {t.title}
       </h2>
@@ -232,6 +294,16 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
           </div>
         ) : (
           <p className="text-xs text-[#8C8278]">{t.empty}</p>
+        )}
+        {result && mode !== 'linear' && (
+          <SurfacePreview
+            mode={mode}
+            a={toNumber(a)}
+            b={toNumber(b)}
+            pieceW={dims.w}
+            pieceL={dims.l}
+            color={model.colorHex || '#C9A77A'}
+          />
         )}
       </div>
       <p className="text-[11px] text-[#8C8278] mt-2">{t.note}</p>

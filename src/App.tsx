@@ -8,7 +8,9 @@ import { Language, ProductModel } from './types';
 import { MediaProvider } from './context/MediaContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { ProductCategoriesSection } from './components/ProductCategoriesSection';
+import { CategoryStory } from './components/CategoryStory';
+import { PdfPicker } from './components/PdfPicker';
+import { FaqInquiry } from './components/FaqInquiry';
 import { FounderSection } from './components/FounderSection';
 import { AboutUsSection } from './components/AboutUsSection';
 import { ProductCataloguePage } from './components/ProductCataloguePage';
@@ -21,12 +23,13 @@ import { ArticlePage } from './components/ArticlePage';
 import { BlogIndexPage, GuidesTeaser } from './components/BlogIndexPage';
 import { articleBySlug, hasArticleContent, loadArticleContent } from './data/articles';
 import { OfficeSection } from './components/OfficeSection';
+import { CalculatorPage } from './components/CalculatorPage';
 import { MobileTabBar, DesktopWhatsApp } from './components/MobileTabBar';
 import { Footer } from './components/Footer';
 import { SEOHead } from './components/SEOHead';
 import { CookieNotice } from './components/CookieNotice';
 import { RouterContext } from './router';
-import { Route, buildPath, parseLocation, findProduct, homeRoute, catalogueRoute, installationRoute, blogRoute } from './routing';
+import { Route, buildPath, parseLocation, findProduct, homeRoute, catalogueRoute, installationRoute, blogRoute, calculatorRoute } from './routing';
 import { UI, whatsappLink } from './site';
 
 const scrollToSection = (id: string) => {
@@ -112,6 +115,7 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
   const handleNavigate = (sectionId: string) => {
     if (sectionId === 'categories-page' || sectionId === 'catalogue') return navigate(catalogueRoute(currentLang));
     if (sectionId === 'blog') return navigate(blogRoute(currentLang));
+    if (sectionId === 'calculator') return navigate(calculatorRoute(currentLang));
     if (sectionId === 'installation' || sectionId === 'resources' || sectionId === 'installation-videos') {
       return navigate(installationRoute(currentLang));
     }
@@ -156,6 +160,8 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
               <ProductCataloguePage currentLang={currentLang} />
             ) : route.view === 'article' && activeArticle ? (
               <ArticlePage meta={activeArticle} currentLang={currentLang} />
+            ) : route.view === 'calculator' ? (
+              <CalculatorPage currentLang={currentLang} />
             ) : route.view === 'blog' ? (
               <BlogIndexPage currentLang={currentLang} />
             ) : route.view === 'notfound' ? (
@@ -165,11 +171,13 @@ export default function App({ initialRoute }: { initialRoute: Route }) {
             ) : (
               <>
                 <Hero currentLang={currentLang} onNavigate={handleNavigate} />
-                <ProductCategoriesSection currentLang={currentLang} />
-                <FounderSection currentLang={currentLang} />
+                <CategoryStory currentLang={currentLang} />
+                <PdfPicker currentLang={currentLang} />
                 <AboutUsSection currentLang={currentLang} />
+                <FounderSection currentLang={currentLang} />
                 <GuidesTeaser currentLang={currentLang} />
                 <OfficeSection currentLang={currentLang} />
+                <FaqInquiry currentLang={currentLang} />
               </>
             )}
           </main>

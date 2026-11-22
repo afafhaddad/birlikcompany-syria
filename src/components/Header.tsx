@@ -39,6 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ currentLang, onLanguageChange, o
 
   const links: Array<{ id: string; label: string }> = [
     { id: 'catalogue', label: UI.catalogueLong[currentLang] },
+    { id: 'calculator', label: { ar: 'حاسبة الكمية', en: 'Calculator', tr: 'Hesaplayıcı' }[currentLang] },
     { id: 'installation', label: UI.installationLong[currentLang] },
     { id: 'blog', label: UI.blog[currentLang] },
     { id: 'about', label: UI.about[currentLang] },

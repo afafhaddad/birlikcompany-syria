@@ -48,6 +48,34 @@
     from { transform: scale(1.08); }
     to { transform: scale(1); }
   }
+
+  /* Endless ribbon (the track holds two identical halves) */
+  --animate-marquee: marquee 38s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* Editorial accent words in headlines: brass gradient, a system serif italic for Latin text
+   (no font download); Arabic keeps Cairo upright. */
+.accent-word {
+  font-family: Georgia, 'Times New Roman', 'Cairo', serif;
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(100deg, #dfc08a 0%, #b98a45 55%, #e8cf9f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-inline-end: 0.08em;
+}
+:lang(ar) .accent-word {
+  font-family: 'Cairo', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+}
+.accent-word.on-light {
+  background-image: linear-gradient(100deg, #8e6a33 0%, #b98a45 60%, #a37a3c 100%);
 }
 
 @layer base {

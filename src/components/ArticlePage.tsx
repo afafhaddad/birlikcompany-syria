@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
   Bath,
   Calculator,
   Check,
+  ChevronDown,
+  LayoutGrid,
   Clock,
   Droplets,
   Factory,
@@ -19,9 +21,10 @@ import {
   Wallet,
   X as XIcon,
 } from 'lucide-react';
-import { Language, ProductCategory } from '../types';
+import { Language } from '../types';
 import { ARTICLES, ArticleMeta, articleContent, articleRanges, articleSummary, readingMinutes } from '../data/articles';
-import { AreaCalculator } from './AreaCalculator';
+import { QuantityCalculator } from './QuantityCalculator';
+import { MaterialFinder } from './MaterialFinder';
 import { CATEGORIES_DATA, PRODUCT_MODELS, isModelInCategory } from '../data/products';
 import { categoryCard } from '../data/categoryCards';
 import { INSTALLATION_GUIDES } from '../data/installationGuides';
@@ -63,6 +66,12 @@ const TEXT = {
     calcIntro: 'اختر نوع المادة وأدخل قياسات الجدار أو الأرضية، ثم أرسل النتيجة على واتساب لنعطيك السعر الدقيق.',
     suggested: 'موديلات مقترحة',
     ranges: 'تصفّح الفئات',
+    readMore: 'اقرأ المزيد',
+    readLess: 'إخفاء',
+    actCalc: 'احسب كميتك',
+    actModels: 'شاهد الحلول',
+    actAsk: 'اسأل على واتساب',
+    solution: 'الحل من بيرليك',
   },
   en: {
     minutes: 'min read',
@@ -92,6 +101,12 @@ const TEXT = {
     calcIntro: 'Pick the material, enter your wall or floor measurements, then send the result on WhatsApp for an exact price.',
     suggested: 'Suggested models',
     ranges: 'Browse the ranges',
+    readMore: 'Read more',
+    readLess: 'Show less',
+    actCalc: 'Calculate quantity',
+    actModels: 'See the solutions',
+    actAsk: 'Ask on WhatsApp',
+    solution: 'The Birlik solution',
   },
   tr: {
     minutes: 'dk okuma',
@@ -121,6 +136,12 @@ const TEXT = {
     calcIntro: 'Malzemeyi seçin, duvar veya zemin ölçülerinizi girin, sonra kesin fiyat için sonucu WhatsApp ile gönderin.',
     suggested: 'Önerilen modeller',
     ranges: 'Kategorilere göz atın',
+    readMore: 'Devamını oku',
+    readLess: 'Gizle',
+    actCalc: 'Miktarı hesapla',
+    actModels: 'Çözümleri gör',
+    actAsk: "WhatsApp'tan sor",
+    solution: 'Birlik çözümü',
   },
 };
 
@@ -138,34 +159,85 @@ const SECTION_ICON: Record<string, React.ComponentType<{ className?: string }>> 
   calc: Calculator,
 };
 
-/** Quantity calculator with a material picker (topic articles about cost). */
-const RangeCalculator: React.FC<{ ranges: ProductCategory[]; currentLang: Language }> = ({ ranges, currentLang }) => {
-  const options = ranges
-    .map((r) => ({ r, model: PRODUCT_MODELS.find((m) => isModelInCategory(m, r)) }))
-    .filter((o): o is { r: ProductCategory; model: (typeof PRODUCT_MODELS)[number] } => !!o.model);
-  const [sel, setSel] = useState(0);
-  const current = options[sel] || options[0];
-  if (!current) return null;
+/** Thin bar at the very top showing how far through the article the reader is. */
+const ReadingProgress: React.FC = () => {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const on = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setP(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    };
+    on();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, []);
   return (
-    <div>
-      <div className="flex flex-wrap gap-2" role="tablist">
-        {options.map((o, i) => (
-          <button
-            key={o.r}
-            type="button"
-            role="tab"
-            aria-selected={i === sel}
-            onClick={() => setSel(i)}
-            className={`px-4 py-2.5 rounded-full text-sm font-bold border transition-colors ${
-              i === sel ? 'bg-ink text-white border-ink' : 'bg-white text-ink/80 border-line hover:border-brass'
-            }`}
-          >
-            {categoryCard(o.r).name[currentLang]}
-          </button>
-        ))}
-      </div>
-      <AreaCalculator model={current.model} currentLang={currentLang} />
+    <div className="fixed top-0 inset-x-0 z-[60] h-1 pointer-events-none" aria-hidden="true">
+      <div className="h-full bg-brass origin-[left] rtl:origin-[right] transition-transform duration-150" style={{ transform: `scaleX(${p})` }} />
     </div>
+  );
+};
+
+/**
+ * One article section as a short card: heading, the first paragraph, the key points,
+ * and "read more" for the rest. Readers scan; the full text stays in the page for Google.
+ */
+const SectionCard: React.FC<{
+  s: { id: string; heading: string; paragraphs: string[]; bullets?: string[] };
+  more: string;
+  less: string;
+  photo: { src: string; alt: string } | null;
+}> = ({ s, more, less, photo }) => {
+  const [open, setOpen] = useState(false);
+  const Icon = SECTION_ICON[s.id] || Layers;
+  const rest = s.paragraphs.slice(1);
+  return (
+    <section id={s.id} className="scroll-mt-32 py-7 md:py-9" data-reveal>
+      <div className="rounded-[28px] bg-white border border-line overflow-hidden">
+        {photo && (
+          <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" className="w-full aspect-[21/9] object-cover bg-ink-soft" />
+        )}
+        <div className="p-5 sm:p-7">
+          <div className="flex items-center gap-3">
+            <span className="w-10 h-10 rounded-xl bg-ink text-brass-light flex items-center justify-center shrink-0">
+              <Icon className="w-5 h-5" />
+            </span>
+            <h2 className="text-xl sm:text-2xl font-black leading-snug">{s.heading}</h2>
+          </div>
+          {s.paragraphs[0] && <p className="mt-4 text-base sm:text-[17px] leading-loose text-ink/85">{s.paragraphs[0]}</p>}
+          {s.bullets && (
+            <ul className="mt-4 grid sm:grid-cols-2 gap-2.5">
+              {s.bullets.map((b) => (
+                <li key={b} className="flex gap-2.5 rounded-2xl bg-sand/70 p-3 text-sm leading-relaxed font-semibold">
+                  <span className="w-6 h-6 rounded-full bg-wa/15 text-wa flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5" />
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          )}
+          {rest.length > 0 && (
+            <>
+              <div hidden={!open} className="mt-4 space-y-4 text-base sm:text-[17px] leading-loose text-ink/85">
+                {rest.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+              <button
+                type="button"
+                aria-expanded={open}
+                onClick={() => setOpen((o) => !o)}
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-extrabold text-brass-deep hover:text-ink"
+              >
+                {open ? less : more}
+                <ChevronDown className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`} />
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -206,13 +278,17 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
   });
   const photo = (i: number) => (photos.length ? photos[i % photos.length] : null);
 
+  // Same order as the page: the products and calculator sit between the first sections
+  const sectionLinks = c.sections.map((s) => ({ id: s.id, label: s.heading }));
   const toc = [
-    ...c.sections.map((s) => ({ id: s.id, label: s.heading })),
-    ...(meta.calculator ? [{ id: 'calculator', label: t.calc }] : []),
+    ...sectionLinks.slice(0, 2),
+    { id: 'models', label: t.actModels },
+    ...sectionLinks.slice(2, 3),
+    { id: 'calculator', label: t.actCalc },
+    ...sectionLinks.slice(3),
     { id: 'compare', label: t.compare },
     ...(isTopic ? [] : [{ id: 'specs', label: t.specs }]),
     ...(guide ? [{ id: 'install', label: t.install }] : []),
-    { id: 'models', label: isTopic ? t.suggested : t.models(name) },
   ];
   const jump = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -223,6 +299,7 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
 
   return (
     <article className="pt-16 md:pt-[4.5rem]">
+      <ReadingProgress />
       {/* Hero */}
       <header className="relative bg-ink text-white overflow-hidden">
         <img
@@ -239,7 +316,8 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
         <div className="absolute inset-0 bg-ink/45" />
         <div className="absolute inset-0 scrim-bottom" />
         <div className="relative max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 pt-6 pb-10 md:pb-16">
-          <Breadcrumbs dark currentLang={currentLang} items={[{ label: UI.blog[currentLang], to: blogRoute(currentLang) }, { label: name }]} />          <div className="mt-20 md:mt-36 animate-fade-up">
+          <Breadcrumbs dark currentLang={currentLang} items={[{ label: UI.blog[currentLang], to: blogRoute(currentLang) }, { label: name }]} />
+          <div className="mt-12 md:mt-24 animate-fade-up">
             <p className="flex items-center gap-2 text-sm font-bold text-brass-light">
               <span className="w-6 h-0.5 bg-current" />
               {UI.blog[currentLang]}
@@ -256,6 +334,34 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
               </span>
               <span>{currentLang === 'ar' ? 'شركة بيرليك' : 'Birlik Company'}</span>
             </p>
+            {/* Straight to what converts: the calculator, the products, a WhatsApp question */}
+            <div className="mt-6 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-2.5">
+              <a
+                href="#calculator"
+                onClick={jump('calculator')}
+                className="inline-flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 sm:px-5 py-3 rounded-2xl sm:rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold text-xs sm:text-sm transition-colors text-center"
+              >
+                <Calculator className="w-5 h-5 sm:w-4 sm:h-4" />
+                {t.actCalc}
+              </a>
+              <a
+                href="#models"
+                onClick={jump('models')}
+                className="inline-flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 sm:px-5 py-3 rounded-2xl sm:rounded-full bg-white/12 hover:bg-white/20 backdrop-blur-md border border-white/30 font-bold text-xs sm:text-sm transition-colors text-center"
+              >
+                <LayoutGrid className="w-5 h-5 sm:w-4 sm:h-4" />
+                {t.actModels}
+              </a>
+              <a
+                href={whatsappLink(t.waMsg(name))}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 sm:px-5 py-3 rounded-2xl sm:rounded-full bg-wa hover:bg-wa-deep font-bold text-xs sm:text-sm transition-colors text-center"
+              >
+                <MessageSquare className="w-5 h-5 sm:w-4 sm:h-4" />
+                {t.actAsk}
+              </a>
+            </div>
           </div>
         </div>
       </header>
@@ -278,84 +384,59 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
       </nav>
 
       <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
-        {/* Sections */}
-        {c.sections.map((s) => {
-          const Icon = SECTION_ICON[s.id] || Layers;
-          const p = s.bullets ? null : photo(photoIdx++);
-          return (
-            <section key={s.id} id={s.id} className="scroll-mt-32 py-10 md:py-14 border-b border-line last:border-0">
-              <div data-reveal>
-                <span className="w-12 h-12 rounded-2xl bg-ink text-brass-light flex items-center justify-center">
-                  <Icon className="w-6 h-6" />
-                </span>
-                <h2 className="mt-4 text-2xl sm:text-3xl font-black leading-snug">{s.heading}</h2>
+        {/* Short section cards, with the interactive blocks placed early, where readers still are:
+            material finder (topic articles) → the products → the calculator. */}
+        {c.sections.map((s, i) => (
+          <React.Fragment key={s.id}>
+            <SectionCard s={s} more={t.readMore} less={t.readLess} photo={i < 3 && !s.bullets ? photo(photoIdx++) : null} />
+
+            {i === 0 && isTopic && (
+              <div className="py-4" data-reveal>
+                <MaterialFinder currentLang={currentLang} />
               </div>
+            )}
 
-              <div className="mt-4 space-y-4 text-base sm:text-[17px] leading-loose text-ink/85" data-reveal>
-                {s.paragraphs.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
-              </div>
-
-              {s.bullets && (
-                <ul className="mt-6 grid sm:grid-cols-2 gap-3">
-                  {s.bullets.map((b, i) => (
-                    <li
-                      key={b}
-                      className="flex gap-3 rounded-2xl bg-white border border-line p-4 text-sm sm:text-[15px] leading-relaxed font-semibold"
-                      data-reveal
-                      style={{ '--reveal-delay': `${(i % 2) * 70}ms` } as React.CSSProperties}
-                    >
-                      <span className="w-7 h-7 rounded-full bg-wa/15 text-wa flex items-center justify-center shrink-0">
-                        <Check className="w-4 h-4" />
-                      </span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {p && (
-                <figure className="mt-7 rounded-3xl overflow-hidden bg-ink-soft" data-reveal>
-                  <img src={p.src} alt={p.alt} loading="lazy" decoding="async" className="w-full aspect-[16/10] object-cover" />
-                  <figcaption className="px-4 py-2.5 text-xs font-semibold text-white/75 bg-ink">{p.alt}</figcaption>
-                </figure>
-              )}
-
-              {/* Photo strip after the benefits */}
-              {s.bullets && photos.length > 4 && (
-                <div className="mt-7 snap-rail gap-3 -mx-5 px-5 sm:mx-0 sm:px-0 scroll-px-5" data-reveal>
-                  {photos.slice(4, 8).map((ph) => (
-                    <img
-                      key={ph.src}
-                      src={ph.src}
-                      alt={ph.alt}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-[70%] sm:w-[calc(50%-0.375rem)] aspect-[4/3] object-cover rounded-2xl"
-                    />
+            {i === 1 && (
+              <section id="models" className="scroll-mt-32 py-7 md:py-9">
+                <h2 className="text-xl sm:text-2xl font-black leading-snug" data-reveal>
+                  {t.solution}: {isTopic ? t.suggested : t.models(name)}
+                </h2>
+                <div className="mt-4 snap-rail gap-3 -mx-5 px-5 sm:mx-0 sm:px-0 scroll-px-5">
+                  {models.slice(0, 8).map((m) => (
+                    <div key={m.id} className="w-[46%] sm:w-[31%] shrink-0" style={{ scrollSnapAlign: 'start' }}>
+                      <ProductCard model={m} currentLang={currentLang} className="h-full" />
+                    </div>
                   ))}
                 </div>
-              )}
-            </section>
-          );
-        })}
+                <div className="mt-4 flex flex-wrap gap-2.5">
+                  {ranges.map((r) => (
+                    <Link
+                      key={r}
+                      to={categoryRoute(currentLang, r)}
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold text-sm transition-colors"
+                    >
+                      {isTopic ? categoryCard(r).name[currentLang] : t.viewAll(models.length, name)}
+                      <Arrow className="w-4 h-4" />
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
 
-        {/* Quantity calculator (cost articles) */}
-        {meta.calculator && (
-          <section id="calculator" className="scroll-mt-32 py-10 md:py-14 border-b border-line">
-            <div data-reveal>
-              <span className="w-12 h-12 rounded-2xl bg-ink text-brass-light flex items-center justify-center">
-                <Calculator className="w-6 h-6" />
-              </span>
-              <h2 className="mt-4 text-2xl sm:text-3xl font-black leading-snug">{t.calc}</h2>
-              <p className="mt-3 text-base leading-loose text-ink/85">{t.calcIntro}</p>
-            </div>
-            <div className="mt-5">
-              <RangeCalculator ranges={ranges} currentLang={currentLang} />
-            </div>
-          </section>
-        )}
+            {i === 2 && (
+              <section id="calculator" className="scroll-mt-32 py-7 md:py-9">
+                <div className="rounded-[32px] bg-ink p-4 sm:p-7">
+                  <h2 className="flex items-center gap-2.5 text-xl sm:text-2xl font-black text-white mb-1.5">
+                    <Calculator className="w-6 h-6 text-brass-light" />
+                    {t.calc}
+                  </h2>
+                  <p className="text-sm leading-relaxed text-white/70 mb-5">{t.calcIntro}</p>
+                  <QuantityCalculator currentLang={currentLang} ranges={ranges} dark />
+                </div>
+              </section>
+            )}
+          </React.Fragment>
+        ))}
 
         {/* Comparison */}
         <section id="compare" className="scroll-mt-32 py-10 md:py-14 border-b border-line">
@@ -457,47 +538,6 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
         )}
       </div>
 
-      {/* Models */}
-      <section id="models" className="scroll-mt-32 bg-sand/60 border-y border-line py-10 md:py-14">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-black leading-snug">{isTopic ? t.suggested : t.models(name)}</h2>
-        </div>
-        <div className="mt-6 snap-rail gap-3 sm:gap-5 px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-px-5">
-          {models.slice(0, 10).map((m) => (
-            <div key={m.id} className="w-[44%] sm:w-[30%] lg:w-[22%]" style={{ scrollSnapAlign: 'start' }}>
-              <ProductCard model={m} currentLang={currentLang} className="h-full" />
-            </div>
-          ))}
-        </div>
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 mt-6">
-          {isTopic ? (
-            <div>
-              <p className="text-sm font-bold text-muted mb-3">{t.ranges}</p>
-              <div className="flex flex-wrap gap-2.5">
-                {ranges.map((r) => (
-                  <Link
-                    key={r}
-                    to={categoryRoute(currentLang, r)}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold text-sm transition-colors"
-                  >
-                    {categoryCard(r).name[currentLang]}
-                    <Arrow className="w-4 h-4" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <Link
-              to={categoryRoute(currentLang, catId)}
-              className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-4 rounded-full bg-brass hover:bg-brass-light text-ink font-extrabold transition-colors"
-            >
-              {t.viewAll(models.length, name)}
-              <Arrow className="w-5 h-5" />
-            </Link>
-          )}
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 py-12">
         <div className="rounded-3xl bg-ink text-white p-6 sm:p-10" data-reveal>
@@ -531,6 +571,33 @@ export const ArticlePage: React.FC<{ meta: ArticleMeta; currentLang: Language }>
         </div>
       </section>
     </article>
+  );
+};
+
+/** Small card (thumbnail + label + title) for the home page's guides strip. */
+export const CompactArticleCard: React.FC<{ meta: ArticleMeta; currentLang: Language }> = ({ meta, currentLang }) => {
+  const { getCategoryImageUrl } = useMedia();
+  const c = articleSummary(meta, currentLang);
+  const info = CATEGORIES_DATA.find((x) => x.id === meta.categoryId) || CATEGORIES_DATA[0];
+  return (
+    <Link
+      to={articleRoute(currentLang, meta.slug)}
+      className="group flex items-center gap-3 h-full rounded-2xl bg-white border border-line hover:border-brass hover:shadow-md p-2.5 pe-4 transition-all"
+    >
+      <span className="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-ink-soft">
+        <img
+          src={meta.image ? optimizeImage(meta.image, 384) : getCategoryImageUrl(meta.categoryId, info.image, 640)}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      </span>
+      <span className="min-w-0">
+        {c.label && <span className="block text-[11px] font-extrabold text-brass-deep">{c.label}</span>}
+        <span className="mt-0.5 block text-sm font-black leading-snug text-ink line-clamp-3 group-hover:text-brass-deep transition-colors">{c.title}</span>
+      </span>
+    </Link>
   );
 };
 

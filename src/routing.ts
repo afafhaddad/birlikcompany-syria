@@ -76,6 +76,8 @@ export function buildPath(route: Route): string {
       return route.range ? `${base}catalogue/print/${categorySlug(route.range)}/` : `${base}catalogue/print/`;
     case 'installation':
       return `${base}installation/`;
+    case 'calculator':
+      return `${base}calculator/`;
     case 'blog':
       return `${base}blog/`;
     case 'article':
@@ -95,6 +97,7 @@ export const homeRoute = (lang: Language): Route => ({ lang, view: 'home', categ
 export const catalogueRoute = (lang: Language): Route => ({ lang, view: 'catalogue', category: 'ps_wood' });
 export const installationRoute = (lang: Language): Route => ({ lang, view: 'installation', category: 'ps_wood' });
 export const blogRoute = (lang: Language): Route => ({ lang, view: 'blog', category: 'ps_wood' });
+export const calculatorRoute = (lang: Language): Route => ({ lang, view: 'calculator', category: 'ps_wood' });
 export const articleRoute = (lang: Language, slug: string): Route => {
   const meta = articleBySlug(slug);
   return { lang, view: 'article', category: meta ? meta.categoryId : 'ps_wood', slug };
@@ -118,6 +121,7 @@ export const sectionPath = (lang: Language, sectionId: string): string => {
     return buildPath(installationRoute(lang));
   }
   if (sectionId === 'blog') return buildPath(blogRoute(lang));
+  if (sectionId === 'calculator') return buildPath(calculatorRoute(lang));
   if (sectionId === 'hero') return buildPath(homeRoute(lang));
   return `${buildPath(homeRoute(lang))}#${sectionId}`;
 };
@@ -157,6 +161,7 @@ export function parseLocation(pathname: string, search = ''): Route {
   }
   if (parts[0] === 'installation' && parts.length === 1) return installationRoute(lang);
   if (parts[0] === 'blog' && parts.length === 1) return blogRoute(lang);
+  if (parts[0] === 'calculator' && parts.length === 1) return calculatorRoute(lang);
   if (parts[0] === 'blog' && parts.length === 2 && articleBySlug(parts[1])) return articleRoute(lang, parts[1]);
 
   const cat = slugToCategory(parts[0]);
@@ -172,7 +177,7 @@ export function parseLocation(pathname: string, search = ''): Route {
 export function allRoutes(): Route[] {
   const routes: Route[] = [];
   for (const lang of LANGS) {
-    routes.push(homeRoute(lang), catalogueRoute(lang), installationRoute(lang));
+    routes.push(homeRoute(lang), catalogueRoute(lang), installationRoute(lang), calculatorRoute(lang));
     routes.push({ lang, view: 'print', category: 'ps_wood' });
     for (const range of MAIN_CATEGORIES) routes.push({ lang, view: 'print', category: range, range });
     routes.push(blogRoute(lang));

@@ -9,6 +9,7 @@ import { canonicalCategory, catalogueRoute, categoryRoute, productPath, productR
 import { Breadcrumbs } from './Breadcrumbs';
 import { ProductCard } from './cards';
 import { AreaCalculator } from './AreaCalculator';
+import { optimizeImage } from '../utils/optimizeImage';
 import { pairings, richDescription } from '../data/productCopy';
 import { articleByCategory, articleSummary, topicsForCategory } from '../data/articles';
 import { articleRoute } from '../routing';
@@ -354,7 +355,13 @@ export const ProductDetailPage: React.FC<{ model: ProductModel; currentLang: Lan
                       to={productRoute(currentLang, m)}
                       className="flex items-center gap-3 rounded-2xl bg-white border border-line hover:border-brass p-3 transition-colors"
                     >
-                      <span className="w-8 h-8 rounded-full ring-1 ring-black/10 shrink-0" style={{ background: m.colorHex }} aria-hidden />
+                      <img
+                        src={optimizeImage(m.images[0], 384)}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="w-14 h-14 rounded-xl object-cover bg-sand shrink-0"
+                      />
                       <span className="min-w-0">
                         <span className="block text-sm font-extrabold text-ink truncate">{m.name[currentLang]}</span>
                         <span className="block text-xs text-muted truncate">{categoryCard(canonicalCategory(m.category)).name[currentLang]}</span>

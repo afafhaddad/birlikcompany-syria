@@ -287,6 +287,34 @@ export function getSeo(route: Route): SeoData {
     };
   }
 
+  if (route.view === 'calculator') {
+    const name = { ar: 'حاسبة الكمية', en: 'Quantity calculator', tr: 'Miktar hesaplayıcı' }[lang];
+    return {
+      ...base,
+      title: {
+        ar: 'حاسبة كمية بديل الخشب والرخام والباركيه — كم لوح تحتاج؟ | شركة بيرليك',
+        en: 'Wall Panel & Flooring Calculator — How Many Pieces Do You Need? | Birlik Company',
+        tr: 'Duvar Paneli ve Zemin Hesaplayıcı — Kaç Adet Gerekir? | Birlik Şirketi',
+      }[lang],
+      description: {
+        ar: 'احسب عدد ألواح بديل الخشب، بديل الرخام، ألواح SPC، الباركيه أو النعلات لجدارك أو أرضيتك خلال ثوانٍ، شاهد النتيجة على جدارك، وأرسلها على واتساب لتحصل على السعر من شركة بيرليك.',
+        en: 'Work out how many PS wood panels, PVC marble sheets, SPC panels, flooring planks or baseboards your wall or floor needs in seconds, see it drawn on your wall, and send it on WhatsApp for a price.',
+        tr: 'Duvarınız veya zemininiz için kaç adet PS panel, PVC mermer, SPC panel, zemin veya süpürgelik gerektiğini saniyeler içinde hesaplayın ve fiyat için WhatsApp ile gönderin.',
+      }[lang],
+      ogImage: abs(registry.hero),
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { '@type': 'WebPage', name, url: canonical, inLanguage: lang },
+          breadcrumb([
+            { name: HOME_NAME[lang], url: homeUrl },
+            { name, url: canonical },
+          ]),
+        ],
+      },
+    };
+  }
+
   if (route.view === 'notfound') {
     return {
       ...base,

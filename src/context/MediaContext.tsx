@@ -21,10 +21,18 @@ export interface MediaTarget {
   mode?: 'add' | 'replace';
 }
 
+export interface StoryPhotos {
+  main?: string;
+  top?: string;
+  bottom?: string;
+}
+
 export interface MediaRegistryData {
   hero?: string;
   founder: string;
   categories: Record<string, string>;
+  /** Home page range chapters: three photos per range ("Site photos" in the editor) */
+  homeStory: Record<string, StoryPhotos>;
 }
 
 interface MediaContextType {
@@ -36,6 +44,8 @@ interface MediaContextType {
   getProductImageUrl: (productId: string, defaultImage: string, width?: ImageWidth) => string;
   getProductGalleryUrls: (productId: string, defaultImages: string[]) => string[];
   getFounderImageUrl: (defaultImage: string) => string;
+  /** The three home-page story photos of a range (raw paths; empty entries fall back in the component) */
+  getStoryPhotos: (categoryId: string) => StoryPhotos;
   // No-op stubs for legacy admin UI paths (unreachable because isAdmin is false)
   uploadFiles: (files: FileList | File[], target?: MediaTarget) => Promise<string[]>;
   removeProductImage: (productId: string, imageUrl: string) => Promise<void>;
@@ -49,6 +59,7 @@ const registry: MediaRegistryData = {
   hero: raw.hero || '',
   founder: raw.founder || '',
   categories: raw.categories || {},
+  homeStory: raw.homeStory || {},
 };
 
 const nonEmpty = (u: string | undefined): u is string => typeof u === 'string' && u.trim() !== '';
@@ -90,6 +101,10 @@ const value: MediaContextType = {
   getProductImageUrl,
   getProductGalleryUrls,
   getFounderImageUrl,
+  getStoryPhotos: (id: string) => {
+    const s = registry.homeStory[id] || {};
+    return { main: nonEmpty(s.main) ? s.main : undefined, top: nonEmpty(s.top) ? s.top : undefined, bottom: nonEmpty(s.bottom) ? s.bottom : undefined };
+  },
   uploadFiles: async () => [],
   removeProductImage: noopAsync,
   setProductMainImage: noopAsync,

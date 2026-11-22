@@ -8,5 +8,37 @@
     "spc_flooring": "/uploads/categories/spc-flooring.webp",
     "ps_slats": "/uploads/categories/ps-wall-mouldings.webp",
     "ps_baseboards": "/uploads/categories/ps-baseboards.webp"
+  },
+  "homeStory": {
+    "ps_wood": {
+      "main": "/uploads/categories/wood-alternative-ps-wall-panels.webp",
+      "top": "/uploads/products/wood-alternative-ps-wall-panel-vangoh-1.webp",
+      "bottom": "/uploads/products/wood-alternative-ps-wall-panel-marble-gold-noir-1.webp"
+    },
+    "pvc_marble": {
+      "main": "/uploads/categories/marble-alternative-pvc-wall-panels.webp",
+      "top": "/uploads/products/marble-alternative-pvc-wall-panel-athena-grey-1.webp",
+      "bottom": "/uploads/products/marble-alternative-pvc-wall-panel-fuji-grey-1.webp"
+    },
+    "spc_wall": {
+      "main": "/uploads/categories/spc-stone-wall-panels.webp",
+      "top": "/uploads/products/spc-stone-wall-panel-woody-forest-1.webp",
+      "bottom": "/uploads/products/spc-stone-wall-panel-nardo-grey-1.webp"
+    },
+    "spc_flooring": {
+      "main": "/uploads/categories/spc-flooring.webp",
+      "top": "/uploads/products/spc-flooring-concrete-1.webp",
+      "bottom": "/uploads/products/spc-flooring-blanche-1.webp"
+    },
+    "ps_slats": {
+      "main": "/uploads/categories/ps-wall-mouldings.webp",
+      "top": "/uploads/products/ps-wall-moulding-led-cornice-1.webp",
+      "bottom": "/uploads/products/ps-wall-moulding-4-cm-classic-1.webp"
+    },
+    "ps_baseboards": {
+      "main": "/uploads/categories/ps-baseboards.webp",
+      "top": "/uploads/products/ps-baseboard-led-baseboard-1.webp",
+      "bottom": "/uploads/products/ps-baseboard-classic-baseboard-1.webp"
+    }
   }
 }
