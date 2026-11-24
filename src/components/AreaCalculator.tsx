@@ -5,7 +5,7 @@ import { canonicalCategory, productPath, SITE_ORIGIN } from '../routing';
 
 type Mode = 'wall' | 'floor' | 'linear';
 
-const modeFor = (model: ProductModel): Mode => {
+export const modeFor = (model: ProductModel): Mode => {
   const cat = canonicalCategory(model.category);
   if (cat === 'spc_flooring') return 'floor';
   if (cat === 'ps_slats' || cat === 'ps_baseboards') return 'linear';
@@ -101,6 +101,7 @@ const TEXT = {
     lengthHint: 'للنعلات: محيط الغرفة ناقص عرض الأبواب',
     waste: 'نسبة الهدر والقص',
     area: 'المساحة',
+    totalLength: 'الطول',
     pieces: 'العدد التقريبي',
     piece: 'قطعة',
     m2: 'م²',
@@ -121,6 +122,7 @@ const TEXT = {
     lengthHint: 'For baseboards: room perimeter minus door widths',
     waste: 'Cutting & waste allowance',
     area: 'Area',
+    totalLength: 'Length',
     pieces: 'Approx. quantity',
     piece: 'pieces',
     m2: 'm²',
@@ -141,6 +143,7 @@ const TEXT = {
     lengthHint: 'Süpürgelik için: oda çevresi eksi kapı genişlikleri',
     waste: 'Kesim ve fire payı',
     area: 'Alan',
+    totalLength: 'Uzunluk',
     pieces: 'Yaklaşık adet',
     piece: 'adet',
     m2: 'm²',
@@ -151,6 +154,10 @@ const TEXT = {
     empty: 'Sonucu görmek için ölçüleri girin',
   },
 };
+
+/** Label for the result line: slats and baseboards are measured in metres of length, not m² of area. */
+export const measureLabel = (mode: Mode, lang: Language): string =>
+  mode === 'linear' ? TEXT[lang].totalLength : TEXT[lang].area;
 
 const Field: React.FC<{ label: string; value: string; onChange: (v: string) => void; hint?: string; id: string }> = ({
   label,
@@ -183,6 +190,7 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
 }) => {
   const t = TEXT[currentLang];
   const mode = modeFor(model);
+  const measureText = measureLabel(mode, currentLang);
   const dims = parseDims(model.dimensions);
   const [a, setA] = useState('');
   const [b, setB] = useState('');
@@ -216,9 +224,9 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
         ? `${t.length}: ${fmt(toNumber(a))}`
         : `${mode === 'wall' ? t.wallW : t.floorL}: ${fmt(toNumber(a))} × ${mode === 'wall' ? t.wallH : t.floorW}: ${fmt(toNumber(b))}`;
     const msg = {
-      ar: `مرحباً شركة بيرليك، أريد سعر الموديل ${model.code} (${model.name.ar}).\n${inputs}\n${t.area}: ${result.measure}\n${t.pieces}: ${result.pieces} ${t.piece} (مع ${waste}% هدر)\n${url}`,
-      en: `Hello Birlik Company, I'd like the price for model ${model.code} (${model.name.en}).\n${inputs}\n${t.area}: ${result.measure}\n${t.pieces}: ${result.pieces} ${t.piece} (incl. ${waste}% waste)\n${url}`,
-      tr: `Merhaba Birlik Şirketi, ${model.code} (${model.name.tr}) modelinin fiyatını öğrenmek istiyorum.\n${inputs}\n${t.area}: ${result.measure}\n${t.pieces}: ${result.pieces} ${t.piece} (%${waste} fire dahil)\n${url}`,
+      ar: `مرحباً شركة بيرليك، أريد سعر الموديل ${model.code} (${model.name.ar}).\n${inputs}\n${measureText}: ${result.measure}\n${t.pieces}: ${result.pieces} ${t.piece} (مع ${waste}% هدر)\n${url}`,
+      en: `Hello Birlik Company, I'd like the price for model ${model.code} (${model.name.en}).\n${inputs}\n${measureText}: ${result.measure}\n${t.pieces}: ${result.pieces} ${t.piece} (incl. ${waste}% waste)\n${url}`,
+      tr: `Merhaba Birlik Şirketi, ${model.code} (${model.name.tr}) modelinin fiyatını öğrenmek istiyorum.\n${inputs}\n${measureText}: ${result.measure}\n${t.pieces}: ${result.pieces} ${t.piece} (%${waste} fire dahil)\n${url}`,
     }[currentLang];
     return `https://wa.me/963995764573?text=${encodeURIComponent(msg)}`;
   };
@@ -279,7 +287,7 @@ export const AreaCalculator: React.FC<{ model: ProductModel; currentLang: Langua
           <div className="flex items-end justify-between gap-3">
             <div className="text-xs text-[#5C554E] space-y-0.5">
               <div>
-                {t.area}: <b className="text-[#1C1917]">{result.measure}</b>
+                {measureText}: <b className="text-[#1C1917]">{result.measure}</b>
               </div>
               <div>
                 {t.perPiece}: <span dir="ltr">{result.per}</span>

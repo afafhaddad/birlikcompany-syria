@@ -3,7 +3,7 @@
  * If any of these fail, Vercel stops the deploy and the live site stays as it was.
  */
 import { describe, expect, it, beforeAll } from 'vitest';
-import { LANGS, MAIN_CATEGORIES, SITE_ORIGIN, allRoutes, buildPath, parseLocation, productRoute } from '../src/routing';
+import { LANGS, MAIN_CATEGORIES, SITE_ORIGIN, allRoutes, canonicalCategory, buildPath, parseLocation, productRoute } from '../src/routing';
 import { getSeo } from '../src/seo';
 import { PRODUCT_MODELS, isModelInCategory } from '../src/data/products';
 import { ARTICLES, articleContent, articleSummary, registerArticleContent } from '../src/data/articles';
@@ -12,7 +12,7 @@ import { ARTICLES_EN } from '../src/data/articles.en';
 import { ARTICLES_TR } from '../src/data/articles.tr';
 import { richDescription } from '../src/data/productCopy';
 import { INSTALLATION_GUIDES, VIDEO_META } from '../src/data/installationGuides';
-import { toNumber } from '../src/components/AreaCalculator';
+import { measureLabel, modeFor, toNumber } from '../src/components/AreaCalculator';
 import registry from '../src/data/mediaRegistry.json';
 import { existsSync } from 'node:fs';
 import { cataloguePdfPath } from '../src/components/CatalogueDownload';
@@ -196,5 +196,20 @@ describe('calculator input', () => {
     expect(toNumber('۴')).toBe(4);
     expect(toNumber('')).toBe(0);
     expect(toNumber('abc')).toBe(0);
+  });
+
+  it('labels slats and baseboards with length, walls and floors with area', () => {
+    const modelIn = (cat: string) => PRODUCT_MODELS.find((m) => canonicalCategory(m.category) === cat);
+    for (const cat of ['ps_slats', 'ps_baseboards']) {
+      const m = modelIn(cat);
+      expect(m, cat).toBeTruthy();
+      expect(modeFor(m!), cat).toBe('linear');
+    }
+    expect(modeFor(modelIn('spc_flooring')!)).toBe('floor');
+    expect(measureLabel('linear', 'ar')).toBe('الطول');
+    expect(measureLabel('linear', 'en')).toBe('Length');
+    expect(measureLabel('linear', 'tr')).toBe('Uzunluk');
+    expect(measureLabel('wall', 'ar')).toBe('المساحة');
+    expect(measureLabel('floor', 'en')).toBe('Area');
   });
 });
